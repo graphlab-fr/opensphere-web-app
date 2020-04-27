@@ -3,5 +3,5 @@
 Page GitHub de la librairie : [https://github.com/visjs/vis-network](https://github.com/visjs/vis-network)
 
 ```bash
-$ npm install vis-network
+$ npm init
 ```

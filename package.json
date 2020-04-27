@@ -1,0 +1,22 @@
+{
+  "name": "network",
+  "version": "1.0.0",
+  "description": "Datavisualisation en réseau",
+  "main": "network.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Guillaume Brioudes",
+  "license": "ISC",
+  "keywords": [
+    "datavisualisation",
+    "network"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "vis-network": "^7.6.2"
+  }
+}
