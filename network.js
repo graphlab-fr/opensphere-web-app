@@ -1,26 +1,41 @@
-// create an array with nodes
-var nodes = new vis.DataSet([
-    {id: 1, label: 'Node 1'},
-    {id: 2, label: 'Node 2'},
-    {id: 3, label: 'Node 3'},
-    {id: 4, label: 'Node 4'},
-    {id: 5, label: 'Node 5'}
-]);
+// URL de la feuille de calcul
+var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit#gid=0';
 
-// create an array with edges
-var edges = new vis.DataSet([
-    {from: 1, to: 3},
-    {from: 1, to: 2},
-    {from: 2, to: 4},
-    {from: 2, to: 5},
-    {from: 3, to: 3}
-]);
+function gSheetLoad() {
+    return new Promise((resolve, reject) => {
 
-// create a network
-var container = document.getElementById('mynetwork');
-var data = {
-    nodes: nodes,
-    edges: edges
-};
-var options = {};
-var network = new vis.Network(container, data, options);
+    Tabletop.init({
+        key: publicSpreadsheetUrl,
+        callback: function(data, tableMetas) {
+            
+            data.Entites.elements.forEach(entite => {
+                createNode(entite); });
+            
+            resolve(true);
+
+        },
+        simpleSheet: false });
+
+    });
+}
+
+let nodeList = [];
+function createNode(entite) {
+    var nodeObject = {id: entite.id, label: entite.label};
+    nodeList.push(nodeObject);
+}
+
+gSheetLoad().then(function(bool) {
+
+    var network = {
+        container: document.querySelector('#network'),
+        options: {},
+        data: {
+            nodes: new vis.DataSet(nodeList),
+            edges: new vis.DataSet()
+        }
+    }
+
+    var visualisation = new vis.Network(network.container,
+        network.data, network.options);
+});
