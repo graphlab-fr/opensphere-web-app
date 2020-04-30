@@ -24,7 +24,15 @@ function gSheetLoad() {
 
 let nodeList = [];
 function createNode(entite) {
-    var nodeObject = {id: entite.id, label: entite.label};
+    var nodeObject = {
+        id: entite.id,
+        label: entite.label,
+        shape: chooseShape(entite.type),
+        color: {
+            border: chooseColor(entite.relation_otlet),
+            background: 'white'
+        }
+    };
     nodeList.push(nodeObject);
 }
 
@@ -49,3 +57,39 @@ gSheetLoad().then(function(bool) {
     var visualisation = new vis.Network(network.container,
         network.data, network.options);
 });
+
+function chooseColor(relationEntite) {
+    switch (relationEntite) {
+        case 'collegue':
+            return 'purple';
+        case 'contemporain':
+            return 'green';
+        case 'collaborateur':
+            return 'orange';
+        case 'opposant':
+            return 'red';
+        case 'famille':
+            return 'blue';
+        case 'otlet':
+            return 'gray';
+        case 'institution':
+            return 'gray';
+        case 'œuvre':
+            return 'gray';
+        case 'évènement':
+            return 'gray';
+    }
+}
+
+function chooseShape(typeEntite) {
+    switch (typeEntite) {
+        case 'Personne':
+            return 'circle';
+        case 'Institution':
+            return 'box';
+        case 'Évènement':
+            return 'box';
+        case 'Œuvre':
+            return 'box';
+    }
+}
