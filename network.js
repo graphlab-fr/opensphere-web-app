@@ -27,6 +27,9 @@ function createNode(entite) {
     var nodeObject = {
         id: entite.id,
         label: entite.label,
+        titre: entite.titre,
+        genre: entite.genre,
+        group: entite.relation,
         shape: chooseShape(entite.type),
         image: './assets/photos/' + entite.photo,
         size : 30,
@@ -54,6 +57,16 @@ gSheetLoad().then(function(bool) {
                 repulsion: {
                     nodeDistance: 10
                 }
+            },
+            groups: {
+                collegue: {color: {background: chooseColor('collegue')}, borderWidth:3},
+                contemporain: {color: {background: chooseColor('contemporain')}, borderWidth:3},
+                collaborateur: {color: {background: chooseColor('collaborateur')}, borderWidth:3},
+                famille: {color: {background: chooseColor('famille')}, borderWidth:3},
+                otlet: {color: {background: chooseColor('otlet')}, borderWidth:3},
+                institution: {color: {background: chooseColor('institution')}, borderWidth:3},
+                œuvre: {color: {background: chooseColor('œuvre')}, borderWidth:3},
+                évènement: {color: {background: chooseColor('évènement')}, borderWidth:3}
             }
         },
         data: {
