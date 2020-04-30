@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/volet.css">
 
     <title>Network</title>
 
@@ -22,9 +22,15 @@
 
     <div id="network"></div>
 
-    <script src="./node_modules/tabletop/src/tabletop.min.js"></script>
-    <script src="./node_modules/vis-network/dist/vis-network.min.js"></script>
-    <script src="./network.js"></script>
+    <aside id="volet" class="volet">
+        <button id="volet-close" class="btn">Fermer</button>
+
+        <section id="volet-content"></section>
+    </aside>
+
+    <script src="./libs/tabletop/tabletop.min.js"></script>
+    <script src="./libs/vis-network/vis-network.min.js"></script>
+    <script src="./assets/main.js"></script>
 
 </body>
 

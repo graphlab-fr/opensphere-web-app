@@ -126,10 +126,35 @@ function chooseShape(typeEntite) {
 function nodeView(values, id, selected, hovering) {
     id--;
     var nodeMetas = nodeList[id].metas;
-    console.log(nodeMetas.genre);
-    console.log(nodeMetas.annee_naissance);
-    console.log(nodeMetas.annee_mort);
-    console.log(nodeMetas.pays);
-    console.log(nodeMetas.discipline);
-    console.log(nodeMetas.description);
+    nodeMetas.label = nodeList[id].label;
+    nodeMetas.image = nodeList[id].image;
+
+    volet.fill(nodeMetas);
+    volet.open();
 }
+var volet = {
+    body: document.querySelector('#volet'),
+    content: document.querySelector('#volet-content'),
+    btnClose: document.querySelector('#volet-close'),
+
+    open: function() {
+        this.body.classList.add('volet--active');
+    },
+    close: function() {
+        volet.body.classList.remove('volet--active');
+        this.content.innerHTML = '';
+    },
+    fill: function(nodeMetas) {
+        var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';
+        var label = '<div class="volet__label">' + nodeMetas.label + '</div>';
+        var dates = '<div class="volet__dates">' + nodeMetas.annee_naissance +  ' - '
+            + nodeMetas.annee_mort + '</div>';
+        var pays = '<div class="volet__pays">' + nodeMetas.pays + '</div>';
+        var discipline = '<div class="volet__discipline">' + nodeMetas.discipline + '</div>';
+        var description = '<div class="volet__description">' + nodeMetas.description + '</div>';
+
+        this.content.innerHTML = [img, label, dates, pays, discipline, description].join('');
+    }
+}
+
+volet.btnClose.addEventListener('click', volet.close);

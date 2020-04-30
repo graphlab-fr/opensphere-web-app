@@ -7,8 +7,7 @@
     "doc": "doc"
   },
   "scripts": {
-    "test": "cowsay -d je fatigue",
-    "cow": "node network.js"
+    "test": "erreur"
   },
   "author": "Guillaume Brioudes",
   "license": "ISC",
@@ -16,9 +15,14 @@
     "datavisualisation",
     "network"
   ],
-  "dependencies": {
-    "bootstrap": "^4.4.1",
-    "tabletop": "^1.6.3",
-    "vis-network": "^7.6.2"
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^3.1.0",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.13.1"
   }
 }

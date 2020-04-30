@@ -1,0 +1,43 @@
+body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.volet {
+    box-sizing: border-box;
+    transform: translate(100%);
+    position: absolute;
+    padding: 10px 0 0 10px;
+    top: 0px;
+    right: 0px;
+    height: 100vh;
+    width: 300px;
+    background-color: antiquewhite;
+    border-left: 1px solid black;
+    transition: transform .4s;
+}
+
+.volet div {
+    margin: 10px 0;
+}
+
+.volet__img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}
+
+.volet__label {
+    font-size: 25px;
+}
+
+.volet--active {
+    transform: unset;
+}
+
+.btn {
+    background-color: transparent;
+    border: 2px solid bisque;
+    font-style: italic;
+}
