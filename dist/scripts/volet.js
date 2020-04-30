@@ -4,11 +4,11 @@ var volet = {
     btnClose: document.querySelector('#volet-close'),
 
     open: function() {
-        this.body.classList.add('volet--active');
+        volet.body.classList.add('volet--active');
     },
     close: function() {
         volet.body.classList.remove('volet--active');
-        this.content.innerHTML = '';
+        volet.content.innerHTML = '';
     },
     fill: function(nodeMetas) {
         var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';
@@ -19,7 +19,7 @@ var volet = {
         var discipline = '<div class="volet__discipline">' + nodeMetas.discipline + '</div>';
         var description = '<div class="volet__description">' + nodeMetas.description + '</div>';
 
-        this.content.innerHTML = [img, label, dates, pays, discipline, description].join('');
+        volet.content.innerHTML = [img, label, dates, pays, discipline, description].join('');
     }
 }
 

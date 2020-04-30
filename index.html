@@ -12,13 +12,18 @@
     <style type="text/css">
         #network {
           width: 100vw;
-          height: 100vh;
+          height: 90vh;
           border: 1px solid lightgray;
         }
     </style>
 </head>
 
 <body>
+
+    <div class="search-box">
+        <input id="search" class="search" type="text" placeholder="Rechercher">
+        <ul id="search-result" class="search-list"></ul>
+    </div>
 
     <div id="network"></div>
 
@@ -30,6 +35,7 @@
 
     <script src="./libs/tabletop/tabletop.min.js"></script>
     <script src="./libs/vis-network/vis-network.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
     <script src="./assets/main.js"></script>
 
 </body>

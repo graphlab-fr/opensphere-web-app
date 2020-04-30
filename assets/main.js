@@ -79,11 +79,10 @@ gSheetLoad().then(function(bool) {
         }
     }
 
-    console.log(network.data.nodes);
-    
-
     var visualisation = new vis.Network(network.container,
         network.data, network.options);
+
+    activeSearch();
     
 });
 
@@ -125,12 +124,63 @@ function chooseShape(typeEntite) {
 
 function nodeView(values, id, selected, hovering) {
     id--;
+
+    var nodeMetas = findNode(id);
+
+    volet.fill(nodeMetas);
+    volet.open();
+    
+}
+
+function findNode(id) {
     var nodeMetas = nodeList[id].metas;
     nodeMetas.label = nodeList[id].label;
     nodeMetas.image = nodeList[id].image;
 
-    volet.fill(nodeMetas);
-    volet.open();
+    return nodeMetas;
+}
+var search = {
+    input: document.querySelector('#search'),
+    resultContent: document.querySelector('#search-result'),
+
+    showResult: function(resultObj) {
+        var display = document.createElement('li');
+        display.classList.add('search__result');
+        display.textContent = resultObj.item.label;
+        search.resultContent.appendChild(display);
+
+        display.addEventListener('click', () => {
+
+            resultObj.item.id--;
+            
+            var nodeMetas = findNode(resultObj.item.id);
+
+            volet.fill(nodeMetas);
+            volet.open();
+        });
+    }
+}
+
+const options = {
+    includeScore: true,
+    keys: ['label']
+}
+
+function activeSearch() {
+
+    const fuse = new Fuse(nodeList, options);
+
+    search.input.addEventListener('input', () => {
+
+        search.resultContent.innerHTML = '';
+        const resultList = fuse.search(search.input.value);
+        if (search.input != '') {
+            for (let i = 0; i < 5; i++) {
+                search.showResult(resultList[i]);
+                console.log(resultList[i]);
+            }
+        }
+    });
 }
 var volet = {
     body: document.querySelector('#volet'),
@@ -138,11 +188,11 @@ var volet = {
     btnClose: document.querySelector('#volet-close'),
 
     open: function() {
-        this.body.classList.add('volet--active');
+        volet.body.classList.add('volet--active');
     },
     close: function() {
         volet.body.classList.remove('volet--active');
-        this.content.innerHTML = '';
+        volet.content.innerHTML = '';
     },
     fill: function(nodeMetas) {
         var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';
@@ -153,7 +203,7 @@ var volet = {
         var discipline = '<div class="volet__discipline">' + nodeMetas.discipline + '</div>';
         var description = '<div class="volet__description">' + nodeMetas.description + '</div>';
 
-        this.content.innerHTML = [img, label, dates, pays, discipline, description].join('');
+        volet.content.innerHTML = [img, label, dates, pays, discipline, description].join('');
     }
 }
 

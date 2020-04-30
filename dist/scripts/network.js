@@ -79,11 +79,10 @@ gSheetLoad().then(function(bool) {
         }
     }
 
-    console.log(network.data.nodes);
-    
-
     var visualisation = new vis.Network(network.container,
         network.data, network.options);
+
+    activeSearch();
     
 });
 
@@ -125,10 +124,18 @@ function chooseShape(typeEntite) {
 
 function nodeView(values, id, selected, hovering) {
     id--;
+
+    var nodeMetas = findNode(id);
+
+    volet.fill(nodeMetas);
+    volet.open();
+    
+}
+
+function findNode(id) {
     var nodeMetas = nodeList[id].metas;
     nodeMetas.label = nodeList[id].label;
     nodeMetas.image = nodeList[id].image;
 
-    volet.fill(nodeMetas);
-    volet.open();
+    return nodeMetas;
 }
