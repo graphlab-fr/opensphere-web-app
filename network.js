@@ -27,8 +27,7 @@ function createNode(entite) {
     var nodeObject = {
         id: entite.id,
         label: entite.label,
-        titre: entite.titre,
-        genre: entite.genre,
+        title: entite.titre,
         group: entite.relation,
         shape: chooseShape(entite.type),
         image: './assets/photos/' + entite.photo,
@@ -36,7 +35,16 @@ function createNode(entite) {
         color: {
             border: chooseColor(entite.relation_otlet),
             background: 'black'
-        }
+        },
+        metas: {
+            genre: entite.genre,
+            annee_naissance: entite.annee_naissance,
+            annee_mort: entite.annee_mort,
+            pays: entite.pays,
+            discipline: entite.discipline,
+            description: entite.description
+        },
+        chosen: { node: nodeView }
     };
     nodeList.push(nodeObject);
 }
@@ -53,11 +61,7 @@ gSheetLoad().then(function(bool) {
     var network = {
         container: document.querySelector('#network'),
         options: {
-            physics: {
-                repulsion: {
-                    nodeDistance: 10
-                }
-            },
+            physics: { repulsion: { nodeDistance: 10 } },
             groups: {
                 collegue: {color: {background: chooseColor('collegue')}, borderWidth:3},
                 contemporain: {color: {background: chooseColor('contemporain')}, borderWidth:3},
@@ -75,8 +79,12 @@ gSheetLoad().then(function(bool) {
         }
     }
 
+    console.log(network.data.nodes);
+    
+
     var visualisation = new vis.Network(network.container,
         network.data, network.options);
+    
 });
 
 function chooseColor(relationEntite) {
@@ -113,4 +121,15 @@ function chooseShape(typeEntite) {
         case 'Œuvre':
             return 'image';
     }
+}
+
+function nodeView(values, id, selected, hovering) {
+    id--;
+    var nodeMetas = nodeList[id].metas;
+    console.log(nodeMetas.genre);
+    console.log(nodeMetas.annee_naissance);
+    console.log(nodeMetas.annee_mort);
+    console.log(nodeMetas.pays);
+    console.log(nodeMetas.discipline);
+    console.log(nodeMetas.description);
 }
