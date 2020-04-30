@@ -4,11 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+
     <title>Network</title>
+
+    <style type="text/css">
+        #mynetwork {
+          width: 600px;
+          height: 400px;
+          border: 1px solid lightgray;
+        }
+    </style>
 </head>
 
 <body>
 
+    <h1>Network</h1>
+
+    <div id="mynetwork"></div>
+
+    <script src="./node_modules/tabletop/src/tabletop.min.js"></script>
+    <script src="./node_modules/vis-network/dist/vis-network.min.js"></script>
     <script src="./network.js"></script>
 
 </body>

@@ -7,7 +7,8 @@
     "doc": "doc"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cowsay -d je fatigue",
+    "cow": "node network.js"
   },
   "author": "Guillaume Brioudes",
   "license": "ISC",
@@ -17,6 +18,7 @@
   ],
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "tabletop": "^1.6.3",
     "vis-network": "^7.6.2"
   }
 }
