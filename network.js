@@ -28,9 +28,11 @@ function createNode(entite) {
         id: entite.id,
         label: entite.label,
         shape: chooseShape(entite.type),
+        image: './assets/photos/' + entite.photo,
+        size : 30,
         color: {
             border: chooseColor(entite.relation_otlet),
-            background: 'white'
+            background: 'black'
         }
     };
     nodeList.push(nodeObject);
@@ -47,7 +49,13 @@ gSheetLoad().then(function(bool) {
 
     var network = {
         container: document.querySelector('#network'),
-        options: {},
+        options: {
+            physics: {
+                repulsion: {
+                    nodeDistance: 10
+                }
+            }
+        },
         data: {
             nodes: new vis.DataSet(nodeList),
             edges: new vis.DataSet(edgeList)
@@ -84,12 +92,12 @@ function chooseColor(relationEntite) {
 function chooseShape(typeEntite) {
     switch (typeEntite) {
         case 'Personne':
-            return 'circle';
+            return 'circularImage';
         case 'Institution':
-            return 'box';
+            return 'image';
         case 'Évènement':
-            return 'box';
+            return 'image';
         case 'Œuvre':
-            return 'box';
+            return 'image';
     }
 }
