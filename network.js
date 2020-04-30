@@ -4,17 +4,20 @@ var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1hiONQ5SM82vK
 function gSheetLoad() {
     return new Promise((resolve, reject) => {
 
-    Tabletop.init({
-        key: publicSpreadsheetUrl,
-        callback: function(data, tableMetas) {
-            
-            data.Entites.elements.forEach(entite => {
-                createNode(entite); });
-            
-            resolve(true);
+        Tabletop.init({
+            key: publicSpreadsheetUrl,
+            callback: function(data, tableMetas) {
+                
+                data.Entites.elements.forEach(entite => {
+                    createNode(entite); });
+                
+                data.Extraction.elements.forEach(lien => {
+                    createEdge(lien); });
+                
+                resolve(true);
 
-        },
-        simpleSheet: false });
+            },
+            simpleSheet: false });
 
     });
 }
@@ -25,6 +28,13 @@ function createNode(entite) {
     nodeList.push(nodeObject);
 }
 
+let edgeList = [];
+function createEdge(lien) {
+    var edgeObject = {from: lien.from, to: lien.to};
+    edgeList.push(edgeObject);
+}
+
+
 gSheetLoad().then(function(bool) {
 
     var network = {
@@ -32,7 +42,7 @@ gSheetLoad().then(function(bool) {
         options: {},
         data: {
             nodes: new vis.DataSet(nodeList),
-            edges: new vis.DataSet()
+            edges: new vis.DataSet(edgeList)
         }
     }
 
