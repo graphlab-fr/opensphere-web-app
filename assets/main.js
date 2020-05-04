@@ -57,8 +57,7 @@ function createNode(entite) {
             pays: entite.pays,
             discipline: entite.discipline,
             description: entite.description
-        },
-        chosen: { node: nodeView }
+        }
     };
     nodeList.push(nodeObject);
 }
@@ -77,11 +76,12 @@ gSheetLoad().then(function(bool) {
         edges: new vis.DataSet(edgeList)
     }
 
-    var visualisation = new vis.Network(network.container,
+    network.visualisation = new vis.Network(network.container,
         network.data, network.options);
 
     activeSearch();
-    
+
+    network.visualisation.on('click', nodeView);
 });
 
 function chooseColor(relationEntite) {
@@ -107,11 +107,16 @@ function chooseColor(relationEntite) {
     }
 }
 
-function nodeView(values, id, selected, hovering) {
-    id -= 1;
-
+function nodeView(nodeMetasBrutes) {
+    
+    var id = nodeMetasBrutes.nodes[0];
+    
     if (network.selectedNode !== undefined && network.selectedNode == id) {
         return; }
+
+    zoomToNode(id);
+
+    id -= 1;
 
     var nodeMetas = getNodeMetas(id);
 
@@ -130,6 +135,18 @@ function getNodeMetas(id) {
 
     return nodeMetas;
 }
+
+function zoomToNode(id) {
+    var nodesCoordonates = network.visualisation.getPositions();
+    network.visualisation.moveTo({
+        position: {
+            x: nodesCoordonates[id].x,
+            y: nodesCoordonates[id].y
+        },
+        scale: 3,
+        animation: true
+    });
+}
 var search = {
     input: document.querySelector('#search'),
     resultContent: document.querySelector('#search-result'),
@@ -140,14 +157,16 @@ var search = {
         display.textContent = resultObj.item.label;
         search.resultContent.appendChild(display);
 
-        var id = resultObj.item.id - 1;
+        var id = resultObj.item.id;
 
         display.addEventListener('click', () => {
 
             if (network.selectedNode !== undefined && network.selectedNode == id) {
                 return; }
+
+            zoomToNode(id);
             
-            var nodeMetas = getNodeMetas(id);
+            var nodeMetas = getNodeMetas(id - 1);
 
             volet.fill(nodeMetas);
             volet.open();

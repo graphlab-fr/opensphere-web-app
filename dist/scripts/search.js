@@ -8,14 +8,16 @@ var search = {
         display.textContent = resultObj.item.label;
         search.resultContent.appendChild(display);
 
-        var id = resultObj.item.id - 1;
+        var id = resultObj.item.id;
 
         display.addEventListener('click', () => {
 
             if (network.selectedNode !== undefined && network.selectedNode == id) {
                 return; }
+
+            zoomToNode(id);
             
-            var nodeMetas = getNodeMetas(id);
+            var nodeMetas = getNodeMetas(id - 1);
 
             volet.fill(nodeMetas);
             volet.open();

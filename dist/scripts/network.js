@@ -57,8 +57,7 @@ function createNode(entite) {
             pays: entite.pays,
             discipline: entite.discipline,
             description: entite.description
-        },
-        chosen: { node: nodeView }
+        }
     };
     nodeList.push(nodeObject);
 }
@@ -77,11 +76,12 @@ gSheetLoad().then(function(bool) {
         edges: new vis.DataSet(edgeList)
     }
 
-    var visualisation = new vis.Network(network.container,
+    network.visualisation = new vis.Network(network.container,
         network.data, network.options);
 
     activeSearch();
-    
+
+    network.visualisation.on('click', nodeView);
 });
 
 function chooseColor(relationEntite) {
@@ -107,11 +107,16 @@ function chooseColor(relationEntite) {
     }
 }
 
-function nodeView(values, id, selected, hovering) {
-    id -= 1;
-
+function nodeView(nodeMetasBrutes) {
+    
+    var id = nodeMetasBrutes.nodes[0];
+    
     if (network.selectedNode !== undefined && network.selectedNode == id) {
         return; }
+
+    zoomToNode(id);
+
+    id -= 1;
 
     var nodeMetas = getNodeMetas(id);
 
@@ -129,4 +134,16 @@ function getNodeMetas(id) {
     network.selectedNode = id;
 
     return nodeMetas;
+}
+
+function zoomToNode(id) {
+    var nodesCoordonates = network.visualisation.getPositions();
+    network.visualisation.moveTo({
+        position: {
+            x: nodesCoordonates[id].x,
+            y: nodesCoordonates[id].y
+        },
+        scale: 3,
+        animation: true
+    });
 }
