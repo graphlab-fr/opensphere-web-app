@@ -1,6 +1,24 @@
 // URL de la feuille de calcul
 var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit#gid=0';
 
+var network = {
+    container: document.querySelector('#network'),
+    options: {
+        physics: { repulsion: { nodeDistance: 10 } },
+        groups: {
+            collegue: {color: {background: chooseColor('collegue')}, borderWidth:3},
+            contemporain: {color: {background: chooseColor('contemporain')}, borderWidth:3},
+            collaborateur: {color: {background: chooseColor('collaborateur')}, borderWidth:3},
+            famille: {color: {background: chooseColor('famille')}, borderWidth:3},
+            otlet: {color: {background: chooseColor('otlet')}, borderWidth:3},
+            institution: {color: {background: chooseColor('institution')}, borderWidth:3},
+            œuvre: {color: {background: chooseColor('œuvre')}, borderWidth:3},
+            évènement: {color: {background: chooseColor('évènement')}, borderWidth:3}
+        }
+    },
+    selectedNode: undefined
+}
+
 function gSheetLoad() {
     return new Promise((resolve, reject) => {
 
@@ -58,25 +76,9 @@ function createEdge(lien) {
 
 gSheetLoad().then(function(bool) {
 
-    var network = {
-        container: document.querySelector('#network'),
-        options: {
-            physics: { repulsion: { nodeDistance: 10 } },
-            groups: {
-                collegue: {color: {background: chooseColor('collegue')}, borderWidth:3},
-                contemporain: {color: {background: chooseColor('contemporain')}, borderWidth:3},
-                collaborateur: {color: {background: chooseColor('collaborateur')}, borderWidth:3},
-                famille: {color: {background: chooseColor('famille')}, borderWidth:3},
-                otlet: {color: {background: chooseColor('otlet')}, borderWidth:3},
-                institution: {color: {background: chooseColor('institution')}, borderWidth:3},
-                œuvre: {color: {background: chooseColor('œuvre')}, borderWidth:3},
-                évènement: {color: {background: chooseColor('évènement')}, borderWidth:3}
-            }
-        },
-        data: {
-            nodes: new vis.DataSet(nodeList),
-            edges: new vis.DataSet(edgeList)
-        }
+    network.data = {
+        nodes: new vis.DataSet(nodeList),
+        edges: new vis.DataSet(edgeList)
     }
 
     var visualisation = new vis.Network(network.container,
@@ -123,19 +125,27 @@ function chooseShape(typeEntite) {
 }
 
 function nodeView(values, id, selected, hovering) {
-    id--;
+    id -= 1;
 
-    var nodeMetas = findNode(id);
+    if (network.selectedNode !== undefined && network.selectedNode == id) {
+        return; }
+
+    var nodeMetas = getNodeMetas(id);
 
     volet.fill(nodeMetas);
     volet.open();
     
 }
 
-function findNode(id) {
+function getNodeMetas(id) {
+
+    console.log(id);    
+
     var nodeMetas = nodeList[id].metas;
     nodeMetas.label = nodeList[id].label;
     nodeMetas.image = nodeList[id].image;
+
+    network.selectedNode = id;
 
     return nodeMetas;
 }
@@ -149,11 +159,14 @@ var search = {
         display.textContent = resultObj.item.label;
         search.resultContent.appendChild(display);
 
+        var id = resultObj.item.id - 1;
+
         display.addEventListener('click', () => {
 
-            resultObj.item.id--;
+            if (network.selectedNode !== undefined && network.selectedNode == id) {
+                return; }
             
-            var nodeMetas = findNode(resultObj.item.id);
+            var nodeMetas = getNodeMetas(id);
 
             volet.fill(nodeMetas);
             volet.open();
