@@ -42,7 +42,6 @@ function gSheetLoad() {
 
 let nodeList = [];
 function createNode(entite) {
-    console.log(entite.relation_otlet);
     
     var nodeObject = {
         id: entite.id,
@@ -121,9 +120,7 @@ function nodeView(values, id, selected, hovering) {
     
 }
 
-function getNodeMetas(id) {
-
-    console.log(id);    
+function getNodeMetas(id) { 
 
     var nodeMetas = nodeList[id].metas;
     nodeMetas.label = nodeList[id].label;

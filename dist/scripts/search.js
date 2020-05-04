@@ -39,7 +39,6 @@ function activeSearch() {
         if (search.input != '') {
             for (let i = 0; i < 5; i++) {
                 search.showResult(resultList[i]);
-                console.log(resultList[i]);
             }
         }
     });
