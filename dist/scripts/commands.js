@@ -20,6 +20,9 @@ btnsGroups.forEach(btn => {
     let isActiveGroup = true;
 
     btn.addEventListener('click', () => {
+
+        search.reset();
+
         if (isActiveGroup) {
             network.data.nodes.get({
                 filter: function (item) {

@@ -22,6 +22,10 @@ var search = {
             volet.fill(nodeMetas);
             volet.open();
         });
+    },
+    reset: function() {
+        search.input.value = ''; // form value
+        search.resultContent.innerHTML = ''; // results
     }
 }
 
@@ -30,22 +34,36 @@ const options = {
     keys: ['label']
 }
 
+search.input.value = '';
+
 function activeSearch() {
 
-    const fuse = new Fuse(nodeList, options);
+    search.input.addEventListener('focus', () => {
+        
+        const fuse = new Fuse(getActiveNodes(), options);
 
-    search.input.addEventListener('input', () => {
+        search.input.addEventListener('input', () => {
 
-        search.resultContent.innerHTML = '';
-
-        if (search.input.value == '') {
-            return; }
-
-        const resultList = fuse.search(search.input.value);
-        if (search.input != '') {
-            for (let i = 0; i < 5; i++) {
-                search.showResult(resultList[i]);
+            search.resultContent.innerHTML = '';
+    
+            if (search.input.value == '') {
+                return; }
+    
+            const resultList = fuse.search(search.input.value);
+            if (search.input != '') {
+                for (let i = 0; i < 5; i++) {
+                    search.showResult(resultList[i]);
+                }
             }
+        });
+    });
+}
+
+function getActiveNodes() {
+    var activeNodes = network.data.nodes.get({
+        filter: function (item) {
+            return (item.hidden !== true);
         }
     });
+    return activeNodes;
 }

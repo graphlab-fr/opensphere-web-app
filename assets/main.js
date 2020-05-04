@@ -20,6 +20,9 @@ btnsGroups.forEach(btn => {
     let isActiveGroup = true;
 
     btn.addEventListener('click', () => {
+
+        search.reset();
+
         if (isActiveGroup) {
             network.data.nodes.get({
                 filter: function (item) {
@@ -235,6 +238,10 @@ var search = {
             volet.fill(nodeMetas);
             volet.open();
         });
+    },
+    reset: function() {
+        search.input.value = ''; // form value
+        search.resultContent.innerHTML = ''; // results
     }
 }
 
@@ -243,24 +250,38 @@ const options = {
     keys: ['label']
 }
 
+search.input.value = '';
+
 function activeSearch() {
 
-    const fuse = new Fuse(nodeList, options);
+    search.input.addEventListener('focus', () => {
+        
+        const fuse = new Fuse(getActiveNodes(), options);
 
-    search.input.addEventListener('input', () => {
+        search.input.addEventListener('input', () => {
 
-        search.resultContent.innerHTML = '';
-
-        if (search.input.value == '') {
-            return; }
-
-        const resultList = fuse.search(search.input.value);
-        if (search.input != '') {
-            for (let i = 0; i < 5; i++) {
-                search.showResult(resultList[i]);
+            search.resultContent.innerHTML = '';
+    
+            if (search.input.value == '') {
+                return; }
+    
+            const resultList = fuse.search(search.input.value);
+            if (search.input != '') {
+                for (let i = 0; i < 5; i++) {
+                    search.showResult(resultList[i]);
+                }
             }
+        });
+    });
+}
+
+function getActiveNodes() {
+    var activeNodes = network.data.nodes.get({
+        filter: function (item) {
+            return (item.hidden !== true);
         }
     });
+    return activeNodes;
 }
 var volet = {
     body: document.querySelector('#volet'),
@@ -277,8 +298,6 @@ var volet = {
         backToCenterView();
     },
     fill: function(nodeMetas) {
-        console.log(nodeMetas);
-        
         var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';
         var label = '<div class="volet__label">' + nodeMetas.label + '</div>';
         var dates = '<div class="volet__dates">' + nodeMetas.annee_naissance +  ' - '
