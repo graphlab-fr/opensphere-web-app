@@ -110,6 +110,9 @@ function chooseColor(relationEntite) {
 function nodeView(nodeMetasBrutes) {
     
     var id = nodeMetasBrutes.nodes[0];
+
+    if (id === undefined) {
+        return; }
     
     if (network.selectedNode !== undefined && network.selectedNode == id) {
         return; }

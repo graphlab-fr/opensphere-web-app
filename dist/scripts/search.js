@@ -37,6 +37,10 @@ function activeSearch() {
     search.input.addEventListener('input', () => {
 
         search.resultContent.innerHTML = '';
+
+        if (search.input.value == '') {
+            return; }
+
         const resultList = fuse.search(search.input.value);
         if (search.input != '') {
             for (let i = 0; i < 5; i++) {
