@@ -137,6 +137,7 @@ function getNodeMetas(id) {
 }
 
 function zoomToNode(id) {
+    
     var nodesCoordonates = network.visualisation.getPositions();
     network.visualisation.moveTo({
         position: {
@@ -144,6 +145,12 @@ function zoomToNode(id) {
             y: nodesCoordonates[id].y
         },
         scale: 3,
+        animation: true
+    });
+}
+
+function backToCenterView() {
+    network.visualisation.fit({
         animation: true
     });
 }
@@ -205,6 +212,8 @@ var volet = {
     close: function() {
         volet.body.classList.remove('volet--active');
         volet.content.innerHTML = '';
+
+        backToCenterView();
     },
     fill: function(nodeMetas) {
         var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';

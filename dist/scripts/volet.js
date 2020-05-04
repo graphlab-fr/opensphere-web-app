@@ -9,6 +9,8 @@ var volet = {
     close: function() {
         volet.body.classList.remove('volet--active');
         volet.content.innerHTML = '';
+
+        backToCenterView();
     },
     fill: function(nodeMetas) {
         var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';

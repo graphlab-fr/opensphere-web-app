@@ -137,6 +137,7 @@ function getNodeMetas(id) {
 }
 
 function zoomToNode(id) {
+    
     var nodesCoordonates = network.visualisation.getPositions();
     network.visualisation.moveTo({
         position: {
@@ -144,6 +145,12 @@ function zoomToNode(id) {
             y: nodesCoordonates[id].y
         },
         scale: 3,
+        animation: true
+    });
+}
+
+function backToCenterView() {
+    network.visualisation.fit({
         animation: true
     });
 }
