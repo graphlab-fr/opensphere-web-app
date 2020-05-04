@@ -17,7 +17,7 @@ var search = {
 
             zoomToNode(id);
             
-            var nodeMetas = getNodeMetas(id - 1);
+            var nodeMetas = getNodeMetas(id);
 
             volet.fill(nodeMetas);
             volet.open();

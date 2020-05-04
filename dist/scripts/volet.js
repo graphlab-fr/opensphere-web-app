@@ -13,6 +13,8 @@ var volet = {
         backToCenterView();
     },
     fill: function(nodeMetas) {
+        console.log(nodeMetas);
+        
         var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';
         var label = '<div class="volet__label">' + nodeMetas.label + '</div>';
         var dates = '<div class="volet__dates">' + nodeMetas.annee_naissance +  ' - '

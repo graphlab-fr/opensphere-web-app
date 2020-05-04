@@ -123,8 +123,6 @@ function nodeView(nodeMetasBrutes) {
 
     zoomToNode(id);
 
-    id -= 1;
-
     var nodeMetas = getNodeMetas(id);
 
     volet.fill(nodeMetas);
@@ -133,12 +131,20 @@ function nodeView(nodeMetasBrutes) {
 }
 
 function getNodeMetas(id) { 
+    var nodeMetas = null;
 
-    var nodeMetas = nodeList[id].metas;
-    nodeMetas.label = nodeList[id].label;
-    nodeMetas.image = nodeList[id].image;
+    network.data.nodes.get({
 
-    network.selectedNode = id;
+        filter: function (item) {
+            if (item.id == id) {
+                nodeMetas = item.metas;
+                nodeMetas.label = item.label;
+                nodeMetas.image = item.image;
+
+                network.selectedNode = id;
+            }
+        }
+    });
 
     return nodeMetas;
 }

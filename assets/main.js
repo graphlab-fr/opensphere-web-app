@@ -167,8 +167,6 @@ function nodeView(nodeMetasBrutes) {
 
     zoomToNode(id);
 
-    id -= 1;
-
     var nodeMetas = getNodeMetas(id);
 
     volet.fill(nodeMetas);
@@ -177,12 +175,20 @@ function nodeView(nodeMetasBrutes) {
 }
 
 function getNodeMetas(id) { 
+    var nodeMetas = null;
 
-    var nodeMetas = nodeList[id].metas;
-    nodeMetas.label = nodeList[id].label;
-    nodeMetas.image = nodeList[id].image;
+    network.data.nodes.get({
 
-    network.selectedNode = id;
+        filter: function (item) {
+            if (item.id == id) {
+                nodeMetas = item.metas;
+                nodeMetas.label = item.label;
+                nodeMetas.image = item.image;
+
+                network.selectedNode = id;
+            }
+        }
+    });
 
     return nodeMetas;
 }
@@ -224,7 +230,7 @@ var search = {
 
             zoomToNode(id);
             
-            var nodeMetas = getNodeMetas(id - 1);
+            var nodeMetas = getNodeMetas(id);
 
             volet.fill(nodeMetas);
             volet.open();
@@ -271,6 +277,8 @@ var volet = {
         backToCenterView();
     },
     fill: function(nodeMetas) {
+        console.log(nodeMetas);
+        
         var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';
         var label = '<div class="volet__label">' + nodeMetas.label + '</div>';
         var dates = '<div class="volet__dates">' + nodeMetas.annee_naissance +  ' - '
