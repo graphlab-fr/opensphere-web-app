@@ -12,6 +12,36 @@ btnZoomMoins.addEventListener('click', () => {
     if (scale < 0.8) { return; }
     network.visualisation.moveTo({ scale: scale });
 });
+
+const btnsGroups = document.querySelectorAll('.btn-group');
+btnsGroups.forEach(btn => {
+    var group = btn.dataset.group;
+
+    let isActiveGroup = true;
+
+    btn.addEventListener('click', () => {
+        if (isActiveGroup) {
+            network.data.nodes.get({
+                filter: function (item) {
+                    if (item.group == group) {
+                        network.data.nodes.update({id: item.id, hidden: true}) }
+                }
+            });
+
+            isActiveGroup = false;
+        } else {
+            network.data.nodes.get({
+                filter: function (item) {
+                    if (item.group == group) {
+                        network.data.nodes.update({id: item.id, hidden: false}) }
+                }
+            });
+
+            isActiveGroup = true;
+        }
+    
+    });
+});
 // URL de la feuille de calcul
 var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit#gid=0';
 
@@ -23,7 +53,6 @@ var network = {
     },
     options: {
         physics: { repulsion: { nodeDistance: 10 } },
-        clickToUse: false,
         groups: {
             collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}, borderWidth:3},
             contemporain: {shape: 'circularImage', color: {border: chooseColor('contemporain')}, borderWidth:3},

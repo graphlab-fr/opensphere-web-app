@@ -9,7 +9,6 @@ var network = {
     },
     options: {
         physics: { repulsion: { nodeDistance: 10 } },
-        clickToUse: false,
         groups: {
             collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}, borderWidth:3},
             contemporain: {shape: 'circularImage', color: {border: chooseColor('contemporain')}, borderWidth:3},
