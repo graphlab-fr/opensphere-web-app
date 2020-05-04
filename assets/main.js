@@ -6,14 +6,14 @@ var network = {
     options: {
         physics: { repulsion: { nodeDistance: 10 } },
         groups: {
-            collegue: {color: {background: chooseColor('collegue')}, borderWidth:3},
-            contemporain: {color: {background: chooseColor('contemporain')}, borderWidth:3},
-            collaborateur: {color: {background: chooseColor('collaborateur')}, borderWidth:3},
-            famille: {color: {background: chooseColor('famille')}, borderWidth:3},
-            otlet: {color: {background: chooseColor('otlet')}, borderWidth:3},
-            institution: {color: {background: chooseColor('institution')}, borderWidth:3},
-            œuvre: {color: {background: chooseColor('œuvre')}, borderWidth:3},
-            évènement: {color: {background: chooseColor('évènement')}, borderWidth:3}
+            collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}, borderWidth:3},
+            contemporain: {shape: 'circularImage', color: {border: chooseColor('contemporain')}, borderWidth:3},
+            collaborateur: {shape: 'circularImage', color: {border: chooseColor('collaborateur')}, borderWidth:3},
+            famille: {shape: 'circularImage', color: {border: chooseColor('famille')}, borderWidth:3},
+            otlet: {shape: 'circularImage', color: {border: chooseColor('otlet')}, borderWidth:3},
+            institution: {shape: 'image', color: {border: chooseColor('institution')}, borderWidth:3},
+            œuvre: {shape: 'image', color: {border: chooseColor('œuvre')}, borderWidth:3},
+            évènement: {shape: 'image', color: {border: chooseColor('évènement')}, borderWidth:3}
         }
     },
     selectedNode: undefined
@@ -42,18 +42,15 @@ function gSheetLoad() {
 
 let nodeList = [];
 function createNode(entite) {
+    console.log(entite.relation_otlet);
+    
     var nodeObject = {
         id: entite.id,
         label: entite.label,
         title: entite.titre,
-        group: entite.relation,
-        shape: chooseShape(entite.type),
+        group: entite.relation_otlet,
         image: './assets/photos/' + entite.photo,
         size : 30,
-        color: {
-            border: chooseColor(entite.relation_otlet),
-            background: 'black'
-        },
         metas: {
             genre: entite.genre,
             annee_naissance: entite.annee_naissance,
@@ -108,19 +105,6 @@ function chooseColor(relationEntite) {
             return 'gray';
         case 'évènement':
             return 'gray';
-    }
-}
-
-function chooseShape(typeEntite) {
-    switch (typeEntite) {
-        case 'Personne':
-            return 'circularImage';
-        case 'Institution':
-            return 'image';
-        case 'Évènement':
-            return 'image';
-        case 'Œuvre':
-            return 'image';
     }
 }
 
