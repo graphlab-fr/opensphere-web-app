@@ -3,8 +3,13 @@ var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1hiONQ5SM82vK
 
 var network = {
     container: document.querySelector('#network'),
+    interaction: {
+        navigationButtons: true,
+        zoomView: false
+    },
     options: {
         physics: { repulsion: { nodeDistance: 10 } },
+        clickToUse: false,
         groups: {
             collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}, borderWidth:3},
             contemporain: {shape: 'circularImage', color: {border: chooseColor('contemporain')}, borderWidth:3},

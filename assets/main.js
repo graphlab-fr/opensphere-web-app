@@ -1,10 +1,29 @@
+const btnZoomPlus = document.querySelector('#zoom-plus');
+const btnZoomMoins = document.querySelector('#zoom-moins');
+
+btnZoomPlus.addEventListener('click', () => {
+    var scale = network.visualisation.getScale() + 0.3;
+    if (scale > 2) { return; }
+    network.visualisation.moveTo({ scale: scale });
+});
+
+btnZoomMoins.addEventListener('click', () => {
+    var scale = network.visualisation.getScale() - 0.3;
+    if (scale < 0.8) { return; }
+    network.visualisation.moveTo({ scale: scale });
+});
 // URL de la feuille de calcul
 var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit#gid=0';
 
 var network = {
     container: document.querySelector('#network'),
+    interaction: {
+        navigationButtons: true,
+        zoomView: false
+    },
     options: {
         physics: { repulsion: { nodeDistance: 10 } },
+        clickToUse: false,
         groups: {
             collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}, borderWidth:3},
             contemporain: {shape: 'circularImage', color: {border: chooseColor('contemporain')}, borderWidth:3},
