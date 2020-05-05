@@ -33,6 +33,8 @@ const btnsGroups = document.querySelectorAll('.btn-group');
 btnsGroups.forEach(btn => {
     var group = btn.dataset.group;
 
+    btn.style.backgroundColor = chooseColor(group);
+
     let isActiveGroup = true;
 
     btn.addEventListener('click', () => {
@@ -49,6 +51,8 @@ btnsGroups.forEach(btn => {
                 }
             });
 
+            btn.classList.add('active');
+
             isActiveGroup = false;
         } else {
             network.data.nodes.get({
@@ -57,6 +61,8 @@ btnsGroups.forEach(btn => {
                         network.data.nodes.update({id: item.id, hidden: false}) }
                 }
             });
+
+            btn.classList.remove('active');
 
             isActiveGroup = true;
         }

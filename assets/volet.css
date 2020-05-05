@@ -38,10 +38,11 @@ body {
     transform: unset;
 }
 
-.btn {
+.volet button {
     background-color: transparent;
-    border: 2px solid bisque;
+    border: 2px solid rgb(150, 93, 25);
     font-style: italic;
+    color: black;
 }
 
 .search {
@@ -78,4 +79,31 @@ body {
 
 .search-list li:hover {
     background: rgb(165, 165, 165);
+}
+
+.commands-box {
+    display: flex;
+}
+
+button {
+    border: unset;
+    padding: 2px 10px;
+    font-size: 11px;
+    margin: 0 4px;
+    border-radius: 3px;
+    color: white;
+}
+
+button.active {
+    text-decoration: line-through;
+}
+
+button.zoom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    color: black;
 }
