@@ -36,7 +36,10 @@ var network = {
 }
 
 fetch('data.json').then(function(response) {
+    // Chargement de données...
+    
     response.text().then(function(text) {
+        // Traitement des données...
         var data = JSON.parse(text);
 
         Object.values(data.Entites).forEach(entite => {
@@ -45,6 +48,7 @@ fetch('data.json').then(function(response) {
         Object.values(data.Extraction).forEach(lien => {
             createEdge(lien); });
 
+        // Génération de la visualisation
         network.data = {
             nodes: new vis.DataSet(nodeList),
             edges: new vis.DataSet(edgeList)
@@ -54,7 +58,9 @@ fetch('data.json').then(function(response) {
             network.data, network.options);
     
         network.visualisation.on('afterDrawing', function() {
-            network.isLoaded = true; });
+            // Visuation générée chargée
+            network.isLoaded = true;
+        });
     
         network.visualisation.on('click', nodeView);
     });
