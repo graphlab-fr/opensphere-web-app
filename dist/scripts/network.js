@@ -3,6 +3,7 @@ var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1hiONQ5SM82vK
 
 var network = {
     container: document.querySelector('#network'),
+    isLoaded: false,
     interaction: {
         navigationButtons: true,
         zoomView: false
@@ -104,7 +105,8 @@ gSheetLoad().then(function(bool) {
     network.visualisation = new vis.Network(network.container,
         network.data, network.options);
 
-    activeSearch();
+    network.visualisation.on('afterDrawing', function() {
+        network.isLoaded = true; });
 
     network.visualisation.on('click', nodeView);
 });

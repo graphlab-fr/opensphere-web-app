@@ -36,28 +36,27 @@ const options = {
 
 search.input.value = '';
 
-function activeSearch() {
+search.input.addEventListener('focus', () => {
 
-    search.input.addEventListener('focus', () => {
-        
-        const fuse = new Fuse(getActiveNodes(), options);
-
-        search.input.addEventListener('input', () => {
-
-            search.resultContent.innerHTML = '';
+    if (!network.isLoaded) { return; }
     
-            if (search.input.value == '') {
-                return; }
-    
-            const resultList = fuse.search(search.input.value);
-            if (search.input != '') {
-                for (let i = 0; i < 5; i++) {
-                    search.showResult(resultList[i]);
-                }
+    const fuse = new Fuse(getActiveNodes(), options);
+
+    search.input.addEventListener('input', () => {
+
+        search.resultContent.innerHTML = '';
+
+        if (search.input.value == '') {
+            return; }
+
+        const resultList = fuse.search(search.input.value);
+        if (search.input != '') {
+            for (let i = 0; i < 5; i++) {
+                search.showResult(resultList[i]);
             }
-        });
+        }
     });
-}
+});
 
 function getActiveNodes() {
     var activeNodes = network.data.nodes.get({

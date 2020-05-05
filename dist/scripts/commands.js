@@ -1,17 +1,33 @@
+/**
+ * ============
+ * Zoom
+ * ============
+ */
+
 const btnZoomPlus = document.querySelector('#zoom-plus');
 const btnZoomMoins = document.querySelector('#zoom-moins');
 
 btnZoomPlus.addEventListener('click', () => {
+    if (!network.isLoaded) { return; }
+
     var scale = network.visualisation.getScale() + 0.3;
     if (scale > 2) { return; }
     network.visualisation.moveTo({ scale: scale });
 });
 
 btnZoomMoins.addEventListener('click', () => {
+    if (!network.isLoaded) { return; }
+
     var scale = network.visualisation.getScale() - 0.3;
     if (scale < 0.8) { return; }
     network.visualisation.moveTo({ scale: scale });
 });
+
+/**
+ * ============
+ * Filtres
+ * ============
+ */
 
 const btnsGroups = document.querySelectorAll('.btn-group');
 btnsGroups.forEach(btn => {
@@ -20,6 +36,8 @@ btnsGroups.forEach(btn => {
     let isActiveGroup = true;
 
     btn.addEventListener('click', () => {
+
+        if (!network.isLoaded) { return; }
 
         search.reset();
 

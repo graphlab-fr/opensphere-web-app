@@ -1,17 +1,33 @@
+/**
+ * ============
+ * Zoom
+ * ============
+ */
+
 const btnZoomPlus = document.querySelector('#zoom-plus');
 const btnZoomMoins = document.querySelector('#zoom-moins');
 
 btnZoomPlus.addEventListener('click', () => {
+    if (!network.isLoaded) { return; }
+
     var scale = network.visualisation.getScale() + 0.3;
     if (scale > 2) { return; }
     network.visualisation.moveTo({ scale: scale });
 });
 
 btnZoomMoins.addEventListener('click', () => {
+    if (!network.isLoaded) { return; }
+
     var scale = network.visualisation.getScale() - 0.3;
     if (scale < 0.8) { return; }
     network.visualisation.moveTo({ scale: scale });
 });
+
+/**
+ * ============
+ * Filtres
+ * ============
+ */
 
 const btnsGroups = document.querySelectorAll('.btn-group');
 btnsGroups.forEach(btn => {
@@ -20,6 +36,8 @@ btnsGroups.forEach(btn => {
     let isActiveGroup = true;
 
     btn.addEventListener('click', () => {
+
+        if (!network.isLoaded) { return; }
 
         search.reset();
 
@@ -50,6 +68,7 @@ var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1hiONQ5SM82vK
 
 var network = {
     container: document.querySelector('#network'),
+    isLoaded: false,
     interaction: {
         navigationButtons: true,
         zoomView: false
@@ -151,7 +170,8 @@ gSheetLoad().then(function(bool) {
     network.visualisation = new vis.Network(network.container,
         network.data, network.options);
 
-    activeSearch();
+    network.visualisation.on('afterDrawing', function() {
+        network.isLoaded = true; });
 
     network.visualisation.on('click', nodeView);
 });
@@ -273,28 +293,27 @@ const options = {
 
 search.input.value = '';
 
-function activeSearch() {
+search.input.addEventListener('focus', () => {
 
-    search.input.addEventListener('focus', () => {
-        
-        const fuse = new Fuse(getActiveNodes(), options);
-
-        search.input.addEventListener('input', () => {
-
-            search.resultContent.innerHTML = '';
+    if (!network.isLoaded) { return; }
     
-            if (search.input.value == '') {
-                return; }
-    
-            const resultList = fuse.search(search.input.value);
-            if (search.input != '') {
-                for (let i = 0; i < 5; i++) {
-                    search.showResult(resultList[i]);
-                }
+    const fuse = new Fuse(getActiveNodes(), options);
+
+    search.input.addEventListener('input', () => {
+
+        search.resultContent.innerHTML = '';
+
+        if (search.input.value == '') {
+            return; }
+
+        const resultList = fuse.search(search.input.value);
+        if (search.input != '') {
+            for (let i = 0; i < 5; i++) {
+                search.showResult(resultList[i]);
             }
-        });
+        }
     });
-}
+});
 
 function getActiveNodes() {
     var activeNodes = network.data.nodes.get({
@@ -310,6 +329,8 @@ var volet = {
     btnClose: document.querySelector('#volet-close'),
 
     open: function() {
+        if (!network.isLoaded) { return; }
+        
         volet.body.classList.add('volet--active');
     },
     close: function() {

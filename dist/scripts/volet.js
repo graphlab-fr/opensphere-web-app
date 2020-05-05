@@ -4,6 +4,8 @@ var volet = {
     btnClose: document.querySelector('#volet-close'),
 
     open: function() {
+        if (!network.isLoaded) { return; }
+        
         volet.body.classList.add('volet--active');
     },
     close: function() {
