@@ -14,10 +14,14 @@ var network = {
                 centralGravity: 0.0,
                 springLength: 250,
                 springConstant: 0.01,
-                nodeDistance: 100,
+                nodeDistance: 200,
                 damping: 0.09
             },
             solver: 'hierarchicalRepulsion'
+        },
+        edges: {
+            width: 2,
+            selectionWidth: 6
         },
         groups: {
             collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}},
@@ -65,7 +69,7 @@ function createNode(entite) {
         image: './assets/photos/' + entite.photo,
         size : 30,
         borderWidth: 3,
-        borderWidthSelected: 6,
+        borderWidthSelected: 60,
         margin: 20,
         metas: {
             genre: entite.genre,
@@ -81,7 +85,11 @@ function createNode(entite) {
 
 let edgeList = [];
 function createEdge(lien) {
-    var edgeObject = {from: lien.from, to: lien.to};
+    var edgeObject = {
+        from: lien.from,
+        to: lien.to,
+        title: lien.label
+    };
     edgeList.push(edgeObject);
 }
 
@@ -170,7 +178,7 @@ function zoomToNode(id) {
             x: nodesCoordonates[id].x,
             y: nodesCoordonates[id].y
         },
-        scale: 3,
+        scale: 1,
         animation: true
     });
 }
