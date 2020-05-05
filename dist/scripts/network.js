@@ -8,16 +8,26 @@ var network = {
         zoomView: false
     },
     options: {
-        physics: { repulsion: { nodeDistance: 10 } },
+        physics: {
+            enabled: true,
+            hierarchicalRepulsion: {
+                centralGravity: 0.0,
+                springLength: 250,
+                springConstant: 0.01,
+                nodeDistance: 100,
+                damping: 0.09
+            },
+            solver: 'hierarchicalRepulsion'
+        },
         groups: {
-            collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}, borderWidth:3},
-            contemporain: {shape: 'circularImage', color: {border: chooseColor('contemporain')}, borderWidth:3},
-            collaborateur: {shape: 'circularImage', color: {border: chooseColor('collaborateur')}, borderWidth:3},
-            famille: {shape: 'circularImage', color: {border: chooseColor('famille')}, borderWidth:3},
-            otlet: {shape: 'circularImage', color: {border: chooseColor('otlet')}, borderWidth:3},
-            institution: {shape: 'image', color: {border: chooseColor('institution')}, borderWidth:3},
-            œuvre: {shape: 'image', color: {border: chooseColor('œuvre')}, borderWidth:3},
-            évènement: {shape: 'image', color: {border: chooseColor('évènement')}, borderWidth:3}
+            collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}},
+            contemporain: {shape: 'circularImage', color: {border: chooseColor('contemporain')}},
+            collaborateur: {shape: 'circularImage', color: {border: chooseColor('collaborateur')}},
+            famille: {shape: 'circularImage', color: {border: chooseColor('famille')}},
+            otlet: {shape: 'circularImage', color: {border: chooseColor('otlet')}},
+            institution: {shape: 'image', color: {border: chooseColor('institution')}},
+            œuvre: {shape: 'image', color: {border: chooseColor('œuvre')}},
+            évènement: {shape: 'image', color: {border: chooseColor('évènement')}}
         }
     },
     selectedNode: undefined
@@ -54,6 +64,9 @@ function createNode(entite) {
         group: entite.relation_otlet,
         image: './assets/photos/' + entite.photo,
         size : 30,
+        borderWidth: 3,
+        borderWidthSelected: 6,
+        margin: 20,
         metas: {
             genre: entite.genre,
             annee_naissance: entite.annee_naissance,
