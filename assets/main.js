@@ -69,9 +69,6 @@ btnsGroups.forEach(btn => {
     
     });
 });
-// URL de la feuille de calcul
-var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit#gid=0';
-
 var network = {
     container: document.querySelector('#network'),
     isLoaded: false,
@@ -109,26 +106,31 @@ var network = {
     selectedNode: undefined
 }
 
-function gSheetLoad() {
-    return new Promise((resolve, reject) => {
+fetch('data.json').then(function(response) {
+    response.text().then(function(text) {
+        var data = JSON.parse(text);
 
-        Tabletop.init({
-            key: publicSpreadsheetUrl,
-            callback: function(data, tableMetas) {
-                
-                data.Entites.elements.forEach(entite => {
-                    createNode(entite); });
-                
-                data.Extraction.elements.forEach(lien => {
-                    createEdge(lien); });
-                
-                resolve(true);
+        Object.values(data.Entites).forEach(entite => {
+            createNode(entite); });
+        
+        Object.values(data.Extraction).forEach(lien => {
+            createEdge(lien); });
 
-            },
-            simpleSheet: false });
-
+        network.data = {
+            nodes: new vis.DataSet(nodeList),
+            edges: new vis.DataSet(edgeList)
+        }
+    
+        network.visualisation = new vis.Network(network.container,
+            network.data, network.options);
+    
+        network.visualisation.on('afterDrawing', function() {
+            network.isLoaded = true; });
+    
+        network.visualisation.on('click', nodeView);
     });
-}
+    
+});
 
 let nodeList = [];
 function createNode(entite) {
@@ -164,23 +166,6 @@ function createEdge(lien) {
     };
     edgeList.push(edgeObject);
 }
-
-
-gSheetLoad().then(function(bool) {
-
-    network.data = {
-        nodes: new vis.DataSet(nodeList),
-        edges: new vis.DataSet(edgeList)
-    }
-
-    network.visualisation = new vis.Network(network.container,
-        network.data, network.options);
-
-    network.visualisation.on('afterDrawing', function() {
-        network.isLoaded = true; });
-
-    network.visualisation.on('click', nodeView);
-});
 
 function chooseColor(relationEntite) {
     switch (relationEntite) {
