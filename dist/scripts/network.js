@@ -186,7 +186,7 @@ function getNodeMetas(id) {
 }
 
 function zoomToNode(id) {
-    
+    // Trouver le nœud et zommer sur lui
     var nodeCoordonates = network.visualisation.getPosition(id);
     network.visualisation.moveTo({
         position: {
@@ -196,6 +196,8 @@ function zoomToNode(id) {
         scale: 1,
         animation: true
     });
+    // L'activer, lui et ses liens
+    network.visualisation.selectNodes([id]);
 }
 
 function backToCenterView() {

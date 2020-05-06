@@ -13,6 +13,7 @@ var volet = {
         volet.content.innerHTML = '';
 
         backToCenterView();
+        network.visualisation.unselectAll();
     },
     fill: function(nodeMetas) {
         var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';
