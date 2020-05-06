@@ -48,7 +48,26 @@
     <div id="network"></div>
 
     <aside id="volet" class="volet">
-        <section id="volet-content"></section>
+        <section id="volet-content" class="volet-content">
+            <img id="volet-meta-img" class="volet__img" src="" alt="">
+
+            <div id="volet-meta-label" class="volet__label"></div>
+
+            <h3 class="volet-libelle">Dates extrèmes</h3>
+            <div class="volet__dates">
+                <time id="volet-meta-date-naissance"></time>
+                <time id="volet-meta-date-mort"></time>
+            </div>
+
+            <h3 class="volet-libelle">Pays</h3>
+            <div id="volet-meta-pays" class="volet__pays"></div>
+
+            <h3 class="volet-libelle">Discipline</h3>
+            <div id="volet-meta-discipline" class="volet__discipline"></div>
+            
+            <h3 class="volet-libelle">Description</h3>
+            <div id="volet-meta-description" class="volet__description"></div>
+        </section>
     </aside>
 
     <script src="./libs/vis-network/vis-network.min.js"></script>
