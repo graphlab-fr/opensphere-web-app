@@ -32,6 +32,10 @@ var network = {
             évènement: {shape: 'image', color: {border: chooseColor('évènement')}}
         }
     },
+    zoom: {
+        max: 1,
+        min: 0.2
+    },
     selectedNode: undefined
 }
 
@@ -62,7 +66,25 @@ fetch('data.json').then(function(response) {
             network.isLoaded = true;
         });
     
+        // Évent au clic sur un nœud
         network.visualisation.on('click', nodeView);
+
+        // Évent au zoom
+        network.visualisation.on('zoom', function(params) {
+
+            // limiter le de-zoom
+            if (params.scale <= 0.2) {
+                network.visualisation.moveTo({
+                    position: { x: 0, y: 0 },
+                    scale: network.zoom.min
+                });
+            }
+
+            // limiter le zoom
+            if (params.scale >= 1) {
+                network.visualisation.moveTo({ scale: network.zoom.max }); }
+            
+        });
     });
     
 });

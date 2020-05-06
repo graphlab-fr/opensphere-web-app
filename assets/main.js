@@ -11,7 +11,10 @@ btnZoomPlus.addEventListener('click', () => {
     if (!network.isLoaded) { return; }
 
     var scale = network.visualisation.getScale() + 0.3;
-    if (scale > 2) { return; }
+
+    if (scale >= network.zoom.max) {
+        scale = network.zoom.max }
+
     network.visualisation.moveTo({ scale: scale });
 });
 
@@ -19,7 +22,10 @@ btnZoomMoins.addEventListener('click', () => {
     if (!network.isLoaded) { return; }
 
     var scale = network.visualisation.getScale() - 0.3;
-    if (scale < 0.8) { return; }
+
+    if (scale <= network.zoom.min) {
+        scale = network.zoom.min }
+
     network.visualisation.moveTo({ scale: scale });
 });
 
@@ -103,6 +109,10 @@ var network = {
             évènement: {shape: 'image', color: {border: chooseColor('évènement')}}
         }
     },
+    zoom: {
+        max: 1,
+        min: 0.2
+    },
     selectedNode: undefined
 }
 
@@ -133,7 +143,25 @@ fetch('data.json').then(function(response) {
             network.isLoaded = true;
         });
     
+        // Évent au clic sur un nœud
         network.visualisation.on('click', nodeView);
+
+        // Évent au zoom
+        network.visualisation.on('zoom', function(params) {
+
+            // limiter le de-zoom
+            if (params.scale <= 0.2) {
+                network.visualisation.moveTo({
+                    position: { x: 0, y: 0 },
+                    scale: network.zoom.min
+                });
+            }
+
+            // limiter le zoom
+            if (params.scale >= 1) {
+                network.visualisation.moveTo({ scale: network.zoom.max }); }
+            
+        });
     });
     
 });

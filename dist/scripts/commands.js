@@ -11,7 +11,10 @@ btnZoomPlus.addEventListener('click', () => {
     if (!network.isLoaded) { return; }
 
     var scale = network.visualisation.getScale() + 0.3;
-    if (scale > 2) { return; }
+
+    if (scale >= network.zoom.max) {
+        scale = network.zoom.max }
+
     network.visualisation.moveTo({ scale: scale });
 });
 
@@ -19,7 +22,10 @@ btnZoomMoins.addEventListener('click', () => {
     if (!network.isLoaded) { return; }
 
     var scale = network.visualisation.getScale() - 0.3;
-    if (scale < 0.8) { return; }
+
+    if (scale <= network.zoom.min) {
+        scale = network.zoom.min }
+
     network.visualisation.moveTo({ scale: scale });
 });
 
