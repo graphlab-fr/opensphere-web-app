@@ -85,18 +85,22 @@ var network = {
     options: {
         physics: {
             enabled: true,
-            hierarchicalRepulsion: {
+            repulsion: {
                 centralGravity: 0.0,
-                springLength: 250,
+                springLength: 350,
                 springConstant: 0.01,
-                nodeDistance: 200,
+                nodeDistance: 400,
                 damping: 0.09
             },
-            solver: 'hierarchicalRepulsion'
+            solver: 'repulsion'
         },
         edges: {
             width: 2,
-            selectionWidth: 6
+            selectionWidth: 6,
+            smooth: {
+                type: 'horizontal',
+                forceDirection: 'horizontal'
+            }
         },
         groups: {
             collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}},
