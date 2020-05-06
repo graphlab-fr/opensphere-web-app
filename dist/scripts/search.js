@@ -14,13 +14,15 @@ var search = {
 
             if (network.selectedNode !== undefined && network.selectedNode == id) {
                 return; }
+            
+            search.input.value = resultObj.item.label;
+            search.resultContent.innerHTML = '';
 
             zoomToNode(id);
             
             var nodeMetas = getNodeMetas(id);
 
             volet.fill(nodeMetas);
-            volet.open();
         });
     },
     reset: function() {

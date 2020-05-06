@@ -118,7 +118,12 @@ var network = {
         max: 1,
         min: 0.2
     },
-    selectedNode: undefined
+    selectedNode: undefined,
+    
+    unselect: function() {
+        network.selectedNode = undefined;
+        network.visualisation.unselectAll();
+    }
 }
 
 fetch('data.json').then(function(response) {
@@ -250,8 +255,6 @@ function nodeView(nodeMetasBrutes) {
     var nodeMetas = getNodeMetas(id);
 
     volet.fill(nodeMetas);
-    volet.open();
-    
 }
 
 function getNodeMetas(id) { 
@@ -309,13 +312,15 @@ var search = {
 
             if (network.selectedNode !== undefined && network.selectedNode == id) {
                 return; }
+            
+            search.input.value = resultObj.item.label;
+            search.resultContent.innerHTML = '';
 
             zoomToNode(id);
             
             var nodeMetas = getNodeMetas(id);
 
             volet.fill(nodeMetas);
-            volet.open();
         });
     },
     reset: function() {
@@ -365,7 +370,8 @@ function getActiveNodes() {
 var volet = {
     body: document.querySelector('#volet'),
     content: document.querySelector('#volet-content'),
-    btnClose: document.querySelector('#volet-close'),
+    btnControl: document.querySelector('#lateral-control'),
+    isOpen: false,
 
     open: function() {
         if (!network.isLoaded) { return; }
@@ -374,11 +380,6 @@ var volet = {
     },
     close: function() {
         volet.body.classList.remove('volet--active');
-        volet.content.innerHTML = '';
-
-        backToCenterView();
-        network.selectedNode = undefined;
-        network.visualisation.unselectAll();
     },
     fill: function(nodeMetas) {
         var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';
@@ -393,4 +394,13 @@ var volet = {
     }
 }
 
-volet.btnClose.addEventListener('click', volet.close);
+volet.btnControl.addEventListener('click', () => {
+
+    if (volet.isOpen) {
+        volet.close();
+        volet.isOpen = false;
+    } else {
+        volet.open();
+        volet.isOpen = true;
+    }
+});

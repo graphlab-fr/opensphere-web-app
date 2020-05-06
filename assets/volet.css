@@ -98,12 +98,6 @@ button.active {
     text-decoration: line-through;
 }
 
-button.zoom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    color: black;
+button.controle {
+    background-color: black;
 }

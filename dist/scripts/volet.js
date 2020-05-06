@@ -1,7 +1,8 @@
 var volet = {
     body: document.querySelector('#volet'),
     content: document.querySelector('#volet-content'),
-    btnClose: document.querySelector('#volet-close'),
+    btnControl: document.querySelector('#lateral-control'),
+    isOpen: false,
 
     open: function() {
         if (!network.isLoaded) { return; }
@@ -10,11 +11,6 @@ var volet = {
     },
     close: function() {
         volet.body.classList.remove('volet--active');
-        volet.content.innerHTML = '';
-
-        backToCenterView();
-        network.selectedNode = undefined;
-        network.visualisation.unselectAll();
     },
     fill: function(nodeMetas) {
         var img = '<img class="volet__img" alt="" src="' + nodeMetas.image + '" />';
@@ -29,4 +25,13 @@ var volet = {
     }
 }
 
-volet.btnClose.addEventListener('click', volet.close);
+volet.btnControl.addEventListener('click', () => {
+
+    if (volet.isOpen) {
+        volet.close();
+        volet.isOpen = false;
+    } else {
+        volet.open();
+        volet.isOpen = true;
+    }
+});

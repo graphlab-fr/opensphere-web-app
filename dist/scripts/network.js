@@ -41,7 +41,12 @@ var network = {
         max: 1,
         min: 0.2
     },
-    selectedNode: undefined
+    selectedNode: undefined,
+    
+    unselect: function() {
+        network.selectedNode = undefined;
+        network.visualisation.unselectAll();
+    }
 }
 
 fetch('data.json').then(function(response) {
@@ -173,8 +178,6 @@ function nodeView(nodeMetasBrutes) {
     var nodeMetas = getNodeMetas(id);
 
     volet.fill(nodeMetas);
-    volet.open();
-    
 }
 
 function getNodeMetas(id) { 
