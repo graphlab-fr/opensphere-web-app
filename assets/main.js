@@ -111,7 +111,8 @@ var network = {
             institution: {shape: 'image', color: {border: chooseColor('institution')}},
             œuvre: {shape: 'image', color: {border: chooseColor('œuvre')}},
             évènement: {shape: 'image', color: {border: chooseColor('évènement')}}
-        }
+        },
+        interaction: {hover:true}
     },
     zoom: {
         max: 1,
@@ -149,6 +150,11 @@ fetch('data.json').then(function(response) {
     
         // Évent au clic sur un nœud
         network.visualisation.on('click', nodeView);
+    
+        // Évent au clic sur un nœud
+        network.visualisation.on('hoverNode', function(params) {
+            network.visualisation.selectNodes([params.node]);
+        });
 
         // Évent au zoom
         network.visualisation.on('zoom', function(params) {
@@ -190,7 +196,8 @@ function createNode(entite) {
             pays: entite.pays,
             discipline: entite.discipline,
             description: entite.description
-        }
+        },
+        interaction: {hover:true}
     };
     nodeList.push(nodeObject);
 }
