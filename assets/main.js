@@ -334,11 +334,12 @@ search.input.addEventListener('focus', () => {
             return; }
 
         const resultList = fuse.search(search.input.value);
-        if (search.input != '') {
-            for (let i = 0; i < 5; i++) {
-                search.showResult(resultList[i]);
-            }
-        }
+        
+        if (resultList.length > 5) { var nbResult = 5; }
+        else { var nbResult = resultList.length; }
+        
+        for (let i = 0; i < nbResult; i++) {
+            search.showResult(resultList[i]); }
     });
 });
 
