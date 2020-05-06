@@ -7,8 +7,7 @@ var volet = {
         // champs du volet
         img: document.querySelector('#volet-meta-img'),
         label: document.querySelector('#volet-meta-label'),
-        dateNaissance: document.querySelector('#volet-meta-date-naissance'),
-        dateMort: document.querySelector('#volet-meta-date-mort'),
+        date: document.querySelector('#volet-meta-date'),
         pays: document.querySelector('#volet-meta-pays'),
         discipline: document.querySelector('#volet-meta-discipline'),
         description: document.querySelector('#volet-meta-description')
@@ -23,18 +22,52 @@ var volet = {
         volet.body.classList.remove('volet--active');
     },
     setImage: function(entitePhoto, entiteLabel) {
+        if (entitePhoto === null) { return; }
         this.fields.img.setAttribute('src', entitePhoto);
         this.fields.img.setAttribute('alt', 'photo de ' + entiteLabel);
     },
     setLabel: function(entiteLabel) {
+        if (entiteLabel === null) { return; }
         this.fields.label.textContent = entiteLabel;
     },
     setDates: function(entiteDateNaissance, entiteDateMort) {
-        this.fields.dateNaissance.setAttribute('datetime', entiteDateNaissance);
-        this.fields.dateNaissance.textContent = entiteDateNaissance;
+        if (entiteDateNaissance === null && entiteDateMort === null) { return; }
 
-        this.fields.dateMort.setAttribute('datetime', entiteDateMort);
-        this.fields.dateMort.textContent = entiteDateMort;
+        var libelle = '<h3 class="volet-libelle">Date extrèmes</h3>';
+
+        if (entiteDateNaissance !== null) {
+            var naissance = '<div class="volet__dates"><time class="" datetime="' 
+            + entiteDateNaissance + '">' + entiteDateNaissance + '</time>';
+        }
+
+        if (entiteDateNaissance !== null) {
+            var mort = ' - <time class="" datetime="' + entiteDateMort + '">' +
+                entiteDateMort + '</time><div>';
+        } else {var mort}
+
+        this.fields.date.innerHTML = [libelle, naissance, mort].join('');
+    },
+    setPays: function(entitePays) {
+        if (entitePays === null) { return; }
+        var libelle = '<h3 class="volet-libelle">Pays</h3>';
+        var pays = '<div class="volet__pays"></div>';
+        this.fields.pays.innerHTML = entitePays;
+    },
+    setDiscipline: function(entiteDiscipline) {
+        if (entiteDiscipline === null) {
+            this.libelle.discipline.textContent = '';
+            return;
+        }
+        this.libelle.discipline.textContent = 'Discipline';
+        this.fields.discipline.textContent = entiteDiscipline;
+    },
+    setDescription: function(entiteDescription) {
+        if (entiteDescription === null) {
+            this.libelle.description.textContent = '';
+            return;
+        }
+        this.libelle.description.textContent = 'Description';
+        this.fields.description.textContent = entiteDescription;
     },
     fill: function(nodeMetas) {
         // affichage du contenant
@@ -44,9 +77,9 @@ var volet = {
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
-        this.fields.pays.textContent = nodeMetas.pays;
-        this.fields.discipline.textContent = nodeMetas.discipline;
-        this.fields.description.textContent = nodeMetas.description;
+        this.setPays(nodeMetas.pays);
+        this.setDiscipline(nodeMetas.discipline);
+        this.setDescription(nodeMetas.description);
     }
 }
 
