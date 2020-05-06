@@ -83,6 +83,7 @@ body {
 
 .commands-box {
     display: flex;
+    margin: 5px 0;
 }
 
 button {

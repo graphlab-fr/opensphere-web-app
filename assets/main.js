@@ -29,6 +29,9 @@ btnZoomMoins.addEventListener('click', () => {
     network.visualisation.moveTo({ scale: scale });
 });
 
+const btnZoomGeneral = document.querySelector('#zoom-general');
+btnZoomGeneral.addEventListener('click', backToCenterView);
+
 /**
  * ============
  * Filtres
