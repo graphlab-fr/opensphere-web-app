@@ -187,11 +187,11 @@ function getNodeMetas(id) {
 
 function zoomToNode(id) {
     
-    var nodesCoordonates = network.visualisation.getPositions();
+    var nodeCoordonates = network.visualisation.getPosition(id);
     network.visualisation.moveTo({
         position: {
-            x: nodesCoordonates[id].x,
-            y: nodesCoordonates[id].y
+            x: nodeCoordonates.x,
+            y: nodeCoordonates.y
         },
         scale: 1,
         animation: true
