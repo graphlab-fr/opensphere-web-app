@@ -13,6 +13,7 @@ var volet = {
         volet.content.innerHTML = '';
 
         backToCenterView();
+        network.selectedNode = undefined;
         network.visualisation.unselectAll();
     },
     fill: function(nodeMetas) {
