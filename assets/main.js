@@ -256,7 +256,7 @@ function nodeView(nodeMetasBrutes) {
 
     zoomToNode(id);
 
-    volet.fill(getNodeMetas(id), findConnectedNodes(nodeMetasBrutes.edges));
+    volet.fill(getNodeMetas(id), findConnectedNodes(id));
 }
 
 function getNodeMetas(id) { 
@@ -279,13 +279,11 @@ function getNodeMetas(id) {
     return nodeMetas;
 }
 
-function findConnectedNodes(edgesIdList) {
+function findConnectedNodes(nodeId) {
     var connectedNodesList = [];
-    edgesIdList.forEach(id => {
-        var edgeMetas = network.data.edges.get(id);
-        var nodeConnected = getNodeMetas(edgeMetas.to);
-        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label});
-        nodeConnected = getNodeMetas(edgeMetas.from);
+    var nodesConnected = network.visualisation.getConnectedNodes(nodeId);
+    nodesConnected.forEach(id => {
+        var nodeConnected = getNodeMetas(id);
         connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label});
     });
     return connectedNodesList;
@@ -332,10 +330,8 @@ var search = {
             search.resultContent.innerHTML = '';
 
             zoomToNode(id);
-            
-            var nodeMetas = getNodeMetas(id);
 
-            volet.fill(nodeMetas);
+            volet.fill(getNodeMetas(id), findConnectedNodes(id));
         });
     },
     reset: function() {
@@ -465,9 +461,11 @@ var volet = {
             this.connexionList.appendChild(listElt);
 
             listElt.addEventListener('click', () => {
-                zoomToNode(connexion.id);
+                var id = connexion.id;
+                
+                zoomToNode(id);
 
-                volet.fill(getNodeMetas(connexion.id), false);
+                volet.fill(getNodeMetas(id), findConnectedNodes(id));
             });
         }
     },

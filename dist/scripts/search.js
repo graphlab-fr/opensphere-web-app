@@ -19,10 +19,8 @@ var search = {
             search.resultContent.innerHTML = '';
 
             zoomToNode(id);
-            
-            var nodeMetas = getNodeMetas(id);
 
-            volet.fill(nodeMetas);
+            volet.fill(getNodeMetas(id), findConnectedNodes(id));
         });
     },
     reset: function() {

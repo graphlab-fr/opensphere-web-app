@@ -176,7 +176,7 @@ function nodeView(nodeMetasBrutes) {
 
     zoomToNode(id);
 
-    volet.fill(getNodeMetas(id), findConnectedNodes(nodeMetasBrutes.edges));
+    volet.fill(getNodeMetas(id), findConnectedNodes(id));
 }
 
 function getNodeMetas(id) { 
@@ -199,13 +199,11 @@ function getNodeMetas(id) {
     return nodeMetas;
 }
 
-function findConnectedNodes(edgesIdList) {
+function findConnectedNodes(nodeId) {
     var connectedNodesList = [];
-    edgesIdList.forEach(id => {
-        var edgeMetas = network.data.edges.get(id);
-        var nodeConnected = getNodeMetas(edgeMetas.to);
-        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label});
-        nodeConnected = getNodeMetas(edgeMetas.from);
+    var nodesConnected = network.visualisation.getConnectedNodes(nodeId);
+    nodesConnected.forEach(id => {
+        var nodeConnected = getNodeMetas(id);
         connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label});
     });
     return connectedNodesList;

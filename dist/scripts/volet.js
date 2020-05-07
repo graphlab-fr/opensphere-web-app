@@ -81,9 +81,11 @@ var volet = {
             this.connexionList.appendChild(listElt);
 
             listElt.addEventListener('click', () => {
-                zoomToNode(connexion.id);
+                var id = connexion.id;
+                
+                zoomToNode(id);
 
-                volet.fill(getNodeMetas(connexion.id), false);
+                volet.fill(getNodeMetas(id), findConnectedNodes(id));
             });
         }
     },
