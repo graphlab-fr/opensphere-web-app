@@ -156,11 +156,6 @@ fetch('data.json').then(function(response) {
         network.visualisation = new vis.Network(network.container,
             network.data, network.options);
     
-        network.visualisation.on('afterDrawing', function() {
-            // Visuation générée chargée
-            network.isLoaded = true;
-        });
-    
         // Évent au clic sur un nœud
         network.visualisation.on('click', nodeView);
     
@@ -185,6 +180,16 @@ fetch('data.json').then(function(response) {
                 network.visualisation.moveTo({ scale: network.zoom.max }); }
             
         });
+
+        // Visuation générée chargée
+        network.isLoaded = true;
+
+        // Si l'id d'un nœud est entré dans l'URL, on l'active
+        var pathnameArray = window.location.pathname.split('/')
+        var idNode = pathnameArray[pathnameArray.length -1];
+        if (switchNode(idNode, false)) {
+            volet.open();
+        }
     });
     
 });
@@ -263,7 +268,7 @@ function nodeView(nodeMetasBrutes) {
 }
 
 function getNodeMetas(id) { 
-    var nodeMetas = null;
+    var nodeMetas = false;
 
     network.data.nodes.get({
 
@@ -311,19 +316,30 @@ function backToCenterView() {
     });
 }
 
-function switchNode(id) {
+function switchNode(id, mustZoom = true) {
+
+    var nodeMetas = getNodeMetas(id);
+
+    if (nodeMetas == false) { return false; }
+
     network.selectedNode = id;
 
     history.pushState({}, 'entite ' + id, id);
 
-    var nodeMetas = getNodeMetas(id)
-
     document.title = nodeMetas.label + ' - Otetosphère';
 
-    zoomToNode(id);
+    if (mustZoom) {zoomToNode(id);}
 
     volet.fill(nodeMetas, findConnectedNodes(id));
+
+    return true;
 }
+
+window.onpopstate = function() {
+    var pathnameArray = window.location.pathname.split('/')
+    var idNode = pathnameArray[pathnameArray.length -1];
+    switchNode(idNode)
+};
 var search = {
     input: document.querySelector('#search'),
     resultContent: document.querySelector('#search-result'),
