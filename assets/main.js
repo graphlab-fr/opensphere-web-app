@@ -256,9 +256,7 @@ function nodeView(nodeMetasBrutes) {
 
     zoomToNode(id);
 
-    var nodeMetas = getNodeMetas(id);
-
-    volet.fill(nodeMetas);
+    volet.fill(getNodeMetas(id), findConnectedNodes(nodeMetasBrutes.edges));
 }
 
 function getNodeMetas(id) { 
@@ -269,6 +267,7 @@ function getNodeMetas(id) {
         filter: function (item) {
             if (item.id == id) {
                 nodeMetas = item.metas;
+                nodeMetas.id = id;
                 nodeMetas.label = item.label;
                 nodeMetas.image = item.image;
 
@@ -278,6 +277,16 @@ function getNodeMetas(id) {
     });
 
     return nodeMetas;
+}
+
+function findConnectedNodes(edgesIdList) {
+    var connectedNodesList = [];
+    edgesIdList.forEach(id => {
+        var edgeMetas = network.data.edges.get(id);
+        var nodeConnected = getNodeMetas(edgeMetas.to);
+        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label});
+    });
+    return connectedNodesList;
 }
 
 function zoomToNode(id) {
@@ -374,6 +383,7 @@ function getActiveNodes() {
 var volet = {
     body: document.querySelector('#volet'),
     content: document.querySelector('#volet-content'),
+    connexionList: document.querySelector('#volet-connexion'),
     btnControl: document.querySelector('#lateral-control'),
     isOpen: false,
     fields: {
@@ -438,17 +448,42 @@ var volet = {
         var description = '<div class="volet__description">' + entiteDescription + '</div>';
         this.fields.description.innerHTML = [libelle, description].join('');
     },
-    fill: function(nodeMetas) {
+    setConnexion: function(nodeConnectedList, entiteLabel) {
+        if (nodeConnectedList === false) { return; }
+        this.connexionList.innerHTML = '';
+
+        for (let i = 0; i < nodeConnectedList.length; i++) {
+            const connexion = nodeConnectedList[i];
+
+            if (connexion.label == entiteLabel) { continue; }
+
+            var listElt = document.createElement('li');
+            listElt.classList.add('connexion-list__elt')
+            listElt.textContent = connexion.label;
+            this.connexionList.appendChild(listElt);
+
+            listElt.addEventListener('click', () => {
+                zoomToNode(connexion.id);
+
+                volet.fill(getNodeMetas(connexion.id), false);
+            });
+        }
+    },
+    fill: function(nodeMetas, nodeConnectedList = false) {
         // affichage du contenant
         this.content.classList.add('visible');
 
-        // remplissage
+        // remplissage métadonnées
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
         this.setPays(nodeMetas.pays);
         this.setDiscipline(nodeMetas.discipline);
         this.setDescription(nodeMetas.description);
+
+        // remplissage nœuds connectés
+        this.setConnexion(nodeConnectedList, nodeMetas.label);
+        
     }
 }
 

@@ -54,6 +54,22 @@ body {
     color: black;
 }
 
+.connexion-list {
+    list-style: none;
+    padding: 0;
+}
+
+.connexion-list__elt {
+    border-top: 1px solid black;
+    padding: 6px 2px;
+    cursor: pointer;
+    background: #ddbf98;
+}
+
+.connexion-list__elt:last-child {
+    border-bottom: 1px solid black;
+}
+
 .search {
     font-size: 22px;
     width: 100%;

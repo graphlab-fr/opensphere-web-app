@@ -176,9 +176,7 @@ function nodeView(nodeMetasBrutes) {
 
     zoomToNode(id);
 
-    var nodeMetas = getNodeMetas(id);
-
-    volet.fill(nodeMetas);
+    volet.fill(getNodeMetas(id), findConnectedNodes(nodeMetasBrutes.edges));
 }
 
 function getNodeMetas(id) { 
@@ -189,6 +187,7 @@ function getNodeMetas(id) {
         filter: function (item) {
             if (item.id == id) {
                 nodeMetas = item.metas;
+                nodeMetas.id = id;
                 nodeMetas.label = item.label;
                 nodeMetas.image = item.image;
 
@@ -198,6 +197,16 @@ function getNodeMetas(id) {
     });
 
     return nodeMetas;
+}
+
+function findConnectedNodes(edgesIdList) {
+    var connectedNodesList = [];
+    edgesIdList.forEach(id => {
+        var edgeMetas = network.data.edges.get(id);
+        var nodeConnected = getNodeMetas(edgeMetas.to);
+        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label});
+    });
+    return connectedNodesList;
 }
 
 function zoomToNode(id) {

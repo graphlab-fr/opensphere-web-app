@@ -1,6 +1,7 @@
 var volet = {
     body: document.querySelector('#volet'),
     content: document.querySelector('#volet-content'),
+    connexionList: document.querySelector('#volet-connexion'),
     btnControl: document.querySelector('#lateral-control'),
     isOpen: false,
     fields: {
@@ -65,17 +66,42 @@ var volet = {
         var description = '<div class="volet__description">' + entiteDescription + '</div>';
         this.fields.description.innerHTML = [libelle, description].join('');
     },
-    fill: function(nodeMetas) {
+    setConnexion: function(nodeConnectedList, entiteLabel) {
+        if (nodeConnectedList === false) { return; }
+        this.connexionList.innerHTML = '';
+
+        for (let i = 0; i < nodeConnectedList.length; i++) {
+            const connexion = nodeConnectedList[i];
+
+            if (connexion.label == entiteLabel) { continue; }
+
+            var listElt = document.createElement('li');
+            listElt.classList.add('connexion-list__elt')
+            listElt.textContent = connexion.label;
+            this.connexionList.appendChild(listElt);
+
+            listElt.addEventListener('click', () => {
+                zoomToNode(connexion.id);
+
+                volet.fill(getNodeMetas(connexion.id), false);
+            });
+        }
+    },
+    fill: function(nodeMetas, nodeConnectedList = false) {
         // affichage du contenant
         this.content.classList.add('visible');
 
-        // remplissage
+        // remplissage métadonnées
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
         this.setPays(nodeMetas.pays);
         this.setDiscipline(nodeMetas.discipline);
         this.setDescription(nodeMetas.description);
+
+        // remplissage nœuds connectés
+        this.setConnexion(nodeConnectedList, nodeMetas.label);
+        
     }
 }
 
