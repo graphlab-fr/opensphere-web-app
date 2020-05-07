@@ -18,9 +18,11 @@ var volet = {
         if (!network.isLoaded) { return; }
         
         volet.body.classList.add('volet--active');
+        this.isOpen = true;
     },
     close: function() {
         volet.body.classList.remove('volet--active');
+        this.isOpen = false;
     },
     setImage: function(entitePhoto, entiteLabel) {
         if (entitePhoto === null) { return; }
@@ -107,11 +109,6 @@ var volet = {
 
 volet.btnControl.addEventListener('click', () => {
     // toggle du volet
-    if (volet.isOpen) {
-        volet.close();
-        volet.isOpen = false;
-    } else {
-        volet.open();
-        volet.isOpen = true;
-    }
+    if (volet.isOpen) { volet.close(); }
+    else { volet.open(); }
 });
