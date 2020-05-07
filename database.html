@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./assets/database.css">
+
+    <title>Base de données</title>
+</head>
+
+<body>
+
+    <div id="database-content"></div>
+
+</body>
+
+<script>
+    var database = {
+        content: document.querySelector('#database-content')
+    }
+
+    fetch('data.json').then(function(response) {
+    // Chargement de données...
+    
+    response.text().then(function(text) {
+        var data = JSON.parse(text);
+
+        Object.values(data.Entites).forEach(entite => {
+            createCard(entite); });
+        
+    });
+
+    function createCard(entite) {
+        const cardBox = document.createElement('div');
+        cardBox.classList.add('card');
+        database.content.appendChild(cardBox);
+
+        const cardLabel = document.createElement('h3');
+        cardLabel.textContent = entite.label;
+        cardBox.appendChild(cardLabel);
+    }
+    
+});
+</script>
+
+</html>
