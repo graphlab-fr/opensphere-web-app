@@ -34,8 +34,6 @@ btnZoomGeneral.addEventListener('click', backToCenterView);
 
 const btnZoomOnSelection = document.querySelector('#zoom-selection');
 btnZoomOnSelection.addEventListener('click', () => {
-    console.log(network.selectedNode);
-    
     zoomToNode(network.selectedNode);
 });
 
@@ -261,11 +259,7 @@ function nodeView(nodeMetasBrutes) {
     if (network.selectedNode !== undefined && network.selectedNode == id) {
         return; }
 
-    network.selectedNode = id;
-
-    zoomToNode(id);
-
-    volet.fill(getNodeMetas(id), findConnectedNodes(id));
+    switchNode(id);
 }
 
 function getNodeMetas(id) { 
@@ -316,6 +310,20 @@ function backToCenterView() {
         animation: true
     });
 }
+
+function switchNode(id) {
+    network.selectedNode = id;
+
+    history.pushState({}, 'entite ' + id, id);
+
+    var nodeMetas = getNodeMetas(id)
+
+    document.title = nodeMetas.label + ' - Otetosphère';
+
+    zoomToNode(id);
+
+    volet.fill(nodeMetas, findConnectedNodes(id));
+}
 var search = {
     input: document.querySelector('#search'),
     resultContent: document.querySelector('#search-result'),
@@ -336,11 +344,7 @@ var search = {
             search.input.value = resultObj.item.label;
             search.resultContent.innerHTML = '';
 
-            network.selectedNode = id;
-
-            zoomToNode(id);
-
-            volet.fill(getNodeMetas(id), findConnectedNodes(id));
+            switchNode(id);
         });
     },
     reset: function() {
@@ -472,11 +476,7 @@ var volet = {
             listElt.addEventListener('click', () => {
                 var id = connexion.id;
 
-                network.selectedNode = id;
-
-                zoomToNode(id);
-
-                volet.fill(getNodeMetas(id), findConnectedNodes(id));
+                switchNode(id);
             });
         }
     },

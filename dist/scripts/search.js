@@ -18,11 +18,7 @@ var search = {
             search.input.value = resultObj.item.label;
             search.resultContent.innerHTML = '';
 
-            network.selectedNode = id;
-
-            zoomToNode(id);
-
-            volet.fill(getNodeMetas(id), findConnectedNodes(id));
+            switchNode(id);
         });
     },
     reset: function() {

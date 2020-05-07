@@ -174,11 +174,7 @@ function nodeView(nodeMetasBrutes) {
     if (network.selectedNode !== undefined && network.selectedNode == id) {
         return; }
 
-    network.selectedNode = id;
-
-    zoomToNode(id);
-
-    volet.fill(getNodeMetas(id), findConnectedNodes(id));
+    switchNode(id);
 }
 
 function getNodeMetas(id) { 
@@ -228,4 +224,18 @@ function backToCenterView() {
     network.visualisation.fit({
         animation: true
     });
+}
+
+function switchNode(id) {
+    network.selectedNode = id;
+
+    history.pushState({}, 'entite ' + id, id);
+
+    var nodeMetas = getNodeMetas(id)
+
+    document.title = nodeMetas.label + ' - Otetosphère';
+
+    zoomToNode(id);
+
+    volet.fill(nodeMetas, findConnectedNodes(id));
 }
