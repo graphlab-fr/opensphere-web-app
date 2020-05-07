@@ -285,6 +285,8 @@ function findConnectedNodes(edgesIdList) {
         var edgeMetas = network.data.edges.get(id);
         var nodeConnected = getNodeMetas(edgeMetas.to);
         connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label});
+        nodeConnected = getNodeMetas(edgeMetas.from);
+        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label});
     });
     return connectedNodesList;
 }
