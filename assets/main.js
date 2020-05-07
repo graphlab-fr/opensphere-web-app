@@ -413,34 +413,30 @@ var volet = {
             + entiteDateNaissance + '">' + entiteDateNaissance + '</time>';
         }
 
-        if (entiteDateNaissance !== null) {
+        if (entiteDateMort !== null) {
             var mort = ' - <time class="" datetime="' + entiteDateMort + '">' +
                 entiteDateMort + '</time><div>';
-        } else {var mort}
+        }
 
         this.fields.date.innerHTML = [libelle, naissance, mort].join('');
     },
     setPays: function(entitePays) {
         if (entitePays === null) { return; }
         var libelle = '<h3 class="volet-libelle">Pays</h3>';
-        var pays = '<div class="volet__pays"></div>';
-        this.fields.pays.innerHTML = entitePays;
+        var pays = '<div class="volet__pays">' + entitePays + '</div>';
+        this.fields.pays.innerHTML = [libelle, pays].join('');
     },
     setDiscipline: function(entiteDiscipline) {
-        if (entiteDiscipline === null) {
-            this.libelle.discipline.textContent = '';
-            return;
-        }
-        this.libelle.discipline.textContent = 'Discipline';
-        this.fields.discipline.textContent = entiteDiscipline;
+        if (entiteDiscipline === null) { return; }
+        var libelle = '<h3 class="volet-libelle">Discipline</h3>';
+        var discipline = '<div class="volet__discipline">' + entiteDiscipline + '</div>';
+        this.fields.discipline.innerHTML = [libelle, discipline].join('');
     },
     setDescription: function(entiteDescription) {
-        if (entiteDescription === null) {
-            this.libelle.description.textContent = '';
-            return;
-        }
-        this.libelle.description.textContent = 'Description';
-        this.fields.description.textContent = entiteDescription;
+        if (entiteDescription === null) { return; }
+        var libelle = '<h3 class="volet-libelle">Description</h3>';
+        var description = '<div class="volet__description">' + entiteDescription + '</div>';
+        this.fields.description.innerHTML = [libelle, description].join('');
     },
     fill: function(nodeMetas) {
         // affichage du contenant
