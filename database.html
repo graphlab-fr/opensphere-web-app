@@ -73,9 +73,22 @@
         }
 
         cardBox.addEventListener('click', () => {
-            cardWrapper.classList.add('active');
+            cardBox.classList.toggle('active');
         });
 
+        const cardDetailsBox = document.createElement('div');
+        cardDetailsBox.classList.add('card__details');
+        cardWrapper.appendChild(cardDetailsBox);
+
+        const cardPays = document.createElement('div');
+        cardPays.classList.add('card__pays');
+        cardPays.textContent = entite.pays;
+        cardDetailsBox.appendChild(cardPays);
+
+        const cardDescription = document.createElement('div');
+        cardDescription.classList.add('card__description');
+        cardDescription.textContent = entite.description;
+        cardDetailsBox.appendChild(cardDescription);
     }
     
 });
