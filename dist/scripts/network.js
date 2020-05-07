@@ -174,6 +174,8 @@ function nodeView(nodeMetasBrutes) {
     if (network.selectedNode !== undefined && network.selectedNode == id) {
         return; }
 
+    network.selectedNode = id;
+
     zoomToNode(id);
 
     volet.fill(getNodeMetas(id), findConnectedNodes(id));
@@ -190,8 +192,6 @@ function getNodeMetas(id) {
                 nodeMetas.id = id;
                 nodeMetas.label = item.label;
                 nodeMetas.image = item.image;
-
-                network.selectedNode = id;
             }
         }
     });

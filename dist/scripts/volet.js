@@ -82,7 +82,9 @@ var volet = {
 
             listElt.addEventListener('click', () => {
                 var id = connexion.id;
-                
+
+                network.selectedNode = id;
+
                 zoomToNode(id);
 
                 volet.fill(getNodeMetas(id), findConnectedNodes(id));

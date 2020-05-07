@@ -32,6 +32,13 @@ btnZoomMoins.addEventListener('click', () => {
 const btnZoomGeneral = document.querySelector('#zoom-general');
 btnZoomGeneral.addEventListener('click', backToCenterView);
 
+const btnZoomOnSelection = document.querySelector('#zoom-selection');
+btnZoomOnSelection.addEventListener('click', () => {
+    console.log(network.selectedNode);
+    
+    zoomToNode(network.selectedNode);
+});
+
 /**
  * ============
  * Filtres

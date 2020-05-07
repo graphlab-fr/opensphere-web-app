@@ -47,13 +47,6 @@ body {
     transform: unset;
 }
 
-.volet button {
-    background-color: transparent;
-    border: 2px solid rgb(150, 93, 25);
-    font-style: italic;
-    color: black;
-}
-
 .connexion-list {
     list-style: none;
     padding: 0;

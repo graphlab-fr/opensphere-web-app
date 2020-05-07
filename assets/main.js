@@ -32,6 +32,13 @@ btnZoomMoins.addEventListener('click', () => {
 const btnZoomGeneral = document.querySelector('#zoom-general');
 btnZoomGeneral.addEventListener('click', backToCenterView);
 
+const btnZoomOnSelection = document.querySelector('#zoom-selection');
+btnZoomOnSelection.addEventListener('click', () => {
+    console.log(network.selectedNode);
+    
+    zoomToNode(network.selectedNode);
+});
+
 /**
  * ============
  * Filtres
@@ -254,6 +261,8 @@ function nodeView(nodeMetasBrutes) {
     if (network.selectedNode !== undefined && network.selectedNode == id) {
         return; }
 
+    network.selectedNode = id;
+
     zoomToNode(id);
 
     volet.fill(getNodeMetas(id), findConnectedNodes(id));
@@ -270,8 +279,6 @@ function getNodeMetas(id) {
                 nodeMetas.id = id;
                 nodeMetas.label = item.label;
                 nodeMetas.image = item.image;
-
-                network.selectedNode = id;
             }
         }
     });
@@ -328,6 +335,8 @@ var search = {
             
             search.input.value = resultObj.item.label;
             search.resultContent.innerHTML = '';
+
+            network.selectedNode = id;
 
             zoomToNode(id);
 
@@ -462,7 +471,9 @@ var volet = {
 
             listElt.addEventListener('click', () => {
                 var id = connexion.id;
-                
+
+                network.selectedNode = id;
+
                 zoomToNode(id);
 
                 volet.fill(getNodeMetas(id), findConnectedNodes(id));
