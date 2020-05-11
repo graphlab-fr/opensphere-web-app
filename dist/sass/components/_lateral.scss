@@ -1,0 +1,21 @@
+.lateral {
+    overflow-y: auto;
+    box-sizing: border-box;
+    // transform: translate(100%);
+    padding: 10px 0 0 10px;
+    position: absolute;
+    width: 300px;
+    top: 0px;
+    background-color: $color-blanc;
+    height: 100%;
+    z-index: 100;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+    &--left {
+        left: 0px;
+    }
+
+    &--right {
+        right: 0px;
+    }
+}

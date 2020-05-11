@@ -1,5 +1,10 @@
 .header {
+    position: relative;
+    box-sizing: border-box;
+    z-index: 999;
     padding: 10px 5px;
+    height: 130px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 
     &__top {
         display: flex;

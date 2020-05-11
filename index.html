@@ -12,7 +12,7 @@
     <style type="text/css">
         #network {
           width: 100vw;
-          height: 90vh;
+          height: 100%;
           border: 1px solid lightgray;
         }
     </style>
@@ -53,7 +53,7 @@
                 <ul id="search-result" class="search-list"></ul>
             </div>
 
-            <div class="navigation__button">
+            <div class="navigation__button navigation__button--important">
                 <span class="navigation__libelle">Fiche</span>
                 <div class="burger">
                     <div class="burger__branch"></div>
@@ -64,45 +64,53 @@
         </nav>
     </header>
 
-    <div class="commands-box">
-        <button class="btn-group" data-group="otlet">otlet</button>
-        <button class="btn-group" data-group="famille">famille</button>
-        <button class="btn-group" data-group="collegue">collègue</button>
-        <button class="btn-group" data-group="collaborateur">collaborateur</button>
-        <button class="btn-group" data-group="contemporain">contemporain</button>
+    <main>
+        
+        <aside class="lateral lateral--left">
+            Filtres
 
-        <button class="btn-group" data-group="œuvre">œuvre</button>
-        <button class="btn-group" data-group="évènement">évènement</button>
-        <button class="btn-group" data-group="institution">institution</button>
-    </div>
+            <div class="commands-box">
+                <button class="btn-group" data-group="otlet">otlet</button>
+                <button class="btn-group" data-group="famille">famille</button>
+                <button class="btn-group" data-group="collegue">collègue</button>
+                <button class="btn-group" data-group="collaborateur">collaborateur</button>
+                <button class="btn-group" data-group="contemporain">contemporain</button>
+        
+                <button class="btn-group" data-group="œuvre">œuvre</button>
+                <button class="btn-group" data-group="évènement">évènement</button>
+                <button class="btn-group" data-group="institution">institution</button>
+            </div>
+        
+            <div class="commands-box">
+                <button id="zoom-plus" class="controle">+</button>
+                <button id="zoom-moins" class="controle">-</button>
+                <button id="zoom-general" class="controle">Vue générale</button>
+        
+                <button id="lateral-control" class="controle">Panneau latéral</button>
+        
+                <a href="./database.html">Base de données</a>
+            </div>
+        </aside>
 
-    <div class="commands-box">
-        <button id="zoom-plus" class="controle">+</button>
-        <button id="zoom-moins" class="controle">-</button>
-        <button id="zoom-general" class="controle">Vue générale</button>
+        <div id="network" class="network__wrapper"></div>
 
-        <button id="lateral-control" class="controle">Panneau latéral</button>
+        <aside id="volet" class="lateral lateral--right">
+            <section id="volet-content" class="volet-content">
+                <button id="zoom-selection" class="controle">Visualiser</button>
+    
+                <img id="volet-meta-img" class="volet__img" src="" alt="">
+    
+                <div id="volet-meta-label" class="volet__label"></div>
+                <div id="volet-meta-date"></div>
+                <div id="volet-meta-pays"></div>
+                <div id="volet-meta-discipline"></div>
+                <div id="volet-meta-description"></div>
+    
+                <ul id="volet-connexion" class="connexion-list"></ul>
+            </section>
+        </aside>
 
-        <a href="./database.html">Base de données</a>
-    </div>
-
-    <div id="network"></div>
-
-    <aside id="volet" class="volet">
-        <section id="volet-content" class="volet-content">
-            <button id="zoom-selection" class="controle">Visualiser</button>
-
-            <img id="volet-meta-img" class="volet__img" src="" alt="">
-
-            <div id="volet-meta-label" class="volet__label"></div>
-            <div id="volet-meta-date"></div>
-            <div id="volet-meta-pays"></div>
-            <div id="volet-meta-discipline"></div>
-            <div id="volet-meta-description"></div>
-
-            <ul id="volet-connexion" class="connexion-list"></ul>
-        </section>
-    </aside>
+    </main>
 
     <script src="./libs/vis-network/vis-network.min.js"></script>
     <script src="./libs/fuse/fuse.min.js"></script>

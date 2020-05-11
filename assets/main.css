@@ -29,7 +29,13 @@ body, button, .title-site {
 body {
   cursor: default;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  overflow-x: hidden; }
+
+main {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 132px); }
 
 button {
   border: unset;
@@ -57,8 +63,29 @@ button.controle {
     height: 3px;
     background-color: #141414; }
 
+.lateral {
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 10px 0 0 10px;
+  position: absolute;
+  width: 300px;
+  top: 0px;
+  background-color: #fffcfb;
+  height: 100%;
+  z-index: 100;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
+  .lateral--left {
+    left: 0px; }
+  .lateral--right {
+    right: 0px; }
+
 .header {
-  padding: 10px 5px; }
+  position: relative;
+  box-sizing: border-box;
+  z-index: 999;
+  padding: 10px 5px;
+  height: 130px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
   .header__top {
     display: flex;
     justify-content: space-between;
@@ -92,6 +119,8 @@ button.controle {
     height: 40px;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+    .navigation__button--important {
+      background-color: #e3ce88; }
 
 .volet {
   overflow-y: auto;
