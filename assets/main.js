@@ -197,7 +197,7 @@ fetch('data.json').then(function(response) {
                 if (noColorNodesIds.indexOf(id) !== -1) { continue; }
                 var groupName = network.data.nodes.get(id).group;
                 
-                network.data.nodes.update({id: id, color: chooseColor(groupName, true)})
+                network.data.nodes.update({id: id, color: chooseColor(groupName, true), opacity: 0.4})
             }
             
         });
@@ -208,7 +208,7 @@ fetch('data.json').then(function(response) {
             for (let i = 0; i < ids.length; i++) {
                 const id = ids[i];
                 if (id == params.node) { continue; }
-                network.data.nodes.update({id: id, color: false})
+                network.data.nodes.update({id: id, color: false, opacity: 1})
             }
             
         });
