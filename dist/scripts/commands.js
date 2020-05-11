@@ -43,6 +43,28 @@ btnZoomOnSelection.addEventListener('click', () => {
  * ============
  */
 
+var filterLateral = {
+    body: document.querySelector('#filtre'),
+    btnControl: document.querySelector('#filtre-control'),
+    isOpen: false,
+    open: function() {
+        if (!network.isLoaded) { return; }
+        
+        filterLateral.body.classList.add('lateral--active');
+        this.isOpen = true;
+    },
+    close: function() {
+        filterLateral.body.classList.remove('lateral--active');
+        this.isOpen = false;
+    }
+}
+
+filterLateral.btnControl.addEventListener('click', () => {
+    // toggle du lateral filtre
+    if (filterLateral.isOpen) { filterLateral.close(); }
+    else { filterLateral.open(); }
+});
+
 const btnsGroups = document.querySelectorAll('.btn-group');
 btnsGroups.forEach(btn => {
     var group = btn.dataset.group;

@@ -130,7 +130,7 @@ fetch('data.json').then(function(response) {
         var pathnameArray = window.location.pathname.split('/');
         var idNode = pathnameArray[pathnameArray.length -1];
         if (switchNode(idNode, false)) {
-            volet.open();
+            fiche.open();
             historique.init(idNode);
         }
     });
@@ -280,7 +280,7 @@ function switchNode(id, mustZoom = true) {
 
     if (mustZoom) {zoomToNode(id);}
 
-    volet.fill(nodeMetas, findConnectedNodes(id));
+    fiche.fill(nodeMetas, findConnectedNodes(id));
 
     return true;
 }

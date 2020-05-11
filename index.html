@@ -39,7 +39,7 @@
         </section>
 
         <nav class="navigation">
-            <div class="navigation__button">
+            <div id="filtre-control" class="navigation__button">
                 <div class="burger">
                     <div class="burger__branch"></div>
                     <div class="burger__branch"></div>
@@ -53,7 +53,7 @@
                 <ul id="search-result" class="search-list"></ul>
             </div>
 
-            <div class="navigation__button navigation__button--important">
+            <div id="fiche-control" class="navigation__button navigation__button--important">
                 <span class="navigation__libelle">Fiche</span>
                 <div class="burger">
                     <div class="burger__branch"></div>
@@ -66,7 +66,7 @@
 
     <main>
         
-        <aside class="lateral lateral--left">
+        <aside id="filtre" class="lateral lateral--left">
             <button class="btn-group" data-group="otlet">otlet</button>
             <button class="btn-group" data-group="famille">famille</button>
             <button class="btn-group" data-group="collegue">collègue</button>
@@ -90,19 +90,19 @@
 
         <div id="network" class="network__wrapper"></div>
 
-        <aside id="volet" class="lateral lateral--right">
-            <section id="volet-content" class="volet-content">
+        <aside id="fiche" class="lateral lateral--right">
+            <section id="fiche-content" class="fiche-content">
                 <button id="zoom-selection" class="controle">Visualiser</button>
     
-                <img id="volet-meta-img" class="volet__img" src="" alt="">
+                <img id="fiche-meta-img" class="fiche__img" src="" alt="">
     
-                <div id="volet-meta-label" class="volet__label"></div>
-                <div id="volet-meta-date"></div>
-                <div id="volet-meta-pays"></div>
-                <div id="volet-meta-discipline"></div>
-                <div id="volet-meta-description"></div>
+                <div id="fiche-meta-label" class="fiche__label"></div>
+                <div id="fiche-meta-date"></div>
+                <div id="fiche-meta-pays"></div>
+                <div id="fiche-meta-discipline"></div>
+                <div id="fiche-meta-description"></div>
     
-                <ul id="volet-connexion" class="connexion-list"></ul>
+                <ul id="fiche-connexion" class="connexion-list"></ul>
             </section>
         </aside>
 

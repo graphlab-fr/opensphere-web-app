@@ -1,7 +1,6 @@
 .lateral {
     overflow-y: auto;
     box-sizing: border-box;
-    // padding: 10px 0 0 10px;
     position: absolute;
     width: 300px;
     top: 0px;
@@ -9,12 +8,20 @@
     height: 100%;
     z-index: 100;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    transition: transform .2s;
+    transition-timing-function: cubic-bezier(.96,0,.19,1.12);
 
     &--left {
         left: 0px;
+        transform: translate(-100%);
     }
 
     &--right {
         right: 0px;
+        transform: translate(100%);
+    }
+
+    &--active {
+        transform: translate(0%);
     }
 }

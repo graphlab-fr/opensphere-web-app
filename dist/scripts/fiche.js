@@ -1,27 +1,27 @@
-var volet = {
-    body: document.querySelector('#volet'),
-    content: document.querySelector('#volet-content'),
-    connexionList: document.querySelector('#volet-connexion'),
-    btnControl: document.querySelector('#lateral-control'),
+var fiche = {
+    body: document.querySelector('#fiche'),
+    content: document.querySelector('#fiche-content'),
+    connexionList: document.querySelector('#fiche-connexion'),
+    btnControl: document.querySelector('#fiche-control'),
     isOpen: false,
     fields: {
-        // champs du volet
-        img: document.querySelector('#volet-meta-img'),
-        label: document.querySelector('#volet-meta-label'),
-        date: document.querySelector('#volet-meta-date'),
-        pays: document.querySelector('#volet-meta-pays'),
-        discipline: document.querySelector('#volet-meta-discipline'),
-        description: document.querySelector('#volet-meta-description')
+        // champs du fiche
+        img: document.querySelector('#fiche-meta-img'),
+        label: document.querySelector('#fiche-meta-label'),
+        date: document.querySelector('#fiche-meta-date'),
+        pays: document.querySelector('#fiche-meta-pays'),
+        discipline: document.querySelector('#fiche-meta-discipline'),
+        description: document.querySelector('#fiche-meta-description')
     },
 
     open: function() {
         if (!network.isLoaded) { return; }
         
-        volet.body.classList.add('volet--active');
+        fiche.body.classList.add('lateral--active');
         this.isOpen = true;
     },
     close: function() {
-        volet.body.classList.remove('volet--active');
+        fiche.body.classList.remove('lateral--active');
         this.isOpen = false;
     },
     setImage: function(entitePhoto, entiteLabel) {
@@ -36,10 +36,10 @@ var volet = {
     setDates: function(entiteDateNaissance, entiteDateMort) {
         if (entiteDateNaissance === null && entiteDateMort === null) { return; }
 
-        var libelle = '<h3 class="volet-libelle">Dates extremes</h3>';
+        var libelle = '<h3 class="fiche-libelle">Dates extremes</h3>';
 
         if (entiteDateNaissance !== null) {
-            var naissance = '<div class="volet__dates"><time class="" datetime="' 
+            var naissance = '<div class="fiche__dates"><time class="" datetime="' 
             + entiteDateNaissance + '">' + entiteDateNaissance + '</time>';
         }
 
@@ -52,20 +52,20 @@ var volet = {
     },
     setPays: function(entitePays) {
         if (entitePays === null) { return; }
-        var libelle = '<h3 class="volet-libelle">Pays</h3>';
-        var pays = '<div class="volet__pays">' + entitePays + '</div>';
+        var libelle = '<h3 class="fiche-libelle">Pays</h3>';
+        var pays = '<div class="fiche__pays">' + entitePays + '</div>';
         this.fields.pays.innerHTML = [libelle, pays].join('');
     },
     setDiscipline: function(entiteDiscipline) {
         if (entiteDiscipline === null) { return; }
-        var libelle = '<h3 class="volet-libelle">Discipline</h3>';
-        var discipline = '<div class="volet__discipline">' + entiteDiscipline + '</div>';
+        var libelle = '<h3 class="fiche-libelle">Discipline</h3>';
+        var discipline = '<div class="fiche__discipline">' + entiteDiscipline + '</div>';
         this.fields.discipline.innerHTML = [libelle, discipline].join('');
     },
     setDescription: function(entiteDescription) {
         if (entiteDescription === null) { return; }
-        var libelle = '<h3 class="volet-libelle">Description</h3>';
-        var description = '<div class="volet__description">' + entiteDescription + '</div>';
+        var libelle = '<h3 class="fiche-libelle">Description</h3>';
+        var description = '<div class="fiche__description">' + entiteDescription + '</div>';
         this.fields.description.innerHTML = [libelle, description].join('');
     },
     setConnexion: function(nodeConnectedList, entiteLabel) {
@@ -108,8 +108,8 @@ var volet = {
     }
 }
 
-volet.btnControl.addEventListener('click', () => {
-    // toggle du volet
-    if (volet.isOpen) { volet.close(); }
-    else { volet.open(); }
+fiche.btnControl.addEventListener('click', () => {
+    // toggle du lateral fiche
+    if (fiche.isOpen) { fiche.close(); }
+    else { fiche.open(); }
 });
