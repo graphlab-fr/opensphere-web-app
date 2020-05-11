@@ -5,6 +5,7 @@
 
     &__button {
         cursor: pointer;
+        user-select: none;
         box-sizing: border-box;
         display: flex;
         margin: 0 10px;
