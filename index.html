@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="./assets/main.css">
 
-    <title>Network</title>
+    <title>Otletosphère</title>
 
     <style type="text/css">
         #network {
@@ -20,10 +20,49 @@
 
 <body>
 
-    <div class="search-box">
-        <input id="search" class="search" type="text" placeholder="Rechercher">
-        <ul id="search-result" class="search-list"></ul>
-    </div>
+    <header class="header">
+        <section class="header__top">
+            <a class="header__identite" href="/Network">
+                <h1 class="title-site"><span class="title-site__bold">Otlet</span>osphère</h1>
+                <img class="header__logo" src="./assets/logos/logootletcoul.png" alt="Logo Otletosphère">
+            </a>
+
+            <div>
+                <img class="header__logo" src="./assets/logos/logo_CMH.png" alt="Logo OtletOsphère">
+                <img class="header__logo" src="./assets/logos/logo_cnrs.png" alt="Logo OtletOsphère">
+                <img class="header__logo" src="./assets/logos/logo_enssib.png" alt="Logo OtletOsphère">
+                <img class="header__logo" src="./assets/logos/logo_mica.png" alt="Logo OtletOsphère">
+                <img class="header__logo" src="./assets/logos/logo_msh.png" alt="Logo OtletOsphère">
+                <img class="header__logo" src="./assets/logos/logo_mundaneum.png" alt="Logo OtletOsphère">
+                <img class="header__logo" src="./assets/logos/logo_ubm.png" alt="Logo OtletOsphère">
+            </div>
+        </section>
+
+        <nav class="navigation">
+            <div class="navigation__button">
+                <div class="burger">
+                    <div class="burger__branch"></div>
+                    <div class="burger__branch"></div>
+                    <div class="burger__branch"></div>
+                </div>
+                <span class="navigation__libelle">Filtres</span>
+            </div>
+
+            <div class="search-box">
+                <input id="search" class="search" type="text" placeholder="Rechercher" autocomplete="off">
+                <ul id="search-result" class="search-list"></ul>
+            </div>
+
+            <div class="navigation__button">
+                <span class="navigation__libelle">Fiche</span>
+                <div class="burger">
+                    <div class="burger__branch"></div>
+                    <div class="burger__branch"></div>
+                    <div class="burger__branch"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <div class="commands-box">
         <button class="btn-group" data-group="otlet">otlet</button>

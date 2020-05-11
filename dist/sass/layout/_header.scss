@@ -1,0 +1,33 @@
+.header {
+    padding: 10px 5px;
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__identite {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    &__logo {
+        width: 30px;
+        height: 30px;
+        margin: 0 10px;
+        object-fit: contain;
+    }
+}
+
+.title-site {
+    @extend %font-regular;
+    margin: unset;
+    text-transform: uppercase;
+
+    &__bold {
+        @extend %font-bold;
+    }
+}

@@ -1,6 +1,11 @@
-body, button {
+body, button, .title-site {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: normal;
+  font-style: normal; }
+
+.title-site__bold {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
   font-style: normal; }
 
 @font-face {
@@ -39,6 +44,54 @@ button.active {
 
 button.controle {
   background-color: black; }
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  margin: 0 10px; }
+  .burger__branch {
+    width: 100%;
+    height: 3px;
+    background-color: #141414; }
+
+.header {
+  padding: 10px 5px; }
+  .header__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  .header__identite {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit; }
+  .header__logo {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    -o-object-fit: contain;
+    object-fit: contain; }
+
+.title-site {
+  margin: unset;
+  text-transform: uppercase; }
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0; }
+  .navigation__button {
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    margin: 0 10px;
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
 .volet {
   overflow-y: auto;
@@ -82,16 +135,18 @@ button.controle {
       border-bottom: 1px solid black; }
 
 .search {
+  box-sizing: border-box;
   font-size: 22px;
+  height: 40px;
   width: 100%;
-  margin: 5px;
-  border: 2px solid black;
-  border-radius: 3px;
-  padding: 2px; }
+  border-radius: 5px;
+  border: unset;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  text-indent: 10px; }
 
 .search-box {
   position: relative;
-  width: 100%; }
+  width: 60%; }
 
 .search-list {
   position: absolute;
@@ -100,12 +155,13 @@ button.controle {
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-left: 10px; }
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
   .search-list li {
     cursor: pointer;
     font-size: 20px;
     padding: 5px;
-    background: #ccc;
+    background: #fffcfb;
     border-top: 1px solid black; }
     .search-list li:hover {
-      background: #a5a5a5; }
+      background-color: #ebebeb; }

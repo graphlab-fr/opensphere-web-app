@@ -8,7 +8,10 @@
 
 // COMPONENTS
 @import './components/buttons';
+@import './components/burger';
 
 // LAYOUTS
+@import './layout/header';
+@import './layout/navigation';
 @import './layout/volet';
 @import './layout/search';
