@@ -83,6 +83,28 @@ btnsGroups.forEach(btn => {
     
     });
 });
+var historique = {
+    actualiser: function(id) {
+        if (history.state == null) { this.init(id); }
+        else {
+            var timeline = history.state.hist;
+            timeline.push(id);
+            history.pushState({hist : timeline}, 'entite ' + id, id);
+        }
+    },
+    init: function(id) {
+        history.pushState({hist : [id]}, 'entite ' + id, id);
+    }
+}
+
+window.onpopstate = function(e) {
+    if (e.state === null) { return; }
+
+    var timeline = e.state.hist;
+
+    var id = timeline[timeline.length -1];
+    switchNode(id);
+};
 var network = {
     container: document.querySelector('#network'),
     isLoaded: false,
@@ -212,10 +234,11 @@ fetch('data.json').then(function(response) {
         network.isLoaded = true;
 
         // Si l'id d'un nœud est entré dans l'URL, on l'active
-        var pathnameArray = window.location.pathname.split('/')
+        var pathnameArray = window.location.pathname.split('/');
         var idNode = pathnameArray[pathnameArray.length -1];
         if (switchNode(idNode, false)) {
             volet.open();
+            historique.init(idNode);
         }
     });
     
@@ -296,6 +319,7 @@ function nodeView(nodeMetasBrutes) {
         return; }
 
     switchNode(id);
+    historique.actualiser(id);
 }
 
 function getNodeMetas(id) { 
@@ -355,8 +379,6 @@ function switchNode(id, mustZoom = true) {
 
     network.selectedNode = id;
 
-    history.pushState({}, 'entite ' + id, id);
-
     document.title = nodeMetas.label + ' - Otetosphère';
 
     if (mustZoom) {zoomToNode(id);}
@@ -365,12 +387,6 @@ function switchNode(id, mustZoom = true) {
 
     return true;
 }
-
-window.onpopstate = function() {
-    var pathnameArray = window.location.pathname.split('/')
-    var idNode = pathnameArray[pathnameArray.length -1];
-    switchNode(idNode)
-};
 var search = {
     input: document.querySelector('#search'),
     resultContent: document.querySelector('#search-result'),
@@ -392,6 +408,7 @@ var search = {
             search.resultContent.innerHTML = '';
 
             switchNode(id);
+            historique.actualiser(id);
         });
     },
     reset: function() {
@@ -526,6 +543,7 @@ var volet = {
                 var id = connexion.id;
 
                 switchNode(id);
+                historique.actualiser(id);
             });
         }
     },

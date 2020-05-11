@@ -19,6 +19,7 @@ var search = {
             search.resultContent.innerHTML = '';
 
             switchNode(id);
+            historique.actualiser(id);
         });
     },
     reset: function() {

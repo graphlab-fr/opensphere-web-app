@@ -86,6 +86,7 @@ var volet = {
                 var id = connexion.id;
 
                 switchNode(id);
+                historique.actualiser(id);
             });
         }
     },

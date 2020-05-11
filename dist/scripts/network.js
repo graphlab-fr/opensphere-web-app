@@ -127,10 +127,11 @@ fetch('data.json').then(function(response) {
         network.isLoaded = true;
 
         // Si l'id d'un nœud est entré dans l'URL, on l'active
-        var pathnameArray = window.location.pathname.split('/')
+        var pathnameArray = window.location.pathname.split('/');
         var idNode = pathnameArray[pathnameArray.length -1];
         if (switchNode(idNode, false)) {
             volet.open();
+            historique.init(idNode);
         }
     });
     
@@ -211,6 +212,7 @@ function nodeView(nodeMetasBrutes) {
         return; }
 
     switchNode(id);
+    historique.actualiser(id);
 }
 
 function getNodeMetas(id) { 
@@ -270,8 +272,6 @@ function switchNode(id, mustZoom = true) {
 
     network.selectedNode = id;
 
-    history.pushState({}, 'entite ' + id, id);
-
     document.title = nodeMetas.label + ' - Otetosphère';
 
     if (mustZoom) {zoomToNode(id);}
@@ -280,9 +280,3 @@ function switchNode(id, mustZoom = true) {
 
     return true;
 }
-
-window.onpopstate = function() {
-    var pathnameArray = window.location.pathname.split('/')
-    var idNode = pathnameArray[pathnameArray.length -1];
-    switchNode(idNode)
-};
