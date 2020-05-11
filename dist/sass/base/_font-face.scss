@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('./font/SourceSansPro-Regular.woff2') format('woff2'),
+        url('./font/SourceSansPro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('./font/SourceSansPro-SemiBold.woff2') format('woff2'),
+        url('./font/SourceSansPro-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('./font/SourceSansPro-Italic.woff2') format('woff2'),
+        url('./font/SourceSansPro-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}

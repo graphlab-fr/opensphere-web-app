@@ -143,7 +143,11 @@ function createNode(entite) {
     var nodeObject = {
         id: entite.id,
         label: entite.label,
-        font: {strokeWidth: 3},
+        font: {
+            face: 'Source Sans Pro',
+            size: 22,
+            strokeWidth: 3
+        },
         title: entite.titre,
         group: entite.relation_otlet,
         image: './assets/photos/' + entite.photo,
