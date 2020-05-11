@@ -1,0 +1,57 @@
+.volet {
+    overflow-y: auto;
+    box-sizing: border-box;
+    transform: translate(100%);
+    position: absolute;
+    z-index: 1000;
+    padding: 10px 0 0 10px;
+    top: 0px;
+    right: 0px;
+    height: 100vh;
+    width: 300px;
+    background-color: antiquewhite;
+    border-left: 1px solid black;
+    transition: transform .4s;
+
+    & > .volet-content {
+        visibility: hidden;
+
+        &.visible {
+            visibility: visible;
+        }
+    }
+
+    div {
+        margin: 10px 0;
+    }
+
+    &__img {
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+    }
+
+    &__label {
+        font-size: 25px;
+    }
+
+    &--active {
+        transform: unset;
+    }
+}
+
+.connexion-list {
+    list-style: none;
+    padding: 0;
+
+    &__elt {
+        border-top: 1px solid black;
+        padding: 6px 2px;
+        cursor: pointer;
+        background: #ddbf98;
+
+        &:last-child {
+            border-bottom: 1px solid black;
+        }
+    }
+}

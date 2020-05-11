@@ -1,0 +1,35 @@
+.search {
+    font-size: 22px;
+    width: 100%;
+    margin: 5px;
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 2px;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+}
+
+.search-list {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+
+    li {
+        cursor: pointer;
+        font-size: 20px;
+        padding: 5px;
+        background: #ccc;
+        border-top: 1px solid black;
+
+        &:hover {
+            background: rgb(165, 165, 165);
+        }
+    }
+}
