@@ -1,17 +1,5 @@
 .fiche {
-    overflow-y: auto;
-    box-sizing: border-box;
-    transform: translate(100%);
-    position: absolute;
-    z-index: 1000;
-    padding: 10px 0 0 10px;
-    top: 0px;
-    right: 0px;
-    height: 100vh;
-    width: 300px;
-    background-color: antiquewhite;
-    border-left: 1px solid black;
-    transition: transform .4s;
+    padding: 5px;
 
     &__content {
         visibility: hidden;
@@ -21,18 +9,31 @@
         }
     }
 
-    div {
+    &__identite {
         margin: 10px 0;
+        display: flex;
     }
 
     &__img {
-        width: 100%;
-        height: 300px;
-        object-fit: contain;
+        width: 100px;
+        height: 100px;
+        margin-right: 6px;
+        object-fit: cover;
     }
 
     &__label {
         font-size: 25px;
+        margin: 0;
+    }
+
+    &__dates {
+        margin: unset;
+    }
+
+    &__libelle {
+        display: inline-block;
+        width: 100%;
+        border-bottom: 1px solid black;
     }
 
     &--active {
@@ -48,7 +49,7 @@
         border-top: 1px solid black;
         padding: 6px 2px;
         cursor: pointer;
-        background: #ddbf98;
+        background: $color-brun;
 
         &:last-child {
             border-bottom: 1px solid black;

@@ -143,35 +143,33 @@ var fiche = {
     setDates: function(entiteDateNaissance, entiteDateMort) {
         if (entiteDateNaissance === null && entiteDateMort === null) { return; }
 
-        var libelle = '<h3 class="fiche-libelle">Dates extremes</h3>';
-
         if (entiteDateNaissance !== null) {
             var naissance = '<div class="fiche__dates"><time class="" datetime="' 
             + entiteDateNaissance + '">' + entiteDateNaissance + '</time>';
         }
 
         if (entiteDateMort !== null) {
-            var mort = ' - <time class="" datetime="' + entiteDateMort + '">' +
+            var mort = ' - <time class="fiche__dates" datetime="' + entiteDateMort + '">' +
                 entiteDateMort + '</time><div>';
         }
 
-        this.fields.date.innerHTML = [libelle, naissance, mort].join('');
+        this.fields.date.innerHTML = [naissance, mort].join('');
     },
     setPays: function(entitePays) {
         if (entitePays === null) { return; }
-        var libelle = '<h3 class="fiche-libelle">Pays</h3>';
+        var libelle = '<h3 class="fiche__libelle">Pays</h3>';
         var pays = '<div class="fiche__pays">' + entitePays + '</div>';
         this.fields.pays.innerHTML = [libelle, pays].join('');
     },
     setDiscipline: function(entiteDiscipline) {
         if (entiteDiscipline === null) { return; }
-        var libelle = '<h3 class="fiche-libelle">Discipline</h3>';
+        var libelle = '<h3 class="fiche__libelle">Discipline</h3>';
         var discipline = '<div class="fiche__discipline">' + entiteDiscipline + '</div>';
         this.fields.discipline.innerHTML = [libelle, discipline].join('');
     },
     setDescription: function(entiteDescription) {
         if (entiteDescription === null) { return; }
-        var libelle = '<h3 class="fiche-libelle">Description</h3>';
+        var libelle = '<h3 class="fiche__libelle">Description</h3>';
         var description = '<div class="fiche__description">' + entiteDescription + '</div>';
         this.fields.description.innerHTML = [libelle, description].join('');
     },
