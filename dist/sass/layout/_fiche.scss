@@ -13,10 +13,10 @@
     border-left: 1px solid black;
     transition: transform .4s;
 
-    & > .volet-content {
+    &__content {
         visibility: hidden;
 
-        &.visible {
+        &--visible {
             visibility: visible;
         }
     }

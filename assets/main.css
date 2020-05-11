@@ -137,9 +137,9 @@ main {
   background-color: antiquewhite;
   border-left: 1px solid black;
   transition: transform .4s; }
-  .fiche > .volet-content {
+  .fiche__content {
     visibility: hidden; }
-    .fiche > .volet-content.visible {
+    .fiche__content--visible {
       visibility: visible; }
   .fiche div {
     margin: 10px 0; }

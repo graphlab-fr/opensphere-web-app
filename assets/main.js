@@ -199,7 +199,7 @@ var fiche = {
     },
     fill: function(nodeMetas, nodeConnectedList = false) {
         // affichage du contenant
-        this.content.classList.add('visible');
+        this.content.classList.add('fiche__content--visible');
 
         // remplissage métadonnées
         this.setImage(nodeMetas.image, nodeMetas.label);
