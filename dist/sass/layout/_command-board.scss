@@ -1,0 +1,17 @@
+.command-board {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding: 0 0 10px 10px;
+
+    &__btn {
+        background-color: black;
+        border: unset;
+        border-radius: 3px;
+        font-size: 15px;
+        padding: 5px;
+        color: white;
+        min-width: 30px;
+        height: 30px;
+    }
+}

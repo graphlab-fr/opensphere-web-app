@@ -195,3 +195,18 @@ main {
     border-top: 1px solid black; }
     .search-list li:hover {
       background-color: #ebebeb; }
+
+.command-board {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding: 0 0 10px 10px; }
+  .command-board__btn {
+    background-color: black;
+    border: unset;
+    border-radius: 3px;
+    font-size: 15px;
+    padding: 5px;
+    color: white;
+    min-width: 30px;
+    height: 30px; }
