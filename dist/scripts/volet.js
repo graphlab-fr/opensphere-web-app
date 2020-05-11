@@ -36,7 +36,7 @@ var volet = {
     setDates: function(entiteDateNaissance, entiteDateMort) {
         if (entiteDateNaissance === null && entiteDateMort === null) { return; }
 
-        var libelle = '<h3 class="volet-libelle">Date extrèmes</h3>';
+        var libelle = '<h3 class="volet-libelle">Dates extremes</h3>';
 
         if (entiteDateNaissance !== null) {
             var naissance = '<div class="volet__dates"><time class="" datetime="' 

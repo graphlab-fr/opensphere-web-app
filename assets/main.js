@@ -158,10 +158,37 @@ fetch('data.json').then(function(response) {
     
         // Évent au clic sur un nœud
         network.visualisation.on('click', nodeView);
+
+        network.nodeIds = network.data.nodes.getIds();
     
-        // Évent au clic sur un nœud
+        // Évent au survol : les autres nœuds deviennent translucide
         network.visualisation.on('hoverNode', function(params) {
-            network.visualisation.selectNodes([params.node]);
+            activNodeId = params.node;
+
+            var ids = network.nodeIds;
+
+            var noColorNodesIds = network.visualisation.getConnectedNodes(activNodeId);
+            noColorNodesIds.push(activNodeId);
+
+            for (let i = 0; i < ids.length; i++) {
+                const id = ids[i];
+                if (noColorNodesIds.indexOf(id) !== -1) { continue; }
+                var groupName = network.data.nodes.get(id).group;
+                
+                network.data.nodes.update({id: id, color: chooseColor(groupName, true)})
+            }
+            
+        });
+        // Évent fin de survol : les nœuds retrouvent leur couleur initiale
+        network.visualisation.on('blurNode', function(params) {
+            var ids = network.nodeIds;
+
+            for (let i = 0; i < ids.length; i++) {
+                const id = ids[i];
+                if (id == params.node) { continue; }
+                network.data.nodes.update({id: id, color: false})
+            }
+            
         });
 
         // Évent au zoom
@@ -231,27 +258,31 @@ function createEdge(lien) {
     edgeList.push(edgeObject);
 }
 
-function chooseColor(relationEntite) {
+function chooseColor(relationEntite, lowerOpacity = false) {
     switch (relationEntite) {
         case 'collegue':
-            return 'purple';
+            var color = '128, 0, 128'; break; // notation RGB
         case 'contemporain':
-            return 'green';
+            var color = '0, 128, 0'; break;
         case 'collaborateur':
-            return 'orange';
+            var color = '250, 128, 114'; break;
         case 'opposant':
-            return 'red';
+            var color = '255,0,0'; break;
         case 'famille':
-            return 'blue';
+            var color = '135, 206, 235'; break;
         case 'otlet':
-            return 'gray';
+            var color = '244, 164, 96'; break;
         case 'institution':
-            return 'gray';
+            var color = '128,128,128'; break;
         case 'œuvre':
-            return 'gray';
+            var color = '128,128,128'; break;
         case 'évènement':
-            return 'gray';
-    }
+            var color = '128,128,128'; break;
+    }    
+    // ajout opacité '0,4'
+    if (lowerOpacity) { return ['rgba(', color, ', 0.4)'].join(''); }
+    else { return ['rgb(', color, ')'].join(''); }
+
 }
 
 function nodeView(nodeMetasBrutes) {
@@ -445,7 +476,7 @@ var volet = {
     setDates: function(entiteDateNaissance, entiteDateMort) {
         if (entiteDateNaissance === null && entiteDateMort === null) { return; }
 
-        var libelle = '<h3 class="volet-libelle">Date extrèmes</h3>';
+        var libelle = '<h3 class="volet-libelle">Dates extremes</h3>';
 
         if (entiteDateNaissance !== null) {
             var naissance = '<div class="volet__dates"><time class="" datetime="' 
