@@ -1,0 +1,13 @@
+.btn-group {
+    @extend %font-regular;
+    border: unset;
+    display: block;
+    padding: 7px;
+    width: 100%;
+    font-size: 18px;
+    color: white;
+
+    &.active {
+        text-decoration: line-through;
+    }
+}
