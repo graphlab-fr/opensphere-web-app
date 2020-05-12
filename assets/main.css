@@ -30,7 +30,7 @@ body {
   cursor: default;
   padding: 0;
   margin: 0;
-  overflow-x: hidden; }
+  overflow: hidden; }
 
 main {
   position: relative;
@@ -88,9 +88,15 @@ main {
 .entete {
   position: relative;
   box-sizing: border-box;
-  z-index: 999;
-  padding: 10px 5px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+  z-index: 999; }
+  .entete__fixe.entete__fixe--active {
+    padding: 10px 5px;
+    position: fixed;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    top: 0px;
+    left: 0px;
+    background-color: white;
+    width: 100%; }
   .entete__top {
     display: flex;
     justify-content: space-between;
@@ -252,8 +258,10 @@ main {
     height: 30px; }
 
 .board__wrapper {
+  overflow: auto;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  height: calc(100vh - 132px); }
 
 .card {
   position: relative;

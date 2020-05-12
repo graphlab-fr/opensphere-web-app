@@ -1,8 +1,10 @@
 .board {
 
     &__wrapper {
+        overflow: auto;
         display: flex;
         flex-wrap: wrap;
+        height: $main-height;
     }
 }
 
