@@ -14,6 +14,9 @@ var fiche = {
         description: document.querySelector('#fiche-meta-description')
     },
 
+    fixer: function() {
+        fiche.body.classList.add('lateral--fixed');
+    },
     open: function() {
         if (!network.isLoaded) { return; }
         

@@ -1,41 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
+var board = {
+    content: document.querySelector('#board-content')
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="./assets/database.css">
-
-    <title>Base de données</title>
-</head>
-
-<body>
-
-    <div class="card-content" id="database-content"></div>
-
-</body>
-
-<script>
-    var database = {
-        content: document.querySelector('#database-content')
-    }
-
-    fetch('data.json').then(function(response) {
-    // Chargement de données...
-    
-    response.text().then(function(text) {
-        var data = JSON.parse(text);
-
-        Object.values(data.Entites).forEach(entite => {
-            createCard(entite); });
-        
-    });
-
-    function createCard(entite) {
+function createCard(entite) {
         const cardBox = document.createElement('div');
         cardBox.classList.add('card');
-        database.content.appendChild(cardBox);
+        board.content.appendChild(cardBox);
 
         const cardWrapper = document.createElement('div');
         cardWrapper.classList.add('card__wrapper');
@@ -90,8 +60,3 @@
         cardDescription.textContent = entite.description;
         cardDetailsBox.appendChild(cardDescription);
     }
-    
-});
-</script>
-
-</html>

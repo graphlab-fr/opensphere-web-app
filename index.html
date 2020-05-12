@@ -8,14 +8,6 @@
     <link rel="stylesheet" href="./assets/main.css">
 
     <title>Otletosphère</title>
-
-    <style type="text/css">
-        #network {
-          width: 100vw;
-          height: 100%;
-          border: 1px solid lightgray;
-        }
-    </style>
 </head>
 
 <body>
@@ -90,12 +82,20 @@
             <button class="btn-group" data-group="institution">institution</button>
         </aside>
 
-        <div id="network" class="network__wrapper"></div>
+        <section class="network-wrapper">
 
-        <section class="command-board">
-            <button id="zoom-plus" class="command-board__btn">+</button>
-            <button id="zoom-moins" class="command-board__btn">-</button>
-            <button id="zoom-general" class="command-board__btn">Vue générale</button>
+            <div id="network" class="network"></div>
+
+            <div class="command-board">
+                <button id="zoom-plus" class="command-board__btn">+</button>
+                <button id="zoom-moins" class="command-board__btn">-</button>
+                <button id="zoom-general" class="command-board__btn">Vue générale</button>
+            </div>
+
+        </section>
+
+        <section class="board">
+            <div id="board-content" class="board__wrapper"></div>
         </section>
 
         <aside id="fiche" class="lateral lateral--right fiche">
