@@ -42,6 +42,11 @@ function createCard(entite) {
         cardTitre.textContent = entite.titre;
         cardBox.appendChild(cardTitre);
     }
+
+    cardBox.addEventListener('click', () => {
+        switchNode(entite.id, false)
+        historique.actualiser(entite.id);
+    });
 }
 /**
  * ============
@@ -301,6 +306,7 @@ var movement = {
             case 'board':
                 this.scroll(this.offset.board);
                 interface.fix(true);
+                fiche.open();
                 break;
         }
     },

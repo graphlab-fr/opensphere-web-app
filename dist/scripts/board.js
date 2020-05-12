@@ -42,4 +42,9 @@ function createCard(entite) {
         cardTitre.textContent = entite.titre;
         cardBox.appendChild(cardTitre);
     }
+
+    cardBox.addEventListener('click', () => {
+        switchNode(entite.id, false)
+        historique.actualiser(entite.id);
+    });
 }

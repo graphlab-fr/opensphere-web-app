@@ -33,6 +33,7 @@ var movement = {
             case 'board':
                 this.scroll(this.offset.board);
                 interface.fix(true);
+                fiche.open();
                 break;
         }
     },
