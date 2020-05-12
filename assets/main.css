@@ -83,7 +83,17 @@ main {
     top: 132px; }
 
 .introduction {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
   height: calc(100vh - 60px); }
+  .introduction__wrapper {
+    margin: 0 auto;
+    width: 60%; }
+  .introduction__img-otlet {
+    height: 300px;
+    margin-right: 20px; }
 
 .entete {
   position: relative;

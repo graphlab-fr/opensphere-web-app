@@ -1,3 +1,17 @@
 .introduction {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
     height: calc(100vh - 60px);
+
+    &__wrapper {
+        margin: 0 auto;
+        width: 60%;
+    }
+
+    &__img-otlet {
+        height: 300px;
+        margin-right: 20px;
+    }
 }
