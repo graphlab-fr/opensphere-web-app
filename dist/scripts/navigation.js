@@ -15,7 +15,7 @@ var interface = {
 var movement = {
     offset: {
         introduction: document.querySelector('#introduction').offsetTop,
-        graph: introduction.clientHeight - 90,
+        graph: introduction.clientHeight - 105,
         board: introduction.clientHeight * 2
     },
     goTo: function(section) {
