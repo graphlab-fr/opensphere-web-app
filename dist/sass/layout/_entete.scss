@@ -2,15 +2,22 @@
     position: relative;
     box-sizing: border-box;
     z-index: 999;
+    // padding: 10px 20px;
     
-    &__fixe.entete__fixe--active {
-        padding: 10px 5px;
-        position: fixed;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        top: 0px;
+    &__fixe {
         left: 0px;
-        background-color: white;
-        width: 100%;
+        padding: 10px 20px;
+
+        &.entete__fixe--active {
+            box-sizing: border-box;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background-color: white;
+            width: 100%;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
     }
 
     &__top {

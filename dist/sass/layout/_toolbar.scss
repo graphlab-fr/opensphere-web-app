@@ -1,20 +1,45 @@
 .toolbar {
     display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
+    justify-content: center;
+    margin: 20px 0 10px 0;
 
-    &__button {
-        cursor: pointer;
-        box-sizing: border-box;
+    &__section {
         display: flex;
         margin: 0 10px;
-        padding: 10px;
-        height: 40px;
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+}
 
-        &--important {
-            background-color: $color-brun;
-        }
+.btn-group {
+    @extend %font-regular;
+    position: relative;
+    border: unset;
+    display: block;
+    padding: 3px 30px 3px 10px;
+    margin: 0 2px;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 14px;
+    color: white;
+
+    &::after {
+        position: absolute;
+        content: '✓';
+        width: 15px;
+        height: 15px;
+        top: 4px;
+        background-color: blue;
+        border-radius: 2px;
+        right: 10px;
+        padding: 2px;
+        box-sizing: border-box;
+        font-size: 11px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &.active::after {
+        content: '';
+        background-color: black;
     }
 }

@@ -4,21 +4,19 @@ var interface = {
         if (bool) {
             this.headerFixeur.classList.add('entete__fixe--active');
             fiche.body.classList.add('lateral--fixed');
-            filterLateral.body.classList.add('lateral--fixed');
         } else {
             this.headerFixeur.classList.remove('entete__fixe--active');
             fiche.body.classList.remove('lateral--fixed');
-            filterLateral.body.classList.remove('lateral--fixed');
         }
     }
 }
 
+
 var movement = {
     offset: {
         introduction: document.querySelector('#introduction').offsetTop,
-        graph: introduction.clientHeight - 132,
-        // board: document.querySelector('#board-content').offsetTop,
-        board: introduction.clientHeight * 2 - 200
+        graph: introduction.clientHeight - 90,
+        board: introduction.clientHeight * 2
     },
     goTo: function(section) {
         switch (section) {
@@ -39,7 +37,7 @@ var movement = {
         }
     },
     scroll: function(offset) {
-        console.log(offset);
+        // console.log(offset);
         
         window.scrollTo({
             top: offset,
