@@ -30,7 +30,8 @@ body {
   cursor: default;
   padding: 0;
   margin: 0;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  overflow-y: hidden; }
 
 main {
   position: relative;
@@ -80,23 +81,25 @@ main {
   .lateral--active {
     transform: translate(0%); }
 
-.header {
+.introduction {
+  height: calc(100vh - 60px); }
+
+.entete {
   position: relative;
   box-sizing: border-box;
   z-index: 999;
   padding: 10px 5px;
-  height: 130px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
-  .header__top {
+  .entete__top {
     display: flex;
     justify-content: space-between;
     align-items: center; }
-  .header__identite {
+  .entete__identite {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: inherit; }
-  .header__logo {
+  .entete__logo {
     width: 30px;
     height: 30px;
     margin: 0 10px;
