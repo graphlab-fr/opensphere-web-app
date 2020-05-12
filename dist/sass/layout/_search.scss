@@ -1,18 +1,30 @@
-.search {
-    @extend %font-regular;
-    box-sizing: border-box;
-    font-size: 22px;
-    height: 40px;
-    width: 100%;
-    border-radius: 5px;
-    border: unset;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    text-indent: 10px;
-}
-
 .search-box {
     position: relative;
-    width: 60%;
+    margin-right: 20px;
+
+    &__label {
+        cursor: pointer;
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background-size: 15px;
+        background-image: url("./icons/search.svg");
+        display: block;
+        left: 7px;
+        z-index: 1;
+        top: 5px;
+    }
+
+    &__input {
+        @extend %font-regular;
+        position: relative;
+        box-sizing: border-box;
+        font-size: 18px;
+        border-radius: 5px;
+        border: unset;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        text-indent: 30px;
+    }
 }
 
 .search-list {

@@ -32,6 +32,16 @@
                         <li>Compte Twitter : <a href="https://twitter.com/hyperotlet">https://twitter.com/hyperotlet</a></li>
                         <li>Frise chronologique interactive sur Paul Otlet : <a href="http://hyperotlet.huma-num.fr/timeline.html">http://hyperotlet.huma-num.fr/timeline.html</a></li>
                     </ul>
+
+                    <div class="introduction__logo-list">
+                        <img class="introduction__logo" src="./assets/logos/logo_CMH.png" alt="Logo OtletOsphère">
+                        <img class="introduction__logo" src="./assets/logos/logo_cnrs.png" alt="Logo OtletOsphère">
+                        <img class="introduction__logo" src="./assets/logos/logo_enssib.png" alt="Logo OtletOsphère">
+                        <img class="introduction__logo" src="./assets/logos/logo_mica.png" alt="Logo OtletOsphère">
+                        <img class="introduction__logo" src="./assets/logos/logo_msh.png" alt="Logo OtletOsphère">
+                        <img class="introduction__logo" src="./assets/logos/logo_mundaneum.png" alt="Logo OtletOsphère">
+                        <img class="introduction__logo" src="./assets/logos/logo_ubm.png" alt="Logo OtletOsphère">
+                    </div>
                 </div>
             </div>
             
@@ -52,16 +62,14 @@
                         <li class="navigation__link" onclick="movement.goTo('board');">Base de données</li>
                     </ul>
                 </nav>
-    
-                <div>
-                    <img class="entete__logo" src="./assets/logos/logo_CMH.png" alt="Logo OtletOsphère">
-                    <img class="entete__logo" src="./assets/logos/logo_cnrs.png" alt="Logo OtletOsphère">
-                    <img class="entete__logo" src="./assets/logos/logo_enssib.png" alt="Logo OtletOsphère">
-                    <img class="entete__logo" src="./assets/logos/logo_mica.png" alt="Logo OtletOsphère">
-                    <img class="entete__logo" src="./assets/logos/logo_msh.png" alt="Logo OtletOsphère">
-                    <img class="entete__logo" src="./assets/logos/logo_mundaneum.png" alt="Logo OtletOsphère">
-                    <img class="entete__logo" src="./assets/logos/logo_ubm.png" alt="Logo OtletOsphère">
+
+                <div class="search-box">
+                    <label for="search" class="search-box__label"></label>
+                    <input id="search" class="search-box__input" type="text" placeholder="Rechercher" autocomplete="off">
+                    <ul id="search-result" class="search-list"></ul>
                 </div>
+
+                <button id="fiche-control" class="btn-fiche">Fiche</button>
             </header>
     
             <section class="toolbar">
@@ -72,20 +80,6 @@
                         <div class="burger__branch"></div>
                     </div>
                     <span class="toolbar__libelle">Filtres</span>
-                </div>
-    
-                <div class="search-box">
-                    <input id="search" class="search" type="text" placeholder="Rechercher" autocomplete="off">
-                    <ul id="search-result" class="search-list"></ul>
-                </div>
-    
-                <div id="fiche-control" class="toolbar__button toolbar__button--important" role="button">
-                    <span class="toolbar__libelle">Fiche</span>
-                    <div class="burger">
-                        <div class="burger__branch"></div>
-                        <div class="burger__branch"></div>
-                        <div class="burger__branch"></div>
-                    </div>
                 </div>
             </section>
 
