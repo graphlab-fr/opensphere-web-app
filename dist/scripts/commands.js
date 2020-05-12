@@ -55,8 +55,6 @@ btnsGroups.forEach(btn => {
 
         if (!network.isLoaded) { return; }
 
-        search.reset();
-
         if (isActiveGroup) {
             network.data.nodes.get({
                 filter: function (item) {
@@ -80,6 +78,9 @@ btnsGroups.forEach(btn => {
 
             isActiveGroup = true;
         }
+
+        search.reset();
+        board.init();
     
     });
 });

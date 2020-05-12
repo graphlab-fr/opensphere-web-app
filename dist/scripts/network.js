@@ -62,8 +62,8 @@ fetch('data.json').then(function(response) {
         Object.values(data.Extraction).forEach(lien => {
             createEdge(lien); });
 
-        Object.values(data.Entites).forEach(entite => {
-            createCard(entite); });
+        // Object.values(data.Entites).forEach(entite => {
+        //     createCard(entite); });
 
         // Génération de la visualisation
         network.data = {
@@ -128,6 +128,7 @@ fetch('data.json').then(function(response) {
 
         // Visuation générée chargée
         network.isLoaded = true;
+        board.init();
 
         // Si l'id d'un nœud est entré dans l'URL, on l'active
         var pathnameArray = window.location.pathname.split('/');
@@ -136,6 +137,7 @@ fetch('data.json').then(function(response) {
             fiche.open();
             historique.init(idNode);
         }
+
     });
     
 });
@@ -166,7 +168,8 @@ function createNode(entite) {
             discipline: entite.discipline,
             description: entite.description
         },
-        interaction: {hover:true}
+        interaction: {hover:true},
+        hidden: false
     };
     nodeList.push(nodeObject);
 }
