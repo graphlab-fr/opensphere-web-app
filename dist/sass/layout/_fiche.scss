@@ -1,7 +1,32 @@
 .fiche {
-    padding: 5px;
+
+    &__entete {
+        display: flex;
+    }
+
+    &__btn-control {
+        cursor: pointer;
+        width: 100%;
+        border: unset;
+        padding: 0;
+        font-size: 15px;
+        padding: 2px 0;
+        background-color: black;
+        color: white;
+        
+        &--imp {
+            background-color: $color-brun;
+            color: black;
+        }
+
+        &--hidde {
+            display: none;
+        }
+    }
 
     &__content {
+        box-sizing: border-box;
+        padding: 5px;
         visibility: hidden;
 
         &--visible {
@@ -24,8 +49,8 @@
     }
 
     &__img {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 180px;
         margin-right: 6px;
         object-fit: cover;
     }
@@ -39,10 +64,18 @@
         margin: unset;
     }
 
-    &__libelle {
-        display: inline-block;
-        width: 100%;
-        border-bottom: 1px solid black;
+    &__couple {
+        display: flex;
+        align-items: center;
+    }
+
+    &__cle{
+        @extend %font-bold;
+        font-size: 15px;
+        margin-right: 7px;
+    }
+    &__valeur{
+        font-size: 18px;
     }
 
     &--active {

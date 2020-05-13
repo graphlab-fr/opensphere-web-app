@@ -2,7 +2,10 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     connexionList: document.querySelector('#fiche-connexion'),
-    btnControl: document.querySelector('#fiche-control'),
+    contol: {
+        open: document.querySelector('#fiche-open'),
+        close: document.querySelector('#fiche-close')
+    },
     isOpen: false,
     fields: {
         // champs du fiche
@@ -53,21 +56,20 @@ var fiche = {
     },
     setPays: function(entitePays) {
         if (entitePays === null) { return; }
-        var libelle = '<h3 class="fiche__libelle">Pays</h3>';
-        var pays = '<div class="fiche__pays">' + entitePays + '</div>';
+        var libelle = '<h3 class="fiche__cle">Pays</h3>';
+        var pays = '<span>' + entitePays + '</span>';
         this.fields.pays.innerHTML = [libelle, pays].join('');
     },
     setDiscipline: function(entiteDiscipline) {
         if (entiteDiscipline === null) { return; }
-        var libelle = '<h3 class="fiche__libelle">Discipline</h3>';
-        var discipline = '<div class="fiche__discipline">' + entiteDiscipline + '</div>';
+        var libelle = '<h3 class="fiche__cle">Discipline</h3>';
+        var discipline = '<span>' + entiteDiscipline + '</span>';
         this.fields.discipline.innerHTML = [libelle, discipline].join('');
     },
     setDescription: function(entiteDescription) {
         if (entiteDescription === null) { return; }
-        var libelle = '<h3 class="fiche__libelle">Description</h3>';
         var description = '<div class="fiche__description">' + entiteDescription + '</div>';
-        this.fields.description.innerHTML = [libelle, description].join('');
+        this.fields.description.innerHTML = description;
     },
     setConnexion: function(nodeConnectedList, entiteLabel) {
         if (nodeConnectedList === false) { return; }
@@ -94,6 +96,7 @@ var fiche = {
     fill: function(nodeMetas, nodeConnectedList = false) {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
+        commands.visualiser.allow();
 
         // remplissage métadonnées
         this.setImage(nodeMetas.image, nodeMetas.label);
@@ -109,8 +112,10 @@ var fiche = {
     }
 }
 
-fiche.btnControl.addEventListener('click', () => {
-    // toggle du lateral fiche
-    if (fiche.isOpen) { fiche.close(); }
-    else { fiche.open(); }
+Object.values(fiche.contol).forEach(btn => {
+    btn.addEventListener('click', () => {
+        // toggle du lateral fiche
+        if (fiche.isOpen) { fiche.close(); }
+        else { fiche.open(); }
+    });
 });

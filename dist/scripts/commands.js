@@ -4,6 +4,15 @@
  * ============
  */
 
+var commands = {
+    visualiser: {
+        btn: document.querySelector('#zoom-selection'),
+        allow: function() {
+            this.btn.classList.remove('fiche__btn-control--hidde');
+            this.btn.disabled = false;
+        }
+    }
+}
 const btnZoomPlus = document.querySelector('#zoom-plus');
 const btnZoomMoins = document.querySelector('#zoom-moins');
 
@@ -32,8 +41,7 @@ btnZoomMoins.addEventListener('click', () => {
 const btnZoomGeneral = document.querySelector('#zoom-general');
 btnZoomGeneral.addEventListener('click', backToCenterView);
 
-const btnZoomOnSelection = document.querySelector('#zoom-selection');
-btnZoomOnSelection.addEventListener('click', () => {
+commands.visualiser.btn.addEventListener('click', () => {
     zoomToNode(network.selectedNode);
     movement.goTo('graph');
 });

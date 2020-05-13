@@ -297,6 +297,7 @@ function switchNode(id, mustZoom = true) {
     if (mustZoom) {zoomToNode(id);}
 
     fiche.fill(nodeMetas, findConnectedNodes(id));
+    fiche.open();
 
     return true;
 }

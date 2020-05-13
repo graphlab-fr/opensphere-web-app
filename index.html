@@ -68,8 +68,6 @@
                     <input id="search" class="search-box__input" type="text" placeholder="Rechercher" role="search" autocomplete="off">
                     <ul id="search-result" class="search-list"></ul>
                 </div>
-
-                <button id="fiche-control" class="btn-fiche">Détails</button>
             </header>
     
             <section class="toolbar">
@@ -100,6 +98,8 @@
 
         <section class="network-wrapper">
 
+            <button id="fiche-open" class="btn-fiche" title="Afficher détails"></button>
+
             <div id="network" class="network"></div>
 
             <div class="command-board">
@@ -121,8 +121,12 @@
         </section>
 
         <aside id="fiche" class="lateral lateral--right fiche">
-            <section id="fiche-content" class="fiche__content">
-                <button id="zoom-selection" class="fiche__btn-visualiser">Visualiser</button>
+            <header class="fiche__entete">
+                <button id="zoom-selection" class="fiche__btn-control fiche__btn-control--imp fiche__btn-control--hidde" disabled>Visualiser</button>
+                <button id="fiche-close" class="fiche__btn-control">Fermer</button>
+            </header>
+
+            <main id="fiche-content" class="fiche__content">
 
                 <div class="fiche__identite">
                     <img id="fiche-meta-img" class="fiche__img" src="" alt="">
@@ -134,12 +138,12 @@
                 </div>
     
     
-                <div id="fiche-meta-pays"></div>
-                <div id="fiche-meta-discipline"></div>
+                <div id="fiche-meta-pays" class="fiche__couple"></div>
+                <div id="fiche-meta-discipline" class="fiche__couple"></div>
                 <div id="fiche-meta-description"></div>
     
                 <ul id="fiche-connexion" class="connexion-list"></ul>
-            </section>
+            </main>
         </aside>
 
     </main>
