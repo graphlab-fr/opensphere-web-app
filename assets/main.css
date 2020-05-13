@@ -336,10 +336,45 @@ main {
 
 .board__wrapper {
   overflow: auto;
-  display: flex;
-  flex-wrap: wrap;
   height: calc(100vh - 105px);
   margin-right: 300px; }
+
+.board__conteneur {
+  display: flex;
+  flex-wrap: wrap; }
+
+.sort-alphabetic-list {
+  list-style: none;
+  padding: unset;
+  margin: unset;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  padding: 5px 20px; }
+  .sort-alphabetic-list__caracter {
+    cursor: pointer;
+    position: relative;
+    text-transform: uppercase;
+    padding: 5px;
+    font-family: monospace;
+    font-size: 18px; }
+    .sort-alphabetic-list__caracter::after {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      bottom: 2px;
+      left: 2px;
+      height: 1px;
+      width: 10px;
+      background-color: black;
+      transition: height .1s, width .05s; }
+    .sort-alphabetic-list__caracter:hover {
+      color: white; }
+      .sort-alphabetic-list__caracter:hover::after {
+        height: 100%;
+        width: 100%;
+        left: 0px;
+        border-radius: 2px; }
 
 .card {
   position: relative;

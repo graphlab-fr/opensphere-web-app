@@ -300,3 +300,10 @@ function switchNode(id, mustZoom = true) {
 
     return true;
 }
+
+function allNodesVisible() {
+    if (!network.isLoaded) { return; }
+
+    network.data.nodes.forEach(function(data) {
+        network.data.nodes.update({id: data.id, hidden: false}); });
+}
