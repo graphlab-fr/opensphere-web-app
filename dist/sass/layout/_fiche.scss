@@ -9,6 +9,15 @@
         }
     }
 
+    &__btn-visualiser {
+        border: unset;
+        background-color: black;
+        color: white;
+        border-radius: 3px;
+        font-size: 15px;
+        margin: 5px 0;
+    }
+
     &__identite {
         margin: 10px 0;
         display: flex;

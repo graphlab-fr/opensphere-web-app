@@ -50,10 +50,10 @@
         <div id="entete-fixeur" class="entete__fixe">
 
             <header id="header" class="entete__top" role="banner">
-                <a class="entete__identite" href="/Network">
+                <div class="entete__identite" onclick="movement.goTo('graph');">
                     <h1 class="title-site"><span class="title-site__bold">Otlet</span>osphère</h1>
                     <img class="entete__logo" src="./assets/logos/logootletcoul.png" alt="Logo Otletosphère">
-                </a>
+                </div>
     
                 <nav class="navigation">
                     <ul class="navigation__list">
@@ -65,7 +65,7 @@
 
                 <div class="search-box">
                     <label for="search" class="search-box__label"></label>
-                    <input id="search" class="search-box__input" type="text" placeholder="Rechercher" autocomplete="off">
+                    <input id="search" class="search-box__input" type="text" placeholder="Rechercher" role="search" autocomplete="off">
                     <ul id="search-result" class="search-list"></ul>
                 </div>
 
@@ -103,9 +103,12 @@
             <div id="network" class="network"></div>
 
             <div class="command-board">
-                <button id="zoom-plus" class="command-board__btn">+</button>
-                <button id="zoom-moins" class="command-board__btn">-</button>
-                <button id="zoom-general" class="command-board__btn">Réinitialiser</button>
+                <div class="command-board__btn-wrapper">
+                    <button id="zoom-plus" class="command-board__btn command-board__btn--zoom" title="Zoom"></button>
+                    <button id="zoom-moins" class="command-board__btn command-board__btn--dezoom" title="Dezoom"></button>
+                </div>
+
+                <button id="zoom-general" class="command-board__btn" title="Vue initiale">Réinitialiser</button>
             </div>
 
         </section>
@@ -116,7 +119,7 @@
 
         <aside id="fiche" class="lateral lateral--right fiche">
             <section id="fiche-content" class="fiche__content">
-                <button id="zoom-selection" class="controle">Visualiser</button>
+                <button id="zoom-selection" class="fiche__btn-visualiser">Visualiser</button>
 
                 <div class="fiche__identite">
                     <img id="fiche-meta-img" class="fiche__img" src="" alt="">

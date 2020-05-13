@@ -35,6 +35,7 @@ btnZoomGeneral.addEventListener('click', backToCenterView);
 const btnZoomOnSelection = document.querySelector('#zoom-selection');
 btnZoomOnSelection.addEventListener('click', () => {
     zoomToNode(network.selectedNode);
+    movement.goTo('graph');
 });
 
 /**
