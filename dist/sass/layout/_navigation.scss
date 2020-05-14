@@ -13,11 +13,7 @@
         position: relative;
         margin: 0 20px;
         padding: 5px 7px;
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        color: black;
 
         &::after {
             content: '';
@@ -30,6 +26,17 @@
             left: -2px;
             transition: height .1s, width .05s;
             transition-timing-function: $transition-bezier;
+        }
+
+        &--active {
+            color: white;
+
+            &::after {
+                height: 100%;
+                width: 100%;
+                left: 0px;
+                border-radius: 2px;
+            }
         }
 
         &:hover {

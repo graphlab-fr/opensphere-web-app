@@ -1,10 +1,10 @@
 @charset "UTF-8";
-button, body, .title-site, .btn-group, .search-box__input {
+body, button, .title-site, .btn-group, .search-box__input {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: normal;
   font-style: normal; }
 
-.title-site__bold, .fiche__cle {
+.title-site__bold, .btn-group::after, .fiche__cle {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 600;
   font-style: normal; }
@@ -36,6 +36,9 @@ body {
 main {
   position: relative;
   width: 100%; }
+
+button:focus {
+  outline: none; }
 
 .burger {
   display: flex;
@@ -123,12 +126,6 @@ main {
     cursor: pointer;
     display: flex;
     align-items: center; }
-  .entete__logo {
-    width: 30px;
-    height: 30px;
-    margin: 0 10px;
-    -o-object-fit: contain;
-    object-fit: contain; }
 
 .title-site {
   margin: unset;
@@ -148,10 +145,8 @@ main {
   user-select: none;
   position: relative;
   margin: 0 20px;
-  padding: 5px 7px; }
-  .navigation__link a {
-    text-decoration: none;
-    color: inherit; }
+  padding: 5px 7px;
+  color: black; }
   .navigation__link::after {
     content: '';
     position: absolute;
@@ -163,6 +158,13 @@ main {
     left: -2px;
     transition: height .1s, width .05s;
     transition-timing-function: cubic-bezier(0.96, 0, 0.19, 1.12); }
+  .navigation__link--active {
+    color: white; }
+    .navigation__link--active::after {
+      height: 100%;
+      width: 100%;
+      left: 0px;
+      border-radius: 2px; }
   .navigation__link:hover {
     color: white; }
     .navigation__link:hover::after {
@@ -192,10 +194,11 @@ main {
   .btn-group::after {
     position: absolute;
     content: '✓';
+    color: black;
     width: 15px;
     height: 15px;
     top: 4px;
-    background-color: blue;
+    background-color: white;
     border-radius: 2px;
     right: 10px;
     padding: 2px;
@@ -205,8 +208,7 @@ main {
     justify-content: center;
     align-items: center; }
   .btn-group.active::after {
-    content: '';
-    background-color: black; }
+    content: ''; }
 
 .fiche__entete {
   display: flex; }

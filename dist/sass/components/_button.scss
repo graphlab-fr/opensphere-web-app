@@ -1,0 +1,7 @@
+button {
+    @extend %font-regular;
+
+    &:focus {
+        outline: none;
+    }
+}

@@ -2,7 +2,6 @@
     position: relative;
     box-sizing: border-box;
     z-index: 999;
-    // padding: 10px 20px;
     
     &__fixe {
         left: 0px;
@@ -30,13 +29,6 @@
         cursor: pointer;
         display: flex;
         align-items: center;
-    }
-
-    &__logo {
-        width: 30px;
-        height: 30px;
-        margin: 0 10px;
-        object-fit: contain;
     }
 }
 

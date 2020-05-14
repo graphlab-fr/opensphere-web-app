@@ -34,6 +34,7 @@
                     </ul>
 
                     <div class="introduction__logo-list">
+                        <img class="introduction__logo" src="./assets/logos/logootletcoul.png" alt="Logo Otletosphère">
                         <img class="introduction__logo" src="./assets/logos/logo_CMH.png" alt="Logo OtletOsphère">
                         <img class="introduction__logo" src="./assets/logos/logo_cnrs.png" alt="Logo OtletOsphère">
                         <img class="introduction__logo" src="./assets/logos/logo_enssib.png" alt="Logo OtletOsphère">
@@ -52,14 +53,13 @@
             <header id="header" class="entete__top" role="banner">
                 <div class="entete__identite" onclick="movement.goTo('graph');">
                     <h1 class="title-site"><span class="title-site__bold">Otlet</span>osphère</h1>
-                    <img class="entete__logo" src="./assets/logos/logootletcoul.png" alt="Logo Otletosphère">
                 </div>
     
                 <nav class="navigation">
                     <ul class="navigation__list">
-                        <li class="navigation__link" onclick="movement.goTo('introduction');">À propos</li>
-                        <li class="navigation__link" onclick="movement.goTo('graph');">Réseau</li>
-                        <li class="navigation__link" onclick="movement.goTo('board');">Fiches</li>
+                        <li class="navigation__link" data-section="a_propos">À propos</li>
+                        <li class="navigation__link navigation__link--active" data-section="reseau">Réseau</li>
+                        <li class="navigation__link" data-section="fiches">Fiches</li>
                     </ul>
                 </nav>
 

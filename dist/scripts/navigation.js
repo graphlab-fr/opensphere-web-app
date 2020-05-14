@@ -11,8 +11,28 @@ var interface = {
     }
 }
 
+var navigation = {
+    links: document.querySelectorAll('.navigation__link'),
+    activatedLink: document.querySelector('[data-section="reseau"]')
+}
+
+navigation.links.forEach(link => {
+    link.addEventListener('click', (e) => {
+        if (navigation.activatedLink === e.target) { return; }
+        navigation.activatedLink.classList.remove('navigation__link--active');
+
+        e.target.classList.add('navigation__link--active');
+        movement.goTo(e.target.dataset.section);
+
+        navigation.activatedLink = e.target
+    })
+});
+
+// console.log(navigation.links);
+
 
 var movement = {
+    currentSection: undefined,
     offset: {
         introduction: document.querySelector('#introduction').offsetTop,
         graph: introduction.clientHeight - 105,
@@ -20,19 +40,22 @@ var movement = {
     },
     goTo: function(section) {
         switch (section) {
-            case 'introduction':
+            case 'a_propos':
                 this.scroll(0);
                 interface.fix(false);
+                this.currentSection = 'a_propos';
                 break;
                 
-            case 'graph':
+            case 'reseau':
                 this.scroll(this.offset.graph);
                 interface.fix(true);
+                this.currentSection = 'reseau';
                 break;
                 
-            case 'board':
+            case 'fiches':
                 this.scroll(this.offset.board);
                 interface.fix(true);
+                this.currentSection = 'fiches';
                 fiche.open();
                 break;
         }
@@ -47,4 +70,4 @@ var movement = {
     }
 }
 
-movement.goTo('graph');
+movement.goTo('reseau');
