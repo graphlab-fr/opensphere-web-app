@@ -45,41 +45,27 @@ function createCard(entite) {
 
     if (entite.hidden == true) { return; }
 
+    var photo = '<img class="card__img" src="' + entite.image + '" alt="' + entite.label + '" />';
+    var label = '<h3 class="card__label">' + entite.label + '</h3>';
+    var dates = null;
+    if (entite.metas.annee_naissance !== null) {
+        if (entite.metas.annee_mort !== null) {
+            var dateAjoutMort = ' - ' + entite.metas.annee_mort; }
+
+        dates = ['<span class="card__date">(', entite.metas.annee_naissance,
+            dateAjoutMort, ')</span>'].join('');
+    }
+    var identite = ['<div class="card__identite">', label, dates, '</div>'].join('');
+    var presentation = ['<div class="card__presentation">', photo, identite, '</div>'].join('');
+
+    var titre = null;
+    if (entite.title !== null) {
+        titre = '<h4 class="card__titre">' + entite.title + '</h4>'; }
+
     const cardBox = document.createElement('div');
     cardBox.classList.add('card');
+    cardBox.innerHTML = [presentation, titre].join('');
     board.content.appendChild(cardBox);
-
-    const cardPhoto = document.createElement('img');
-    cardPhoto.classList.add('card__img');
-    cardPhoto.setAttribute('src', entite.image)
-    cardPhoto.setAttribute('alt', 'Photo de ' + entite.label)
-    cardBox.appendChild(cardPhoto);
-
-    const cardLabel = document.createElement('h3');
-    cardLabel.classList.add('card__label');
-    cardLabel.textContent = entite.label;
-    cardBox.appendChild(cardLabel);
-
-
-    if (entite.metas.annee_naissance !== null) {
-        var chaine = '(' + entite.metas.annee_naissance;
-
-        if (entite.metas.annee_mort !== null) {
-            chaine += ' - ' + entite.metas.annee_mort;
-        }
-
-        const cardDate = document.createElement('span');
-        cardDate.classList.add('card__date');
-        cardDate.textContent = chaine + ')';
-        cardLabel.appendChild(cardDate);
-    }
-
-    if (entite.titre !== null) {
-        const cardTitre = document.createElement('h4');
-        cardTitre.classList.add('card__titre');
-        cardTitre.textContent = entite.title;
-        cardBox.appendChild(cardTitre);
-    }
 
     cardBox.addEventListener('click', () => {
         switchNode(entite.id, false)
@@ -220,6 +206,8 @@ var fiche = {
         this.isOpen = true;
     },
     close: function() {
+        if (movement.currentSection === 'fiches') { return; }
+        
         fiche.body.classList.remove('lateral--active');
         this.isOpen = false;
     },
@@ -372,9 +360,6 @@ navigation.links.forEach(link => {
         navigation.activatedLink = e.target
     })
 });
-
-// console.log(navigation.links);
-
 
 var movement = {
     currentSection: undefined,

@@ -28,9 +28,6 @@ navigation.links.forEach(link => {
     })
 });
 
-// console.log(navigation.links);
-
-
 var movement = {
     currentSection: undefined,
     offset: {

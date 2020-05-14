@@ -27,6 +27,8 @@ var fiche = {
         this.isOpen = true;
     },
     close: function() {
+        if (movement.currentSection === 'fiches') { return; }
+        
         fiche.body.classList.remove('lateral--active');
         this.isOpen = false;
     },
