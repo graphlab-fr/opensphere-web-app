@@ -13,23 +13,24 @@ var interface = {
 
 var navigation = {
     links: document.querySelectorAll('.navigation__link'),
-    activatedLink: document.querySelector('[data-section="reseau"]')
+    activLink: function(section) {
+        document.querySelector('[data-section="' + movement.currentSection + '"]')
+            .classList.remove('navigation__link--active');
+
+        document.querySelector('[data-section="' + section + '"]')
+            .classList.add('navigation__link--active');
+    }
 }
 
 navigation.links.forEach(link => {
     link.addEventListener('click', (e) => {
-        if (navigation.activatedLink === e.target) { return; }
-        navigation.activatedLink.classList.remove('navigation__link--active');
-
-        e.target.classList.add('navigation__link--active');
+        if (movement.currentSection === e.target.dataset.section) { return; }
         movement.goTo(e.target.dataset.section);
-
-        navigation.activatedLink = e.target
     })
 });
 
 var movement = {
-    currentSection: undefined,
+    currentSection: 'reseau',
     offset: {
         introduction: document.querySelector('#introduction').offsetTop,
         graph: introduction.clientHeight - 105,
@@ -40,19 +41,22 @@ var movement = {
             case 'a_propos':
                 this.scroll(0);
                 interface.fix(false);
-                this.currentSection = 'a_propos';
+                navigation.activLink(section);
+                this.currentSection = section;
                 break;
                 
             case 'reseau':
                 this.scroll(this.offset.graph);
                 interface.fix(true);
-                this.currentSection = 'reseau';
+                navigation.activLink(section);
+                this.currentSection = section;
                 break;
                 
             case 'fiches':
                 this.scroll(this.offset.board);
                 interface.fix(true);
-                this.currentSection = 'fiches';
+                navigation.activLink(section);
+                this.currentSection = section;
                 fiche.open();
                 break;
         }

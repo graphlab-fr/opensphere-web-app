@@ -43,7 +43,7 @@ btnZoomGeneral.addEventListener('click', backToCenterView);
 
 commands.visualiser.btn.addEventListener('click', () => {
     zoomToNode(network.selectedNode);
-    movement.goTo('graph');
+    movement.goTo('reseau');
 });
 
 /**
