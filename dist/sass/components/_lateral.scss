@@ -9,7 +9,7 @@
     z-index: 100;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     transition: transform .2s;
-    transition-timing-function: cubic-bezier(.96,0,.19,1.12);
+    transition-timing-function: $transition-bezier;
 
     &--left {
         left: 0px;

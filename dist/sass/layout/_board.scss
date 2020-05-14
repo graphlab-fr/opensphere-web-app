@@ -39,6 +39,7 @@
             width: 10px;
             background-color: black;
             transition: height .1s, width .05s;
+            transition-timing-function: $transition-bezier;
         }
 
         &:hover {
