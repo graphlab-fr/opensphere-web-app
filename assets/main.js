@@ -447,6 +447,7 @@ var network = {
             contemporain: {shape: 'circularImage', color: {border: chooseColor('contemporain')}},
             collaborateur: {shape: 'circularImage', color: {border: chooseColor('collaborateur')}},
             famille: {shape: 'circularImage', color: {border: chooseColor('famille')}},
+            opposant: {shape: 'circularImage', color: {border: chooseColor('opposant')}},
             otlet: {shape: 'circularImage', color: {border: chooseColor('otlet')}},
             institution: {shape: 'image', color: {border: chooseColor('institution')}},
             œuvre: {shape: 'image', color: {border: chooseColor('œuvre')}},
