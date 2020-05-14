@@ -603,10 +603,16 @@ function createNode(entite) {
 
 let edgeList = [];
 function createEdge(lien) {
+    if (lien.from == 1 || lien.to == 1) {
+        // si le lien a une relation avec Otelt
+        var color = null;
+    } else { var color = 'gray'; }
+
     var edgeObject = {
         from: lien.from,
         to: lien.to,
-        title: lien.label
+        title: lien.label,
+        color: color
     };
     edgeList.push(edgeObject);
 }
