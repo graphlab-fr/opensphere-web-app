@@ -9,6 +9,12 @@ body, button, .title-site, .btn-group, .search-box__input {
   font-weight: 600;
   font-style: normal; }
 
+.btn-group, .fiche__img {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+
+.lateral, .entete__fixe.entete__fixe--active {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+
 @font-face {
   font-family: 'Source Sans Pro';
   src: url("./font/SourceSansPro-Regular.woff2") format("woff2"), url("./font/SourceSansPro-Regular.woff") format("woff");
@@ -53,7 +59,6 @@ button:focus {
     background-color: #141414; }
 
 .lateral {
-  overflow-y: auto;
   box-sizing: border-box;
   position: absolute;
   width: 320px;
@@ -61,7 +66,6 @@ button:focus {
   background-color: #fffcfb;
   height: calc(100vh - 105px);
   z-index: 100;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   transition: transform .2s;
   transition-timing-function: cubic-bezier(0.96, 0, 0.19, 1.12); }
   .lateral--left {
@@ -116,8 +120,7 @@ button:focus {
       top: 0px;
       left: 0px;
       background-color: white;
-      width: 100%;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+      width: 100%; }
   .entete__top {
     display: flex;
     justify-content: space-between;
@@ -211,15 +214,18 @@ button:focus {
     content: ''; }
 
 .fiche__entete {
-  display: flex; }
+  display: flex;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
 .fiche__btn-control {
   cursor: pointer;
+  box-sizing: border-box;
   width: 100%;
   border: unset;
   padding: 0;
   font-size: 15px;
   padding: 2px 0;
+  height: 25px;
   background-color: black;
   color: white; }
   .fiche__btn-control--imp {
@@ -229,8 +235,10 @@ button:focus {
     display: none; }
 
 .fiche__content {
+  overflow: auto;
+  height: calc(100% - 25px);
   box-sizing: border-box;
-  padding: 5px;
+  padding: 5px 5px 5px 10px;
   visibility: hidden; }
   .fiche__content--visible {
     visibility: visible; }
@@ -248,6 +256,7 @@ button:focus {
   display: flex; }
 
 .fiche__img {
+  border-radius: 1px;
   width: 120px;
   height: 180px;
   margin-right: 6px;
@@ -263,14 +272,23 @@ button:focus {
 
 .fiche__couple {
   display: flex;
-  align-items: center; }
+  align-items: center;
+  margin: 10px 0; }
 
 .fiche__cle {
   font-size: 15px;
-  margin-right: 7px; }
+  margin-right: 7px;
+  margin: 0 7px 0 0; }
 
 .fiche__valeur {
   font-size: 18px; }
+
+.fiche__description {
+  margin: 20px 0 0 10px;
+  padding-left: 10px;
+  border-left: 1px solid black; }
+  .fiche__description::first-letter {
+    font-size: 28px; }
 
 .fiche--active {
   transform: unset; }

@@ -1,5 +1,5 @@
 .lateral {
-    overflow-y: auto;
+    @extend %shadow-3;
     box-sizing: border-box;
     position: absolute;
     width: 320px;
@@ -7,7 +7,6 @@
     background-color: $color-blanc;
     height: $main-height;
     z-index: 100;
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     transition: transform .2s;
     transition-timing-function: $transition-bezier;
 

@@ -2,15 +2,18 @@
 
     &__entete {
         display: flex;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     }
-
+    
     &__btn-control {
         cursor: pointer;
+        box-sizing: border-box;
         width: 100%;
         border: unset;
         padding: 0;
         font-size: 15px;
         padding: 2px 0;
+        height: 25px;
         background-color: black;
         color: white;
         
@@ -25,8 +28,10 @@
     }
 
     &__content {
+        overflow: auto;
+        height: calc(100% - 25px);
         box-sizing: border-box;
-        padding: 5px;
+        padding: 5px 5px 5px 10px;
         visibility: hidden;
 
         &--visible {
@@ -49,6 +54,8 @@
     }
 
     &__img {
+        @extend %shadow-1;
+        border-radius: 1px;
         width: 120px;
         height: 180px;
         margin-right: 6px;
@@ -67,15 +74,28 @@
     &__couple {
         display: flex;
         align-items: center;
+        margin: 10px 0;
     }
 
     &__cle{
         @extend %font-bold;
         font-size: 15px;
         margin-right: 7px;
+        margin: 0 7px 0 0;
     }
+
     &__valeur{
         font-size: 18px;
+    }
+
+    &__description {
+        margin: 20px 0 0 10px;
+        padding-left: 10px;
+        border-left: 1px solid black;
+
+        &::first-letter {
+            font-size: 28px;
+        }
     }
 
     &--active {

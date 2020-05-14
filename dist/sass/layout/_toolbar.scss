@@ -11,6 +11,7 @@
 
 .btn-group {
     @extend %font-regular;
+    @extend %shadow-1;
     position: relative;
     border: unset;
     display: block;
