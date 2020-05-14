@@ -362,12 +362,14 @@ navigation.links.forEach(link => {
     })
 });
 
+var headerHeight = interface.headerFixeur.clientHeight;
+
 var movement = {
     currentSection: 'reseau',
     offset: {
-        introduction: document.querySelector('#introduction').offsetTop,
-        graph: introduction.clientHeight - 105,
-        board: introduction.clientHeight * 2
+        introduction: 0,
+        graph: introduction.clientHeight - headerHeight,
+        board: introduction.clientHeight * 2 - headerHeight
     },
     goTo: function(section) {
         switch (section) {
@@ -395,8 +397,6 @@ var movement = {
         }
     },
     scroll: function(offset) {
-        // console.log(offset);
-        
         window.scrollTo({
             top: offset,
             behavior: 'smooth'
@@ -405,6 +405,16 @@ var movement = {
 }
 
 movement.goTo('reseau');
+
+window.onresize = function() {
+    headerHeight = interface.headerFixeur.clientHeight;
+    movement.offset = {
+        introduction: 0,
+        graph: introduction.clientHeight - headerHeight,
+        board: introduction.clientHeight * 2 - headerHeight
+    }
+    movement.goTo(movement.currentSection);
+}
 var network = {
     container: document.querySelector('#network'),
     isLoaded: false,
