@@ -62,9 +62,6 @@ fetch('data.json').then(function(response) {
         Object.values(data.Extraction).forEach(lien => {
             createEdge(lien); });
 
-        // Object.values(data.Entites).forEach(entite => {
-        //     createCard(entite); });
-
         // Génération de la visualisation
         network.data = {
             nodes: new vis.DataSet(nodeList),

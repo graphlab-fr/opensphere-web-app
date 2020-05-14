@@ -23,7 +23,7 @@ var board = {
         if (!network.isLoaded) { return; }
 
         this.content.innerHTML = '';
-        network.data.nodes.forEach(createCard);
+        network.data.nodes.forEach(createCard, { order: 'label' });
     }
 }
 
@@ -37,7 +37,7 @@ function sortByCaracter(sortCaracter) {
             // caché s'il n'a pas la première lettre et qu'il n'est pas déjà caché
             network.data.nodes.update({id: data.id, hidden: true});
         }
-    });
+    },);
 }
 
 
