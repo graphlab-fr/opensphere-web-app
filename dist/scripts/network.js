@@ -246,6 +246,7 @@ function getNodeMetas(id) {
                 nodeMetas.id = id;
                 nodeMetas.label = item.label;
                 nodeMetas.image = item.image;
+                nodeMetas.relation = item.group;
             }
         }
     });
@@ -258,7 +259,7 @@ function findConnectedNodes(nodeId) {
     var nodesConnected = network.visualisation.getConnectedNodes(nodeId);
     nodesConnected.forEach(id => {
         var nodeConnected = getNodeMetas(id);
-        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label});
+        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label, relation: nodeConnected.relation});
     });
     return connectedNodesList;
 }

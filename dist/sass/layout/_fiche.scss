@@ -103,18 +103,30 @@
     }
 }
 
-.connexion-list {
-    list-style: none;
-    padding: 0;
+.connexions {
+
+    &__list {
+        list-style: none;
+        padding: 0;
+    }
 
     &__elt {
-        border-top: 1px solid black;
+        display: flex;
+        align-items: center;
         padding: 6px 2px;
         cursor: pointer;
-        background: $color-brun;
 
-        &:last-child {
-            border-bottom: 1px solid black;
+        &:hover .connexions__puce {
+            height: 10px;
         }
+    }
+
+    &__puce {
+        display: block;
+        width: 20px;
+        height: 5px;
+        margin-right: 5px;
+        border-radius: 1px;
+        transition: height .1s;
     }
 }

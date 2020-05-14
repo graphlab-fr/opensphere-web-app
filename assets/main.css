@@ -293,16 +293,25 @@ button:focus {
 .fiche--active {
   transform: unset; }
 
-.connexion-list {
+.connexions__list {
   list-style: none;
   padding: 0; }
-  .connexion-list__elt {
-    border-top: 1px solid black;
-    padding: 6px 2px;
-    cursor: pointer;
-    background: #e2be48; }
-    .connexion-list__elt:last-child {
-      border-bottom: 1px solid black; }
+
+.connexions__elt {
+  display: flex;
+  align-items: center;
+  padding: 6px 2px;
+  cursor: pointer; }
+  .connexions__elt:hover .connexions__puce {
+    height: 10px; }
+
+.connexions__puce {
+  display: block;
+  width: 20px;
+  height: 5px;
+  margin-right: 5px;
+  border-radius: 1px;
+  transition: height .1s; }
 
 .search-box {
   position: relative;

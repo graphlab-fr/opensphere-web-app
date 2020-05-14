@@ -1,7 +1,6 @@
 var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
-    connexionList: document.querySelector('#fiche-connexion'),
     contol: {
         open: document.querySelector('#fiche-open'),
         close: document.querySelector('#fiche-close')
@@ -14,7 +13,8 @@ var fiche = {
         date: document.querySelector('#fiche-meta-date'),
         pays: document.querySelector('#fiche-meta-pays'),
         discipline: document.querySelector('#fiche-meta-discipline'),
-        description: document.querySelector('#fiche-meta-description')
+        description: document.querySelector('#fiche-meta-description'),
+        connexion: document.querySelector('#fiche-connexion')
     },
 
     fixer: function() {
@@ -73,7 +73,11 @@ var fiche = {
     },
     setConnexion: function(nodeConnectedList, entiteLabel) {
         if (nodeConnectedList === false) { return; }
-        this.connexionList.innerHTML = '';
+        this.fields.connexion.innerHTML = '<h3 class="connexions__libelle">Connexions</h3>';
+
+        var list = document.createElement('ul');
+        list.classList.add('connexions__list');
+        this.fields.connexion.appendChild(list);
 
         for (let i = 0; i < nodeConnectedList.length; i++) {
             const connexion = nodeConnectedList[i];
@@ -81,9 +85,14 @@ var fiche = {
             if (connexion.label == entiteLabel) { continue; }
 
             var listElt = document.createElement('li');
-            listElt.classList.add('connexion-list__elt')
+            listElt.classList.add('connexions__elt');
             listElt.textContent = connexion.label;
-            this.connexionList.appendChild(listElt);
+            this.fields.connexion.appendChild(listElt);
+
+            var puceColored = document.createElement('span');
+            puceColored.classList.add('connexions__puce');
+            puceColored.style.backgroundColor = chooseColor(connexion.relation);
+            listElt.prepend(puceColored);
 
             listElt.addEventListener('click', () => {
                 var id = connexion.id;
