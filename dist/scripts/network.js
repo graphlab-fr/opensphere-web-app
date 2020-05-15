@@ -72,10 +72,25 @@ fetch('data.json').then(function(response) {
         network.visualisation = new vis.Network(network.container,
             network.data, network.options);
     
-        // Évent au clic sur un nœud
-        network.visualisation.on('click', nodeView);
-
         network.nodeIds = network.data.nodes.getIds();
+        
+            // Évent au clic sur un nœud
+        network.visualisation.on('selectNode', function(nodeMetasBrutes) {
+            var id = nodeMetasBrutes.nodes[0];
+
+            if (id === undefined) {
+                return; }
+            
+            if (network.selectedNode !== undefined && network.selectedNode == id) {
+                return; }
+
+            switchNode(id);
+            historique.actualiser(id);
+        });
+        // Évent au clic sur l'espace blanc
+        network.visualisation.on('deselectNode', function(params) {
+            network.selectedNode = undefined;
+        });
     
         // Évent au survol : les autres nœuds deviennent translucide
         network.visualisation.on('hoverNode', function(params) {
@@ -83,12 +98,16 @@ fetch('data.json').then(function(response) {
 
             var ids = network.nodeIds;
 
-            var noColorNodesIds = network.visualisation.getConnectedNodes(activNodeId);
-            noColorNodesIds.push(activNodeId);
+            var noTransparentNodesIds = [activNodeId, network.selectedNode];
+            noTransparentNodesIds = noTransparentNodesIds.concat(network.visualisation.getConnectedNodes(activNodeId));
+            if (network.selectedNode !== undefined) {
+                noTransparentNodesIds = noTransparentNodesIds.concat(network.visualisation.getConnectedNodes(network.selectedNode));
+            }
+            
 
             for (let i = 0; i < ids.length; i++) {
                 const id = ids[i];
-                if (noColorNodesIds.indexOf(id) !== -1) { continue; }
+                if (noTransparentNodesIds.indexOf(id) !== -1) { continue; }
                 var groupName = network.data.nodes.get(id).group;
                 
                 network.data.nodes.update({
@@ -223,20 +242,6 @@ function chooseColor(relationEntite, lowerOpacity = false) {
     if (lowerOpacity) { return ['rgba(', color, ', 0.4)'].join(''); }
     else { return ['rgb(', color, ')'].join(''); }
 
-}
-
-function nodeView(nodeMetasBrutes) {
-    
-    var id = nodeMetasBrutes.nodes[0];
-
-    if (id === undefined) {
-        return; }
-    
-    if (network.selectedNode !== undefined && network.selectedNode == id) {
-        return; }
-
-    switchNode(id);
-    historique.actualiser(id);
 }
 
 function getNodeMetas(id) { 
