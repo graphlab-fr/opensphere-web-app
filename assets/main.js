@@ -144,7 +144,7 @@ const btnZoomGeneral = document.querySelector('#zoom-general');
 btnZoomGeneral.addEventListener('click', backToCenterView);
 
 commands.visualiser.btn.addEventListener('click', () => {
-    zoomToNode(network.selectedNode);
+    zoomToNode(fiche.showinNodeId);
     movement.goTo('reseau');
 });
 
@@ -199,6 +199,7 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
+    showinNodeId: undefined,
     contol: {
         open: document.querySelector('#fiche-open'),
         close: document.querySelector('#fiche-close')
@@ -305,6 +306,7 @@ var fiche = {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
         commands.visualiser.allow();
+        this.showinNodeId = nodeMetas.id;
 
         // remplissage métadonnées
         this.setImage(nodeMetas.image, nodeMetas.label);

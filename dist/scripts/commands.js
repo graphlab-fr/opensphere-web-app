@@ -42,7 +42,7 @@ const btnZoomGeneral = document.querySelector('#zoom-general');
 btnZoomGeneral.addEventListener('click', backToCenterView);
 
 commands.visualiser.btn.addEventListener('click', () => {
-    zoomToNode(network.selectedNode);
+    zoomToNode(fiche.showinNodeId);
     movement.goTo('reseau');
 });
 
