@@ -1,6 +1,7 @@
 var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
+    entete: document.querySelector('#fiche-entete'),
     contol: {
         open: document.querySelector('#fiche-open'),
         close: document.querySelector('#fiche-close')
@@ -32,6 +33,10 @@ var fiche = {
         fiche.body.classList.remove('lateral--active');
         this.isOpen = false;
     },
+    canClose: function(bool) {
+        if (bool) { this.contol.close.classList.remove('fiche__btn-control--hidde'); }
+        else { this.contol.close.classList.add('fiche__btn-control--hidde'); }
+    },
     setImage: function(entitePhoto, entiteLabel) {
         if (entitePhoto === null) { return; }
         this.fields.img.setAttribute('src', entitePhoto);
@@ -58,24 +63,19 @@ var fiche = {
     },
     setPays: function(entitePays) {
         if (entitePays === null) { return; }
-        var libelle = '<h3 class="fiche__cle">Pays</h3>';
-        var pays = '<span>' + entitePays + '</span>';
-        this.fields.pays.innerHTML = [libelle, pays].join('');
+        this.fields.pays.innerHTML = entitePays;
     },
     setDiscipline: function(entiteDiscipline) {
         if (entiteDiscipline === null) { return; }
-        var libelle = '<h3 class="fiche__cle">Discipline</h3>';
-        var discipline = '<span>' + entiteDiscipline + '</span>';
-        this.fields.discipline.innerHTML = [libelle, discipline].join('');
+        this.fields.discipline.innerHTML = entiteDiscipline;
     },
     setDescription: function(entiteDescription) {
         if (entiteDescription === null) { return; }
-        var description = '<div class="fiche__description">' + entiteDescription + '</div>';
-        this.fields.description.innerHTML = description;
+        this.fields.description.innerHTML = entiteDescription;
     },
     setConnexion: function(nodeConnectedList, entiteLabel) {
         if (nodeConnectedList === false) { return; }
-        this.fields.connexion.innerHTML = '<h3 class="connexions__libelle">Connexions</h3>';
+        this.fields.connexion.innerHTML = '';
 
         var list = document.createElement('ul');
         list.classList.add('connexions__list');

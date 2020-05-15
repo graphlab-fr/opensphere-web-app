@@ -51,7 +51,7 @@
         <div id="entete-fixeur" class="entete__fixe">
 
             <header id="header" class="entete__top" role="banner">
-                <div class="entete__identite" onclick="movement.goTo('graph');">
+                <div class="entete__identite" onclick="movement.goTo('reseau');">
                     <h1 class="title-site"><span class="title-site__bold">Otlet</span>osphère</h1>
                 </div>
     
@@ -133,17 +133,28 @@
                     <img id="fiche-meta-img" class="fiche__img" src="" alt="">
 
                     <div>
-                        <div id="fiche-meta-label" class="fiche__label"></div>
-                        <div id="fiche-meta-date"></div>
+                        <span id="fiche-meta-label" class="fiche__label"></span>
+                        <span id="fiche-meta-date"></span>
                     </div>
                 </div>
     
     
-                <div id="fiche-meta-pays" class="fiche__couple"></div>
-                <div id="fiche-meta-discipline" class="fiche__couple"></div>
-                <div id="fiche-meta-description"></div>
+                <div class="fiche__couple">
+                    <h3 class="fiche__cle">Pays</h3>
+                    <span id="fiche-meta-pays"></span>
+                </div>
 
-                <div id="fiche-connexion" class="connexions"></div>
+                <div class="fiche__couple">
+                    <h3 class="fiche__cle">Discipline</h3>
+                    <span id="fiche-meta-discipline"></span>
+                </div>
+                
+                <div id="fiche-meta-description" class="fiche__description"></div>
+
+                <div>
+                    <h3 class="connexions__libelle">Connexions</h3>
+                    <div id="fiche-connexion"></div>
+                </div>
             </main>
         </aside>
 

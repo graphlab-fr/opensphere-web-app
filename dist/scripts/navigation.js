@@ -52,6 +52,8 @@ var movement = {
                 interface.fix(true);
                 navigation.activLink(section);
                 this.currentSection = section;
+
+                fiche.canClose(true);
                 break;
                 
             case 'fiches':
@@ -59,7 +61,9 @@ var movement = {
                 interface.fix(true);
                 navigation.activLink(section);
                 this.currentSection = section;
+
                 fiche.open();
+                fiche.canClose(false);
                 break;
         }
     },
