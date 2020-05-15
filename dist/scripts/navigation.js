@@ -99,12 +99,15 @@ Object.values(langage.flags).forEach(flag => {
     flag.addEventListener('click', (e) => {
         
         if (e.target.dataset.lang == langage.actual) { return; }
-        fiche.fill(fiche.showingNodeMetas);
 
         e.target.classList.add('lang-box__flag--active');
         document.querySelector('[data-lang="' + langage.actual + '"]')
             .classList.remove('lang-box__flag--active');
         
+            
         langage.actual = e.target.dataset.lang;
+
+        if (fiche.showingNodeMetas !== null) {
+            fiche.fill(fiche.showingNodeMetas); }
     });
 });

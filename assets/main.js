@@ -313,6 +313,8 @@ var fiche = {
         this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
 
+        console.log(langage.actual);
+
         switch (langage.actual) {
             case 'français':
                 this.setPays(nodeMetas.pays);
@@ -463,13 +465,16 @@ Object.values(langage.flags).forEach(flag => {
     flag.addEventListener('click', (e) => {
         
         if (e.target.dataset.lang == langage.actual) { return; }
-        fiche.fill(fiche.showingNodeMetas);
 
         e.target.classList.add('lang-box__flag--active');
         document.querySelector('[data-lang="' + langage.actual + '"]')
             .classList.remove('lang-box__flag--active');
         
+            
         langage.actual = e.target.dataset.lang;
+
+        if (fiche.showingNodeMetas !== null) {
+            fiche.fill(fiche.showingNodeMetas); }
     });
 });
 var network = {

@@ -116,6 +116,8 @@ var fiche = {
         this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
 
+        console.log(langage.actual);
+
         switch (langage.actual) {
             case 'français':
                 this.setPays(nodeMetas.pays);
