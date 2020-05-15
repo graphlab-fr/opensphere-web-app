@@ -1,21 +1,24 @@
 var board = {
     content: document.querySelector('#board-content'),
     sort: {
-        conteneur: document.querySelector('#sort-alphabetic'),
+        conteneur: document.querySelector('#board-alphabetic'),
         caracters: [],
+        lastCaracter: undefined,
         init: function() {
             this.caracters.forEach(caracter => {
                 caract = document.createElement('li');
                 caract.classList.add('sort-alphabetic-list__caracter');
-                caract.textContent = caracter;
+                caract.textContent = caracter.caracter;
                 this.conteneur.appendChild(caract);
 
-                caract.addEventListener('click', () => {
-                    if (!network.isLoaded) { return; }
-                    allNodesVisible();
-                    sortByCaracter(caracter);
-                    board.init();
-                });
+                var caracterSectionTitle = document.createElement('label');
+                caracterSectionTitle.classList.add('board__section-title');
+                caracterSectionTitle.textContent = caracter.caracter;
+                board.content.appendChild(caracterSectionTitle);
+
+                board.content.appendChild(caracter.cardsContent);
+
+                caract.addEventListener('click', () => {});
             });
         }
     },
@@ -23,12 +26,13 @@ var board = {
         if (!network.isLoaded) { return; }
 
         this.content.innerHTML = '';
+        board.sort.caracters = [];
+        board.sort.conteneur.innerHTML = '';
+        
         network.data.nodes.forEach(createCard, { order: 'label' });
+        board.sort.init();
     }
 }
-
-board.sort.caracters = genAlphabet();
-board.sort.init();
 
 function sortByCaracter(sortCaracter) {
     network.data.nodes.forEach(function(data) {
@@ -44,6 +48,19 @@ function sortByCaracter(sortCaracter) {
 function createCard(entite) {
 
     if (entite.hidden == true) { return; }
+
+    var firstCaracterFromLabel = entite.label.charAt(0);
+    if (firstCaracterFromLabel != board.sort.lastCaracter) {
+        board.sort.lastCaracter = firstCaracterFromLabel;
+
+        var caracterSection = document.createElement('div');
+        caracterSection.classList.add('board__section');
+
+        board.sort.caracters.push({
+            caracter: firstCaracterFromLabel,
+            cardsContent: caracterSection
+        });
+    }
 
     var photo = '<img class="card__img" src="' + entite.image + '" alt="' + entite.label + '" />';
     var label = '<h3 class="card__label">' + entite.label + '</h3>';
@@ -62,23 +79,15 @@ function createCard(entite) {
     if (entite.title !== null) {
         titre = '<h4 class="card__titre">' + entite.title + '</h4>'; }
 
+    var cardContent = board.sort.caracters[board.sort.caracters.length - 1].cardsContent;
+
     const cardBox = document.createElement('div');
     cardBox.classList.add('card');
     cardBox.innerHTML = [presentation, titre].join('');
-    board.content.appendChild(cardBox);
+    cardContent.appendChild(cardBox);
 
     cardBox.addEventListener('click', () => {
         switchNode(entite.id, false)
         historique.actualiser(entite.id);
     });
-}
-
-function genAlphabet() {
-    var alphabet = [];
-    var start = 'A'.charCodeAt(0);
-    var last  = 'Z'.charCodeAt(0);
-    for (var i = start; i <= last; ++i) {
-        alphabet.push(String.fromCharCode(i)); }
-  
-    return alphabet;
 }
