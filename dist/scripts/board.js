@@ -1,5 +1,6 @@
 var board = {
     content: document.querySelector('#board-content'),
+    wrapper: document.querySelector('#board-wrapper'),
     sort: {
         conteneur: document.querySelector('#board-alphabetic'),
         caracters: [],
@@ -18,7 +19,16 @@ var board = {
 
                 board.content.appendChild(caracter.cardsContent);
 
-                caract.addEventListener('click', () => {});
+                caract.addEventListener('click', () => {
+                    board.wrapper.scrollTop = 0
+                    // console.log(caracter.cardsContent.getBoundingClientRect().y -160);
+                    
+                    // board.wrapper.scrollTop = caracter.cardsContent.getBoundingClientRect().y -180
+                    board.wrapper.scrollTo({
+                        top: caracter.cardsContent.getBoundingClientRect().y -180,
+                        behavior: 'smooth'
+                    });
+                });
             });
         }
     },
