@@ -198,6 +198,18 @@ function createNode(entite) {
         interaction: {hover:true},
         hidden: false
     };
+
+    if (entite.nom) {
+        var splitName = entite.nom.split(' ', 2);
+        // rejet de la particule "de"
+        if (splitName.length == 2 && splitName[0] == 'de') {
+            nodeObject.sortName = splitName[1];
+        } else {
+            nodeObject.sortName = entite.nom;
+        }
+    } else {
+        nodeObject.sortName = entite.label
+    }
     nodeList.push(nodeObject);
 }
 

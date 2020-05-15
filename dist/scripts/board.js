@@ -36,7 +36,7 @@ var board = {
         board.sort.caracters = [];
         board.sort.conteneur.innerHTML = '';
         
-        network.data.nodes.forEach(createCard, { order: 'label' });
+        network.data.nodes.forEach(createCard, { order: 'sortName' });
         board.sort.init();
     }
 }
@@ -56,7 +56,7 @@ function createCard(entite) {
 
     if (entite.hidden == true) { return; }
 
-    var firstCaracterFromLabel = entite.label.charAt(0);
+    var firstCaracterFromLabel = entite.sortName.charAt(0);
     if (firstCaracterFromLabel != board.sort.lastCaracter) {
         // si l'on change de caractère : enregistrement d'une nouvelle section de cartes
         board.sort.lastCaracter = firstCaracterFromLabel;

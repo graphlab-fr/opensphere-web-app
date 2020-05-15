@@ -449,7 +449,7 @@ button:focus {
     padding: 5px 2px;
     margin: 5px;
     font-family: monospace;
-    font-size: 18px; }
+    font-size: 14px; }
     .sort-alphabetic-list__caracter::after {
       content: '';
       z-index: -1;

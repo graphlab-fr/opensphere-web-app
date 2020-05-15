@@ -36,7 +36,7 @@ var board = {
         board.sort.caracters = [];
         board.sort.conteneur.innerHTML = '';
         
-        network.data.nodes.forEach(createCard, { order: 'label' });
+        network.data.nodes.forEach(createCard, { order: 'sortName' });
         board.sort.init();
     }
 }
@@ -56,7 +56,7 @@ function createCard(entite) {
 
     if (entite.hidden == true) { return; }
 
-    var firstCaracterFromLabel = entite.label.charAt(0);
+    var firstCaracterFromLabel = entite.sortName.charAt(0);
     if (firstCaracterFromLabel != board.sort.lastCaracter) {
         // si l'on change de caractère : enregistrement d'une nouvelle section de cartes
         board.sort.lastCaracter = firstCaracterFromLabel;
@@ -637,6 +637,18 @@ function createNode(entite) {
         interaction: {hover:true},
         hidden: false
     };
+
+    if (entite.nom) {
+        var splitName = entite.nom.split(' ', 2);
+        // rejet de la particule "de"
+        if (splitName.length == 2 && splitName[0] == 'de') {
+            nodeObject.sortName = splitName[1];
+        } else {
+            nodeObject.sortName = entite.nom;
+        }
+    } else {
+        nodeObject.sortName = entite.label
+    }
     nodeList.push(nodeObject);
 }
 
