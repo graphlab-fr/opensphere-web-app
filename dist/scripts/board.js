@@ -20,10 +20,7 @@ var board = {
                 board.content.appendChild(caracter.cardsContent);
 
                 caract.addEventListener('click', () => {
-                    board.wrapper.scrollTop = 0
-                    // console.log(caracter.cardsContent.getBoundingClientRect().y -160);
-                    
-                    // board.wrapper.scrollTop = caracter.cardsContent.getBoundingClientRect().y -180
+                    board.wrapper.scrollTop = 0;
                     board.wrapper.scrollTo({
                         top: caracter.cardsContent.getBoundingClientRect().y -180,
                         behavior: 'smooth'
@@ -61,6 +58,7 @@ function createCard(entite) {
 
     var firstCaracterFromLabel = entite.label.charAt(0);
     if (firstCaracterFromLabel != board.sort.lastCaracter) {
+        // si l'on change de caractère : enregistrement d'une nouvelle section de cartes
         board.sort.lastCaracter = firstCaracterFromLabel;
 
         var caracterSection = document.createElement('div');
@@ -89,6 +87,7 @@ function createCard(entite) {
     if (entite.title !== null) {
         titre = '<h4 class="card__titre">' + entite.title + '</h4>'; }
 
+    // dernier contenant de cartes créé où mettre les cartes pour un même caractère
     var cardContent = board.sort.caracters[board.sort.caracters.length - 1].cardsContent;
 
     const cardBox = document.createElement('div');
