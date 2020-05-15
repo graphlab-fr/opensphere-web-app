@@ -2,7 +2,7 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    showinNodeId: undefined,
+    showingNodeMetas: null,
     contol: {
         open: document.querySelector('#fiche-open'),
         close: document.querySelector('#fiche-close')
@@ -109,15 +109,26 @@ var fiche = {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
         commands.visualiser.allow();
-        this.showinNodeId = nodeMetas.id;
+        this.showingNodeMetas = nodeMetas;
 
         // remplissage métadonnées
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
-        this.setPays(nodeMetas.pays);
-        this.setDiscipline(nodeMetas.discipline);
-        this.setDescription(nodeMetas.description);
+
+        switch (langage.actual) {
+            case 'français':
+                this.setPays(nodeMetas.pays);
+                this.setDiscipline(nodeMetas.discipline);
+                this.setDescription(nodeMetas.description);
+                break;
+            case 'english':
+                this.setPays(nodeMetas.pays_en);
+                this.setDiscipline(nodeMetas.discipline_en);
+                this.setDescription(nodeMetas.description_en);
+                break;
+        }
+
 
         // remplissage nœuds connectés
         this.setConnexion(nodeConnectedList, nodeMetas.label);

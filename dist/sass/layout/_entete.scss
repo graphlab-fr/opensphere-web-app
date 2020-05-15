@@ -41,3 +41,35 @@
         @extend %font-bold;
     }
 }
+
+.lang-box {
+    display: flex;
+
+    &__flag {
+        @extend %shadow-1;
+        cursor: pointer;
+        margin: 0 10px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 50px;
+        border: 1px solid white;
+        opacity: .7;
+        transition: opacity .1s;
+
+        &--fr {
+            background-image: url('./icons/lang_france.svg');
+        }
+        
+        &--en {
+            background-image: url('./icons/lang_english.svg');
+        }
+        
+        &--active {
+            border: 1px solid black;
+            opacity: 1;
+        }
+    }
+}

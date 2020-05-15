@@ -192,8 +192,11 @@ function createNode(entite) {
             annee_naissance: entite.annee_naissance,
             annee_mort: entite.annee_mort,
             pays: entite.pays,
+            pays_en: entite.pays_en,
             discipline: entite.discipline,
-            description: entite.description
+            discipline_en: entite.discipline_en,
+            description: entite.description,
+            description_en: entite.description_en
         },
         interaction: {hover:true},
         hidden: false

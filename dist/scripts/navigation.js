@@ -29,7 +29,7 @@ navigation.links.forEach(link => {
     })
 });
 
-var headerHeight = interface.headerFixeur.clientHeight;
+var headerHeight = interface.headerFixeur.clientHeight + 8;
 
 var movement = {
     currentSection: 'reseau',
@@ -86,3 +86,25 @@ window.onresize = function() {
     }
     movement.goTo(movement.currentSection);
 }
+
+var langage = {
+    flags: {
+        french: document.querySelector('#lang-fr'),
+        english: document.querySelector('#lang-en')
+    },
+    actual: 'français'
+}
+
+Object.values(langage.flags).forEach(flag => {
+    flag.addEventListener('click', (e) => {
+        
+        if (e.target.dataset.lang == langage.actual) { return; }
+        fiche.fill(fiche.showingNodeMetas);
+
+        e.target.classList.add('lang-box__flag--active');
+        document.querySelector('[data-lang="' + langage.actual + '"]')
+            .classList.remove('lang-box__flag--active');
+        
+        langage.actual = e.target.dataset.lang;
+    });
+});

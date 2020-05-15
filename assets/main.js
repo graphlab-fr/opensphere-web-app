@@ -144,7 +144,7 @@ const btnZoomGeneral = document.querySelector('#zoom-general');
 btnZoomGeneral.addEventListener('click', backToCenterView);
 
 commands.visualiser.btn.addEventListener('click', () => {
-    zoomToNode(fiche.showinNodeId);
+    zoomToNode(fiche.showingNodeMetas.id);
     movement.goTo('reseau');
 });
 
@@ -199,7 +199,7 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    showinNodeId: undefined,
+    showingNodeMetas: null,
     contol: {
         open: document.querySelector('#fiche-open'),
         close: document.querySelector('#fiche-close')
@@ -306,15 +306,26 @@ var fiche = {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
         commands.visualiser.allow();
-        this.showinNodeId = nodeMetas.id;
+        this.showingNodeMetas = nodeMetas;
 
         // remplissage métadonnées
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
-        this.setPays(nodeMetas.pays);
-        this.setDiscipline(nodeMetas.discipline);
-        this.setDescription(nodeMetas.description);
+
+        switch (langage.actual) {
+            case 'français':
+                this.setPays(nodeMetas.pays);
+                this.setDiscipline(nodeMetas.discipline);
+                this.setDescription(nodeMetas.description);
+                break;
+            case 'english':
+                this.setPays(nodeMetas.pays_en);
+                this.setDiscipline(nodeMetas.discipline_en);
+                this.setDescription(nodeMetas.description_en);
+                break;
+        }
+
 
         // remplissage nœuds connectés
         this.setConnexion(nodeConnectedList, nodeMetas.label);
@@ -382,7 +393,7 @@ navigation.links.forEach(link => {
     })
 });
 
-var headerHeight = interface.headerFixeur.clientHeight;
+var headerHeight = interface.headerFixeur.clientHeight + 8;
 
 var movement = {
     currentSection: 'reseau',
@@ -439,6 +450,28 @@ window.onresize = function() {
     }
     movement.goTo(movement.currentSection);
 }
+
+var langage = {
+    flags: {
+        french: document.querySelector('#lang-fr'),
+        english: document.querySelector('#lang-en')
+    },
+    actual: 'français'
+}
+
+Object.values(langage.flags).forEach(flag => {
+    flag.addEventListener('click', (e) => {
+        
+        if (e.target.dataset.lang == langage.actual) { return; }
+        fiche.fill(fiche.showingNodeMetas);
+
+        e.target.classList.add('lang-box__flag--active');
+        document.querySelector('[data-lang="' + langage.actual + '"]')
+            .classList.remove('lang-box__flag--active');
+        
+        langage.actual = e.target.dataset.lang;
+    });
+});
 var network = {
     container: document.querySelector('#network'),
     isLoaded: false,
@@ -633,8 +666,11 @@ function createNode(entite) {
             annee_naissance: entite.annee_naissance,
             annee_mort: entite.annee_mort,
             pays: entite.pays,
+            pays_en: entite.pays_en,
             discipline: entite.discipline,
-            description: entite.description
+            discipline_en: entite.discipline_en,
+            description: entite.description,
+            description_en: entite.description_en
         },
         interaction: {hover:true},
         hidden: false
