@@ -798,8 +798,13 @@ function findConnectedNodes(nodeId) {
 }
 
 function zoomToNode(id) {
+    id = Number(id);
     // Trouver le nœud et zommer sur lui
     var nodeCoordonates = network.visualisation.getPosition(id);
+    
+    // si le nœeud est hidden, interrompre
+    if (network.data.nodes.get(id).hidden === true) { return; }
+    
     network.visualisation.moveTo({
         position: {
             x: nodeCoordonates.x,
