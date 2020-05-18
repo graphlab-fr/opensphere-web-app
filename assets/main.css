@@ -9,6 +9,13 @@ body, button, .title-site, .btn-group, .search-box__input {
   font-weight: 600;
   font-style: normal; }
 
+h1,
+h2,
+h3 {
+  font-family: 'Courier Prime', monospace;
+  font-weight: normal;
+  font-style: normal; }
+
 .lang-box__flag, .btn-group, .fiche__img, .card, .card__img {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
@@ -35,6 +42,20 @@ body, button, .title-site, .btn-group, .search-box__input {
   src: url("./font/SourceSansPro-Italic.woff2") format("woff2"), url("./font/SourceSansPro-Italic.woff") format("woff");
   font-weight: normal;
   font-style: italic; }
+
+@font-face {
+  font-family: 'Courier Prime';
+  src: url("./font/CourierPrime-Regular.woff2") format("woff2"), url("./font/CourierPrime-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+h1 {
+  margin: 30px 0 10px 0;
+  font-size: 32px; }
+
+h2 {
+  margin: 30px 0 10px 0;
+  font-size: 24px; }
 
 body {
   cursor: default;
@@ -67,7 +88,7 @@ button:focus {
   width: 320px;
   top: 0px;
   background-color: #fffcfb;
-  height: calc(100vh - 105px);
+  height: calc(100vh - 112px);
   z-index: 100;
   transition: transform .2s;
   transition-timing-function: cubic-bezier(0.96, 0, 0.19, 1.12); }
@@ -81,23 +102,28 @@ button:focus {
     transform: translate(0%); }
   .lateral--fixed {
     position: fixed;
-    top: 105px; }
+    top: 112px; }
 
 .introduction {
   overflow-y: auto;
   padding: 10px;
   height: calc(100vh - 80px); }
+  .introduction h1 {
+    margin: 0; }
   .introduction__wrapper {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
     width: 70%; }
   .introduction__img-otlet {
-    height: 230px;
+    height: 50%;
     flex: 1;
-    margin-right: 20px;
-    -o-object-fit: contain;
-    object-fit: contain; }
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 3px;
+    min-width: 150px;
+    margin: 0 20px 10px 0;
+    max-width: 300px; }
   .introduction__texte {
     flex: 2; }
   .introduction__logo-list {
@@ -247,7 +273,6 @@ button:focus {
   box-sizing: border-box;
   width: 100%;
   border: unset;
-  padding: 0;
   font-size: 15px;
   padding: 2px 0;
   height: 25px;
@@ -383,7 +408,7 @@ button:focus {
 .network-wrapper {
   position: relative;
   width: 100vw;
-  height: calc(100vh - 105px); }
+  height: calc(100vh - 112px); }
 
 .network {
   height: 100%; }
@@ -438,7 +463,7 @@ button:focus {
   .board__wrapper {
     overflow: auto;
     box-sizing: border-box;
-    height: calc(100vh - 105px);
+    height: calc(100vh - 112px);
     padding-left: 40px;
     width: calc(100% - 320px); }
   .board__section {

@@ -21,3 +21,11 @@
     font-weight: normal;
     font-style: italic;
 }
+
+@font-face {
+    font-family: 'Courier Prime';
+    src: url('./font/CourierPrime-Regular.woff2') format('woff2'),
+        url('./font/CourierPrime-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
