@@ -171,7 +171,7 @@ fetch('data.json').then(function(response) {
 
 let nodeList = [];
 function createNode(entite) {
-    
+
     var nodeObject = {
         id: entite.id,
         label: entite.label,
@@ -196,7 +196,8 @@ function createNode(entite) {
             discipline: entite.discipline,
             discipline_en: entite.discipline_en,
             description: entite.description,
-            description_en: entite.description_en
+            description_en: entite.description_en,
+            lien_wikipedia: entite.lien_wikipedia
         },
         interaction: {hover:true},
         hidden: false

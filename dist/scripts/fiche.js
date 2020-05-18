@@ -10,6 +10,7 @@ var fiche = {
     isOpen: false,
     fields: {
         // champs du fiche
+        wikiLink: document.querySelector('#fiche-wiki-link'),
         img: document.querySelector('#fiche-meta-img'),
         label: document.querySelector('#fiche-meta-label'),
         date: document.querySelector('#fiche-meta-date'),
@@ -61,6 +62,11 @@ var fiche = {
         }
 
         this.fields.date.innerHTML = [naissance, mort].join('');
+    },
+    setWikiLink: function(wikiLink) {
+        if (wikiLink === null) { return; }
+        this.fields.wikiLink.classList.add('fiche__wiki-link--visible')
+        this.fields.wikiLink.setAttribute('href', wikiLink)
     },
     setPays: function(entitePays) {
         if (entitePays === null) { return; }
@@ -131,6 +137,7 @@ var fiche = {
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
+        this.setWikiLink(nodeMetas.lien_wikipedia);
 
         switch (langage.actual) {
             case 'fr':

@@ -4,7 +4,7 @@ body, button, .title-site, .btn-group, .search-box__input {
   font-weight: normal;
   font-style: normal; }
 
-.title-site__bold, .btn-group::after, .fiche__cle {
+.title-site__bold, .btn-group::after, .fiche__wiki-link, .fiche__cle {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 600;
   font-style: normal; }
@@ -319,6 +319,20 @@ button:focus {
 
 .fiche__dates {
   margin: unset; }
+
+.fiche__wiki-link {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  margin-top: 15px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 3px; }
+  .fiche__wiki-link--visible {
+    display: flex; }
 
 .fiche__couple {
   display: flex;

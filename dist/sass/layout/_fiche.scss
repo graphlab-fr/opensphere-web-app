@@ -70,6 +70,24 @@
         margin: unset;
     }
 
+    &__wiki-link {
+        @extend %font-bold;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+        margin-top: 15px;
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+        border-radius: 3px;
+
+        &--visible {
+            display: flex;
+        }
+    }
+
     &__couple {
         display: flex;
         align-items: center;
