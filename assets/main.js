@@ -318,6 +318,22 @@ var fiche = {
                 switchNode(id);
                 historique.actualiser(id);
             });
+
+            if (connexion.title !== null) {
+                listElt.setAttribute('title', connexion.title);
+
+                listElt.addEventListener('mouseenter', (e) => {
+
+                    overflow.classList.add('overflow--active');
+                    overflow.style.left = e.pageX + 20 + 'px';
+                    overflow.style.top = e.pageY - overflow.offsetHeight + 'px';
+                    overflow.textContent = connexion.title;
+                })
+
+                listElt.addEventListener('mouseout', () => {
+                    overflow.classList.remove('overflow--active');
+                })
+            }
         }
     },
     fill: function(nodeMetas, nodeConnectedList = false) {
@@ -357,6 +373,8 @@ Object.values(fiche.contol).forEach(btn => {
         else { fiche.open(); }
     });
 });
+
+const overflow = document.querySelector('#overflow');
 var historique = {
     actualiser: function(id) {
         if (history.state == null) { this.init(id); }
@@ -790,10 +808,18 @@ function getNodeMetas(id) {
 function findConnectedNodes(nodeId) {
     var connectedNodesList = [];
     var nodesConnected = network.visualisation.getConnectedNodes(nodeId);
-    nodesConnected.forEach(id => {
+    var edgesConnected = network.visualisation.getConnectedEdges(nodeId);
+
+
+    for (let i = 0; i < nodesConnected.length; i++) {
+        const id = nodesConnected[i];
         var nodeConnected = getNodeMetas(id);
-        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label, relation: nodeConnected.relation});
-    });
+        var titleOfLink = network.data.edges.get(edgesConnected[i]).title;
+        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label, relation: nodeConnected.relation, title: titleOfLink});
+    }
+    
+    // nodesConnected.forEach(id => {
+    // });
     return connectedNodesList;
 }
 

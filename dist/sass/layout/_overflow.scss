@@ -1,0 +1,15 @@
+.overflow {
+    @extend %shadow-2;
+    visibility: hidden;
+    position: absolute;
+    z-index: -1;
+    border-radius: 3px;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 5px;
+
+    &--active {
+        visibility: visible;
+        z-index: 999;
+    }
+}

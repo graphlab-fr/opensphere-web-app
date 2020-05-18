@@ -281,10 +281,18 @@ function getNodeMetas(id) {
 function findConnectedNodes(nodeId) {
     var connectedNodesList = [];
     var nodesConnected = network.visualisation.getConnectedNodes(nodeId);
-    nodesConnected.forEach(id => {
+    var edgesConnected = network.visualisation.getConnectedEdges(nodeId);
+
+
+    for (let i = 0; i < nodesConnected.length; i++) {
+        const id = nodesConnected[i];
         var nodeConnected = getNodeMetas(id);
-        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label, relation: nodeConnected.relation});
-    });
+        var titleOfLink = network.data.edges.get(edgesConnected[i]).title;
+        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label, relation: nodeConnected.relation, title: titleOfLink});
+    }
+    
+    // nodesConnected.forEach(id => {
+    // });
     return connectedNodesList;
 }
 

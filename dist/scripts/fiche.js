@@ -103,6 +103,22 @@ var fiche = {
                 switchNode(id);
                 historique.actualiser(id);
             });
+
+            if (connexion.title !== null) {
+                listElt.setAttribute('title', connexion.title);
+
+                listElt.addEventListener('mouseenter', (e) => {
+
+                    overflow.classList.add('overflow--active');
+                    overflow.style.left = e.pageX + 20 + 'px';
+                    overflow.style.top = e.pageY - overflow.offsetHeight + 'px';
+                    overflow.textContent = connexion.title;
+                })
+
+                listElt.addEventListener('mouseout', () => {
+                    overflow.classList.remove('overflow--active');
+                })
+            }
         }
     },
     fill: function(nodeMetas, nodeConnectedList = false) {
@@ -142,3 +158,5 @@ Object.values(fiche.contol).forEach(btn => {
         else { fiche.open(); }
     });
 });
+
+const overflow = document.querySelector('#overflow');
