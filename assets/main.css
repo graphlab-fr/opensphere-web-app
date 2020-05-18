@@ -12,7 +12,7 @@ body, button, .title-site, .btn-group, .search-box__input {
 h1,
 h2,
 h3 {
-  font-family: 'Courier Prime', monospace;
+  font-family: monospace;
   font-weight: normal;
   font-style: normal; }
 
