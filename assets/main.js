@@ -154,47 +154,65 @@ commands.visualiser.btn.addEventListener('click', () => {
  * ============
  */
 
-const btnsGroups = document.querySelectorAll('.btn-group');
-btnsGroups.forEach(btn => {
-    var group = btn.dataset.group;
+var filter = {
+    btnsGroups: document.querySelectorAll('.btn-group'),
+    init: function() {
+        this.btnsGroups.forEach(btn => {
+            var group = btn.dataset.group;
+        
+            btn.style.backgroundColor = chooseColor(group);
+        
+            let isActiveGroup = true;
+        
+            btn.addEventListener('click', () => {
+        
+                if (!network.isLoaded) { return; }
+        
+                if (isActiveGroup) {
+                    network.data.nodes.get({
+                        filter: function (item) {
+                            if (item.group == group) {
+                                network.data.nodes.update({id: item.id, hidden: true}) }
+                        }
+                    });
+        
+                    btn.classList.add('active');
+        
+                    isActiveGroup = false;
+                } else {
+                    network.data.nodes.get({
+                        filter: function (item) {
+                            if (item.group == group) {
+                                network.data.nodes.update({id: item.id, hidden: false}) }
+                        }
+                    });
+        
+                    btn.classList.remove('active');
 
-    btn.style.backgroundColor = chooseColor(group);
-
-    let isActiveGroup = true;
-
-    btn.addEventListener('click', () => {
-
-        if (!network.isLoaded) { return; }
-
-        if (isActiveGroup) {
-            network.data.nodes.get({
-                filter: function (item) {
-                    if (item.group == group) {
-                        network.data.nodes.update({id: item.id, hidden: true}) }
+                    isActiveGroup = true;
                 }
+        
+                search.reset();
+                board.init();
+            
             });
-
-            btn.classList.add('active');
-
-            isActiveGroup = false;
-        } else {
-            network.data.nodes.get({
-                filter: function (item) {
-                    if (item.group == group) {
-                        network.data.nodes.update({id: item.id, hidden: false}) }
-                }
-            });
-
-            btn.classList.remove('active');
-
-            isActiveGroup = true;
+        });
+    },
+    translate: function() {
+        switch (langage.actual) {
+            case 'fr':
+                this.btnsGroups.forEach(btn => {
+                    btn.textContent = btn.dataset.langFr; });
+                break;
+            case 'en':
+                this.btnsGroups.forEach(btn => {
+                    btn.textContent = btn.dataset.langEn; });
+                break;
         }
+    }
+}
 
-        search.reset();
-        board.init();
-    
-    });
-});
+filter.init();
 var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
@@ -313,21 +331,18 @@ var fiche = {
         this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
 
-        console.log(langage.actual);
-
         switch (langage.actual) {
-            case 'français':
+            case 'fr':
                 this.setPays(nodeMetas.pays);
                 this.setDiscipline(nodeMetas.discipline);
                 this.setDescription(nodeMetas.description);
                 break;
-            case 'english':
+            case 'en':
                 this.setPays(nodeMetas.pays_en);
                 this.setDiscipline(nodeMetas.discipline_en);
                 this.setDescription(nodeMetas.description_en);
                 break;
         }
-
 
         // remplissage nœuds connectés
         this.setConnexion(nodeConnectedList, nodeMetas.label);
@@ -385,6 +400,18 @@ var navigation = {
 
         document.querySelector('[data-section="' + section + '"]')
             .classList.add('navigation__link--active');
+    },
+    translate: function() {
+        switch (langage.actual) {
+            case 'fr':
+                this.links.forEach(link => {
+                    link.textContent = link.dataset.langFr; });
+                break;
+            case 'en':
+                this.links.forEach(link => {
+                    link.textContent = link.dataset.langEn; });
+                break;
+        }
     }
 }
 
@@ -458,7 +485,7 @@ var langage = {
         french: document.querySelector('#lang-fr'),
         english: document.querySelector('#lang-en')
     },
-    actual: 'français'
+    actual: 'fr'
 }
 
 Object.values(langage.flags).forEach(flag => {
@@ -472,6 +499,9 @@ Object.values(langage.flags).forEach(flag => {
         
             
         langage.actual = e.target.dataset.lang;
+        
+        filter.translate();
+        navigation.translate();
 
         if (fiche.showingNodeMetas !== null) {
             fiche.fill(fiche.showingNodeMetas); }

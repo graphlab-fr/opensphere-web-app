@@ -19,6 +19,18 @@ var navigation = {
 
         document.querySelector('[data-section="' + section + '"]')
             .classList.add('navigation__link--active');
+    },
+    translate: function() {
+        switch (langage.actual) {
+            case 'fr':
+                this.links.forEach(link => {
+                    link.textContent = link.dataset.langFr; });
+                break;
+            case 'en':
+                this.links.forEach(link => {
+                    link.textContent = link.dataset.langEn; });
+                break;
+        }
     }
 }
 
@@ -92,7 +104,7 @@ var langage = {
         french: document.querySelector('#lang-fr'),
         english: document.querySelector('#lang-en')
     },
-    actual: 'français'
+    actual: 'fr'
 }
 
 Object.values(langage.flags).forEach(flag => {
@@ -106,6 +118,9 @@ Object.values(langage.flags).forEach(flag => {
         
             
         langage.actual = e.target.dataset.lang;
+        
+        filter.translate();
+        navigation.translate();
 
         if (fiche.showingNodeMetas !== null) {
             fiche.fill(fiche.showingNodeMetas); }

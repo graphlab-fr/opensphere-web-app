@@ -116,21 +116,18 @@ var fiche = {
         this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
 
-        console.log(langage.actual);
-
         switch (langage.actual) {
-            case 'français':
+            case 'fr':
                 this.setPays(nodeMetas.pays);
                 this.setDiscipline(nodeMetas.discipline);
                 this.setDescription(nodeMetas.description);
                 break;
-            case 'english':
+            case 'en':
                 this.setPays(nodeMetas.pays_en);
                 this.setDiscipline(nodeMetas.discipline_en);
                 this.setDescription(nodeMetas.description_en);
                 break;
         }
-
 
         // remplissage nœuds connectés
         this.setConnexion(nodeConnectedList, nodeMetas.label);
