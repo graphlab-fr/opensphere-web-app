@@ -1,10 +1,6 @@
 var network = {
     container: document.querySelector('#network'),
     isLoaded: false,
-    interaction: {
-        navigationButtons: true,
-        zoomView: false
-    },
     options: {
         physics: {
             enabled: true,
@@ -42,12 +38,7 @@ var network = {
         max: 1,
         min: 0.2
     },
-    selectedNode: undefined,
-    
-    unselect: function() {
-        network.selectedNode = undefined;
-        network.visualisation.unselectAll();
-    }
+    selectedNode: undefined
 }
 
 fetch('data.json').then(function(response) {
@@ -58,85 +49,89 @@ fetch('data.json').then(function(response) {
         var data = JSON.parse(text);
 
         Object.values(data.Entites).forEach(entite => {
-            createNode(entite); });
+            createNodeObject(entite); });
         
         Object.values(data.Extraction).forEach(lien => {
-            createEdge(lien); });
+            createEdgeObject(lien); });
 
         // Génération de la visualisation
         network.data = {
-            nodes: new vis.DataSet(nodeList),
-            edges: new vis.DataSet(edgeList)
+            nodes: new vis.DataSet(generatedNodesObjectList),
+            edges: new vis.DataSet(generatedEdgesObjectList)
         }
-    
+
         network.visualisation = new vis.Network(network.container,
             network.data, network.options);
-    
-        network.nodeIds = network.data.nodes.getIds();
         
-            // Évent au clic sur un nœud
+        // Évents du network
         network.visualisation.on('selectNode', function(nodeMetasBrutes) {
-            var id = nodeMetasBrutes.nodes[0];
+            var idNode = nodeMetasBrutes.nodes[0];
 
-            if (id === undefined) {
-                return; }
+            if (idNode === undefined) { return; }
             
-            if (network.selectedNode !== undefined && network.selectedNode == id) {
-                return; }
+            if (network.selectedNode !== undefined && network.selectedNode == idNode) {
+                // si nœeud est déjà selectionné
+                return;
+            }
 
-            switchNode(id);
-            historique.actualiser(id);
+            switchNode(idNode);
+            historique.actualiser(idNode);
         });
-        // Évent au clic sur l'espace blanc
-        network.visualisation.on('deselectNode', function(params) {
+
+        network.visualisation.on('deselectNode', function() {
             network.selectedNode = undefined;
         });
-    
-        // Évent au survol : les autres nœuds deviennent translucide
+
         network.visualisation.on('hoverNode', function(params) {
-            activNodeId = params.node;
+            var idNodeHovered = params.node;
+            var allIds = network.allNodesIds;
 
-            var ids = network.nodeIds;
+            // pas d'effet sur le nœud survolé
+            var noEffectNodesIds = [idNodeHovered];
+            // ni sur les nœuds qui y sont connectés
+            noEffectNodesIds = noEffectNodesIds
+                .concat(network.visualisation.getConnectedNodes(idNodeHovered));
 
-            var noTransparentNodesIds = [activNodeId, network.selectedNode];
-            noTransparentNodesIds = noTransparentNodesIds.concat(network.visualisation.getConnectedNodes(activNodeId));
             if (network.selectedNode !== undefined) {
-                noTransparentNodesIds = noTransparentNodesIds.concat(network.visualisation.getConnectedNodes(network.selectedNode));
+                // pas d'effet sur le nœud selectionné
+                noEffectNodesIds.push(network.selectedNode)
+                // ni sur les nœuds qui y sont connectés
+                noEffectNodesIds = noEffectNodesIds
+                    .concat(network.visualisation.getConnectedNodes(network.selectedNode));
             }
-            
 
-            for (let i = 0; i < ids.length; i++) {
-                const id = ids[i];
-                if (noTransparentNodesIds.indexOf(id) !== -1) { continue; }
-                var groupName = network.data.nodes.get(id).group;
+            for (let i = 0 ; i < allIds.length ; i++) {
+                const nodeId = allIds[i];
+                if (noEffectNodesIds.indexOf(nodeId) !== -1) {
+                    // si 'nodeId' est compris dans 'noEffectNodesIds'
+                    continue;
+                }
+
+                var nodeGroupName = network.data.nodes.get(nodeId).group;
                 
                 network.data.nodes.update({
-                    id: id,
-                    color: chooseColor(groupName, true),
+                    id: nodeId,
+                    color: chooseColor(nodeGroupName, true),
                     opacity: 0.4,
                     font: {color: 'rgba(0, 0, 0, 0.5)'}
                 });
             }
             
         });
-        // Évent fin de survol : les nœuds retrouvent leur couleur initiale
-        network.visualisation.on('blurNode', function(params) {
-            var ids = network.nodeIds;
 
-            for (let i = 0; i < ids.length; i++) {
-                const id = ids[i];
-                if (id == params.node) { continue; }
+        network.visualisation.on('blurNode', function(params) {
+            var allIds = network.allNodesIds;
+
+            allIds.forEach(id => {
                 network.data.nodes.update({
                     id: id,
                     color: false,
                     opacity: 1,
                     font: {color: 'black'}
-                })
-            }
-            
+                });
+            });
         });
 
-        // Évent au zoom
         network.visualisation.on('zoom', function(params) {
 
             // limiter le de-zoom
@@ -148,29 +143,30 @@ fetch('data.json').then(function(response) {
             }
 
             // limiter le zoom
-            if (params.scale >= 1) {
+            if (params.scale >= network.zoom.max) {
                 network.visualisation.moveTo({ scale: network.zoom.max }); }
-            
         });
 
-        // Visuation générée chargée
+        // Stockage données
         network.isLoaded = true;
+        network.allNodesIds = network.data.nodes.getIds();
+
         board.init();
 
         // Si l'id d'un nœud est entré dans l'URL, on l'active
-        var pathnameArray = window.location.pathname.split('/');
-        var idNode = pathnameArray[pathnameArray.length -1];
-        if (switchNode(idNode, false)) {
+        var urlPathnameArray = window.location.pathname.split('/');
+        var nodeId = urlPathnameArray[urlPathnameArray.length -1];
+        if (switchNode(nodeId, false)) {
             fiche.open();
-            historique.init(idNode);
+            historique.init(nodeId);
         }
 
     });
     
 });
 
-let nodeList = [];
-function createNode(entite) {
+let generatedNodesObjectList = [];
+function createNodeObject(entite) {
 
     var nodeObject = {
         id: entite.id,
@@ -214,11 +210,11 @@ function createNode(entite) {
     } else {
         nodeObject.sortName = entite.label
     }
-    nodeList.push(nodeObject);
+    generatedNodesObjectList.push(nodeObject);
 }
 
-let edgeList = [];
-function createEdge(lien) {
+let generatedEdgesObjectList = [];
+function createEdgeObject(lien) {
     if (lien.from == 1 || lien.to == 1) {
         // si le lien a une relation avec Otelt
         var color = null;
@@ -230,13 +226,21 @@ function createEdge(lien) {
         title: lien.label,
         color: color
     };
-    edgeList.push(edgeObject);
+    generatedEdgesObjectList.push(edgeObject);
 }
+
+/**
+ * Retourne une couleur type RGB ou RGBA
+ * selon le nom d'un groupe d'entité
+ * @param {String} relationEntite 
+ * @param {Boolean} [lowerOpacity = false] true : retuns RGBA : false : retuns RGB
+ * @returns {String}
+ */
 
 function chooseColor(relationEntite, lowerOpacity = false) {
     switch (relationEntite) {
         case 'collegue':
-            var color = '128, 0, 128'; break; // notation RGB
+            var color = '128, 0, 128'; break;
         case 'contemporain':
             var color = '0, 128, 0'; break;
         case 'collaborateur':
@@ -253,11 +257,9 @@ function chooseColor(relationEntite, lowerOpacity = false) {
             var color = '128,128,128'; break;
         case 'évènement':
             var color = '128,128,128'; break;
-    }    
-    // ajout opacité '0,4'
+    }
     if (lowerOpacity) { return ['rgba(', color, ', 0.4)'].join(''); }
     else { return ['rgb(', color, ')'].join(''); }
-
 }
 
 function getNodeMetas(id) { 
@@ -280,70 +282,65 @@ function getNodeMetas(id) {
 }
 
 function findConnectedNodes(nodeId) {
-    var connectedNodesList = [];
     var nodesConnected = network.visualisation.getConnectedNodes(nodeId);
     var edgesConnected = network.visualisation.getConnectedEdges(nodeId);
 
-
+    var connectedNodesList = [];
     for (let i = 0; i < nodesConnected.length; i++) {
         const id = nodesConnected[i];
-        var nodeConnected = getNodeMetas(id);
-        var titleOfLink = network.data.edges.get(edgesConnected[i]).title;
-        connectedNodesList.push({id: nodeConnected.id, label: nodeConnected.label, relation: nodeConnected.relation, title: titleOfLink});
+        var nodeMetas = getNodeMetas(id);
+        var nodeLinkTitle = network.data.edges.get(edgesConnected[i]).title;
+        connectedNodesList.push({
+            id: nodeMetas.id,
+            label: nodeMetas.label,
+            relation: nodeMetas.relation,
+            title: nodeLinkTitle
+        });
     }
-    
-    // nodesConnected.forEach(id => {
-    // });
+
     return connectedNodesList;
 }
 
-function zoomToNode(id) {
-    id = Number(id);
-    // Trouver le nœud et zommer sur lui
-    var nodeCoordonates = network.visualisation.getPosition(id);
+function zoomToNode(nodeId) {
+    var nodeId = Number(nodeId);
+    var nodeCoordonates = network.visualisation.getPosition(nodeId);
     
-    // si le nœeud est hidden, interrompre
-    if (network.data.nodes.get(id).hidden === true) { return; }
-    
+    if (network.data.nodes.get(nodeId).hidden === true) {
+        // si le nœeud est hidden
+        return;
+    }
+
     network.visualisation.moveTo({
         position: {
             x: nodeCoordonates.x,
             y: nodeCoordonates.y
         },
-        scale: 1,
+        scale: network.zoom.max,
         animation: true
     });
-    // L'activer, lui et ses liens
-    network.visualisation.selectNodes([id]);
+
+    network.visualisation.selectNodes([nodeId]);
 }
 
 function backToCenterView() {
-    network.visualisation.fit({
-        animation: true
-    });
+    network.visualisation.fit({ animation: true });
 }
 
-function switchNode(id, mustZoom = true) {
+function switchNode(nodeId, mustZoom = true) {
 
-    var nodeMetas = getNodeMetas(id);
+    var nodeMetas = getNodeMetas(nodeId);
 
     if (nodeMetas == false) { return false; }
 
-    network.selectedNode = id;
+    network.selectedNode = nodeId;
 
+    // renommer la page web
     document.title = nodeMetas.label + ' - Otetosphère';
 
-    if (mustZoom) {zoomToNode(id);}
+    if (mustZoom) {zoomToNode(nodeId);}
 
-    fiche.fill(nodeMetas, findConnectedNodes(id));
+    fiche.fill(nodeMetas, findConnectedNodes(nodeId));
     fiche.open();
 
     return true;
-}
-
-function allNodesVisible() {
-    if (!network.isLoaded) { return; }
-
-    network.data.nodes.forEach(function(data) {
-        network.data.nodes.update({id: data.id, hidden: false}); });
 }
