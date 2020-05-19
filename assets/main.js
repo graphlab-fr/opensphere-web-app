@@ -102,7 +102,7 @@ function createCard(entite) {
 }
 /**
  * ============
- * Zoom
+ * Mouvements réseau
  * ============
  */
 
@@ -113,15 +113,19 @@ var commands = {
             this.btn.classList.remove('fiche__btn-control--hidde');
             this.btn.disabled = false;
         }
+    },
+    zoom: {
+        btnPlus: document.querySelector('#zoom-plus'),
+        btnMoins: document.querySelector('#zoom-moins'),
+        btnReinitialiser: document.querySelector('#zoom-general'),
+        interval: 0.2
     }
 }
-const btnZoomPlus = document.querySelector('#zoom-plus');
-const btnZoomMoins = document.querySelector('#zoom-moins');
 
-btnZoomPlus.addEventListener('click', () => {
+commands.zoom.btnPlus.addEventListener('click', () => {
     if (!network.isLoaded) { return; }
 
-    var scale = network.visualisation.getScale() + 0.3;
+    var scale = network.visualisation.getScale() + commands.zoom.interval;
 
     if (scale >= network.zoom.max) {
         scale = network.zoom.max }
@@ -129,10 +133,10 @@ btnZoomPlus.addEventListener('click', () => {
     network.visualisation.moveTo({ scale: scale });
 });
 
-btnZoomMoins.addEventListener('click', () => {
+commands.zoom.btnMoins.addEventListener('click', () => {
     if (!network.isLoaded) { return; }
 
-    var scale = network.visualisation.getScale() - 0.3;
+    var scale = network.visualisation.getScale() - commands.zoom.interval;
 
     if (scale <= network.zoom.min) {
         scale = network.zoom.min }
@@ -140,8 +144,7 @@ btnZoomMoins.addEventListener('click', () => {
     network.visualisation.moveTo({ scale: scale });
 });
 
-const btnZoomGeneral = document.querySelector('#zoom-general');
-btnZoomGeneral.addEventListener('click', backToCenterView);
+commands.zoom.btnReinitialiser.addEventListener('click', backToCenterView);
 
 commands.visualiser.btn.addEventListener('click', () => {
     zoomToNode(fiche.showingNodeMetas.id);
@@ -674,7 +677,7 @@ fetch('data.json').then(function(response) {
         network.visualisation.on('zoom', function(params) {
 
             // limiter le de-zoom
-            if (params.scale <= 0.2) {
+            if (params.scale <= network.zoom.min) {
                 network.visualisation.moveTo({
                     position: { x: 0, y: 0 },
                     scale: network.zoom.min

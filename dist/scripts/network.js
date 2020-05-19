@@ -140,7 +140,7 @@ fetch('data.json').then(function(response) {
         network.visualisation.on('zoom', function(params) {
 
             // limiter le de-zoom
-            if (params.scale <= 0.2) {
+            if (params.scale <= network.zoom.min) {
                 network.visualisation.moveTo({
                     position: { x: 0, y: 0 },
                     scale: network.zoom.min
