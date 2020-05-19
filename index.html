@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="./assets/main.css">
 
     <title>Otletosphère</title>
@@ -16,10 +17,10 @@
 
         <section id="introduction" class="introduction">
 
-            <div class="introduction__wrapper">
-                <img class="introduction__img-otlet" src="./assets/photos/OtletPaulColorized.png" alt="">
+            <div class="introduction__wrapper || d-flex flex-wrap">
+                <img class="introduction__img-otlet || col-md-4" src="./assets/photos/OtletPaulColorized.png" alt="">
     
-                <div class="introduction__texte">
+                <div class="introduction__texte || col-md-6">
                     <h1>À propos</h1>
                     
                     <p> L’Otletosphère est une cartographie relationnelle des personnalités et institutions liées à Paul Otlet. Ce projet part du constat de l'implication forte de Paul Otlet, au sein des organisations internationales pour la paix ainsi qu'au sein des institutions bibliographiques et documentaires. Les différentes activités d'Otlet lui ont permis de côtoyer un large nombre de personnalités scientifiques et d'artistes avec lesquels il a pu entretenir des correspondances, se lier d'amitié, ou collaborer sur des projets communs. Ces relations sont connues ou attestées par l'examen des archives du Mundaneum.</p>
@@ -51,7 +52,7 @@
         <div id="entete-fixeur" class="entete__fixe">
 
             <header id="header" class="entete__top" role="banner">
-                <div class="entete__identite" onclick="movement.goTo('reseau');">
+                <div class="entete__identite || m-lg-0" onclick="movement.goTo('reseau');">
                     <h1 class="title-site"><span class="title-site__bold">Otlet</span>osphère</h1>
                 </div>
 
@@ -68,14 +69,14 @@
                     </ul>
                 </nav>
 
-                <div class="search-box">
+                <div class="search-box || d-none d-sm-block">
                     <label for="search" class="search-box__label"></label>
                     <input id="search" class="search-box__input" type="text" placeholder="Rechercher" role="search" autocomplete="off">
                     <ul id="search-result" class="search-list"></ul>
                 </div>
             </header>
     
-            <section class="toolbar">
+            <section class="toolbar || d-none d-lg-flex">
                 <div class="toolbar__section">
                     <button class="btn-group" data-group="otlet" data-lang-fr="Otlet" data-lang-en="Otlet">Otlet</button>
                 </div>
@@ -104,7 +105,8 @@
 
         <section class="network-wrapper">
 
-            <button id="fiche-open" class="btn-fiche" title="Afficher détails"></button>
+            <button id="filtre-open" class="network__btn network__btn--left || d-lg-none" title="Afficher les fitres"></button>
+            <button id="fiche-open" class="network__btn network__btn--right" title="Afficher les détails"></button>
 
             <div id="network" class="network"></div>
 
@@ -126,10 +128,38 @@
             </div>
         </section>
 
+        <aside id="filter-volet" class="lateral lateral--left || d-lg-none">
+            <header class="lateral__entete">
+                <button id="filtre-close" class="lateral__btn-control">Fermer</button>
+            </header>
+
+            <main>
+                <h3 class="ml-2">Filtrer la vue</h3>
+    
+                <div>
+                    <button class="btn-group btn-group--large" data-group="otlet" data-lang-fr="Otlet" data-lang-en="Otlet">Otlet</button>
+                </div>
+    
+                <div>
+                    <button class="btn-group btn-group--large" data-group="famille" data-lang-fr="famille" data-lang-en="family">famille</button>
+                    <button class="btn-group btn-group--large" data-group="collegue" data-lang-fr="collègues" data-lang-en="coworker">collègues</button>
+                    <button class="btn-group btn-group--large" data-group="collaborateur" data-lang-fr="collaborateur" data-lang-en="colleagues">collaborateurs</button>
+                    <button class="btn-group btn-group--large" data-group="contemporain" data-lang-fr="contemporains" data-lang-en="contemporaries">contemporains</button>
+                    <button class="btn-group btn-group--large" data-group="opposant" data-lang-fr="opposants" data-lang-en="rival">opposants</button>
+                </div>
+    
+                <div>
+                    <button class="btn-group btn-group--large" data-group="œuvre" data-lang-fr="œuvres" data-lang-en="œuvres">œuvres</button>
+                    <button class="btn-group btn-group--large" data-group="évènement" data-lang-fr="évènement" data-lang-en="events">évènements</button>
+                    <button class="btn-group btn-group--large" data-group="institution" data-lang-fr="institutions" data-lang-en="institutions">institutions</button>
+                </div>
+            </main>
+        </aside>
+
         <aside id="fiche" class="lateral lateral--right fiche">
-            <header class="fiche__entete">
-                <button id="zoom-selection" class="fiche__btn-control fiche__btn-control--imp fiche__btn-control--hidde" disabled>Visualiser</button>
-                <button id="fiche-close" class="fiche__btn-control">Fermer</button>
+            <header class="lateral__entete">
+                <button id="zoom-selection" class="lateral__btn-control lateral__btn-control--imp lateral__btn-control--hidde" disabled>Visualiser</button>
+                <button id="fiche-close" class="lateral__btn-control">Fermer</button>
             </header>
 
             <main id="fiche-content" class="fiche__content">

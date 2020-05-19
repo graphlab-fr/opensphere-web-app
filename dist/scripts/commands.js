@@ -8,7 +8,7 @@ var commands = {
     visualiser: {
         btn: document.querySelector('#zoom-selection'),
         allow: function() {
-            this.btn.classList.remove('fiche__btn-control--hidde');
+            this.btn.classList.remove('lateral__btn-control--hidde');
             this.btn.disabled = false;
         }
     },
@@ -57,6 +57,11 @@ commands.visualiser.btn.addEventListener('click', () => {
 
 var filter = {
     btnsGroups: document.querySelectorAll('.btn-group'),
+    volet: {
+        body: document.querySelector('#filter-volet'),
+        btnOpen: document.querySelector('#filtre-open'),
+        btnClose: document.querySelector('#filtre-close')
+    },
     init: function() {
         this.btnsGroups.forEach(btn => {
             var group = btn.dataset.group;
@@ -114,3 +119,7 @@ var filter = {
 }
 
 filter.init();
+filter.volet.btnOpen.addEventListener('click', () => {
+    filter.volet.body.classList.add('lateral--active'); });
+filter.volet.btnClose.addEventListener('click', () => {
+    filter.volet.body.classList.remove('lateral--active'); });

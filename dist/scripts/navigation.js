@@ -41,7 +41,7 @@ navigation.links.forEach(link => {
     })
 });
 
-var headerHeight = interface.headerFixeur.clientHeight + 8;
+var headerHeight = interface.headerFixeur.clientHeight;
 
 var movement = {
     currentSection: 'reseau',

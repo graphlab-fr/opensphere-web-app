@@ -4,17 +4,18 @@
     z-index: 999;
     
     &__fixe {
+        overflow: hidden;
         left: 0px;
-        padding: 10px 20px;
+        padding: 10px 20px 0 20px;
 
         &.entete__fixe--active {
             box-sizing: border-box;
-            padding: 10px 20px;
             position: fixed;
             top: 0px;
             left: 0px;
             background-color: white;
             width: 100%;
+            height: $header-height;
             @extend %shadow-3;
         }
     }
@@ -22,13 +23,15 @@
     &__top {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-content: stretch;
+        flex-wrap: wrap;
     }
 
     &__identite {
         cursor: pointer;
         display: flex;
         align-items: center;
+        margin-bottom: 10px;
     }
 }
 

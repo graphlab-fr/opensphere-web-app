@@ -1,31 +1,5 @@
 .fiche {
 
-    &__entete {
-        display: flex;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    }
-    
-    &__btn-control {
-        cursor: pointer;
-        box-sizing: border-box;
-        width: 100%;
-        border: unset;
-        font-size: 15px;
-        padding: 2px 0;
-        height: 25px;
-        background-color: black;
-        color: white;
-        
-        &--imp {
-            background-color: $color-brun;
-            color: black;
-        }
-
-        &--hidde {
-            display: none;
-        }
-    }
-
     &__content {
         overflow: auto;
         height: calc(100% - 25px);

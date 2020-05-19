@@ -1,0 +1,62 @@
+.btn-group {
+    @extend %font-regular;
+    @extend %shadow-1;
+    position: relative;
+    border: unset;
+    display: block;
+    padding: 3px 30px 3px 10px;
+    margin: 0 2px;
+    border-radius: 3px;
+    width: 100%;
+    font-size: 14px;
+    color: white;
+    
+    &--large {
+        box-shadow: unset;
+        border-radius: unset;
+        margin: unset;
+        padding: 7px 30px 7px 10px;
+
+        // &::after {
+        //     @extend %font-bold;
+        //     position: absolute;
+        //     content: '✓';
+        //     color: black;
+        //     width: 26px;
+        //     height: 26px;
+        //     top: 6px;
+        //     // background-color: white;
+        //     // border-radius: 2px;
+        //     // right: 10px;
+        //     // padding: 2px;
+        //     // box-sizing: border-box;
+        //     // font-size: 11px;
+        //     // display: flex;
+        //     // justify-content: center;
+        //     // align-items: center;
+        // }
+    }
+
+    &::after {
+        @extend %font-bold;
+        position: absolute;
+        content: '✓';
+        color: black;
+        width: 15px;
+        height: 15px;
+        top: 20%;
+        background-color: white;
+        border-radius: 2px;
+        right: 10px;
+        padding: 2px;
+        box-sizing: border-box;
+        font-size: 11px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &.active::after {
+        content: '';
+    }
+}
