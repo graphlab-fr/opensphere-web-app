@@ -1,14 +1,14 @@
 var historique = {
-    actualiser: function(id) {
-        if (history.state == null) { this.init(id); }
+    actualiser: function(nodeId) {
+        if (history.state == null) { this.init(nodeId); }
         else {
             var timeline = history.state.hist;
-            timeline.push(id);
-            history.pushState({hist : timeline}, 'entite ' + id, id);
+            timeline.push(nodeId);
+            history.pushState({hist : timeline}, 'entite ' + nodeId, nodeId);
         }
     },
-    init: function(id) {
-        history.pushState({hist : [id]}, 'entite ' + id, id);
+    init: function(nodeId) {
+        history.pushState({hist : [nodeId]}, 'entite ' + nodeId, nodeId);
     }
 }
 
@@ -17,6 +17,6 @@ window.onpopstate = function(e) {
 
     var timeline = e.state.hist;
 
-    var id = timeline[timeline.length -1];
-    switchNode(id);
+    var nodeId = timeline[timeline.length - 1];
+    switchNode(nodeId);
 };
