@@ -9,7 +9,6 @@ var fiche = {
     },
     isOpen: false,
     fields: {
-        // champs du fiche
         wikiLink: document.querySelector('#fiche-wiki-link'),
         img: document.querySelector('#fiche-meta-img'),
         label: document.querySelector('#fiche-meta-label'),
@@ -41,85 +40,108 @@ var fiche = {
         else { this.contol.close.classList.add('fiche__btn-control--hidde'); }
     },
     setImage: function(entitePhoto, entiteLabel) {
-        if (entitePhoto === null) { return; }
         this.fields.img.setAttribute('src', entitePhoto);
         this.fields.img.setAttribute('alt', 'photo de ' + entiteLabel);
     },
     setLabel: function(entiteLabel) {
-        if (entiteLabel === null) { return; }
-        this.fields.label.textContent = entiteLabel;
+        if (entiteLabel === null) {  
+            this.fields.label.textContent = '';
+        } else {
+            this.fields.label.textContent = entiteLabel;
+        }
     },
     setDates: function(entiteDateNaissance, entiteDateMort) {
-        if (entiteDateNaissance === null && entiteDateMort === null) { return; }
+        if (entiteDateNaissance === null && entiteDateMort === null) {
+            this.fields.date.innerHTML = '';
+            return;
+        }
+
+        let naissance = '';
+        let mort = '';
 
         if (entiteDateNaissance !== null) {
-            var naissance = '<div class="fiche__dates"><time class="" datetime="' 
-            + entiteDateNaissance + '">' + entiteDateNaissance + '</time>';
+            naissance = '<div class="fiche__dates"><time class="" datetime="' 
+                + entiteDateNaissance + '">' + entiteDateNaissance + '</time>';
         }
 
         if (entiteDateMort !== null) {
-            var mort = ' - <time class="fiche__dates" datetime="' + entiteDateMort + '">' +
+            mort = ' - <time class="fiche__dates" datetime="' + entiteDateMort + '">' +
                 entiteDateMort + '</time><div>';
         }
 
         this.fields.date.innerHTML = [naissance, mort].join('');
     },
     setWikiLink: function(wikiLink) {
-        if (wikiLink === null) { return; }
-        this.fields.wikiLink.classList.add('fiche__wiki-link--visible')
-        this.fields.wikiLink.setAttribute('href', wikiLink)
+        if (wikiLink === null) {
+            this.fields.wikiLink.classList.remove('fiche__wiki-link--visible')
+            this.fields.wikiLink.setAttribute('href', '')
+        } else {
+            this.fields.wikiLink.classList.add('fiche__wiki-link--visible')
+            this.fields.wikiLink.setAttribute('href', wikiLink)
+        }
     },
     setPays: function(entitePays) {
-        if (entitePays === null) { return; }
-        this.fields.pays.innerHTML = entitePays;
+        if (entitePays === null) {
+            this.fields.pays.innerHTML = '';
+        } else {
+            this.fields.pays.innerHTML = entitePays;
+        }
     },
     setDiscipline: function(entiteDiscipline) {
-        if (entiteDiscipline === null) { return; }
-        this.fields.discipline.innerHTML = entiteDiscipline;
+        if (entiteDiscipline === null) {
+            this.fields.discipline.innerHTML = '';
+        } else {
+            this.fields.discipline.innerHTML = entiteDiscipline;
+        }
     },
     setDescription: function(entiteDescription) {
-        if (entiteDescription === null) { return; }
-        this.fields.description.innerHTML = entiteDescription;
+        if (entiteDescription === null) {
+            this.fields.description.innerHTML = '';
+        } else {
+            this.fields.description.innerHTML = entiteDescription;
+        }
     },
     setConnexion: function(nodeConnectedList, entiteLabel) {
-        if (nodeConnectedList === false) { return; }
         this.fields.connexion.innerHTML = '';
+
+        if (nodeConnectedList === null) { return; }
 
         var list = document.createElement('ul');
         list.classList.add('connexions__list');
         this.fields.connexion.appendChild(list);
 
         for (let i = 0; i < nodeConnectedList.length; i++) {
-            const connexion = nodeConnectedList[i];
+            const connectedNode = nodeConnectedList[i];
 
-            if (connexion.label == entiteLabel) { continue; }
+            if (connectedNode.label == entiteLabel) {
+                // si le label n'est pas celui d'une entité connectée
+                // mais est en fait celui de l'entité active
+                continue;
+            }
 
             var listElt = document.createElement('li');
             listElt.classList.add('connexions__elt');
-            listElt.textContent = connexion.label;
+            listElt.textContent = connectedNode.label;
             this.fields.connexion.appendChild(listElt);
 
             var puceColored = document.createElement('span');
             puceColored.classList.add('connexions__puce');
-            puceColored.style.backgroundColor = chooseColor(connexion.relation);
+            puceColored.style.backgroundColor = chooseColor(connectedNode.relation);
             listElt.prepend(puceColored);
 
             listElt.addEventListener('click', () => {
-                var id = connexion.id;
-
-                switchNode(id);
-                historique.actualiser(id);
+                switchNode(connectedNode.id);
+                historique.actualiser(connectedNode.id);
             });
 
-            if (connexion.title !== null) {
-                listElt.setAttribute('title', connexion.title);
+            if (connectedNode.title !== null) {
+                listElt.setAttribute('title', connectedNode.title);
 
                 listElt.addEventListener('mouseenter', (e) => {
-
                     overflow.classList.add('overflow--active');
                     overflow.style.left = e.pageX + 20 + 'px';
                     overflow.style.top = e.pageY - overflow.offsetHeight + 'px';
-                    overflow.textContent = connexion.title;
+                    overflow.textContent = connectedNode.title;
                 })
 
                 listElt.addEventListener('mouseout', () => {
@@ -128,7 +150,7 @@ var fiche = {
             }
         }
     },
-    fill: function(nodeMetas, nodeConnectedList = false) {
+    fill: function(nodeMetas, nodeConnectedList = null) {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
         commands.visualiser.allow();
@@ -153,9 +175,7 @@ var fiche = {
                 break;
         }
 
-        // remplissage nœuds connectés
         this.setConnexion(nodeConnectedList, nodeMetas.label);
-        
     }
 }
 
