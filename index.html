@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- LIBRAIRIES CSS -->
     <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap-grid.min.css">
+    <!-- LIBRAIRIES CSS end -->
     <link rel="stylesheet" href="./assets/main.css">
 
     <title>Otletosphère</title>
@@ -15,9 +17,13 @@
 
     <section class="entete">
 
+        <!--
+            SECTION A PROPOS
+        -->
+
         <section id="introduction" class="introduction">
 
-            <div class="introduction__wrapper || d-flex flex-wrap">
+            <div class="introduction__wrapper || d-flex flex-wrap justify-content-center">
                 <img class="introduction__img-otlet || col-md-4" src="./assets/photos/OtletPaulColorized.png" alt="">
     
                 <div class="introduction__texte || col-md-6">
@@ -48,6 +54,14 @@
             </div>
             
         </section>
+
+        <!--
+            SECTION A PROPOS end
+        -->
+
+        <!--
+            TOP PAGE HEADER
+        -->
 
         <div id="entete-fixeur" class="entete__fixe">
 
@@ -99,9 +113,17 @@
 
         </div>
 
+        <!--
+            TOP PAGE HEADER end
+        -->
+
     </section>
 
     <main>
+
+        <!--
+            SECTION RESEAU
+        -->
 
         <section class="network-wrapper">
 
@@ -121,12 +143,28 @@
 
         </section>
 
+        <!--
+            SECTION RESEAU end
+        -->
+
+        <!--
+            SECTION FICHES
+        -->
+
         <section class="board">
             <div id="board-wrapper" class="board__wrapper">
                 <ul id="board-alphabetic" class="sort-alphabetic-list"></ul>
                 <div id="board-content" class="board__conteneur"></div>
             </div>
         </section>
+
+        <!--
+            SECTION FICHES end
+        -->
+
+        <!--
+            LATERAL FILTRE
+        -->
 
         <aside id="filter-volet" class="lateral lateral--left || d-lg-none">
             <header class="lateral__entete">
@@ -155,6 +193,14 @@
                 </div>
             </main>
         </aside>
+
+        <!--
+            LATERAL FILTRE end
+        -->
+
+        <!--
+            LATERAL FICHE
+        -->
 
         <aside id="fiche" class="lateral lateral--right fiche">
             <header class="lateral__entete">
@@ -194,12 +240,19 @@
             </main>
         </aside>
 
+        <!--
+            LATERAL FICHE end
+        -->
+
     </main>
 
     <div id="overflow" class="overflow"></div>
 
+    <!-- LIBRAIRIES JS -->
     <script src="./libs/vis-network/vis-network.min.js"></script>
     <script src="./libs/fuse/fuse.min.js"></script>
+    <!-- LIBRAIRIES JS end -->
+
     <script src="./assets/main.js"></script>
 
 </body>

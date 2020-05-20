@@ -181,7 +181,6 @@ button:focus {
   box-sizing: border-box;
   z-index: 999; }
   .entete__fixe {
-    overflow: hidden;
     left: 0px;
     padding: 10px 20px 0 20px; }
     .entete__fixe.entete__fixe--active {
