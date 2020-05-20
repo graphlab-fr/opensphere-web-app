@@ -2,7 +2,7 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    showingNodeMetas: null,
+    activeNodeMetas: null,
     contol: {
         open: document.querySelector('#fiche-open'),
         close: document.querySelector('#fiche-close')
@@ -20,8 +20,9 @@ var fiche = {
         connexion: document.querySelector('#fiche-connexion')
     },
 
-    fixer: function() {
-        fiche.body.classList.add('lateral--fixed');
+    fixer: function(bool) {
+        if (bool) { fiche.body.classList.add('lateral--fixed'); }
+        else { fiche.body.classList.remove('lateral--fixed'); }
     },
     open: function() {
         if (!network.isLoaded) { return; }
@@ -131,7 +132,7 @@ var fiche = {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
         commands.visualiser.allow();
-        this.showingNodeMetas = nodeMetas;
+        this.activeNodeMetas = nodeMetas;
 
         // remplissage métadonnées
         this.setImage(nodeMetas.image, nodeMetas.label);

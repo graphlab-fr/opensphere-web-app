@@ -229,7 +229,7 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    showingNodeMetas: null,
+    activeNodeMetas: null,
     contol: {
         open: document.querySelector('#fiche-open'),
         close: document.querySelector('#fiche-close')
@@ -247,8 +247,9 @@ var fiche = {
         connexion: document.querySelector('#fiche-connexion')
     },
 
-    fixer: function() {
-        fiche.body.classList.add('lateral--fixed');
+    fixer: function(bool) {
+        if (bool) { fiche.body.classList.add('lateral--fixed'); }
+        else { fiche.body.classList.remove('lateral--fixed'); }
     },
     open: function() {
         if (!network.isLoaded) { return; }
@@ -358,7 +359,7 @@ var fiche = {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
         commands.visualiser.allow();
-        this.showingNodeMetas = nodeMetas;
+        this.activeNodeMetas = nodeMetas;
 
         // remplissage métadonnées
         this.setImage(nodeMetas.image, nodeMetas.label);
@@ -416,25 +417,24 @@ window.onpopstate = function(e) {
     var nodeId = timeline[timeline.length - 1];
     switchNode(nodeId);
 };
-var interface = {
-    headerFixeur: document.querySelector('#entete-fixeur'),
-    fix: function(bool) {
-        if (bool) {
-            this.headerFixeur.classList.add('entete__fixe--active');
-            fiche.body.classList.add('lateral--fixed');
-        } else {
-            this.headerFixeur.classList.remove('entete__fixe--active');
-            fiche.body.classList.remove('lateral--fixed');
-        }
+var header = {
+    fixBox: document.querySelector('#entete-fixeur'),
+    height: 115,
+
+    fixer: function(bool) {
+        if (bool) { this.fixBox.classList.add('entete__fixe--active') }
+        else { this.fixBox.classList.remove('entete__fixe--active') }
     }
 }
 
 var navigation = {
     links: document.querySelectorAll('.navigation__link'),
     activLink: function(section) {
+        // désactiver la surbrillance du lien vers la précédante section
         document.querySelector('[data-section="' + movement.currentSection + '"]')
             .classList.remove('navigation__link--active');
-
+        
+        // activer la surbrillance du lien vers la nouvelle section
         document.querySelector('[data-section="' + section + '"]')
             .classList.add('navigation__link--active');
     },
@@ -459,41 +459,41 @@ navigation.links.forEach(link => {
     })
 });
 
-var headerHeight = interface.headerFixeur.clientHeight;
-
 var movement = {
     currentSection: 'reseau',
     offset: {
         introduction: 0,
-        graph: introduction.clientHeight - headerHeight,
-        board: introduction.clientHeight * 2 - headerHeight
+        graph: introduction.clientHeight - header.height,
+        board: introduction.clientHeight * 2 - header.height
     },
     goTo: function(section) {
+        navigation.activLink(section);
+        this.currentSection = section;
+
         switch (section) {
             case 'a_propos':
                 this.scroll(0);
-                interface.fix(false);
-                navigation.activLink(section);
-                this.currentSection = section;
+
+                header.fixer(false);
+                fiche.fixer(false);
+                fiche.canClose(true);
                 break;
                 
             case 'reseau':
                 this.scroll(this.offset.graph);
-                interface.fix(true);
-                navigation.activLink(section);
-                this.currentSection = section;
 
+                header.fixer(true);
+                fiche.fixer(true);
                 fiche.canClose(true);
                 break;
                 
             case 'fiches':
                 this.scroll(this.offset.board);
-                interface.fix(true);
-                navigation.activLink(section);
-                this.currentSection = section;
 
-                fiche.open();
+                header.fixer(true);
+                fiche.fixer(true);
                 fiche.canClose(false);
+                fiche.open();
                 break;
         }
     },
@@ -503,18 +503,6 @@ var movement = {
             behavior: 'smooth'
         });
     }
-}
-
-movement.goTo('reseau');
-
-window.onresize = function() {
-    headerHeight = interface.headerFixeur.clientHeight;
-    movement.offset = {
-        introduction: 0,
-        graph: introduction.clientHeight - headerHeight,
-        board: introduction.clientHeight * 2 - headerHeight
-    }
-    movement.goTo(movement.currentSection);
 }
 
 var langage = {
@@ -527,23 +515,39 @@ var langage = {
 
 Object.values(langage.flags).forEach(flag => {
     flag.addEventListener('click', (e) => {
+        var flag = e.target;
         
-        if (e.target.dataset.lang == langage.actual) { return; }
+        if (flag.dataset.lang == langage.actual) {
+            // si le bouton flag cliqué active la langue active
+            return;
+        }
 
-        e.target.classList.add('lang-box__flag--active');
+        // désactiver la surbrillance du flag de la précédante langue
         document.querySelector('[data-lang="' + langage.actual + '"]')
             .classList.remove('lang-box__flag--active');
-        
-            
-        langage.actual = e.target.dataset.lang;
+        // activer la surbrillance du flag de l'actuelle langue
+        flag.classList.add('lang-box__flag--active');
+
+        langage.actual = flag.dataset.lang;
         
         filter.translate();
         navigation.translate();
 
-        if (fiche.showingNodeMetas !== null) {
-            fiche.fill(fiche.showingNodeMetas); }
+        if (fiche.activeNodeMetas !== null) {
+            fiche.fill(fiche.activeNodeMetas); }
     });
 });
+
+movement.goTo('reseau');
+
+window.onresize = function() {
+    movement.offset = {
+        introduction: 0,
+        graph: introduction.clientHeight - header.height,
+        board: introduction.clientHeight * 2 - header.height
+    }
+    movement.goTo(movement.currentSection);
+}
 var network = {
     container: document.querySelector('#network'),
     isLoaded: false,
