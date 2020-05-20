@@ -41,25 +41,14 @@ var board = {
     }
 }
 
-function sortByCaracter(sortCaracter) {
-    network.data.nodes.forEach(function(data) {
-        var firstCaracterFromLabel = data.label.charAt(0);
-        if (firstCaracterFromLabel != sortCaracter && data.hidden != true) {
-            // caché s'il n'a pas la première lettre et qu'il n'est pas déjà caché
-            network.data.nodes.update({id: data.id, hidden: true});
-        }
-    },);
-}
-
-
 function createCard(entite) {
 
     if (entite.hidden == true) { return; }
 
     var firstCaracterFromLabel = entite.sortName.charAt(0);
     if (firstCaracterFromLabel != board.sort.lastCaracter) {
-        // si l'on change de caractère : enregistrement d'une nouvelle section de cartes
-        board.sort.lastCaracter = firstCaracterFromLabel;
+        // si le caractère n'est pas le dernier enregistré on a changé de caractère
+        // donc instance d'une nouvelle section de cartes
 
         var caracterSection = document.createElement('div');
         caracterSection.classList.add('board__section');
@@ -68,6 +57,8 @@ function createCard(entite) {
             caracter: firstCaracterFromLabel,
             cardsContent: caracterSection
         });
+
+        board.sort.lastCaracter = firstCaracterFromLabel;
     }
 
     var photo = '<img class="card__img" src="' + entite.image + '" alt="' + entite.label + '" />';
