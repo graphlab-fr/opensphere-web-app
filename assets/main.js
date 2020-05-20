@@ -128,7 +128,9 @@ commands.zoom.btnPlus.addEventListener('click', () => {
     var scale = network.visualisation.getScale() + commands.zoom.interval;
 
     if (scale >= network.zoom.max) {
-        scale = network.zoom.max }
+        // si l'échelle de zoom dépasse le maximum, elle s'y limite
+        scale = network.zoom.max
+    }
 
     network.visualisation.moveTo({ scale: scale });
 });
@@ -139,7 +141,9 @@ commands.zoom.btnMoins.addEventListener('click', () => {
     var scale = network.visualisation.getScale() - commands.zoom.interval;
 
     if (scale <= network.zoom.min) {
-        scale = network.zoom.min }
+        // si l'échelle de zoom dépasse le minium, elle s'y limite
+        scale = network.zoom.min
+    }
 
     network.visualisation.moveTo({ scale: scale });
 });
@@ -147,7 +151,7 @@ commands.zoom.btnMoins.addEventListener('click', () => {
 commands.zoom.btnReinitialiser.addEventListener('click', backToCenterView);
 
 commands.visualiser.btn.addEventListener('click', () => {
-    zoomToNode(fiche.showingNodeMetas.id);
+    zoomToNode(fiche.activeNodeMetas.id);
     movement.goTo('reseau');
 });
 
@@ -430,10 +434,13 @@ var header = {
 var navigation = {
     links: document.querySelectorAll('.navigation__link'),
     activLink: function(section) {
-        // désactiver la surbrillance du lien vers la précédante section
-        document.querySelector('[data-section="' + movement.currentSection + '"]')
-            .classList.remove('navigation__link--active');
-        
+
+        if (movement.currentSection !== undefined) {
+            // désactiver la surbrillance du lien vers la précédante section
+            document.querySelector('[data-section="' + movement.currentSection + '"]')
+                .classList.remove('navigation__link--active');
+        }
+
         // activer la surbrillance du lien vers la nouvelle section
         document.querySelector('[data-section="' + section + '"]')
             .classList.add('navigation__link--active');
@@ -454,19 +461,21 @@ var navigation = {
 
 navigation.links.forEach(link => {
     link.addEventListener('click', (e) => {
-        if (movement.currentSection === e.target.dataset.section) { return; }
         movement.goTo(e.target.dataset.section);
     })
 });
 
 var movement = {
-    currentSection: 'reseau',
+    currentSection: undefined,
     offset: {
         introduction: 0,
         graph: introduction.clientHeight - header.height,
         board: introduction.clientHeight * 2 - header.height
     },
     goTo: function(section) {
+
+        if (section == this.currentSection) { return; }
+
         navigation.activLink(section);
         this.currentSection = section;
 

@@ -26,7 +26,9 @@ commands.zoom.btnPlus.addEventListener('click', () => {
     var scale = network.visualisation.getScale() + commands.zoom.interval;
 
     if (scale >= network.zoom.max) {
-        scale = network.zoom.max }
+        // si l'échelle de zoom dépasse le maximum, elle s'y limite
+        scale = network.zoom.max
+    }
 
     network.visualisation.moveTo({ scale: scale });
 });
@@ -37,7 +39,9 @@ commands.zoom.btnMoins.addEventListener('click', () => {
     var scale = network.visualisation.getScale() - commands.zoom.interval;
 
     if (scale <= network.zoom.min) {
-        scale = network.zoom.min }
+        // si l'échelle de zoom dépasse le minium, elle s'y limite
+        scale = network.zoom.min
+    }
 
     network.visualisation.moveTo({ scale: scale });
 });
@@ -45,7 +49,7 @@ commands.zoom.btnMoins.addEventListener('click', () => {
 commands.zoom.btnReinitialiser.addEventListener('click', backToCenterView);
 
 commands.visualiser.btn.addEventListener('click', () => {
-    zoomToNode(fiche.showingNodeMetas.id);
+    zoomToNode(fiche.activeNodeMetas.id);
     movement.goTo('reseau');
 });
 
