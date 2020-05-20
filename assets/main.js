@@ -893,64 +893,73 @@ function switchNode(nodeId, mustZoom = true) {
 var search = {
     input: document.querySelector('#search'),
     resultContent: document.querySelector('#search-result'),
+    options: {
+        includeScore: true,
+        keys: ['label']
+    },    
 
     showResult: function(resultObj) {
-        var display = document.createElement('li');
-        display.classList.add('search__result');
-        display.textContent = resultObj.item.label;
-        search.resultContent.appendChild(display);
+        var nodeId = resultObj.item.id;
+        var nodeLabel = resultObj.item.label;
 
-        var id = resultObj.item.id;
+        var resultElement = document.createElement('li');
+        resultElement.classList.add('search__result');
+        resultElement.textContent = nodeLabel;
+        search.resultContent.appendChild(resultElement);
 
-        display.addEventListener('click', () => {
+        resultElement.addEventListener('click', () => {
 
-            if (network.selectedNode !== undefined && network.selectedNode == id) {
-                return; }
+            if (network.selectedNode !== undefined && network.selectedNode == nodeId) {
+                // si cette id correpond à celle du nœeud selectionné
+                return;
+            }
             
-            search.input.value = resultObj.item.label;
-            search.resultContent.innerHTML = '';
+            search.input.value = nodeLabel;
+            this.cleanResultContent();
 
-            switchNode(id);
-            historique.actualiser(id);
+            switchNode(nodeId);
+            historique.actualiser(nodeId);
         });
     },
     reset: function() {
         search.input.value = ''; // form value
+        this.cleanResultContent();
+    },
+    cleanResultContent: function() {
         search.resultContent.innerHTML = ''; // results
     }
 }
 
-const options = {
-    includeScore: true,
-    keys: ['label']
-}
-
-search.input.value = '';
+search.reset();
 
 search.input.addEventListener('focus', () => {
 
     if (!network.isLoaded) { return; }
     
-    const fuse = new Fuse(getActiveNodes(), options);
+    const fuse = new Fuse(getNoHiddenNodes(), search.options);
 
     search.input.addEventListener('input', () => {
 
         search.resultContent.innerHTML = '';
 
-        if (search.input.value == '') {
-            return; }
+        if (search.input.value == '') { return; }
 
         const resultList = fuse.search(search.input.value);
         
-        if (resultList.length > 5) { var nbResult = 5; }
-        else { var nbResult = resultList.length; }
+        if (resultList.length > 5) {
+            // si plus de 5 résultats, limiter à 5
+            var nbResult = 5;
+        } else {
+            // sinon garder l nombre de résultats
+            var nbResult = resultList.length;
+        }
         
         for (let i = 0; i < nbResult; i++) {
             search.showResult(resultList[i]); }
     });
 });
 
-function getActiveNodes() {
+function getNoHiddenNodes() {
     var activeNodes = network.data.nodes.get({
         filter: function (item) {
             return (item.hidden !== true);
