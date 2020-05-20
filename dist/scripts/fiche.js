@@ -101,7 +101,7 @@ var fiche = {
             this.fields.description.innerHTML = entiteDescription;
         }
     },
-    setConnexion: function(nodeConnectedList, entiteLabel) {
+    setConnexion: function(nodeConnectedList) {
         this.fields.connexion.innerHTML = '';
 
         if (nodeConnectedList === null) { return; }
@@ -113,9 +113,7 @@ var fiche = {
         for (let i = 0; i < nodeConnectedList.length; i++) {
             const connectedNode = nodeConnectedList[i];
 
-            if (connectedNode.label == entiteLabel) {
-                // si le label n'est pas celui d'une entité connectée
-                // mais est en fait celui de l'entité active
+            if (connectedNode.hidden == true) {
                 continue;
             }
 
@@ -175,7 +173,7 @@ var fiche = {
                 break;
         }
 
-        this.setConnexion(nodeConnectedList, nodeMetas.label);
+        this.setConnexion(nodeConnectedList);
     }
 }
 

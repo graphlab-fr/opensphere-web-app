@@ -274,6 +274,7 @@ function getNodeMetas(id) {
                 nodeMetas.label = item.label;
                 nodeMetas.image = item.image;
                 nodeMetas.relation = item.group;
+                nodeMetas.hidden = item.hidden;
             }
         }
     });
@@ -294,7 +295,8 @@ function findConnectedNodes(nodeId) {
             id: nodeMetas.id,
             label: nodeMetas.label,
             relation: nodeMetas.relation,
-            title: nodeLinkTitle
+            title: nodeLinkTitle,
+            hidden: nodeMetas.hidden,
         });
     }
 
