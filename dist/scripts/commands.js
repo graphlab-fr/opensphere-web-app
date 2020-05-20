@@ -75,6 +75,8 @@ var filter = {
             let isActiveGroup = true;
         
             btn.addEventListener('click', () => {
+
+                network.visualisation.stabilize();
         
                 if (!network.isLoaded) { return; }
         
