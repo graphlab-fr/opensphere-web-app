@@ -38,60 +38,48 @@ var network = {
         max: 1,
         min: 0.2
     },
-    selectedNode: undefined
-}
+    selectedNode: undefined,
 
-fetch('data.json').then(function(response) {
-    // Chargement de données...
-    
-    response.text().then(function(text) {
-        // Traitement des données...
-        var data = JSON.parse(text);
-
-        Object.values(data.Entites).forEach(entite => {
-            createNodeObject(entite); });
+    init: function() {
         
-        Object.values(data.Extraction).forEach(lien => {
-            createEdgeObject(lien); });
-
         // Génération de la visualisation
         network.data = {
             nodes: new vis.DataSet(generatedNodesObjectList),
             edges: new vis.DataSet(generatedEdgesObjectList)
         }
-
+        
         network.visualisation = new vis.Network(network.container,
             network.data, network.options);
         
         // Évents du network
         network.visualisation.on('selectNode', function(nodeMetasBrutes) {
             var idNode = nodeMetasBrutes.nodes[0];
-
+        
             if (idNode === undefined) { return; }
             
             if (network.selectedNode !== undefined && network.selectedNode == idNode) {
                 // si nœeud est déjà selectionné
                 return;
             }
-
+        
             switchNode(idNode);
             historique.actualiser(idNode);
         });
-
+        
         network.visualisation.on('deselectNode', function() {
             network.selectedNode = undefined;
         });
-
+        
         network.visualisation.on('hoverNode', function(params) {
             var idNodeHovered = params.node;
             var allIds = network.allNodesIds;
-
+        
             // pas d'effet sur le nœud survolé
             var noEffectNodesIds = [idNodeHovered];
             // ni sur les nœuds qui y sont connectés
             noEffectNodesIds = noEffectNodesIds
                 .concat(network.visualisation.getConnectedNodes(idNodeHovered));
-
+        
             if (network.selectedNode !== undefined) {
                 // pas d'effet sur le nœud selectionné
                 noEffectNodesIds.push(network.selectedNode)
@@ -99,14 +87,14 @@ fetch('data.json').then(function(response) {
                 noEffectNodesIds = noEffectNodesIds
                     .concat(network.visualisation.getConnectedNodes(network.selectedNode));
             }
-
+        
             for (let i = 0 ; i < allIds.length ; i++) {
                 const nodeId = allIds[i];
                 if (noEffectNodesIds.indexOf(nodeId) !== -1) {
                     // si 'nodeId' est compris dans 'noEffectNodesIds'
                     continue;
                 }
-
+        
                 var nodeGroupName = network.data.nodes.get(nodeId).group;
                 
                 network.data.nodes.update({
@@ -118,10 +106,10 @@ fetch('data.json').then(function(response) {
             }
             
         });
-
+        
         network.visualisation.on('blurNode', function(params) {
             var allIds = network.allNodesIds;
-
+        
             allIds.forEach(id => {
                 network.data.nodes.update({
                     id: id,
@@ -131,9 +119,9 @@ fetch('data.json').then(function(response) {
                 });
             });
         });
-
+        
         network.visualisation.on('zoom', function(params) {
-
+        
             // limiter le de-zoom
             if (params.scale <= network.zoom.min) {
                 network.visualisation.moveTo({
@@ -141,18 +129,18 @@ fetch('data.json').then(function(response) {
                     scale: network.zoom.min
                 });
             }
-
+        
             // limiter le zoom
             if (params.scale >= network.zoom.max) {
                 network.visualisation.moveTo({ scale: network.zoom.max }); }
         });
-
+        
         // Stockage données
         network.isLoaded = true;
         network.allNodesIds = network.data.nodes.getIds();
-
+        
         board.init();
-
+        
         // Si l'id d'un nœud est entré dans l'URL, on l'active
         var urlPathnameArray = window.location.pathname.split('/');
         var nodeId = urlPathnameArray[urlPathnameArray.length -1];
@@ -160,73 +148,7 @@ fetch('data.json').then(function(response) {
             fiche.open();
             historique.init(nodeId);
         }
-
-    });
-    
-});
-
-let generatedNodesObjectList = [];
-function createNodeObject(entite) {
-
-    var nodeObject = {
-        id: entite.id,
-        label: entite.label,
-        font: {
-            face: 'Source Sans Pro',
-            size: 22,
-            strokeWidth: 3
-        },
-        title: entite.titre,
-        group: entite.relation_otlet,
-        image: './assets/photos/' + entite.photo,
-        size : 30,
-        borderWidth: 3,
-        borderWidthSelected: 60,
-        margin: 20,
-        metas: {
-            genre: entite.genre,
-            annee_naissance: entite.annee_naissance,
-            annee_mort: entite.annee_mort,
-            pays: entite.pays,
-            pays_en: entite.pays_en,
-            discipline: entite.discipline,
-            discipline_en: entite.discipline_en,
-            description: entite.description,
-            description_en: entite.description_en,
-            lien_wikipedia: entite.lien_wikipedia
-        },
-        interaction: {hover:true},
-        hidden: false
-    };
-
-    if (entite.nom) {
-        var splitName = entite.nom.split(' ', 2);
-        // rejet de la particule "de"
-        if (splitName.length == 2 && splitName[0] == 'de') {
-            nodeObject.sortName = splitName[1];
-        } else {
-            nodeObject.sortName = entite.nom;
-        }
-    } else {
-        nodeObject.sortName = entite.label
     }
-    generatedNodesObjectList.push(nodeObject);
-}
-
-let generatedEdgesObjectList = [];
-function createEdgeObject(lien) {
-    if (lien.from == 1 || lien.to == 1) {
-        // si le lien a une relation avec Otelt
-        var color = null;
-    } else { var color = 'gray'; }
-
-    var edgeObject = {
-        from: lien.from,
-        to: lien.to,
-        title: lien.label,
-        color: color
-    };
-    generatedEdgesObjectList.push(edgeObject);
 }
 
 /**
