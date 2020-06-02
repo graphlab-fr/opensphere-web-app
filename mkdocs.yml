@@ -2,9 +2,11 @@
 site_name: Documentation Otletosphère
 site_url: 'https://myllaume.github.io/otletosphere/'
 repo_name: 'Myllaume/otletosphere'
+repo_url: 'https://github.com/Myllaume/otletosphere'
+edit_uri: ''
 site_description: Documentation du projet Otletosphère
 site_author: Guillaume Brioudes
-copyright: Creative Commons BY
+copyright: '© Copyright 2019-2020, HyperOtlet'
 
 # Navigation
 nav:
