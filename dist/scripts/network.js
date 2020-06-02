@@ -191,13 +191,7 @@ function getNodeMetas(id) {
 
         filter: function (item) {
             if (item.id == id) {
-                nodeMetas = item.metas;
-                nodeMetas.id = id;
-                nodeMetas.label = item.label;
-                nodeMetas.image = item.image;
-                nodeMetas.relation = item.group;
-                nodeMetas.hidden = item.hidden;
-            }
+                nodeMetas = item; }
         }
     });
 
@@ -216,7 +210,7 @@ function findConnectedNodes(nodeId) {
         connectedNodesList.push({
             id: nodeMetas.id,
             label: nodeMetas.label,
-            relation: nodeMetas.relation,
+            relation: nodeMetas.group,
             title: nodeLinkTitle,
             hidden: nodeMetas.hidden,
         });

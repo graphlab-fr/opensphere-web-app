@@ -64,11 +64,11 @@ function createCard(entite) {
     var photo = '<img class="card__img" src="' + entite.image + '" alt="' + entite.label + '" />';
     var label = '<h3 class="card__label">' + entite.label + '</h3>';
     var dates = null;
-    if (entite.metas.annee_naissance !== null) {
-        if (entite.metas.annee_mort !== null) {
-            var dateAjoutMort = ' - ' + entite.metas.annee_mort; }
+    if (entite.annee_naissance !== null) {
+        if (entite.annee_mort !== null) {
+            var dateAjoutMort = ' - ' + entite.annee_mort; }
 
-        dates = ['<span class="card__date">(', entite.metas.annee_naissance,
+        dates = ['<span class="card__date">(', entite.annee_naissance,
             dateAjoutMort, ')</span>'].join('');
     }
     var identite = ['<div class="card__identite">', label, dates, '</div>'].join('');

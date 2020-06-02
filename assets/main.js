@@ -64,11 +64,11 @@ function createCard(entite) {
     var photo = '<img class="card__img" src="' + entite.image + '" alt="' + entite.label + '" />';
     var label = '<h3 class="card__label">' + entite.label + '</h3>';
     var dates = null;
-    if (entite.metas.annee_naissance !== null) {
-        if (entite.metas.annee_mort !== null) {
-            var dateAjoutMort = ' - ' + entite.metas.annee_mort; }
+    if (entite.annee_naissance !== null) {
+        if (entite.annee_mort !== null) {
+            var dateAjoutMort = ' - ' + entite.annee_mort; }
 
-        dates = ['<span class="card__date">(', entite.metas.annee_naissance,
+        dates = ['<span class="card__date">(', entite.annee_naissance,
             dateAjoutMort, ')</span>'].join('');
     }
     var identite = ['<div class="card__identite">', label, dates, '</div>'].join('');
@@ -242,18 +242,16 @@ function createNodeObject(data) {
             borderWidth: 3,
             borderWidthSelected: 60,
             margin: 20,
-            metas: {
-                genre: entite.genre,
-                annee_naissance: entite.annee_naissance,
-                annee_mort: entite.annee_mort,
-                pays: entite.pays,
-                pays_en: entite.pays_en,
-                discipline: entite.discipline,
-                discipline_en: entite.discipline_en,
-                description: entite.description,
-                description_en: entite.description_en,
-                lien_wikipedia: entite.lien_wikipedia
-            },
+            genre: entite.genre,
+            annee_naissance: entite.annee_naissance,
+            annee_mort: entite.annee_mort,
+            pays: entite.pays,
+            pays_en: entite.pays_en,
+            discipline: entite.discipline,
+            discipline_en: entite.discipline_en,
+            description: entite.description,
+            description_en: entite.description_en,
+            lien_wikipedia: entite.lien_wikipedia,
             interaction: {hover:true},
             hidden: false
         };
@@ -859,13 +857,7 @@ function getNodeMetas(id) {
 
         filter: function (item) {
             if (item.id == id) {
-                nodeMetas = item.metas;
-                nodeMetas.id = id;
-                nodeMetas.label = item.label;
-                nodeMetas.image = item.image;
-                nodeMetas.relation = item.group;
-                nodeMetas.hidden = item.hidden;
-            }
+                nodeMetas = item; }
         }
     });
 
@@ -884,7 +876,7 @@ function findConnectedNodes(nodeId) {
         connectedNodesList.push({
             id: nodeMetas.id,
             label: nodeMetas.label,
-            relation: nodeMetas.relation,
+            relation: nodeMetas.group,
             title: nodeLinkTitle,
             hidden: nodeMetas.hidden,
         });

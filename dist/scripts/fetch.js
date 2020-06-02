@@ -18,18 +18,16 @@ function createNodeObject(data) {
             borderWidth: 3,
             borderWidthSelected: 60,
             margin: 20,
-            metas: {
-                genre: entite.genre,
-                annee_naissance: entite.annee_naissance,
-                annee_mort: entite.annee_mort,
-                pays: entite.pays,
-                pays_en: entite.pays_en,
-                discipline: entite.discipline,
-                discipline_en: entite.discipline_en,
-                description: entite.description,
-                description_en: entite.description_en,
-                lien_wikipedia: entite.lien_wikipedia
-            },
+            genre: entite.genre,
+            annee_naissance: entite.annee_naissance,
+            annee_mort: entite.annee_mort,
+            pays: entite.pays,
+            pays_en: entite.pays_en,
+            discipline: entite.discipline,
+            discipline_en: entite.discipline_en,
+            description: entite.description,
+            description_en: entite.description_en,
+            lien_wikipedia: entite.lien_wikipedia,
             interaction: {hover:true},
             hidden: false
         };
