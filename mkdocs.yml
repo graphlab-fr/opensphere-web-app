@@ -1,8 +1,10 @@
 # Project information
 site_name: Documentation Otletosphère
-site_description: Documentation du projet Otlotosphere
+site_url: 'https://myllaume.github.io/otletosphere/'
+repo_name: 'Myllaume/otletosphere'
+site_description: Documentation du projet Otletosphère
 site_author: Guillaume Brioudes
-copyright: Creative Commons BY-SA
+copyright: Creative Commons BY
 
 # Navigation
 nav:
