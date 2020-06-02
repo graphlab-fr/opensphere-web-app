@@ -1,20 +1,16 @@
 {
-  "name": "network",
+  "name": "otletosphere_dev_tools",
   "version": "1.0.0",
-  "description": "Datavisualisation en réseau",
-  "main": "network.js",
+  "description": "Outils de développement Otletosphere",
+  "main": "main.js",
   "directories": {
     "doc": "doc"
   },
   "scripts": {
-    "test": "erreur"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Guillaume Brioudes",
   "license": "ISC",
-  "keywords": [
-    "datavisualisation",
-    "network"
-  ],
   "devDependencies": {
     "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
@@ -25,7 +21,12 @@
     "gulp-sass": "^4.0.2",
     "node-sass": "^4.13.1"
   },
-  "dependencies": {
-    "fuse.js": "^5.2.3"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Myllaume/otletosphere.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Myllaume/otletosphere/issues"
+  },
+  "homepage": "https://github.com/Myllaume/otletosphere#readme"
 }
