@@ -1,10 +1,7 @@
 /node_modules
 libs/
 .DS_Store
-/assets/icones
 /assets/logos
 /assets/photos
 /assets/font
-data.json
-data1.json
 /site/
