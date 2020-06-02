@@ -17,11 +17,8 @@ L’étude  du  réseau  de  personnes  de  Paul  Otlet, permet  d’imaginer  u
  Ce projet part du constat de l'implication forte de Paul  Otlet,  au  sein  desorganisations  internationales  pour  la  paix  ainsi  qu'au sein   des   institutions   bibliographiques   et   documentaires.
   Les   différentes activités  d'Otlet  lui  ont  permis  de  côtoyer  un  large  nombre  de  personnes dans des univers différents que nous avons tenté de représenter par des logiques de catégories.
 
-L’inspiration initiale provient de la représentation graphique de l’univers  transmedia  Marvel  produite  par  l’équipe  du  journal singapourien "T[he  Straits  Time](https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/index.html)",  qui  se  présente  comme  une  véritable  constellation  de superhéros, liés entre eux par leurs relations au sein des univers narratifs
-https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/index.html
-## Bibliographie :
+L’inspiration initiale provient de la représentation graphique de l’univers  transmedia  Marvel  produite  par  l’équipe  du  journal singapourien "[The  Straits  Time](https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/index.html)",  qui  se  présente  comme  une  véritable  constellation  de superhéros, liés entre eux par leurs relations au sein des univers narratifs
 
-Olivier Le Deuff, Jean David, Arthur Perret, Clément Borel. Surfer dans l'Otletosphère Des outils pour visualiser et interroger le réseau de Paul Otlet. H2PTM’19. De l’hypertexte aux humanités numériques, Roxin Ioan, Oct 2019, Montbelliard, France. p.65-76. disponible [ici](https://archivesic.ccsd.cnrs.fr/sic_02480515).
 
 
 ## Première version
@@ -53,3 +50,9 @@ On note les modifications majeures suivantes :
 - Données : structurer la saisie dans un *GSheet* unique et pérenniser l'injection
 - Programmation : mettre à jour les dépendances et refactoriser le code
 - Faciliter la (ré)utilisation : documentation et ouverture du code source avec API
+
+
+## Bibliographie :
+
+Olivier Le Deuff, Jean David, Arthur Perret, Clément Borel. Surfer dans l'Otletosphère Des outils pour visualiser et interroger le réseau de Paul Otlet. H2PTM’19. De l’hypertexte aux humanités numériques, Roxin Ioan, Oct 2019, Montbelliard, France. p.65-76. disponible [ici](https://archivesic.ccsd.cnrs.fr/sic_02480515).
+
