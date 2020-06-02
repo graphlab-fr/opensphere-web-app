@@ -225,23 +225,17 @@ filter.volet.btnClose.addEventListener('click', () => {
 let generatedNodesObjectList = [];
 function createNodeObject(data) {
 
+    var imagePath  = './assets/photos/';
+
     data.forEach(entite => {
                     
         var nodeObject = {
+            // entite metas
             id: entite.id,
             label: entite.label,
-            font: {
-                face: 'Source Sans Pro',
-                size: 22,
-                strokeWidth: 3
-            },
             title: entite.titre,
             group: entite.relation_otlet,
-            image: './assets/photos/' + entite.photo,
-            size : 30,
-            borderWidth: 3,
-            borderWidthSelected: 60,
-            margin: 20,
+            image: imagePath + entite.photo,
             genre: entite.genre,
             annee_naissance: entite.annee_naissance,
             annee_mort: entite.annee_mort,
@@ -252,8 +246,19 @@ function createNodeObject(data) {
             description: entite.description,
             description_en: entite.description_en,
             lien_wikipedia: entite.lien_wikipedia,
-            interaction: {hover:true},
-            hidden: false
+
+            // node style
+            size : 30,
+            borderWidth: 3,
+            borderWidthSelected: 60,
+            margin: 20,
+            interaction: {hover: true},
+            hidden: false,
+            font: {
+                face: 'Source Sans Pro',
+                size: 22,
+                strokeWidth: 3
+            }
         };
     
         if (entite.nom) {
@@ -285,9 +290,12 @@ function createEdgeObject(data) {
         } else { var color = 'gray'; }
     
         var edgeObject = {
+            // edge metas
             from: lien.from,
             to: lien.to,
             title: lien.label,
+
+            // edge style
             color: color
         };
         generatedEdgesObjectList.push(edgeObject);
