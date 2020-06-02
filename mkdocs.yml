@@ -1,0 +1,61 @@
+# Project information
+site_name: Documentation Otletosphère
+site_description: Documentation du projet Otlotosphere
+site_author: Guillaume Brioudes
+copyright: Creative Commons BY-SA
+
+# Navigation
+nav:
+  - Accueil: index.md
+  - Démarche:
+    - Choix techniques: choix technique.md
+  - Guide utilisation:
+    - Éléments d'interface: elements interface.md
+    - Naviguer dans le réseau: navigation reseau.md
+    - Sélectionner une entité: selection entites.md
+    - Trier les entités: trier entites.md
+  - FAQ: faq.md
+  - Historique: historique versions.md 
+  - Développement:
+    - Bibliothèques: bibliotheques.md
+    - Données: structure donnees.md
+    - Architecture: architecture code source.md
+    - Installation: installation.md
+
+# Theme configuration
+theme:
+  name: material
+  custom_dir: mkdocs-material/material
+  language: fr
+  palette:
+    primary: indigo
+    accent: indigo
+  font: false
+extra_css:
+  - extras/style.css
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: true
+  - toc:
+      permalink: true
+  - meta
+  - footnotes
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tilde
+
+# plugins
+plugins:
+  - search:
+      lang:
+        - fr
