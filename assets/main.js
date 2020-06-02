@@ -371,13 +371,6 @@ var fiche = {
         this.fields.img.setAttribute('src', entitePhoto);
         this.fields.img.setAttribute('alt', 'photo de ' + entiteLabel);
     },
-    setLabel: function(entiteLabel) {
-        if (entiteLabel === null) {  
-            this.fields.label.textContent = '';
-        } else {
-            this.fields.label.textContent = entiteLabel;
-        }
-    },
     setDates: function(entiteDateNaissance, entiteDateMort) {
         if (entiteDateNaissance === null && entiteDateMort === null) {
             this.fields.date.innerHTML = '';
@@ -408,26 +401,11 @@ var fiche = {
             this.fields.wikiLink.setAttribute('href', wikiLink)
         }
     },
-    setPays: function(entitePays) {
-        if (entitePays === null) {
-            this.fields.pays.innerHTML = '';
-        } else {
-            this.fields.pays.innerHTML = entitePays;
-        }
-    },
-    setDiscipline: function(entiteDiscipline) {
-        if (entiteDiscipline === null) {
-            this.fields.discipline.innerHTML = '';
-        } else {
-            this.fields.discipline.innerHTML = entiteDiscipline;
-        }
-    },
-    setDescription: function(entiteDescription) {
-        if (entiteDescription === null) {
-            this.fields.description.innerHTML = '';
-        } else {
-            this.fields.description.innerHTML = entiteDescription;
-        }
+    setMeta: function(meta, content) {
+        if (meta === null) {
+            content.innerHTML = ''; }
+        else {
+            content.innerHTML = meta; }
     },
     setConnexion: function(nodeConnectedList) {
         this.fields.connexion.innerHTML = '';
@@ -483,21 +461,21 @@ var fiche = {
         this.activeNodeMetas = nodeMetas;
 
         // remplissage métadonnées
+        this.setMeta(nodeMetas.label, this.fields.label);
         this.setImage(nodeMetas.image, nodeMetas.label);
-        this.setLabel(nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
         this.setWikiLink(nodeMetas.lien_wikipedia);
 
         switch (langage.actual) {
             case 'fr':
-                this.setPays(nodeMetas.pays);
-                this.setDiscipline(nodeMetas.discipline);
-                this.setDescription(nodeMetas.description);
+                this.setMeta(nodeMetas.pays, this.fields.pays);
+                this.setMeta(nodeMetas.discipline, this.fields.discipline);
+                this.setMeta(nodeMetas.description, this.fields.description);
                 break;
             case 'en':
-                this.setPays(nodeMetas.pays_en);
-                this.setDiscipline(nodeMetas.discipline_en);
-                this.setDescription(nodeMetas.description_en);
+                this.setMeta(nodeMetas.pays_en, this.fields.pays);
+                this.setMeta(nodeMetas.discipline_en, this.fields.discipline);
+                this.setMeta(nodeMetas.description_en, this.fields.description);
                 break;
         }
 
