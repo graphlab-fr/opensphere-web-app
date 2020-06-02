@@ -17,7 +17,7 @@ La dernière version testée du code source est entreposée sur un [dépôt GitH
 Une fois à l'emplacement souhaité vous pouvez télécharger le contenu via la ligne de commande suivante si vous avez installé le [logiciel Git](https://git-scm.com/).
 
 ```bash
-$ git clone https://github.com/HyperOtlet/Otletosphere.git
+$ git clone https://github.com/Myllaume/otletosphere.git
 ```
 
 ### Par archive
