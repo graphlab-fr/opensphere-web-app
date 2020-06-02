@@ -45,7 +45,9 @@ Cet élément fait le liens entre les trois sections du site. On peut y exectuer
 
 ### Recherche
 
-La barre de recherche permet de trouver une entité selon son [label](Métadonnées). Au fur et à mesure de la saisie, les labels [les plus pertinent](Fuse.js) apparaissent. Cliquer sur une proposition permet de [sélectionner l'entité] liée.
+La barre de recherche permet de trouver une entité selon son [label](Métadonnées). Au fur et à mesure de la saisie, les labels les plus pertinent apparaissent. Cliquer sur une proposition permet de [sélectionner l'entité] liée.
+
+<!-- Rajouter un lien vers Fuse.js -->
 
 !!! info
 	Vider la barre de recherche cache la liste des résultats.

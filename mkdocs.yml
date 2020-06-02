@@ -25,7 +25,6 @@ nav:
 # Theme configuration
 theme:
   name: material
-  custom_dir: mkdocs-material/material
   language: fr
   palette:
     primary: indigo
