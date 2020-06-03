@@ -33,7 +33,7 @@ Nous avons utilisé la partie CSS de la bibliothèque [Bootstrap](https://getboo
 
 Retrouvez ci-dessous la liste des dépendances Node.js utilisées pour la production du code source via l'outil [Gulp.js](https://gulpjs.com/).
 
-Cette bibliothèque modularisée n'est pas nécessaire pour l'installation, pas plus qu'elle n'a besoin d'être modifée : les [fichiers de configuration](/architecture code source/#arborescence-de-fichier) `package.json` et `gulpfile.js` sont utiles aux développeurs souhaitant profiter de l'outil de production de code source Gulp.js : il est configuré sur mesure. Une [installation complémentaire]() est toutefois nécessaire.
+Cette bibliothèque modularisée n'est pas nécessaire pour l'installation, pas plus qu'elle n'a besoin d'être modifée : les [fichiers de configuration](/architecture code source/#arborescence-de-fichier) `package.json` et `gulpfile.js` sont utiles aux développeurs souhaitant profiter de l'outil de production de code source Gulp.js : il est configuré sur mesure. Une [installation complémentaire](/installation/#gulpjs) est toutefois nécessaire.
 
 - gulp-autoprefixer : https://www.npmjs.com/package/gulp-autoprefixer
 - gulp-concat : https://www.npmjs.com/package/gulp-concat

@@ -25,6 +25,7 @@ nav:
     - Données: structure donnees.md
     - Architecture: architecture code source.md
     - Installation: installation.md
+    - Incrire données: inscrire donnees.md
 
 # Theme configuration
 theme:
