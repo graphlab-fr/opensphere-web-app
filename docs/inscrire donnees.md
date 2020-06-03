@@ -6,11 +6,11 @@ date: 02/05/2020
 
 ## Saisie des données
 
-Vous trouverez dans l'[arborescence du répertoire](/architecture code source/#arborescence-de-fichier) Otletosphere les deux fichiers d'exemple en JSON : `entite.json` et `lien.json`. Pour apporter votre propre contenu il vous faut remplacer les valeurs inscrites dans ces fichiers selon les recommandations présentées sur cette page.
+Vous trouverez dans l'[arborescence du répertoire](/architecture code source/#arborescence-de-fichier) Otletosphère les deux fichiers d'exemple en JSON : `entite.json` et `lien.json`. Pour apporter votre propre contenu il vous faut remplacer les valeurs inscrites dans ces fichiers selon les recommandations présentées sur cette page.
 
 ### Format des données
 
-La contrainte d'intégrité des données est forte. **Il est nécessaire de relier les différents objets par leurs identifiants** en prennant soin durant l'inscription des données de respecter le typage et la logique relationnelles au cœur du logiciel.
+La contrainte d'intégrité des données est forte. **Il est nécessaire de relier les différents objets par leurs identifiants** en prenant soin durant l'inscription des données de respecter le typage et la logique relationnelle au cœur du logiciel.
 
 #### Entités
 
@@ -63,6 +63,8 @@ Ci-dessous un modèle de fichier `entite.json` ainsi que sa table de données d�
     | lien_wikipedia  | adresse URL                        |                                    |
 
 #### Liens
+
+Il s'agit de définir les liens entre les entités créées selon le modèle ci-dessus telles qu'elles apparaîtront dans la vue *Réseau* et dans la partie *Connexions* du [volet de visualisation](/elements interface/#connexions).
 
 Ci-dessous un modèle de fichier `lien.json` et sa table de données.
 
@@ -142,17 +144,17 @@ flowchart TB
 
 ### Outils
 
-Voici quelques outils gratuits, collaboratifs, intégrant des outils facile à prendre en main et vous premrttant de mettre en place une environnement de saisie adéquat comme présenté ci-dessus.
+Voici quelques outils gratuits, collaboratifs, intégrant des outils faciles à prendre en main et vous permettant de mettre en place un environnement de saisie adéquat comme présenté ci-dessus.
 
 #### Airtable
 
-[Airtable](https://airtable.com/) est un outil hybride entre tableur et base de données et pourra au mieux vous aider à assurer la relation entre vos objets entités et liens, tout en gérant les nombreuses métadonnées que vous pouvez facilement normaliser.
+[Airtable](https://airtable.com/) est un outil hybride entre tableur et base de données et pourra au mieux vous aider à assurer la relation entre vos objets entités et liens, tout en gérant les nombreuses métadonnées que vous pourrez facilement normaliser.
 
 Une fois les différentes tables complétées, vous pouvez [relier leur contenu](https://support.airtable.com/hc/en-us/articles/360042311734) afin de faciliter la saisie, mais aussi assurer la relation entre les identifiants.
 
 #### Google Sheet
 
-L'outil [Google Sheet](https://www.google.fr/intl/fr/sheets/about/) fournit dans Google Drive vous permet de disposer d'un tableur en ligne avec collaborations en direct et export JSON grâce à l'extension *Export Sheet Data*.
+L'outil [Google Sheet](https://www.google.fr/intl/fr/sheets/about/) fournit dans Google Drive vous permet de disposer d'un tableur en ligne et d'exporter en JSON grâce à l'extension *Export Sheet Data*.
 
 ??? tips "Exporter en JSON avec *Export Sheet Data*"
     Installez l'extension Google Sheet depuis l'onglet *Modules complémentaires*, bouton *Télécharger des modules complémentaires*.
@@ -163,6 +165,6 @@ L'outil [Google Sheet](https://www.google.fr/intl/fr/sheets/about/) fournit dans
     Include first column : oui
     Export contents as array : oui
     ```
-    Les boutons au bas du *Sidebar* vous permettent de terminer l'opération.
+    Les boutons au bas du *Sidebar* vous permettent de terminer l'opération. Il ne vous reste qu'à intégrer les fichiers au repertoire `/data` de l'[arborescence du logiciel](/architecture code source/#arborescence-de-fichier).
 
 N'hésitez pas à utiliser l'outil de [validation des données](https://support.google.com/docs/answer/186103?co=GENIE.Platform%3DDesktop&hl=fr) en lien avec d'autres feuilles comme *Pays*, *Relations* etc. afin de normaliser au maximum la complétion des données, d'éviter les erreurs. Vous pouvez aussi utiliser la [fonction de traduction intégrée](https://support.google.com/docs/answer/3093331?hl=fr) à Google Sheet pour vos versions multilingues ou encore la [fonction `RECHERCHEV`](https://support.google.com/docs/answer/3093318) pour assurer la correspondance entre vos labels et identifiants uniques.
