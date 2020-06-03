@@ -22,12 +22,16 @@ nav:
   - FAQ: faq.md
   - Historique: historique versions.md 
   - Développement:
-    - Bibliothèques: bibliotheques.md
-    - Données: structure donnees.md
-    - Architecture: architecture code source.md
+    - Architecture:
+      - Code source: architecture code source.md
+      - Bibliothèques: bibliotheques.md
+      - Données: structure donnees.md
     - Téléchargement et installation: installation.md
     - Inscrire données: inscrire donnees.md
-    - Modifier code source: modifier code source.md
+    - Modifier code source:
+      - Approches: modifier code source.md
+      - Modifier groupes: modifier groupes.md
+    
 
 # Theme configuration
 theme:
