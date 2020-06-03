@@ -14,7 +14,7 @@ Le schéma suivant présente la répartition des fichiers dans le répertoire de
 	Veillez à ne pas égarer de fichier ou répertoire sans quoi certaines [dépendances logicielle](/bibliotheques) du projet pourrait disfonctionner et vous pourriez perdre des fonctionnalités.
 
 <div class="mermaid">
-flowchart LR
+graph LR
 	index.html
 	package.json
 	gulpfile.js
