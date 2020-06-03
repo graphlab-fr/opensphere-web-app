@@ -36,6 +36,8 @@ Les touches *avancer* et *reculer* du navigateur permettent également d'aller e
 
 La densité du *Réseau* est telle que sa lecture est rendue difficile. Il a été décidé de pallier cela en mettant en place des effets de transparence sur les nœuds et liens.
 
+![Fonction transparence](./images/fonction transparence.jpg)
+
 Au clic sur un nœud ou une carte, l'entité passe dans le mode *activé*. Cela a [différents effets](/selection entites/#effets), notamment celui de mettre en avant le réseau du nœud sélectionné en graissant sa bordure et ses liens. Cela ne nous a pas semblé suffisant pour faciliter la lecture étant donné que le parcours de la visualisation ne doit pas uniquement se faire par le biais de sélections.
 
 Ainsi nous avons ajouté un effet au survol également : au survol d'nœud, tous à l'exception de son réseau direct deviennent translucides. Cet état ne devant pas empêcher la visualisation exceptionnelle du nœud de l'entité active, il a également été décidé que celle-ci et son réseau ne pourrait en aucun cas devenir translucide.

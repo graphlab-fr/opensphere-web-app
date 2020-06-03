@@ -18,47 +18,49 @@ Il s'agit de vue primaire : toutes les entités de la base de données sont repr
 
 Les nœuds et liens du réseau sont affichés dans différentes couleurs correspondant aux différents groupes selon les [relations des entités] avec Paul Otlet.
 
-Cliquer sur l'un des nœuds va vous permettre de le [sélectionner l'entité].
+Cliquer sur l'un des nœuds va vous permettre de le [sélectionner l'entité](/selection entites).
 
 ## Volet de description
 
+![Volet de description](./images/volet description.jpg)
+
 Il peut être ouvert en cliquant sur l'icone *i* ou en séléctionnant un nœud.
 
-Il contient toutes les informations stockées dans la base de données au sujet de l'[entité sélectionnée].
+Il contient toutes les informations stockées dans la base de données au sujet de l'[entité sélectionnée](/selection entites).
 
 !!! tip "Retrouver le nœud sélectionné"
 	Où que vous soyez, cliquer sur le bouton "Visualiser" en haut du volet de description affiche le nœud au sein du *Réseau*.
 
 ### Connexions
 
-Au bas du volet de description on retrouve les informations de *connexion* de l'entité. Il s'agit des nœuds liés à celui qui a été sélectionné : ils sont listés et cliquer permet de [sélectionner l'entité].
+Au bas du volet de description on retrouve les informations de *connexion* de l'entité. Il s'agit des nœuds liés à celui qui a été sélectionné : ils sont listés et cliquer permet de [sélectionner l'entité](/selection entites).
 
 ## Entête
 
 Cet élément fait le liens entre les trois sections du site. On peut y exectuer les tâches suivantes qui prennent immédiatement effet sur l'ensemble du site :
 
 - Retour à l'accueil
-- Changement de [langue]
+- Changement de [langue]()
 - Changement de section
 - Recherche d'entité
 - Tri des entités affichées
 
 ### Recherche
 
-La barre de recherche permet de trouver une entité selon son [label](Métadonnées). Au fur et à mesure de la saisie, les labels les plus pertinent apparaissent. Cliquer sur une proposition permet de [sélectionner l'entité] liée.
+![Volet de description](./images/recherche.jpg)
 
-<!-- Rajouter un lien vers Fuse.js -->
+La barre de recherche permet de trouver une entité selon son [label](Métadonnées). Au fur et à mesure de la saisie, les labels [les plus pertinent](/bibliotheques/#fusejs) apparaissent. Cliquer sur une proposition permet de [sélectionner l'entité](/selection entites) liée.
 
 !!! info
 	Vider la barre de recherche cache la liste des résultats.
 
 ## Fiches
 
-Cette section est la vue secondaire : les entités ne sont plus mises en relation sous forme grapique, mais sous forme de cartes, listées et réparties par [ordre alphabétique](Métadonnées : Label).
+Cette section est la vue secondaire : les entités ne sont plus mises en relation sous forme graphique, mais sous forme de cartes, listées et réparties par ordre alphabétique.
 
-Le volet de description est [toujours affiché](Choix techniques : Continuité de navigation) et ne peut être fermé.
+Le volet de description est [toujours affiché](/choix technique/#connexions-entre-les-nuds) et ne peut être fermé.
 
-Cliquer sur une carte permet de [sélectionner l'entité].
+Cliquer sur une carte permet de [sélectionner l'entité](/selection entites).
 
 !!! tip
 	Une liste alphabétique à gauche vous permet de sauter d'une lette à une autre.
