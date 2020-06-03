@@ -1,10 +1,10 @@
 ---
-title: Installation et de configuration du logiciel de l'Otletosphère
+title: Téléchargement et installation du logiciel de l'Otletosphère
 author: Guillaume Brioudes <https://myllaume.fr/>
 date: 29/05/2020
 ---
 
-Les consignes suivantes permettent de télécharger et d'installer le logiciel faisant fonctionner l'Otletosphère afin de l'utiliser pour votre propre projet. Vous trouverez d'abord les consignes de téléchargement des différents paquets puis des explications supplémentaires pour installer les outils de développement et faciliter l'édition du projet.
+Les consignes suivantes permettent de télécharger et d'installer le logiciel faisant fonctionner l'Otletosphère afin de l'utiliser pour votre propre projet. Vous trouverez d'abord les consignes de téléchargement des différents paquets puis des explications supplémentaires pour installer les outils de développement et faciliter l'[édition du projet](/modifier code source).
 
 Pour modifier la [base de données du logiciel](/inscrire donnees) ou son [fonctionnement](), veuillez suivre les autres tutoriels.
 
