@@ -10,7 +10,7 @@ Les modifications suivantes s'effectuent dans le fichier `/dist/scripts/fiche.js
 
 ## Architecture de l'objet *Fiche*
 
-<div class="mermaid">
+```mermaid
 graph TD
     1[switchNode]
     2((fiche))
@@ -51,7 +51,7 @@ graph TD
     2 -.- 16
     3 --> 15
     3 --> 16
-</div>
+```
 
 Nous allons modifier la fonction `fill` de l'objet `fiche` (noté `fiche.fill`). Cette fonction possède deux entrées :
 
@@ -81,12 +81,12 @@ Dans tous les cas elles reçoivent les métadonnées d'un attribut de l'objet `n
 
 La fonction `fiche.setMeta` prend en entrée une [métadonnée](#injection) (paramètre `meta`) ainsi qu'un [élément HTML](#element-html-de-reference) (paramètre `content`).
 
-<div class="mermaid">
+```mermaid
 graph TD
    A(Appel de la fonction) --> B{meta est-il null ?}
    B -->|Non| D(L'élement HTML prend</br>la valeur de meta)
    B -->|Oui| C(L'élement HTML est vidé)
-</div>
+```
 
 #### Forme spécifique
 

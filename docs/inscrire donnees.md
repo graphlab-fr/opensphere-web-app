@@ -103,7 +103,7 @@ Afin de compléter, éventuellement de manière collaborative, votre base de don
 
 Voici une proposition de *workflow*, de circulation des données.
 
-<div class="mermaid">
+```mermaid
 flowchart TD
     subgraph Entites
         entite_label
@@ -143,7 +143,7 @@ flowchart TD
     
     id --> from
     id --> to
-</div>
+```
 
 ### Outils
 

@@ -13,7 +13,7 @@ Le schéma suivant présente la répartition des fichiers dans le répertoire de
 !!! bug "Avis aux développeurs"
 	Veillez à ne pas égarer de fichier ou répertoire sans quoi certaines [dépendances logicielle](/bibliotheques) du projet pourrait disfonctionner et vous pourriez perdre des fonctionnalités.
 
-<div class="mermaid">
+```mermaid
 graph LR
 	index.html
 	package.json
@@ -29,11 +29,11 @@ graph LR
 	/data --> metas.json
 	/data --> lien.json
 	/data --> /images
-</div>
+```
 
 ## Architecture des fonctions du *Réseau*
 
-<div class="mermaid">
+```mermaid
 flowchart TB
     subgraph class network
         obj_options --> obj_visualisation
@@ -94,4 +94,4 @@ flowchart TB
     evt_cliq --> obj_visualisation
 
     obj_visualisation
-</div>
+```

@@ -6,7 +6,7 @@ date: 03/05/2020
 
 Une fois que vous avez [téléchargé et installé le logiciel](/installation) de l'Otletosphère sur votre station de travail, vous pouvez commencer à modifier le code source, soit les fichiers `index.html`, `main.js` et `main.css`. Les autres fonctionnalités émanent des [bibliothèques](/bibliotheques).
 
-<div class="mermaid">
+```mermaid
 graph LR
     index.html((index.html))
 	/assets/main.js --> index.html
@@ -14,7 +14,7 @@ graph LR
     /libs/bootstrap-grid.min.css --> index.html
     /libs/fuse.min.js --> index.html
     /libs/vis-network.min.js  --> index.html
-</div>
+```
 
 Pour modifier les fichiers `main.js` et `main.css`, vous avez deux possibilités.
 
