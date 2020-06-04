@@ -221,9 +221,9 @@ button:focus {
     opacity: .7;
     transition: opacity .1s; }
     .lang-box__flag--fr {
-      background-image: url("./icons/lang_france.svg"); }
+      background-image: url("./icons/lang_fr.svg"); }
     .lang-box__flag--en {
-      background-image: url("./icons/lang_english.svg"); }
+      background-image: url("./icons/lang_en.svg"); }
     .lang-box__flag--active {
       border: 1px solid black;
       opacity: 1; }
