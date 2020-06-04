@@ -12,6 +12,9 @@ Vous trouverez dans l'[arborescence du répertoire](/architecture code source/#a
 
 La contrainte d'intégrité des données est forte. **Il est nécessaire de relier les différents objets par leurs identifiants** en prenant soin durant l'inscription des données de respecter le typage et la logique relationnelle au cœur du logiciel.
 
+!!! bug "Valeur vide, valeur nulle"
+    Faites bien attention à ce que les valeurs non remplies soient typée comme `null` au sein de vos fichiers JSON. Sans cela des champs pourront apparaître vides.
+
 #### Entités
 
 Il s'agit d'inscrire toutes les entités qui seront intégrées aux vues *Réseau* et *Fiches* du site.
@@ -100,8 +103,8 @@ Afin de compléter, éventuellement de manière collaborative, votre base de don
 
 Voici une proposition de *workflow*, de circulation des données.
 
-```mermaid
-flowchart TB
+<div class="mermaid">
+flowchart TD
     subgraph Entites
         entite_label
         entite_id
@@ -140,7 +143,7 @@ flowchart TB
     
     id --> from
     id --> to
-```
+</div>
 
 ### Outils
 
