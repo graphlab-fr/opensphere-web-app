@@ -21,18 +21,6 @@ var navigation = {
         // activer la surbrillance du lien vers la nouvelle section
         document.querySelector('[data-section="' + section + '"]')
             .classList.add('navigation__link--active');
-    },
-    translate: function() {
-        switch (langage.actual) {
-            case 'fr':
-                this.links.forEach(link => {
-                    link.textContent = link.dataset.langFr; });
-                break;
-            case 'en':
-                this.links.forEach(link => {
-                    link.textContent = link.dataset.langEn; });
-                break;
-        }
     }
 }
 
@@ -90,39 +78,6 @@ var movement = {
         });
     }
 }
-
-var langage = {
-    flags: {
-        french: document.querySelector('#lang-fr'),
-        english: document.querySelector('#lang-en')
-    },
-    actual: 'fr'
-}
-
-Object.values(langage.flags).forEach(flag => {
-    flag.addEventListener('click', (e) => {
-        var flag = e.target;
-        
-        if (flag.dataset.lang == langage.actual) {
-            // si le bouton flag cliqué active la langue active
-            return;
-        }
-
-        // désactiver la surbrillance du flag de la précédante langue
-        document.querySelector('[data-lang="' + langage.actual + '"]')
-            .classList.remove('lang-box__flag--active');
-        // activer la surbrillance du flag de l'actuelle langue
-        flag.classList.add('lang-box__flag--active');
-
-        langage.actual = flag.dataset.lang;
-        
-        filter.translate();
-        navigation.translate();
-
-        if (fiche.activeNodeMetas !== null) {
-            fiche.fill(fiche.activeNodeMetas); }
-    });
-});
 
 movement.goTo('reseau');
 

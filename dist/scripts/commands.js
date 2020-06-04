@@ -109,18 +109,6 @@ var filter = {
             
             });
         });
-    },
-    translate: function() {
-        switch (langage.actual) {
-            case 'fr':
-                this.btnsGroups.forEach(btn => {
-                    btn.textContent = btn.dataset.langFr; });
-                break;
-            case 'en':
-                this.btnsGroups.forEach(btn => {
-                    btn.textContent = btn.dataset.langEn; });
-                break;
-        }
     }
 }
 

@@ -139,12 +139,12 @@ var fiche = {
         this.setWikiLink(nodeMetas.lien_wikipedia);
 
         switch (langage.actual) {
-            case 'fr':
+            case 'Fr':
                 this.setMeta(nodeMetas.pays, this.fields.pays);
                 this.setMeta(nodeMetas.discipline, this.fields.discipline);
                 this.setMeta(nodeMetas.description, this.fields.description);
                 break;
-            case 'en':
+            case 'En':
                 this.setMeta(nodeMetas.pays_en, this.fields.pays);
                 this.setMeta(nodeMetas.discipline_en, this.fields.discipline);
                 this.setMeta(nodeMetas.description_en, this.fields.description);
