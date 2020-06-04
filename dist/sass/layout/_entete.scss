@@ -44,6 +44,8 @@
     }
 }
 
+$langages: "fr", "en";
+
 .lang-box {
     display: flex;
 
@@ -61,12 +63,10 @@
         opacity: .7;
         transition: opacity .1s;
 
-        &--fr {
-            background-image: url('./icons/lang_france.svg');
-        }
-        
-        &--en {
-            background-image: url('./icons/lang_english.svg');
+        @each $lang in $langages {
+            &--#{$lang} {
+                background-image: url('./icons/lang_#{$lang}.svg');
+            }
         }
         
         &--active {
