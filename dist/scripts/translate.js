@@ -1,13 +1,21 @@
 var langage = {
     flags: [document.querySelector('#lang-fr'), document.querySelector('#lang-en')],
-    actual: 'Fr'
+    actual: 'En',
+    translateAll: function() {
+        document.querySelectorAll('[data-lang-' + langage.actual.toLowerCase() + ']').forEach(elt => {
+            eval('elt.textContent = elt.dataset.lang' + langage.actual);
+        });
+    }
 }
+
+document.querySelector('[data-lang="' + langage.actual + '"]')
+    .classList.add('lang-box__flag--active');
 
 langage.flags.forEach(flag => {
     flag.addEventListener('click', (e) => {
-        var flag = e.target;
+        var flagCliked = e.target;
         
-        if (flag.dataset.lang == langage.actual) {
+        if (flagCliked.dataset.lang == langage.actual) {
             // si le bouton flag cliqué active la langue déjà active
             return;
         }
@@ -16,13 +24,11 @@ langage.flags.forEach(flag => {
         document.querySelector('[data-lang="' + langage.actual + '"]')
             .classList.remove('lang-box__flag--active');
         // activer la surbrillance du flag de l'actuelle langue
-        flag.classList.add('lang-box__flag--active');
+        flagCliked.classList.add('lang-box__flag--active');
 
-        langage.actual = flag.dataset.lang;
+        langage.actual = flagCliked.dataset.lang;
 
-        document.querySelectorAll('[data-lang-' + langage.actual.toLowerCase() + ']').forEach(elt => {
-            eval('elt.textContent = elt.dataset.lang' + langage.actual);
-        });
+        langage.translateAll();
 
         if (fiche.activeNodeMetas !== null) {
             fiche.fill(fiche.activeNodeMetas); }

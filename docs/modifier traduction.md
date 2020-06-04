@@ -62,6 +62,18 @@ Selon [l'approche](/modifier code source) que vous avez choisi pour modifier le 
 
 ## Traduire le volet de description
 
+```mermaid
+graph TD
+    evtclick{{Clic sur bouton traduction}} --> fx_translate[translateAll]
+    obj_fiche((Fiche)) -.- fx_fill[fill]
+    obj_fiche -.- activeNodeMetas[activeNodeMetas]
+    activeNodeMetas --> fx_fill
+    evtclick --> fx_fill
+    fx_translate --> html[[HTML Elements]]
+
+    style evtclick fill:#4051b5,color:#fff
+```
+
 Dans la fonction `fill` de l'objet `fiche` inscrit dans le fichier `/dist/scripts/fiche.js` se trouve ce *switcher* qui va vous permettre d'alterner l'affichage des métadonnées au sein du [volet de description](/elements interface/#volet-de-description) selon la langue active.
 
 Pour chaque `case` correspondant à une langue vous allez pouvoir activer certaines [fonctions d'affichage](/modifier volet/#injection) du volet.
@@ -92,4 +104,16 @@ Vous pouvez inscrire dans le fichier `entite.json` des métadonnées destinées 
             "description_en": "en anglais",
         }
     ]
+```
+
+### Langue par défaut
+
+Pour modifier la langue par défaut du volet, vous devez changer la ligne suivante dans l'objet `langage` qui se trouve dans le fichier `/dist/scripts/translate.js`. Dans l'exemple ci-dessous, la langue par défaut est le Russe.
+
+```javascript hl_lines="3"
+var langage = {
+    flags: [document.querySelector('#lang-ru'), document.querySelector('#lang-en')],
+    actual: 'Ru',
+    translateAll: function() { ... }
+}
 ```
