@@ -250,7 +250,8 @@ function switchNode(nodeId, mustZoom = true) {
 
     if (nodeMetas == false) { return false; }
 
-    network.selectedNode = nodeId;
+    network.visualisation.selectNodes([nodeId]);
+    network.selectedNode = Number(nodeId);
 
     // renommer la page web
     document.title = nodeMetas.label + ' - Otetosphère';
