@@ -1,6 +1,6 @@
 var langage = {
     flags: [document.querySelector('#lang-fr'), document.querySelector('#lang-en')],
-    actual: 'En',
+    actual: 'Fr',
     translateAll: function() {
         document.querySelectorAll('[data-lang-' + langage.actual.toLowerCase() + ']').forEach(elt => {
             eval('elt.textContent = elt.dataset.lang' + langage.actual);
@@ -30,7 +30,7 @@ langage.flags.forEach(flag => {
 
         langage.translateAll();
 
-        if (fiche.activeNodeMetas !== null) {
-            fiche.fill(fiche.activeNodeMetas); }
+        if (fiche.memory !== undefined) {
+            fiche.fill(fiche.memory.activeNodeMetas, fiche.memory.activeNodeConnectedList); }
     });
 });

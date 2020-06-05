@@ -2,7 +2,7 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    activeNodeMetas: null,
+    memory: {},
     contol: {
         open: document.querySelector('#fiche-open'),
         close: document.querySelector('#fiche-close')
@@ -126,11 +126,12 @@ var fiche = {
             }
         }
     },
-    fill: function(nodeMetas, nodeConnectedList = null) {
+    fill: function(nodeMetas, nodeConnectedList) {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
         commands.visualiser.allow();
-        this.activeNodeMetas = nodeMetas;
+        this.memory.activeNodeMetas = nodeMetas;
+        this.memory.activeNodeConnectedList = nodeConnectedList;
 
         // remplissage métadonnées
         this.setMeta(nodeMetas.label, this.fields.label);

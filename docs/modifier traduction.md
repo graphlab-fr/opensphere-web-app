@@ -66,9 +66,9 @@ Selon [l'approche](/modifier code source) que vous avez choisi pour modifier le 
 graph TD
     evtclick{{Clic sur bouton traduction}} --> fx_translate[translateAll]
     obj_fiche((Fiche)) -.- fx_fill[fill]
-    obj_fiche -.- activeNodeMetas[activeNodeMetas]
-    activeNodeMetas --> fx_fill
-    evtclick --> fx_fill
+    obj_fiche -.- memory((memory))
+    memory --> fx_fill
+    evtclick --> memory
     fx_translate --> html[[HTML Elements]]
 
     style evtclick fill:#4051b5,color:#fff

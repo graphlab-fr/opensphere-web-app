@@ -199,7 +199,7 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    activeNodeMetas: null,
+    memory: {},
     contol: {
         open: document.querySelector('#fiche-open'),
         close: document.querySelector('#fiche-close')
@@ -323,11 +323,12 @@ var fiche = {
             }
         }
     },
-    fill: function(nodeMetas, nodeConnectedList = null) {
+    fill: function(nodeMetas, nodeConnectedList) {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
         commands.visualiser.allow();
-        this.activeNodeMetas = nodeMetas;
+        this.memory.activeNodeMetas = nodeMetas;
+        this.memory.activeNodeConnectedList = nodeConnectedList;
 
         // remplissage métadonnées
         this.setMeta(nodeMetas.label, this.fields.label);
@@ -878,7 +879,7 @@ function getNoHiddenNodes() {
 }
 var langage = {
     flags: [document.querySelector('#lang-fr'), document.querySelector('#lang-en')],
-    actual: 'En',
+    actual: 'Fr',
     translateAll: function() {
         document.querySelectorAll('[data-lang-' + langage.actual.toLowerCase() + ']').forEach(elt => {
             eval('elt.textContent = elt.dataset.lang' + langage.actual);
@@ -908,8 +909,8 @@ langage.flags.forEach(flag => {
 
         langage.translateAll();
 
-        if (fiche.activeNodeMetas !== null) {
-            fiche.fill(fiche.activeNodeMetas); }
+        if (fiche.memory !== undefined) {
+            fiche.fill(fiche.memory.activeNodeMetas, fiche.memory.activeNodeConnectedList); }
     });
 });
 var commands = {
