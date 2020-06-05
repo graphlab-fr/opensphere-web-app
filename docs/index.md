@@ -14,6 +14,6 @@ Dans un second temps, vous pouvez lire le [tutoriel d'utilisation de la visualis
 
 ## Je suis développeur
 
-Vous souhaitez reutiliser le projet ou bien étudier sa conception ? Vous pouvez retrouver dans cette documentation toutes les informations relatives au [téléchargement et à l'installation] des fonctions, ainsi que l'[architecture du code source](/architecture code source), et liste des [dépendance du projet](/bibliotheques).
+Vous souhaitez réutiliser le projet ou bien étudier sa conception ? Vous pouvez retrouver dans cette documentation toutes les informations relatives au [téléchargement et à l'installation](/installation) des fonctions, ainsi que l'[architecture du code source](/architecture code source), et liste des [dépendance du projet](/bibliotheques).
 
 ![Page d'accueil](images/home page.jpg)

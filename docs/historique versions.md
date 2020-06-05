@@ -42,7 +42,7 @@ On note les modifications majeures suivantes :
 
 - ajout d'un outil de recherche
 - fusion des sections *Visualisation* et *Base de données* pour donner *Réseau* et *Fiches*
-- volet de description : affichage des connexions entre les nœuds et point de jonction entre *Réseau* et *Fiches* avec le bouton *Visualiser*
+- volet de description : affichage des connexions entre les nœuds et [point de jonction](/choix technique/#union-des-vues) entre *Réseau* et *Fiches* avec le bouton *Visualiser*
 - historique de navigation
 
 ### Pérennisation
