@@ -26,8 +26,10 @@ var filter = {
                                 network.data.nodes.update({id: item.id, hidden: true}) }
                         }
                     });
-        
-                    btn.classList.add('active');
+
+                    // activation visuelle boutons filtre de entête et volet
+                    document.querySelectorAll('[data-group="' + btn.dataset.group + '"]').forEach(btn => {
+                        btn.classList.add('active'); });
         
                     isActiveGroup = false;
                 } else {
@@ -37,8 +39,10 @@ var filter = {
                                 network.data.nodes.update({id: item.id, hidden: false}) }
                         }
                     });
-        
-                    btn.classList.remove('active');
+
+                    // deactivation visuelle boutons filtre de entête et volet
+                    document.querySelectorAll('[data-group="' + btn.dataset.group + '"]').forEach(btn => {
+                        btn.classList.remove('active'); });
 
                     isActiveGroup = true;
                 }
