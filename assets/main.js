@@ -447,7 +447,7 @@ window.onpopstate = function(e) {
 };
 var header = {
     fixBox: document.querySelector('#entete-fixeur'),
-    height: 115,
+    height: 175,
 
     fixer: function(bool) {
         if (bool) { this.fixBox.classList.add('entete__fixe--active') }
@@ -481,12 +481,10 @@ var movement = {
     currentSection: undefined,
     offset: {
         introduction: 0,
-        graph: introduction.clientHeight - header.height,
-        board: introduction.clientHeight * 2 - header.height
+        graph: window.innerHeight - header.height,
+        board: window.innerHeight * 2 - header.height
     },
     goTo: function(section) {
-
-        if (section == this.currentSection) { return; }
 
         navigation.activLink(section);
         this.currentSection = section;
@@ -531,8 +529,8 @@ movement.goTo('reseau');
 window.onresize = function() {
     movement.offset = {
         introduction: 0,
-        graph: introduction.clientHeight - header.height,
-        board: introduction.clientHeight * 2 - header.height
+        graph: window.innerHeight - header.height,
+        board: window.innerHeight * 2 - header.height
     }
     movement.goTo(movement.currentSection);
 }
