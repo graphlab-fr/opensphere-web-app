@@ -19,5 +19,6 @@ git clone https://github.com/Myllaume/otletosphere.git
 Déploiement de la documentation
 
 ```bash
+cd doc/fr
 mkdocs gh-deploy
 ```

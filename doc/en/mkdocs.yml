@@ -1,0 +1,56 @@
+# Project information
+site_name: Documentation Otletosphère
+site_url: 'https://myllaume.github.io/otletosphere/'
+repo_name: 'Myllaume/otletosphere'
+repo_url: 'https://github.com/Myllaume/otletosphere'
+edit_uri: ''
+site_description: Documentation du projet Otletosphère
+copyright: '© Copyright 2019-2020, HyperOtlet'
+
+# Navigation
+nav:
+  - Accueil: index.md
+    
+
+# Theme configuration
+theme:
+  name: material
+  language: fr
+  palette:
+    primary: indigo
+    accent: indigo
+  font: false
+extra_css:
+  - extras/style.css
+extra_javascript:
+  - https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: true
+  - toc:
+      permalink: true
+  - meta
+  - footnotes
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.tabbed
+  - pymdownx.tilde
+
+# plugins
+plugins:
+  - search:
+      lang:
+        - fr
