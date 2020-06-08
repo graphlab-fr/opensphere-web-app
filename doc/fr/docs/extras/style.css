@@ -10,3 +10,7 @@
     font-size: 0.85rem;
     letter-spacing: 0.01rem;
 }
+
+.md-typeset table:not([class]) {
+    font-size: unset !important ;
+}
