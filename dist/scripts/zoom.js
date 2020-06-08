@@ -43,6 +43,6 @@ commands.zoom.btnMoins.addEventListener('click', () => {
 commands.zoom.btnReinitialiser.addEventListener('click', backToCenterView);
 
 commands.visualiser.btn.addEventListener('click', () => {
-    zoomToNode(fiche.activeNodeMetas.id);
+    zoomToNode(fiche.memory.activeNodeMetas.id);
     movement.goTo('reseau');
 });
