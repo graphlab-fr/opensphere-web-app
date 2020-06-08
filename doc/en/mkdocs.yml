@@ -1,10 +1,10 @@
 # Project information
 site_name: Documentation Otletosphère
-site_url: 'https://myllaume.github.io/otletosphere/'
-repo_name: 'Myllaume/otletosphere'
-repo_url: 'https://github.com/Myllaume/otletosphere'
+site_url: 'https://hyperotlet.github.io/otletosphere/'
+repo_name: 'hyperotlet/otletosphere'
+repo_url: 'https://github.com/hyperotlet/otletosphere'
 edit_uri: ''
-site_description: Documentation du projet Otletosphère
+site_description: Documentation of Otletosphère project
 copyright: '© Copyright 2019-2020, HyperOtlet'
 
 # Navigation
@@ -53,4 +53,4 @@ markdown_extensions:
 plugins:
   - search:
       lang:
-        - fr
+        - en
