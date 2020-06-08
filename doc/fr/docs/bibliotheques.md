@@ -9,7 +9,7 @@ Pour réaliser le site web rapidement, mais aussi améliorer la maintenabilité 
 !!! check "Aucune installation supplémentaire nécessaire"
 	Sauf les [bibliothèques liées à Gulp.js](#gulpjs), toutes sont incluses dans le [répertoire Otletosphere](/architecture code source/#arborescence-de-fichier) et ne nécessitent aucune installation supplémentaire pour fonctionner.
 
-Sont listées les différentes documentations pour que les développeurs puissent personnaliser l'utilisation qui a été faite des bibliothèques liées.
+Sont jointes les différentes documentations pour que les développeurs puissent comprendre et adapter l'utilisation de ces bibliothèques.
 
 ## JavaScript
 
