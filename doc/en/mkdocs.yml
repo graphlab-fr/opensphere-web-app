@@ -11,9 +11,9 @@ copyright: '© HyperOtlet 2020'
 nav:
   - Accueil: index.md
   - Process:
-    - Choix techniques: process/technical-choices.md
-    - Multilingue: process/multilingual.md
-    - Structure des données: process/data-structure.md
+    - Technical choices: process/technical-choices.md
+    - Multilingual: process/multilingual.md
+    - Data structure: process/data-structure.md
 
 # Theme configuration
 theme:
