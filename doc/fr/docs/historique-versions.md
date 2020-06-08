@@ -5,21 +5,19 @@ date: 28/05/2020
 ---
 ## Histoire et logique du projet.
 L'Otletosphère est un projet de visualisation web qui s'intègre dans le projet de recherche HyperOtlet. L'Otletosphère a jusqu'ici connu 2 versions publiques.
-Le développement  de l'otlétosphère s'inscrit dans le cadre du projet HyperOtlet, financé par l'ANR [ANR-17-CE38-0011]. https://anr.fr/Projet-ANR-17-CE38-0011
+Le développement de l'otlétosphère s'inscrit dans le cadre du projet HyperOtlet, financé par l'ANR [ANR-17-CE38-0011]. https://anr.fr/Projet-ANR-17-CE38-0011
 Le carnet de recherche du projet est disponible ici https://hyperotlet.hypotheses.org/
 
 L'objectif est de proposer une visualisation du réseau de personnes autour de Paul Otlet.
-L’Otletosphère  est  une  cartographie  relationnelle  des  personnalités  et institutions liées à Paul Otlet
-L’étude  du  réseau  de  personnes  de  Paul  Otlet, permet  d’imaginer  un  travail  de  collecte  des relations personnelles qu’il a pu établir durant ses années de correspondance.
- Basée sur sa correspondance archivée au [Mundaneum de Mons qui est le musée consacré à son œuvre](http://archives.mundaneum.org/), nous avons pu réaliser une base de  données  qui  reprend  les  différentes  personnes  avec  qui  il  est  entré  en relation.
- La   représentation  cartographique  d'un  réseau   de  personnes a nécessité  une réflexion   et   des   influences   graphiques   pour   réaliser   une   représentation scientifique  intéressante et  graphiquement  conviviale.  
+L’Otletosphère est une cartographie relationnelle des personnalités et institutions liées à Paul Otlet
+L’étude du réseau de personnes de Paul Otlet, permet d’imaginer un travail de collecte des relations personnelles qu’il a pu établir durant ses années de correspondance.
+ Basée sur sa correspondance archivée au [Mundaneum de Mons qui est le musée consacré à son œuvre](http://archives.mundaneum.org/), nous avons pu réaliser une base de données qui reprend les différentes personnes avec qui il est entré en relation.
+ La représentation cartographique d'un réseau de personnes a nécessité une réflexion et des influences graphiques pour réaliser une représentation scientifique intéressante et graphiquement conviviale. 
 
- Ce projet part du constat de l'implication forte de Paul  Otlet,  au  sein  desorganisations  internationales  pour  la  paix  ainsi  qu'au sein   des   institutions   bibliographiques   et   documentaires.
-  Les   différentes activités  d'Otlet  lui  ont  permis  de  côtoyer  un  large  nombre  de  personnes dans des univers différents que nous avons tenté de représenter par des logiques de catégories.
+ Ce projet part du constat de l'implication forte de Paul Otlet, au sein desorganisations internationales pour la paix ainsi qu'au sein des institutions bibliographiques et documentaires.
+ Les différentes activités d'Otlet lui ont permis de côtoyer un large nombre de personnes dans des univers différents que nous avons tenté de représenter par des logiques de catégories.
 
-L’inspiration initiale provient de la représentation graphique de l’univers  transmedia  Marvel  produite  par  l’équipe  du  journal singapourien "[The  Straits  Time](https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/index.html)",  qui  se  présente  comme  une  véritable  constellation  de superhéros, liés entre eux par leurs relations au sein des univers narratifs
-
-
+L’inspiration initiale provient de la représentation graphique de l’univers transmedia Marvel produite par l’équipe du journal singapourien "[The Straits Time](https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/index.html)", qui se présente comme une véritable constellation de superhéros, liés entre eux par leurs relations au sein des univers narratifs
 
 ## Première version
 

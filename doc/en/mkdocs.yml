@@ -9,11 +9,13 @@ copyright: '© HyperOtlet 2020'
 
 # Navigation
 nav:
-  - Accueil: index.md
+  - Homme: index.md
   - Process:
     - Technical choices: process/technical-choices.md
     - Multilingual: process/multilingual.md
     - Data structure: process/data-structure.md
+  - FAQ: faq.md
+  - Version history: version-history.md
 
 # Theme configuration
 theme:
