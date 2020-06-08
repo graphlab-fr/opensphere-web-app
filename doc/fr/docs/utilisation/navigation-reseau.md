@@ -27,7 +27,7 @@ La visualisation *Réseau* est composée de deux types d'éléments : les nœuds
 
 ### Sélection d'un nœud
 
-Cliquer sur un nœud vous permet de sélectionner l'entité liée avec les [effets que cela implique](/selection entites/#effets), notamment l'ouverture du volet de description.
+Cliquer sur un nœud vous permet de sélectionner l'entité liée avec les [effets que cela implique](./selection-entites.md#effets), notamment l'ouverture du volet de description.
 
 ### Déplacer les nœuds
 
@@ -35,8 +35,8 @@ Vous pouvez déplacer un nœud en maintenant le clic gauche de la souris sur lui
 
 ### Transparence
 
-Lorsque vous survolez un nœud, les autres nœuds et leurs liens deviennent translucides. Exceptionnement, cela ne concerne pas le réseau direct des nœuds et liens de l'[entité sélectionnée](/selection entites). Cet effet se porte sur tout nœud que le pointeur de votre souris vient à survoler.
+Lorsque vous survolez un nœud, les autres nœuds et leurs liens deviennent translucides. Exceptionnement, cela ne concerne pas le réseau direct des nœuds et liens de l'[entité sélectionnée](./selection-entites.md). Cet effet se porte sur tout nœud que le pointeur de votre souris vient à survoler.
 
 ## Depuis le volet de description
 
-Le [volet de description](Éléments de l'interface : Volet de description) vous permet également de vous déplacer dans le *Réseau* grâce aux [outils intègrés](Éléments de l'interface : Volet de description).
+Le [volet de description](./elements-interface.md) vous permet également de vous déplacer dans le *Réseau* grâce aux [outils intègrés](./elements-interface.md).

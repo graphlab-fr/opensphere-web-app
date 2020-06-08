@@ -6,7 +6,7 @@ date: 02/05/2020
 
 ## Saisie des données
 
-Vous trouverez dans l'[arborescence du répertoire](/architecture code source/#arborescence-de-fichier) Otletosphère les deux fichiers d'exemple en JSON : `entite.json` et `lien.json`. Pour apporter votre propre contenu il vous faut remplacer les valeurs inscrites dans ces fichiers selon les recommandations présentées sur cette page.
+Vous trouverez dans l'[arborescence du répertoire](./architecture-code-source.md#arborescence-de-fichier) Otletosphère les deux fichiers d'exemple en JSON : `entite.json` et `lien.json`. Pour apporter votre propre contenu il vous faut remplacer les valeurs inscrites dans ces fichiers selon les recommandations présentées sur cette page.
 
 ### Format des données
 
@@ -67,7 +67,7 @@ Ci-dessous un modèle de fichier `entite.json` ainsi que sa table de données d�
 
 #### Liens
 
-Il s'agit de définir les liens entre les entités créées selon le modèle ci-dessus telles qu'elles apparaîtront dans la vue *Réseau* et dans la partie *Connexions* du [volet de visualisation](/elements interface/#connexions).
+Il s'agit de définir les liens entre les entités créées selon le modèle ci-dessus telles qu'elles apparaîtront dans la vue *Réseau* et dans la partie *Connexions* du [volet de visualisation](../utilisation/elements-interface.md#connexions).
 
 Ci-dessous un modèle de fichier `lien.json` et sa table de données.
 
