@@ -5,7 +5,7 @@ repo_name: 'hyperotlet/otletosphere'
 repo_url: 'https://github.com/hyperotlet/otletosphere'
 edit_uri: ''
 site_description: Documentation of Otletosphère project
-copyright: '© Copyright 2019-2020, HyperOtlet'
+copyright: '© HyperOtlet 2020'
 
 # Navigation
 nav:
