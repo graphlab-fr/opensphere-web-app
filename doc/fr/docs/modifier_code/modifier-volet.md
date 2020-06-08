@@ -4,9 +4,9 @@ author: Guillaume Brioudes <https://myllaume.fr>
 date: 04/06/2020
 ---
 
-Ce tutoriel va décrire comment modifier le contenu du [volet de description](/elements interface/#volet-de-description), à savoir l'affichage des informations disponibles pour chaque [entité sélectionnée](/selection entites/#methodes).
+Ce tutoriel va décrire comment modifier le contenu du [volet de description](../utilisation/elements-interface.md), à savoir l'affichage des informations disponibles pour chaque [entité sélectionnée](../utilisation/selection-entites.md#methodes).
 
-Les modifications suivantes s'effectuent dans le fichier `/dist/scripts/fiche.js` si vous [utilisez les outils de développements](/modifier code source/#utiliser-les-outils-de-developpement). Sinon vous devrez modifier le fichier `/assets/main.js`.
+Les modifications suivantes s'effectuent dans le fichier `/dist/scripts/fiche.js` si vous [utilisez les outils de développements](./outils-developpement.md#utiliser-les-outils-de-developpement). Sinon vous devrez modifier le fichier `/assets/main.js`.
 
 ## Architecture de l'objet *Fiche*
 

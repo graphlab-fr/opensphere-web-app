@@ -4,9 +4,9 @@ author: Guillaume Brioudes <https://myllaume.fr/>
 date: 03/06/2020
 ---
 
-Dans l'[entête](/elements interface/#entete) se trouvent les commandes de traduction : des boutons permettent de changer de langue sur le site en activant un script qui vient parcourir l'ensemble de la page, trouve les éléments à traduire et leur traduction pour mettre la seconde en place.
+Dans l'[entête](../utilisation/elements-interface.md#entete) se trouvent les commandes de traduction : des boutons permettent de changer de langue sur le site en activant un script qui vient parcourir l'ensemble de la page, trouve les éléments à traduire et leur traduction pour mettre la seconde en place.
 
-Le script se trouve dans le fichier `/dist/scripts/translate.js` et [peut être modifié de différentes manière selon l'approche](/modifier code source) que vous avez choisi pour modifier le code source.
+Le script se trouve dans le fichier `/dist/scripts/translate.js` et [peut être modifié de différentes manière selon l'approche](./outils-developpement.md) que vous avez choisi pour modifier le code source.
 
 ## Traduire un élément
 
@@ -31,7 +31,7 @@ En JavaScript, si nous gardrons le même exemple, il vous faut ajouter le select
 
 ### Styliser le bouton
 
-Selon [l'approche](/modifier code source) que vous avez choisi pour modifier le code source vous devrez suivre les consignes pour le SCSS ou le CSS.
+Selon [l'approche](./outils-developpement.md) que vous avez choisi pour modifier le code source vous devrez suivre les consignes pour le SCSS ou le CSS.
 
 === "CSS"
     Dans `/assets/main.css`, retrouvez le selecteur `lang-box__flag` en dessous duquel vous pourrez ajouter les lignes suivantes et remplacer soit `lang_ru.svg` par le nom de l'image de votre choix soit le chemin complet `./icons/lang_ru.svg` si votre image ne se trouve pas dans le repertoire `/assets/icons/`.
@@ -74,9 +74,9 @@ graph TD
     style evtclick fill:#4051b5,color:#fff
 ```
 
-Dans la fonction `fill` de l'objet `fiche` inscrit dans le fichier `/dist/scripts/fiche.js` se trouve ce *switcher* qui va vous permettre d'alterner l'affichage des métadonnées au sein du [volet de description](/elements interface/#volet-de-description) selon la langue active.
+Dans la fonction `fill` de l'objet `fiche` inscrit dans le fichier `/dist/scripts/fiche.js` se trouve ce *switcher* qui va vous permettre d'alterner l'affichage des métadonnées au sein du [volet de description](../utilisation/elements-interface.md#volet-de-description) selon la langue active.
 
-Pour chaque `case` correspondant à une langue vous allez pouvoir activer certaines [fonctions d'affichage](/modifier volet/#injection) du volet.
+Pour chaque `case` correspondant à une langue vous allez pouvoir activer certaines [fonctions d'affichage](./modifier-volet.md#injection) du volet.
 
 ```javascript hl_lines="8"
 switch (langage.actual) {

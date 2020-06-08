@@ -11,27 +11,27 @@ copyright: '© HyperOtlet 2020'
 nav:
   - Accueil: index.md
   - Démarche:
-    - Choix techniques: choix technique.md
-    - Multilingue: multilingue.md
+    - Choix techniques: demarche/choix-technique.md
+    - Multilingue: demarche/multilingue.md
+    - Structure des données: demarche/structure-donnees.md
   - Guide utilisation:
-    - Éléments d'interface: elements interface.md
-    - Naviguer dans le réseau: navigation reseau.md
-    - Sélectionner une entité: selection entites.md
-    - Trier les entités: trier entites.md
+    - Éléments d'interface: utilisation/elements-interface.md
+    - Naviguer dans le réseau: utilisation/navigation-reseau.md
+    - Sélectionner une entité: utilisation/selection-entites.md
+    - Trier les entités: utilisation/trier-entites.md
   - FAQ: faq.md
-  - Historique: historique versions.md 
+  - Historique: historique-versions.md 
   - Développement:
     - Architecture:
-      - Code source: architecture code source.md
-      - Bibliothèques: bibliotheques.md
-      - Données: structure donnees.md
-    - Téléchargement et installation: installation.md
-    - Inscrire données: inscrire donnees.md
+      - Code source: developpement/architecture-code-source.md
+      - Bibliothèques: developpement/bibliotheques.md
+    - Téléchargement et installation: developpement/installation.md
+    - Inscrire données: developpement/inscrire-donnees.md
     - Modifier code source:
-      - Approches: modifier code source.md
-      - Modifier groupes: modifier groupes.md
-      - Modifier volet: modifier volet.md
-      - Modifier traduction: modifier traduction.md
+      - Outils développement: modifier_code/outils-developpement.md
+      - Modifier groupes: modifier_code/modifier-groupes.md
+      - Modifier volet: modifier_code/modifier-volet.md
+      - Modifier traduction: modifier_code/modifier-traduction.md
     
 
 # Theme configuration
