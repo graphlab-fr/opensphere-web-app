@@ -8,9 +8,9 @@ Feuilles *GSheet* : https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NR
 
 Visualisation documentation : https://hyperotlet.github.io/otletosphere/
 
-## Instalations
+## Installations
 
-Dépendances documentations et téléchargement dépôt.
+Dépendances documentation et téléchargement dépôt.
 
 https://www.python.org/
 https://www.mkdocs.org/
