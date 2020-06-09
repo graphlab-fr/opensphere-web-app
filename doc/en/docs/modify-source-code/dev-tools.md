@@ -4,7 +4,7 @@ author: Guillaume Brioudes <https://myllaume.fr/>
 date: 09/06/2020
 ---
 
-Once you have [downloaded and installed the Otletosphere software]() on your workstation, you can start modifying the source code, namely the `index.html`, `main.js` and `main.css` files. The other features come from the [libraries]().
+Once you have [downloaded and installed the Otletosphere software](../development/installation.md) on your workstation, you can start modifying the source code, namely the `index.html`, `main.js` and `main.css` files. The other features come from the [libraries](../development/libraries.md).
 
 ```mermaid
 graph LR
@@ -18,16 +18,16 @@ graph LR
 
 To modify the `main.js` and `main.css` files, you have two options.
 
-1. Use [development tools]() (distribution and compilation with Gulp.js)
+1. Use [development tools](../development/libraries.md#gulpjs) (distribution and compilation with Gulp.js)
 2. Modify directly the source files
 
 The first option allows you to take advantage of a source code broken down into different files that are easier to grasp, while the second will require you to move through a large volume of code. In both cases you will be guided through the tutorials; it is when you modify the code in a less guided way that it will be more constraining.
 
-In addition to the tutorials, you will be provided with a [source code architecture guide]() to help you find your way around.
+In addition to the tutorials, you will be provided with a [source code architecture guide](../development/architecture-source-code.md) to help you find your way around.
 
 ## Using the development tools
 
-Gulp.js requires [additional installation]() before you can take advantage of its features.
+Gulp.js requires [additional installation](/development/installation/#gulpjs) before you can take advantage of its features.
 
 Once the system is up and running, simply enter the following line in your command box while you are at the root of the source code directory. Two more lines should appear.
 

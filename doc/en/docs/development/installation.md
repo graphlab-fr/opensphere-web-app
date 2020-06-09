@@ -4,9 +4,9 @@ author: Guillaume Brioudes <https://myllaume.fr/>
 date: 09/06/2020
 ---
 
-Downloading and installing the Otletosphere softwarea The following instructions are for downloading and installing the software that runs the Otletosphere for use in your own project. First you will find the instructions for downloading the various packages, then additional explanations for installing the development tools and making [editing the project]() easier.
+Downloading and installing the Otletosphere softwarea The following instructions are for downloading and installing the software that runs the Otletosphere for use in your own project. First you will find the instructions for downloading the various packages, then additional explanations for installing the development tools and making [editing the project](../modify-source-code/dev-tools.md) easier.
 
-To change the [software database]() or its [operation](), please follow the other tutorials.
+To change the [software database](./register-data.md) or its [operation](](../modify-source-code/dev-tools.md), please follow the other tutorials.
 
 ## Download
 
@@ -43,7 +43,7 @@ npm install
 
 ### Commandes
 
-The following command allows you to start processing the `.scss` and `.js` files respectively from [directories]() `/sass` and `/scripts` to `/assets/main.css` and `/assets/main.js`.
+The following command allows you to start processing the `.scss` and `.js` files respectively from [directories](./architecture-source-code.md#file-tree-structure) `/sass` and `/scripts` to `/assets/main.css` and `/assets/main.js`.
 
 ```bash
 gulp watch

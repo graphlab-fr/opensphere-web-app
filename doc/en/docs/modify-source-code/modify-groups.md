@@ -21,7 +21,7 @@ This tutorial will describe how to modify entity groups based on the entries you
 
 In the `network' object (`/dist/scripts/network.js`) is the `groups' object.
 
-For each **relationship recognized as a group** of entities, there is a dedicated object as above, i.e. named according to the name of the relationship and with [different parameters to modify the appearance]() of all the nodes of the *Network* view that are linked to it.
+For each **relationship recognized as a group** of entities, there is a dedicated object as above, i.e. named according to the name of the relationship and with [different parameters to modify the appearance](#change-the-appearance-of-nodes-in-a-group) of all the nodes of the *Network* view that are linked to it.
 
 ```javascript
 contemporain: {shape: 'circularImage', color: {border: chooseColor('contemporain')}}

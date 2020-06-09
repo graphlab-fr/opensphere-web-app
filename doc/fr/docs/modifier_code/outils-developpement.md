@@ -18,7 +18,7 @@ graph LR
 
 Pour modifier les fichiers `main.js` et `main.css`, vous avez deux possibilités.
 
-1. Utiliser les [outils de développement](../developpement/bibliotheques.md) (distribution et compilation avec Gulp.js)
+1. Utiliser les [outils de développement](../developpement/bibliotheques.md#gulpjs) (distribution et compilation avec Gulp.js)
 2. Modifier directement les fichiers sources
 
 La première option vous permet de profiter d'un code source éclaté en différents fichiers qu'il est plus facile d'appréhender tandis que la seconde vous demandera de vous déplacer dans un volume de code important. Dans les deux cas vous serez guidé tout au long des tutoriels ; c'est lorsque vous modifierez le code de manière moins guidée que cela s'avèrera plus contraignant.

@@ -1,9 +1,13 @@
 ---
 title: Historique des versions de l'Otletosphère
-author: Guillaume Brioudes <https://myllaume.fr/>
+author:
+  - Guillaume Brioudes <https://myllaume.fr/>
+  - Olivier Le Deuff
 date: 28/05/2020
 ---
+
 ## Histoire et logique du projet.
+
 L'Otletosphère est un projet de visualisation web qui s'intègre dans le projet de recherche HyperOtlet. L'Otletosphère a jusqu'ici connu 2 versions publiques.
 Le développement de l'otlétosphère s'inscrit dans le cadre du projet HyperOtlet, financé par l'ANR [ANR-17-CE38-0011]. https://anr.fr/Projet-ANR-17-CE38-0011
 Le carnet de recherche du projet est disponible ici https://hyperotlet.hypotheses.org/

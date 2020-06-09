@@ -27,7 +27,7 @@ The *Network* visualization is composed of two types of elements: nodes and link
 
 ### Node selection
 
-Clicking a node allows you to select the related entity with the [effects this has](), including opening the description pane.
+Clicking a node allows you to select the related entity with the [effects this has](./entities-selection.md#effects), including opening the description pane.
 
 ### Move the nodes
 
@@ -35,8 +35,8 @@ You can move a node by holding the left mouse click on it while moving it. The n
 
 ### Transparency
 
-When you hover over a node, the other nodes and their links become translucent. Exceptionally, this does not affect the direct network of nodes and links of the [selected entity](). This effect applies to any node that your mouse pointer hovers over.
+When you hover over a node, the other nodes and their links become translucent. Exceptionally, this does not affect the direct network of nodes and links of the [selected entity](./entities-selection.md). This effect applies to any node that your mouse pointer hovers over.
 
 ## From the description panel
 
-The [description panel]() also allows you to move around the *Network* using the [built-in tools]().
+The [description panel](./interface-elements.md#description-panel) also allows you to move around the *Network* using the [built-in tools](./entities-selection.md).

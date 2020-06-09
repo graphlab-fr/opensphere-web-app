@@ -4,9 +4,9 @@ author: Guillaume Brioudes <https://myllaume.fr/>
 date: 09/06/2020
 ---
 
-In the [header]() are the translation commands: buttons allow you to change the language on the site by activating a script that goes through the whole page, finds the elements to be translated and their translation to put the second one in place.
+In the [header](../usage/interface-elements.md#header) are the translation commands: buttons allow you to change the language on the site by activating a script that goes through the whole page, finds the elements to be translated and their translation to put the second one in place.
 
-The script is in the `/dist/scripts/translate.js` file and [can be modified in different ways depending on the approach]() you have chosen to modify the source code.
+The script is in the `/dist/scripts/translate.js` file and [can be modified in different ways depending on the approach](./dev-tools.md) you have chosen to modify the source code.
 
 ## Translate an element
 
@@ -31,7 +31,7 @@ In JavaScript, if we keep the same example, you need to add the `#!javascript do
 
 ### Styliser le bouton
 
-Depending on the [approach]() you have chosen to modify the source code you will have to follow the guidelines for SCSS or CSS.
+Depending on the [approach](./dev-tools.md) you have chosen to modify the source code you will have to follow the guidelines for SCSS or CSS.
 
 === "CSS"
     In `/assets/main.css`, find the `lang-box__flag` selector below which you can add the following lines and replace either `lang_ru.svg` with the name of the image of your choice or the full path `./icons/lang_ru.svg` if your image is not in the `/assets/icons/` directory.
@@ -60,7 +60,7 @@ Depending on the [approach]() you have chosen to modify the source code you will
     }
     ```
 
-## Translate description pane
+## Translate description panel
 
 ```mermaid
 graph TD
@@ -74,9 +74,9 @@ graph TD
     style evtclick fill:#4051b5,color:#fff
 ```
 
-In the `fill' function of the `file' object in the `/dist/scripts/fiche.js' file is this *switcher* which will allow you to toggle the display of metadata in the [description pane]() according to the active language.
+In the `fill' function of the `file' object in the `/dist/scripts/fiche.js' file is this *switcher* which will allow you to toggle the display of metadata in the [description panel](../usage/interface-elements.md#description-panel) according to the active language.
 
-For each `case' corresponding to a language you will be able to activate certain [display functions]() in the pane.
+For each `case' corresponding to a language you will be able to activate certain [display functions](.modify-description-panel.md#injection) in the pane.
 
 ```javascript hl_lines="8"
 switch (langage.actual) {

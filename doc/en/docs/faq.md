@@ -7,7 +7,7 @@ date: 08/06/2020
 ## Content
 
 ??? question "How to share a record?"
-	You can share your browser's page address once you have [selected the entity]() to share.
+	You can share your browser's page address once you have [selected the entity](./usage/entities-selection.md) to share.
 
 ??? question "Where to propose content changes?"
 	This site is perfect, nothing to add.
@@ -15,4 +15,4 @@ date: 08/06/2020
 ## Development
 
 ??? question "Can I reuse the project ?"
-	Yes, you can find all the [download and installation instructions]() as well as a guide to the [project architecture]() and the [list of its dependencies]().
+	Yes, you can find all the [download and installation instructions](./development/installation.md) as well as a guide to the [project architecture](./development/architecture-source-code.md) and the [list of its dependencies](./development/libraries.md).

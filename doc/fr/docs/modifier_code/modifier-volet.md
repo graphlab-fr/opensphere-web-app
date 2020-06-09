@@ -115,4 +115,4 @@ La [fonction `fiche.setMeta`](#forme-generique) vous permet de rapidement inject
     ```
 
 !!! info "affichage par langue"
-    Pour modifier l'affichage du volet selon la langue, rendez-vous sur le [tutoriel dédié à la traduction](/modifier traduction/#traduire-le-volet-de-description)
+    Pour modifier l'affichage du volet selon la langue, rendez-vous sur le [tutoriel dédié à la traduction](./modifier-traduction.md#traduire-le-volet-de-description)

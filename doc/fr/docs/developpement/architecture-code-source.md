@@ -4,7 +4,7 @@ author: Guillaume Brioudes <https://myllaume.fr/>
 date: 29/05/2020
 ---
 
-Les diagrammes suivants présentent l'organisation du code source. Ils permettent de mieux appréhender le logiciel et ainsi de pouvoir y apporter des [modifications](../developpement/installation.md#configuration) plus facilement.
+Les diagrammes suivants présentent l'organisation du code source. Ils permettent de mieux appréhender le logiciel et ainsi de pouvoir y apporter des [modifications](../modifier_code/outils-developpement/) plus facilement.
 
 ## Arborescence de fichier
 

@@ -7,7 +7,7 @@ date: 09/06/2020
 To build the website quickly, but also to improve the maintainability and readability of the source code, the development team used the following libraries.
 
 !!! check "No additional installation required"
-	Except for the [Gulp.js related libraries](#gulpjs), all are included in the [Otletosphere directory]() and require no additional installation to work.
+	Except for the [Gulp.js related libraries](#gulpjs), all are included in the [Otletosphere directory](./architecture-source-code/#file-tree-structure) and require no additional installation to work.
 
 The different documentations are attached so that developers can understand and adapt the use of these libraries.
 
@@ -33,7 +33,7 @@ We used the CSS part of the [Bootstrap] library (https://getbootstrap.com/) to e
 
 Below is the list of Node.js dependencies used for the production of source code via the [Gulp.js] tool (https://gulpjs.com/).
 
-This modularized library is not required for installation, nor does it need to be modified: the [configuration files]() `package.json` and `gulpfile.js` are useful for developers who want to take advantage of the Gulp.js source code production tool: it is custom-configured. However, an [additional installation]() is required.
+This modularized library is not required for installation, nor does it need to be modified: the [configuration files](/architecture-source-code.md#file-tree-structure) `package.json` and `gulpfile.js` are useful for developers who want to take advantage of the Gulp.js source code production tool: it is custom-configured. However, an [additional installation](./installation.md#gulpjs) is required.
 
 - gulp-autoprefixer : https://www.npmjs.com/package/gulp-autoprefixer
 - gulp-concat : https://www.npmjs.com/package/gulp-concat

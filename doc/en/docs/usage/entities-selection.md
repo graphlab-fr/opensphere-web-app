@@ -25,7 +25,7 @@ The following actions allow you to select an entity :
 As soon as an entity is selected, the following effects apply immediately:
 
 - Opening and updating of the description pane with the metadata of the selected entity
-- Its node and its direct network cannot become [translucent]()
+- Its node and its direct network cannot become [translucent](./network-navigation.md#transparency)
 - Inscription of the entity identifier at the end of the page address
 - Adding the entity to the browsing history
 - Modification of the page name according to the entity label

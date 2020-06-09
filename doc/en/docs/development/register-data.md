@@ -6,7 +6,7 @@ date: 09/06/2020
 
 ## Data entry
 
-You will find in the [directory tree]() Otletosphere the two JSON example files: `entite.json` and `lien.json`. To bring your own content you need to replace the values in these files according to the recommendations presented on this page.
+You will find in the [directory tree](./architecture-source-code/#file-tree-structure) Otletosphere the two JSON example files: `entite.json` and `lien.json`. To bring your own content you need to replace the values in these files according to the recommendations presented on this page.
 
 ### Data format
 
@@ -168,6 +168,6 @@ The [Google Sheet](https://www.google.fr/intl/fr/sheets/about/) tool provided in
     Include first column : yes
     Export contents as array : yes
     ```
-    The buttons at the bottom of the *Sidebar* allow you to complete the operation. All you have to do is to integrate the files in the `/data` directory of the [software tree]().
+    The buttons at the bottom of the *Sidebar* allow you to complete the operation. All you have to do is to integrate the files in the `/data` directory of the [software tree](./architecture-source-code/#file-tree-structure).
 
 Do not hesitate to use the [data validation] tool (https://support.google.com/docs/answer/186103?co=GENIE.Platform%3DDesktop&hl=fr) in conjunction with other sheets such as *Countries*, *Relations* etc. in order to standardize data completion as much as possible and avoid errors. You can also use the [integrated translation function](https://support.google.com/docs/answer/3093331?hl=fr) in Google Sheet for your multilingual versions or the [SEARCH function](https://support.google.com/docs/answer/3093318) to ensure the correspondence between your labels and unique identifiers.

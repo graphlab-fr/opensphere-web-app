@@ -4,9 +4,9 @@ author: Guillaume Brioudes <https://myllaume.fr>
 date: 09/06/2020
 ---
 
-This tutorial will describe how to modify the content of the [description pane](), i.e. how to display the information available for each [selected entity]().
+This tutorial will describe how to modify the content of the [description pane](../usage/interface-elements.md#description-panel), i.e. how to display the information available for each [selected entity](../usage/entities-selection.md#methods).
 
-The following changes are made in the `/dist/scripts/fiche.js` file if you [use the development tools](). Otherwise you will need to modify the `/assets/main.js` file.
+The following changes are made in the `/dist/scripts/fiche.js` file if you [use the development tools](./modify-source-code/dev-tools.md#using-the-development-tools). Otherwise you will need to modify the `/assets/main.js` file.
 
 ## Object architecture
 
@@ -58,7 +58,7 @@ We will modify the `fill` function of the `fiche` object (noted `fiche.fill`). T
 - `nodeMetas` is an object containing all the metadata of the selected entity (provided by the `getNodeMetas` function).
 - `nodeConnectedList` is an array containing all the links and their metadata (provided by the `findConnectedNodes` function).
 
-It will then redirect the accumulated data to functions that will generate the HTML required for display and inject it into the [HTML tags]() of the description pane. These tags are referenced in the `fiche.fields' object.
+It will then redirect the accumulated data to functions that will generate the HTML required for display and inject it into the [HTML tags](#reference-html-element) of the description pane. These tags are referenced in the `fiche.fields' object.
 
 ### Injection
 
@@ -90,9 +90,9 @@ graph TD
 
 #### Specific shape
 
-For example, the `setDates file' function takes in several [metadata]() to perform specific processing.
+For example, the `setDates file' function takes in several [metadata](#injection) to perform specific processing.
 
-The [HTML element]() where it will inject the generated HTML code is built directly into the function.
+The [HTML element](#reference-html-element) where it will inject the generated HTML code is built directly into the function.
 
 #### Reference HTML element
 
@@ -104,7 +104,7 @@ The selections are made using identifiers such as `#!js document.querySelector('
 
 For your additions and modifications, all you have to do is identify the existing functions and modify their content according to the principles explained above.
 
-The [function `file.setMeta`]() allows you to quickly inject the contents of a metadata in a
+The [function `file.setMeta`](#generic-form) allows you to quickly inject the contents of a metadata in a
 
 !!! tip "Test the `null` values"
     Remember to integrate the tests:
@@ -115,4 +115,4 @@ The [function `file.setMeta`]() allows you to quickly inject the contents of a m
     ```
 
 !!! info "language display"
-    To change the display of the pane according to the language, go to the [translation tutorial]().
+    To change the display of the pane according to the language, go to the [translation tutorial](./modify-translation.md#translate-description-panel).
