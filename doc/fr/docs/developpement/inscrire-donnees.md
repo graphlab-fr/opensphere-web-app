@@ -90,7 +90,7 @@ Ci-dessous un modèle de fichier `lien.json` et sa table de données.
     ```
 
 === "Table de données"
-    | Clé   | Valeur                              | Valeur                                           |
+    | Clé   | Valeur                              | Commentaire                                           |
     | ----- | ----------------------------------- | ------------------------------------------------ |
     | id    | nombre entier unique supérieur à 0  | identifiant unique lien                          |
     | from  | nombre entier unique supérieur à 0  | identifiant unique entité                        |

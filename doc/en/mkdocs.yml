@@ -9,11 +9,17 @@ copyright: '© HyperOtlet 2020'
 
 # Navigation
 nav:
-  - Homme: index.md
+  - Home: index.md
   - Process:
     - Technical choices: process/technical-choices.md
     - Multilingual: process/multilingual.md
     - Data structure: process/data-structure.md
+  - Development:
+    - Architecture:
+      - Source code: development/architecture-source-code.md
+      - Libraries: development/libraries.md
+    - Download and installation: development/installation.md
+    - Register data: development/register-data.md
   - FAQ: faq.md
   - Version history: version-history.md
 
