@@ -14,6 +14,11 @@ nav:
     - Technical choices: process/technical-choices.md
     - Multilingual: process/multilingual.md
     - Data structure: process/data-structure.md
+  - User guide:
+    - Interface elements: usage/interface-elements.md
+    - Network navigation: usage/network-navigation.md
+    - Entities selection: usage/entities-selection.md
+    - Entities sorting: usage/sort-entities.md
   - Development:
     - Architecture:
       - Source code: development/architecture-source-code.md

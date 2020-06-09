@@ -47,9 +47,9 @@ Cet élément fait le liens entre les trois sections du site. On peut y exectuer
 
 ### Recherche
 
-![Volet de description](../images/recherche.jpg)
+![Outil de recherche](../images/recherche.jpg)
 
-La barre de recherche permet de trouver une entité selon son [label](Métadonnées). Au fur et à mesure de la saisie, les labels [les plus pertinent](../developpement/bibliotheques.md#fusejs) apparaissent. Cliquer sur une proposition permet de [sélectionner l'entité](./selection-entites.md) liée.
+La barre de recherche permet de trouver une entité selon son label. Au fur et à mesure de la saisie, les labels [les plus pertinent](../developpement/bibliotheques.md#fusejs) apparaissent. Cliquer sur une proposition permet de [sélectionner l'entité](./selection-entites.md) liée.
 
 !!! info
 	Vider la barre de recherche cache la liste des résultats.
