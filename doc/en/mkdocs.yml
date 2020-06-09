@@ -19,14 +19,19 @@ nav:
     - Network navigation: usage/network-navigation.md
     - Entities selection: usage/entities-selection.md
     - Entities sorting: usage/sort-entities.md
+  - FAQ: faq.md
+  - Version history: version-history.md
   - Development:
     - Architecture:
       - Source code: development/architecture-source-code.md
       - Libraries: development/libraries.md
     - Download and installation: development/installation.md
     - Register data: development/register-data.md
-  - FAQ: faq.md
-  - Version history: version-history.md
+    - Modify source code:
+      - Development tools: modify-source-code/dev-tools.md
+      - Modify groups: modify-source-code/modify-groups.md
+      - Modify description panel: modify-source-code/modify-description-panel.md
+      - Modify translation: modify-source-code/modify-translation.md
 
 # Theme configuration
 theme:
