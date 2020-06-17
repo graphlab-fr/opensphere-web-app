@@ -4,8 +4,8 @@
     &__label {
         cursor: pointer;
         position: absolute;
-        width: 25px;
-        height: 25px;
+        width: 24px;
+        height: 24px;
         background-size: 15px;
         background-color: white;
         background-image: url("./icons/search.svg");
@@ -20,7 +20,7 @@
 
     &__input {
         @extend %shadow-1;
-        @extend %font-condensed;
+        @extend %font-mono;
         position: relative;
         box-sizing: border-box;
         font-size: 18px;

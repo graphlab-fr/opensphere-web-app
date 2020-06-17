@@ -63,6 +63,7 @@ $langages: "fr", "en";
         font-size: 18px;
         
         &--active {
+            @extend %font-mono-bold;
             text-decoration: underline;
         }
     }

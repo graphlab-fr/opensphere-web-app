@@ -34,3 +34,20 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('./font/Inconsolata-Regular.woff2') format('woff2'),
+        url('./font/Inconsolata-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('./font/Inconsolata-Bold.woff2') format('woff2'),
+        url('./font/Inconsolata-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}

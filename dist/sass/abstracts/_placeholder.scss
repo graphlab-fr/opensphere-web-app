@@ -17,7 +17,13 @@
 }
 
 %font-mono {
-    font-family: monospace;
+    font-family: 'Inconsolata', monospace;
+    font-weight: normal;
+    font-style: normal;
+}
+
+%font-mono-bold {
+    font-family: 'Inconsolata', monospace;
     font-weight: bold;
     font-style: normal;
 }

@@ -25,6 +25,7 @@
         }
 
         &--active {
+            @extend %font-mono-bold;
             text-decoration: underline;
         }
         

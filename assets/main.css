@@ -10,12 +10,17 @@ body, button, .title-site {
   font-style: normal; }
 
 h2,
-h3, .btn-group, .lang-box__flag, .lang-box__separator, .navigation__link, .fiche__cle, .connexions__libelle, .command-board__btn {
-  font-family: monospace;
+h3, .btn-group, .lang-box__flag, .lang-box__separator, .navigation__link, .fiche__cle, .connexions__libelle, .search-box__input, .command-board__btn {
+  font-family: 'Inconsolata', monospace;
+  font-weight: normal;
+  font-style: normal; }
+
+.lang-box__flag--active, .navigation__link--active {
+  font-family: 'Inconsolata', monospace;
   font-weight: bold;
   font-style: normal; }
 
-.fiche__label, .search-box__input, .search-list li, .card__label {
+.fiche__label, .search-list li, .card__label {
   font-family: 'Open Sans Condensed', sans-serif;
   font-weight: 300;
   font-style: normal; }
@@ -54,12 +59,26 @@ h3, .btn-group, .lang-box__flag, .lang-box__separator, .navigation__link, .fiche
   font-style: normal;
   font-display: swap; }
 
+@font-face {
+  font-family: 'Inconsolata';
+  src: url("./font/Inconsolata-Regular.woff2") format("woff2"), url("./font/Inconsolata-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; }
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url("./font/Inconsolata-Bold.woff2") format("woff2"), url("./font/Inconsolata-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap; }
+
 body {
   font-size: 14px;
   line-height: 160%; }
 
 h1 {
-  font-size: 32px; }
+  font-size: 28px; }
 
 h2 {
   margin: 30px 0 10px 0;
@@ -415,8 +434,8 @@ button:focus {
   .search-box__label {
     cursor: pointer;
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
     background-size: 15px;
     background-color: white;
     background-image: url("./icons/search.svg");
