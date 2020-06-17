@@ -244,7 +244,7 @@ function backToCenterView() {
     network.visualisation.fit({ animation: true });
 }
 
-function switchNode(nodeId) {
+function switchNode(nodeId, mustZoom = true) {
 
     var nodeMetas = getNodeMetas(nodeId);
 
@@ -256,7 +256,7 @@ function switchNode(nodeId) {
     // renommer la page web
     document.title = nodeMetas.label + ' - Otetosphère';
 
-    zoomToNode(nodeId);
+    if (mustZoom) {zoomToNode(nodeId);}
 
     fiche.fill(nodeMetas, findConnectedNodes(nodeId));
     fiche.open();
