@@ -43,33 +43,12 @@
         cursor: pointer;
         position: relative;
         text-transform: uppercase;
-        padding: 5px 2px;
         margin: 5px;
         font-family: monospace;
-        font-size: 14px;
-
-        &::after {
-            content: '';
-            z-index: -1;
-            position: absolute;
-            bottom: 2px;
-            left: 2px;
-            height: 1px;
-            width: 10px;
-            background-color: black;
-            transition: height .1s, width .05s;
-            transition-timing-function: $transition-bezier;
-        }
+        font-size: 18px;
 
         &:hover {
-            color: white;
-
-            &::after {
-                height: 100%;
-                width: 100%;
-                left: 0px;
-                border-radius: 2px;
-            }
+            text-decoration: underline;
         }
     }
 }
