@@ -207,6 +207,7 @@ var fiche = {
         img: document.querySelector('#fiche-meta-img'),
         label: document.querySelector('#fiche-meta-label'),
         date: document.querySelector('#fiche-meta-date'),
+        titre: document.querySelector('#fiche-meta-titre'),
         pays: document.querySelector('#fiche-meta-pays'),
         discipline: document.querySelector('#fiche-meta-discipline'),
         description: document.querySelector('#fiche-meta-description'),
@@ -254,7 +255,7 @@ var fiche = {
         }
 
         if (entiteDateMort !== null) {
-            mort = ' - <time class="fiche__dates" datetime="' + entiteDateMort + '">' +
+            mort = ' - <time  datetime="' + entiteDateMort + '">' +
                 entiteDateMort + '</time><div>';
         }
 
@@ -330,6 +331,7 @@ var fiche = {
 
         // remplissage métadonnées
         this.setMeta(nodeMetas.label, this.fields.label);
+        this.setMeta(nodeMetas.title, this.fields.titre);
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
         this.setWikiLink(nodeMetas.lien_wikipedia);

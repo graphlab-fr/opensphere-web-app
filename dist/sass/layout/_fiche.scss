@@ -4,7 +4,7 @@
         overflow: auto;
         height: calc(100% - 25px);
         box-sizing: border-box;
-        padding: 5px 5px 5px 10px;
+        padding: 10px;
         visibility: hidden;
 
         &--visible {
@@ -43,17 +43,21 @@
     }
 
     &__identite {
-        margin: 10px 0;
+        margin-bottom: 10px;
         display: flex;
     }
 
     &__img {
         @extend %shadow-1;
-        border-radius: 1px;
-        width: 120px;
-        height: 180px;
-        margin-right: 6px;
+        border-radius: 2px;
+        width: 150px;
+        height: 210px;
+        margin-right: 12px;
         object-fit: cover;
+    }
+    
+    &__text-resume {
+        width: 150px;
     }
 
     &__label {
@@ -62,20 +66,26 @@
     }
 
     &__dates {
-        margin: unset;
+        border-bottom: 1px solid #d5d5d5;
+        padding-bottom: 7px;
+        margin-bottom: 10px;
+    }
+
+    &__titre {
+        @extend %font-bold;
     }
 
     &__wiki-link {
-        @extend %font-bold;
         margin-top: 15px;
         width: 30px;
         height: 30px;
         border-radius: 3px;
-        background: url('./icons/wikipedia.svg');
+        background-color: #f7f7f7;
+        border-radius: 3px;
+        background-image: url('./icons/wikipedia.svg');
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 30px;
-        filter: drop-shadow(0px 0px 10px rgba(66, 66, 66, 0.5));
+        background-size: 18px;
 
         &--visible {
             display: flex;
@@ -100,9 +110,10 @@
     }
 
     &__description {
-        margin: 20px 0 0 10px;
-        padding-left: 10px;
-        border-left: 1px solid black;
+        margin-top: 20px;
+        padding: 15px 0;
+        border-top: 1px solid #d5d5d5;
+        border-bottom: 1px solid #d5d5d5;
 
         &::first-letter {
             font-size: 28px;

@@ -4,7 +4,7 @@ body, button, .btn-group, .title-site, .search-box__input {
   font-weight: normal;
   font-style: normal; }
 
-.btn-group::after, .title-site__bold, .fiche__wiki-link, .fiche__cle {
+.btn-group::after, .title-site__bold, .fiche__titre, .fiche__cle {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 600;
   font-style: normal; }
@@ -282,7 +282,7 @@ button:focus {
   overflow: auto;
   height: calc(100% - 25px);
   box-sizing: border-box;
-  padding: 5px 5px 5px 10px;
+  padding: 10px;
   visibility: hidden; }
   .fiche__content--visible {
     visibility: visible; }
@@ -312,35 +312,40 @@ button:focus {
   margin: 5px 0; }
 
 .fiche__identite {
-  margin: 10px 0;
+  margin-bottom: 10px;
   display: flex; }
 
 .fiche__img {
-  border-radius: 1px;
-  width: 120px;
-  height: 180px;
-  margin-right: 6px;
+  border-radius: 2px;
+  width: 150px;
+  height: 210px;
+  margin-right: 12px;
   -o-object-fit: cover;
   object-fit: cover; }
+
+.fiche__text-resume {
+  width: 150px; }
 
 .fiche__label {
   font-size: 25px;
   margin: 0; }
 
 .fiche__dates {
-  margin: unset; }
+  border-bottom: 1px solid #d5d5d5;
+  padding-bottom: 7px;
+  margin-bottom: 10px; }
 
 .fiche__wiki-link {
   margin-top: 15px;
   width: 30px;
   height: 30px;
   border-radius: 3px;
-  background: url("./icons/wikipedia.svg");
+  background-color: #f7f7f7;
+  border-radius: 3px;
+  background-image: url("./icons/wikipedia.svg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 30px;
-  -webkit-filter: drop-shadow(0px 0px 10px rgba(66, 66, 66, 0.5));
-  filter: drop-shadow(0px 0px 10px rgba(66, 66, 66, 0.5)); }
+  background-size: 18px; }
   .fiche__wiki-link--visible {
     display: flex; }
 
@@ -358,9 +363,10 @@ button:focus {
   font-size: 18px; }
 
 .fiche__description {
-  margin: 20px 0 0 10px;
-  padding-left: 10px;
-  border-left: 1px solid black; }
+  margin-top: 20px;
+  padding: 15px 0;
+  border-top: 1px solid #d5d5d5;
+  border-bottom: 1px solid #d5d5d5; }
   .fiche__description::first-letter {
     font-size: 28px; }
 
