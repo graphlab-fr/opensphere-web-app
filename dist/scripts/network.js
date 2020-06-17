@@ -73,17 +73,6 @@ var network = {
         network.visualisation.on('hoverNode', function(params) {
             var idNodeHovered = params.node;
             var allIds = network.allNodesIds;
-
-            // ajouter au label du node survolé le titre de l'entité
-            if (network.data.nodes.get(idNodeHovered).title == null) {
-                var tempLabel = network.data.nodes.get(idNodeHovered).label; }
-            else {
-                var tempLabel = network.data.nodes.get(idNodeHovered).label + '\n' + network.data.nodes.get(idNodeHovered).title }
-
-            network.data.nodes.update({
-                id: idNodeHovered,
-                label: tempLabel
-            });
         
             // pas d'effet sur le nœud survolé
             var noEffectNodesIds = [idNodeHovered];
@@ -124,7 +113,6 @@ var network = {
             allIds.forEach(id => {
                 network.data.nodes.update({
                     id: id,
-                    label: network.data.nodes.get(id).label.split('\n')[0],
                     color: false,
                     opacity: 1,
                     font: {color: 'black'}
