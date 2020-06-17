@@ -1,11 +1,4 @@
 var commands = {
-    visualiser: {
-        btn: document.querySelector('#zoom-selection'),
-        allow: function() {
-            this.btn.classList.remove('lateral__btn-control--hidde');
-            this.btn.disabled = false;
-        }
-    },
     zoom: {
         btnPlus: document.querySelector('#zoom-plus'),
         btnMoins: document.querySelector('#zoom-moins'),
@@ -41,8 +34,3 @@ commands.zoom.btnMoins.addEventListener('click', () => {
 });
 
 commands.zoom.btnReinitialiser.addEventListener('click', backToCenterView);
-
-commands.visualiser.btn.addEventListener('click', () => {
-    zoomToNode(fiche.activeNodeMetas.id);
-    movement.goTo('reseau');
-});

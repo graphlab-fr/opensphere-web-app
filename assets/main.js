@@ -200,10 +200,7 @@ var fiche = {
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
     memory: {},
-    contol: {
-        open: document.querySelector('#fiche-open'),
-        close: document.querySelector('#fiche-close')
-    },
+    toggle: document.querySelector('#fiche-toggle'),
     isOpen: false,
     fields: {
         wikiLink: document.querySelector('#fiche-wiki-link'),
@@ -223,18 +220,20 @@ var fiche = {
     open: function() {
         if (!network.isLoaded) { return; }
         
+        this.toggle.classList.add('fiche__toggle-btn--active');
         fiche.body.classList.add('lateral--active');
         this.isOpen = true;
     },
     close: function() {
         if (movement.currentSection === 'fiches') { return; }
         
+        this.toggle.classList.remove('fiche__toggle-btn--active');
         fiche.body.classList.remove('lateral--active');
         this.isOpen = false;
     },
     canClose: function(bool) {
-        if (bool) { this.contol.close.classList.remove('fiche__btn-control--hidde'); }
-        else { this.contol.close.classList.add('fiche__btn-control--hidde'); }
+        if (bool) { this.toggle.classList.remove('d-none'); }
+        else { this.toggle.classList.add('d-none'); }
     },
     setImage: function(entitePhoto, entiteLabel) {
         this.fields.img.setAttribute('src', entitePhoto);
@@ -326,7 +325,6 @@ var fiche = {
     fill: function(nodeMetas, nodeConnectedList) {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
-        commands.visualiser.allow();
         this.memory.activeNodeMetas = nodeMetas;
         this.memory.activeNodeConnectedList = nodeConnectedList;
 
@@ -353,12 +351,10 @@ var fiche = {
     }
 }
 
-Object.values(fiche.contol).forEach(btn => {
-    btn.addEventListener('click', () => {
-        // toggle du lateral fiche
-        if (fiche.isOpen) { fiche.close(); }
-        else { fiche.open(); }
-    });
+fiche.toggle.addEventListener('click', () => {
+    // toggle close and open du lateral fiche
+    if (fiche.isOpen) { fiche.close(); }
+    else { fiche.open(); }
 });
 
 const overflow = document.querySelector('#overflow');
@@ -914,13 +910,6 @@ langage.flags.forEach(flag => {
     });
 });
 var commands = {
-    visualiser: {
-        btn: document.querySelector('#zoom-selection'),
-        allow: function() {
-            this.btn.classList.remove('lateral__btn-control--hidde');
-            this.btn.disabled = false;
-        }
-    },
     zoom: {
         btnPlus: document.querySelector('#zoom-plus'),
         btnMoins: document.querySelector('#zoom-moins'),
@@ -956,8 +945,3 @@ commands.zoom.btnMoins.addEventListener('click', () => {
 });
 
 commands.zoom.btnReinitialiser.addEventListener('click', backToCenterView);
-
-commands.visualiser.btn.addEventListener('click', () => {
-    zoomToNode(fiche.activeNodeMetas.id);
-    movement.goTo('reseau');
-});

@@ -287,6 +287,22 @@ button:focus {
   .fiche__content--visible {
     visibility: visible; }
 
+.fiche__toggle-btn {
+  position: absolute;
+  top: calc(50% - 40px);
+  right: 100%;
+  background-color: #0f0f0f;
+  border: unset;
+  color: white;
+  height: 80px;
+  width: 40px;
+  font-size: 20px;
+  border-bottom-left-radius: 80px;
+  border-top-left-radius: 80px; }
+  .fiche__toggle-btn--active span {
+    display: inline-block;
+    transform: rotate(180deg); }
+
 .fiche__btn-visualiser {
   border: unset;
   background-color: black;

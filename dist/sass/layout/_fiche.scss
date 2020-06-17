@@ -12,6 +12,27 @@
         }
     }
 
+    &__toggle-btn {
+        $btn_toggle_size : 40px;
+
+        position: absolute;
+        top: calc(50% - 40px);
+        right: 100%;
+        background-color: rgb(15, 15, 15);
+        border: unset;
+        color: white;
+        height: $btn_toggle_size * 2;
+        width: $btn_toggle_size;
+        font-size: 20px;
+        border-bottom-left-radius: $btn_toggle_size * 2;
+        border-top-left-radius: $btn_toggle_size * 2;
+
+        &--active span {
+            display: inline-block;
+            transform: rotate(180deg);
+        }
+    }
+
     &__btn-visualiser {
         border: unset;
         background-color: black;
