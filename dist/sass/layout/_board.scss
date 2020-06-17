@@ -79,9 +79,10 @@
     position: relative;
     cursor: pointer;
     margin: 20px;
-    width: 200px;
+    width: 210px;
     height: auto;
     border-radius: 3px;
+    padding: 5px;
 
     &__presentation {
         display: flex;
@@ -90,13 +91,14 @@
 
     &__img {
         @extend %shadow-1;
-        width: 70px;
-        height: 70px;
+        width: 80px;
+        height: 100px;
         object-fit: cover;
         border-radius: 3px 0 0 0;
     }
 
     &__identite {
+        width: 120px;
         padding: 5px 0 0 10px;
     }
 

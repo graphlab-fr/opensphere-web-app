@@ -583,19 +583,21 @@ button:focus {
   position: relative;
   cursor: pointer;
   margin: 20px;
-  width: 200px;
+  width: 210px;
   height: auto;
-  border-radius: 3px; }
+  border-radius: 3px;
+  padding: 5px; }
   .card__presentation {
     display: flex;
     margin-bottom: 20px; }
   .card__img {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 100px;
     -o-object-fit: cover;
     object-fit: cover;
     border-radius: 3px 0 0 0; }
   .card__identite {
+    width: 120px;
     padding: 5px 0 0 10px; }
   .card__label {
     margin: 0 0 5px 0;
