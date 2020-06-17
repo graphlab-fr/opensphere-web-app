@@ -688,15 +688,15 @@ var network = {
 function chooseColor(relationEntite, lowerOpacity = false) {
     switch (relationEntite) {
         case 'collegue':
-            var color = '128, 0, 128'; break;
+            var color = '154, 60, 154'; break;
         case 'contemporain':
             var color = '0, 128, 0'; break;
         case 'collaborateur':
-            var color = '250, 128, 114'; break;
+            var color = '97, 172, 97'; break;
         case 'opposant':
-            var color = '255,0,0'; break;
+            var color = '250, 128, 114'; break;
         case 'famille':
-            var color = '135, 206, 235'; break;
+            var color = '102, 179, 222'; break;
         case 'otlet':
             var color = '244, 164, 96'; break;
         case 'institution':

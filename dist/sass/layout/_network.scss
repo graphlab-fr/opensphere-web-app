@@ -42,30 +42,35 @@
     padding: 0 0 10px 10px;
 
     &__btn {
+        @extend %font-mono;
         cursor: pointer;
         background: black;
-        border: unset;
+        border: 2px solid black;
         border-radius: 3px;
         font-size: 15px;
         padding: 5px;
         color: white;
         min-width: 30px;
         height: 30px;
-        margin: 7px;
-        filter: drop-shadow(0px 0px 10px rgba(66, 66, 66, 0.5));
-
-        &--zoom {
-            background: url('./icons/zoom.svg');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 30px;
-        }
-
+        margin: 7px 0;
+        
         &--dezoom {
             background: url('./icons/dezoom.svg');
             background-repeat: no-repeat;
             background-position: center;
-            background-size: 30px;
+            background-size: 15px;
+            border-radius: 50% 0 0 50%;
+            background-color: white;
+        }
+
+        &--zoom {
+            border-left: unset;
+            background: url('./icons/zoom.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 15px;
+            border-radius: 0 50% 50% 0;
+            background-color: white;
         }
     }
 }

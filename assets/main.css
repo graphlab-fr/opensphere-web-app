@@ -10,7 +10,7 @@ body, button, .title-site {
   font-style: normal; }
 
 h2,
-h3, .btn-group, .lang-box__flag, .lang-box__separator, .navigation__link, .fiche__cle, .connexions__libelle {
+h3, .btn-group, .lang-box__flag, .lang-box__separator, .navigation__link, .fiche__cle, .connexions__libelle, .command-board__btn {
   font-family: monospace;
   font-weight: bold;
   font-style: normal; }
@@ -493,26 +493,29 @@ button:focus {
   .command-board__btn {
     cursor: pointer;
     background: black;
-    border: unset;
+    border: 2px solid black;
     border-radius: 3px;
     font-size: 15px;
     padding: 5px;
     color: white;
     min-width: 30px;
     height: 30px;
-    margin: 7px;
-    -webkit-filter: drop-shadow(0px 0px 10px rgba(66, 66, 66, 0.5));
-    filter: drop-shadow(0px 0px 10px rgba(66, 66, 66, 0.5)); }
-    .command-board__btn--zoom {
-      background: url("./icons/zoom.svg");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 30px; }
+    margin: 7px 0; }
     .command-board__btn--dezoom {
       background: url("./icons/dezoom.svg");
       background-repeat: no-repeat;
       background-position: center;
-      background-size: 30px; }
+      background-size: 15px;
+      border-radius: 50% 0 0 50%;
+      background-color: white; }
+    .command-board__btn--zoom {
+      border-left: unset;
+      background: url("./icons/zoom.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 15px;
+      border-radius: 0 50% 50% 0;
+      background-color: white; }
 
 .board {
   position: relative; }
