@@ -87,7 +87,7 @@ function createCard(entite) {
     cardContent.appendChild(cardBox);
 
     cardBox.addEventListener('click', () => {
-        switchNode(entite.id, false)
+        switchNode(entite.id)
         historique.actualiser(entite.id);
     });
 }

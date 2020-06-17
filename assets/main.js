@@ -87,7 +87,7 @@ function createCard(entite) {
     cardContent.appendChild(cardBox);
 
     cardBox.addEventListener('click', () => {
-        switchNode(entite.id, false)
+        switchNode(entite.id)
         historique.actualiser(entite.id);
     });
 }
@@ -777,7 +777,7 @@ function backToCenterView() {
     network.visualisation.fit({ animation: true });
 }
 
-function switchNode(nodeId, mustZoom = true) {
+function switchNode(nodeId) {
 
     var nodeMetas = getNodeMetas(nodeId);
 
@@ -789,7 +789,7 @@ function switchNode(nodeId, mustZoom = true) {
     // renommer la page web
     document.title = nodeMetas.label + ' - Otetosphère';
 
-    if (mustZoom) {zoomToNode(nodeId);}
+    zoomToNode(nodeId);
 
     fiche.fill(nodeMetas, findConnectedNodes(nodeId));
     fiche.open();
