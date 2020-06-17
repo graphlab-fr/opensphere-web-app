@@ -67,50 +67,59 @@
         <div id="entete-fixeur" class="entete__fixe">
 
             <header id="header" class="entete__top" role="banner">
-                <div class="entete__identite || m-lg-0" onclick="movement.goTo('reseau');">
-                    <h1 class="title-site"><span class="title-site__bold">Otlet</span>osphère</h1>
-                </div>
 
-                <div class="lang-box">
-                    <div id="lang-fr" data-lang="Fr" class="lang-box__flag lang-box__flag--fr"></div>
-                    <div id="lang-en" data-lang="En" class="lang-box__flag lang-box__flag--en"></div>
+                <div class="entete__col mr-5">
+                    <div class="entete__identite" onclick="movement.goTo('reseau');">
+                        <h1 class="title-site"><span class="title-site__bold">Otlet</span>osphère</h1>
+                    </div>
+
+                    <div class="search-box">
+                        <label for="search" class="search-box__label"></label>
+                        <input id="search" class="search-box__input" type="text" placeholder="Rechercher" role="search" autocomplete="off">
+                        <ul id="search-result" class="search-list"></ul>
+                    </div>
                 </div>
     
-                <nav class="navigation">
-                    <ul class="navigation__list">
-                        <li class="navigation__link" data-section="a_propos" data-lang-fr="À propos" data-lang-en="About">À propos</li>
-                        <li class="navigation__link navigation__link--active" data-section="reseau" data-lang-fr="Réseau" data-lang-en="Network">Réseau</li>
-                        <li class="navigation__link" data-section="fiches" data-lang-fr="Fiches" data-lang-en="Records">Fiches</li>
-                    </ul>
-                </nav>
+                <div class="entete__col">
+                    <nav class="navigation">
+                        <ul class="navigation__list mb-2">
+                            <li class="navigation__link navigation__link--active" data-section="reseau" data-lang-fr="Réseau" data-lang-en="Network">Réseau</li>
+                            <li class="navigation__link" data-section="fiches" data-lang-fr="Fiches" data-lang-en="Records">Fiches</li>
+                        </ul>
 
-                <div class="search-box || d-none d-sm-block">
-                    <label for="search" class="search-box__label"></label>
-                    <input id="search" class="search-box__input" type="text" placeholder="Rechercher" role="search" autocomplete="off">
-                    <ul id="search-result" class="search-list"></ul>
+                        <div class="d-flex">
+                            <div class="lang-box">
+                                <div id="lang-fr" data-lang="Fr" class="lang-box__flag lang-box__flag--fr">FR</div>
+                                <span class="lang-box__separator">/</span>
+                                <div id="lang-en" data-lang="En" class="lang-box__flag lang-box__flag--en">EN</div>
+                            </div>
+    
+                            <div class="navigation__globe" data-section="a_propos" title="À propos"></div>
+                        </div>
+                    </nav>
+
+                    <section class="toolbar || d-none d-xl-flex">
+                        <div class="toolbar__section">
+                            <button class="btn-group" data-group="otlet" data-lang-fr="Otlet" data-lang-en="Otlet">Otlet</button>
+                        </div>
+        
+                        <div class="toolbar__section">
+                            <button class="btn-group" data-group="famille" data-lang-fr="famille" data-lang-en="family">famille</button>
+                            <button class="btn-group" data-group="collegue" data-lang-fr="collègues" data-lang-en="coworker">collègues</button>
+                            <button class="btn-group" data-group="collaborateur" data-lang-fr="collaborateur" data-lang-en="colleagues">collaborateurs</button>
+                            <!-- <button class="btn-group" data-group="contemporain" data-lang-fr="contemporains" data-lang-en="contemporaries">contemporains</button> -->
+                            <button class="btn-group" data-group="opposant" data-lang-fr="opposants" data-lang-en="rival">opposants</button>
+                        </div>
+        
+                        <div class="toolbar__section">
+                            <button class="btn-group" data-group="œuvre" data-lang-fr="œuvres" data-lang-en="œuvres">œuvres</button>
+                            <button class="btn-group" data-group="évènement" data-lang-fr="évènement" data-lang-en="events">évènements</button>
+                            <button class="btn-group" data-group="institution" data-lang-fr="institutions" data-lang-en="institutions">institutions</button>
+                        </div>
+                
+                    </section>
                 </div>
             </header>
-    
-            <section class="toolbar || d-none d-lg-flex">
-                <div class="toolbar__section">
-                    <button class="btn-group" data-group="otlet" data-lang-fr="Otlet" data-lang-en="Otlet">Otlet</button>
-                </div>
-
-                <div class="toolbar__section">
-                    <button class="btn-group" data-group="famille" data-lang-fr="famille" data-lang-en="family">famille</button>
-                    <button class="btn-group" data-group="collegue" data-lang-fr="collègues" data-lang-en="coworker">collègues</button>
-                    <button class="btn-group" data-group="collaborateur" data-lang-fr="collaborateur" data-lang-en="colleagues">collaborateurs</button>
-                    <button class="btn-group" data-group="contemporain" data-lang-fr="contemporains" data-lang-en="contemporaries">contemporains</button>
-                    <button class="btn-group" data-group="opposant" data-lang-fr="opposants" data-lang-en="rival">opposants</button>
-                </div>
-
-                <div class="toolbar__section">
-                    <button class="btn-group" data-group="œuvre" data-lang-fr="œuvres" data-lang-en="œuvres">œuvres</button>
-                    <button class="btn-group" data-group="évènement" data-lang-fr="évènement" data-lang-en="events">évènements</button>
-                    <button class="btn-group" data-group="institution" data-lang-fr="institutions" data-lang-en="institutions">institutions</button>
-                </div>
-        
-            </section>
 
         </div>
 
@@ -128,7 +137,7 @@
 
         <section class="network-wrapper">
 
-            <button id="filtre-open" class="network__btn network__btn--left || d-lg-none" title="Afficher les fitres"></button>
+            <button id="filtre-open" class="network__btn network__btn--left || d-xl-none" title="Afficher les fitres"></button>
 
             <div id="network" class="network"></div>
 
@@ -166,7 +175,7 @@
             LATERAL FILTRE
         -->
 
-        <aside id="filter-volet" class="lateral lateral--left || d-lg-none">
+        <aside id="filter-volet" class="lateral lateral--left || d-xl-none">
             <header class="lateral__entete">
                 <button id="filtre-close" class="lateral__btn-control" data-lang-fr="Fermer" data-lang-en="Close">Fermer</button>
             </header>

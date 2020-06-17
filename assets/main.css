@@ -10,7 +10,7 @@ body, button, .title-site {
   font-style: normal; }
 
 h2,
-h3, .btn-group, .fiche__cle, .connexions__libelle {
+h3, .btn-group, .lang-box__flag, .lang-box__separator, .navigation__link, .fiche__cle, .connexions__libelle {
   font-family: monospace;
   font-weight: bold;
   font-style: normal; }
@@ -20,7 +20,7 @@ h3, .btn-group, .fiche__cle, .connexions__libelle {
   font-weight: 300;
   font-style: normal; }
 
-.lateral, .btn-group, .entete__fixe.entete__fixe--active, .lang-box__flag, .fiche__img, .search-box__input, .card, .card__img {
+.lateral, .btn-group, .entete__fixe.entete__fixe--active, .fiche__img, .search-box__input, .card, .card__img {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
 
 .sort-alphabetic-list, .overflow {
@@ -100,7 +100,7 @@ button:focus {
   width: 320px;
   top: 0px;
   background-color: #fffcfb;
-  height: calc(100vh - 115px);
+  height: calc(100vh - 90px);
   z-index: 100;
   transition: transform .2s;
   transition-timing-function: cubic-bezier(0.96, 0, 0.19, 1.12); }
@@ -114,7 +114,7 @@ button:focus {
     transform: translate(0%); }
   .lateral--fixed {
     position: fixed;
-    top: 115px; }
+    top: 90px; }
   .lateral__entete {
     display: flex;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
@@ -138,12 +138,14 @@ button:focus {
   position: relative;
   border: unset;
   display: block;
-  padding: 3px 30px 3px 10px;
-  margin: 0 2px;
+  padding: 6px 30px 6px 12px;
+  margin: 0 4px;
   border-radius: 3px;
   width: 100%;
   font-size: 14px;
   color: white; }
+  .btn-group:first-child {
+    margin: 0 2px 0 0; }
   .btn-group--large {
     box-shadow: unset;
     border-radius: unset;
@@ -171,7 +173,7 @@ button:focus {
 .introduction {
   overflow-y: auto;
   padding: 10px;
-  height: calc(100vh - 60px); }
+  height: calc(100vh - 50px); }
   .introduction h1 {
     margin: 0; }
   .introduction__img-otlet {
@@ -191,7 +193,11 @@ button:focus {
 .entete {
   position: relative;
   box-sizing: border-box;
-  z-index: 999; }
+  z-index: 999;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
   .entete__fixe {
     left: 0px;
     padding: 10px 20px 0 20px; }
@@ -202,12 +208,15 @@ button:focus {
       left: 0px;
       background-color: white;
       width: 100%;
-      height: 115px; }
+      height: 90px; }
   .entete__top {
     display: flex;
+    justify-content: space-between; }
+  .entete__col {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-content: stretch;
-    flex-wrap: wrap; }
+    height: 70px; }
   .entete__identite {
     cursor: pointer;
     display: flex;
@@ -222,73 +231,58 @@ button:focus {
   display: flex; }
   .lang-box__flag {
     cursor: pointer;
-    margin: 0 10px;
     width: 30px;
     height: 30px;
-    border-radius: 50%;
+    font-size: 18px; }
+    .lang-box__flag--active {
+      text-decoration: underline; }
+  .lang-box__separator {
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 4px; }
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .navigation__list {
+    display: flex;
+    list-style: none;
+    padding: unset;
+    margin: unset; }
+  .navigation__link {
+    cursor: pointer;
+    position: relative;
+    margin: 0 20px;
+    padding: 5px 7px;
+    color: black;
+    font-size: 18px; }
+    .navigation__link:first-child {
+      padding: 5px 7px 5px 0;
+      margin: 0 20px 0 0; }
+    .navigation__link--active {
+      text-decoration: underline; }
+    .navigation__link:hover {
+      text-decoration: underline; }
+  .navigation__globe {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 50px;
-    border: 1px solid white;
-    opacity: .7;
-    transition: opacity .1s; }
-    .lang-box__flag--fr {
-      background-image: url("./icons/lang_fr.svg"); }
-    .lang-box__flag--en {
-      background-image: url("./icons/lang_en.svg"); }
-    .lang-box__flag--active {
-      border: 1px solid black;
-      opacity: 1; }
-
-.navigation__list {
-  display: flex;
-  list-style: none;
-  padding: unset;
-  margin: unset; }
-
-.navigation__link {
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  position: relative;
-  margin: 0 20px;
-  padding: 5px 7px;
-  color: black; }
-  .navigation__link::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    width: 80%;
-    height: 1px;
-    background-color: black;
-    bottom: 2px;
-    left: -2px;
-    transition: height .1s, width .05s;
-    transition-timing-function: cubic-bezier(0.96, 0, 0.19, 1.12); }
-  .navigation__link--active {
-    color: white; }
-    .navigation__link--active::after {
-      height: 100%;
-      width: 100%;
-      left: 0px;
-      border-radius: 2px; }
-  .navigation__link:hover {
-    color: white; }
-    .navigation__link:hover::after {
-      height: 100%;
-      width: 100%;
-      left: 0px;
-      border-radius: 2px; }
+    background-size: 25px;
+    background-image: url("./logos/logo_mundaneum_globe.png"); }
 
 .toolbar {
   display: flex;
-  justify-content: center;
-  margin: 20px 0 10px 0; }
+  justify-content: center; }
   .toolbar__section {
     display: flex;
     margin: 0 10px; }
+    .toolbar__section:first-child {
+      margin: 0 10px 0 0; }
+    .toolbar__section:last-child {
+      margin: 0 0 0 10px; }
 
 .fiche__content {
   overflow: auto;
@@ -417,8 +411,7 @@ button:focus {
   transition: transform .1s; }
 
 .search-box {
-  position: relative;
-  margin-right: 20px; }
+  position: relative; }
   .search-box__label {
     cursor: pointer;
     position: absolute;
@@ -440,7 +433,8 @@ button:focus {
     font-size: 18px;
     border-radius: 5px;
     border: unset;
-    text-indent: 30px; }
+    text-indent: 30px;
+    width: 100%; }
 
 .search-list {
   position: absolute;
@@ -464,7 +458,7 @@ button:focus {
 .network-wrapper {
   position: relative;
   width: 100vw;
-  height: calc(100vh - 115px); }
+  height: calc(100vh - 90px); }
 
 .network {
   height: 100%; }
@@ -525,7 +519,7 @@ button:focus {
   .board__wrapper {
     overflow: auto;
     box-sizing: border-box;
-    height: calc(100vh - 115px);
+    height: calc(100vh - 90px);
     padding-left: 40px;
     width: calc(100% - 320px); }
   .board__section {

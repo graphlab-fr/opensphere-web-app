@@ -1,6 +1,6 @@
 var header = {
     fixBox: document.querySelector('#entete-fixeur'),
-    height: 175,
+    height: 140,
 
     fixer: function(bool) {
         if (bool) { this.fixBox.classList.add('entete__fixe--active') }
@@ -9,7 +9,7 @@ var header = {
 }
 
 var navigation = {
-    links: document.querySelectorAll('.navigation__link'),
+    links: document.querySelectorAll('[data-section]'),
     activLink: function(section) {
 
         if (movement.currentSection !== undefined) {

@@ -1,6 +1,5 @@
 .search-box {
     position: relative;
-    margin-right: 20px;
 
     &__label {
         cursor: pointer;
@@ -28,6 +27,7 @@
         border-radius: 5px;
         border: unset;
         text-indent: 30px;
+        width: 100%;
     }
 }
 
