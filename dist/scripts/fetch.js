@@ -31,7 +31,7 @@ function createNodeObject(data) {
             interaction: {hover: true},
             hidden: false,
             font: {
-                face: 'Source Sans Pro',
+                face: 'Open Sans',
                 size: 22,
                 strokeWidth: 3
             }

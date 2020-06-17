@@ -1,19 +1,23 @@
 @charset "UTF-8";
-body, button, .btn-group, .title-site, .search-box__input {
-  font-family: 'Source Sans Pro', sans-serif;
+body, button, .title-site, .search-box__input {
+  font-family: 'Open Sans', sans-serif;
   font-weight: normal;
   font-style: normal; }
 
-.btn-group::after, .title-site__bold, .fiche__titre, .fiche__cle {
-  font-family: 'Source Sans Pro', sans-serif;
+.btn-group::after, .title-site__bold, .fiche__titre {
+  font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-style: normal; }
 
-h1,
 h2,
-h3 {
+h3, .btn-group, .fiche__cle, .connexions__libelle {
   font-family: monospace;
-  font-weight: normal;
+  font-weight: bold;
+  font-style: normal; }
+
+.fiche__label, .card__label {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 300;
   font-style: normal; }
 
 .btn-group, .lang-box__flag, .fiche__img, .card, .card__img {
@@ -26,36 +30,47 @@ h3 {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
 
 @font-face {
-  font-family: 'Source Sans Pro';
-  src: url("./font/SourceSansPro-Regular.woff2") format("woff2"), url("./font/SourceSansPro-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal; }
+  font-family: 'Open Sans Condensed';
+  src: url("./font/OpenSansCondensed-Light.woff2") format("woff2"), url("./font/OpenSansCondensed-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap; }
 
 @font-face {
-  font-family: 'Source Sans Pro';
-  src: url("./font/SourceSansPro-SemiBold.woff2") format("woff2"), url("./font/SourceSansPro-SemiBold.woff") format("woff");
+  font-family: 'Open Sans';
+  src: url("./font/OpenSans-SemiBold.woff2") format("woff2"), url("./font/OpenSans-SemiBold.woff") format("woff");
   font-weight: 600;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
 
 @font-face {
-  font-family: 'Source Sans Pro';
-  src: url("./font/SourceSansPro-Italic.woff2") format("woff2"), url("./font/SourceSansPro-Italic.woff") format("woff");
+  font-family: 'Open Sans';
+  src: url("./font/OpenSans-Italic.woff2") format("woff2"), url("./font/OpenSans-Italic.woff") format("woff");
   font-weight: normal;
-  font-style: italic; }
+  font-style: italic;
+  font-display: swap; }
 
 @font-face {
-  font-family: 'Courier Prime';
-  src: url("./font/CourierPrime-Regular.woff2") format("woff2"), url("./font/CourierPrime-Regular.woff") format("woff");
+  font-family: 'Open Sans';
+  src: url("./font/OpenSans-Regular.woff2") format("woff2"), url("./font/OpenSans-Regular.woff") format("woff");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap; }
+
+body {
+  font-size: 14px;
+  line-height: 160%; }
 
 h1 {
-  margin: 30px 0 10px 0;
   font-size: 32px; }
 
 h2 {
   margin: 30px 0 10px 0;
   font-size: 24px; }
+
+h3 {
+  margin: 30px 0 10px 0;
+  font-size: 18px; }
 
 body {
   cursor: default;
@@ -327,8 +342,10 @@ button:focus {
   width: 150px; }
 
 .fiche__label {
+  display: inline-block;
+  line-height: 115%;
   font-size: 25px;
-  margin: 0; }
+  margin-bottom: 5px; }
 
 .fiche__dates {
   border-bottom: 1px solid #d5d5d5;
@@ -368,10 +385,19 @@ button:focus {
   border-top: 1px solid #d5d5d5;
   border-bottom: 1px solid #d5d5d5; }
   .fiche__description::first-letter {
-    font-size: 28px; }
+    float: left;
+    font-size: 50px;
+    top: 50px;
+    padding-top: 8px;
+    padding-right: 4px; }
 
 .fiche--active {
   transform: unset; }
+
+.connexions__libelle {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 18px; }
 
 .connexions__list {
   list-style: none;
@@ -513,7 +539,8 @@ button:focus {
     width: 100%;
     margin-top: 50px;
     padding: 0 20px;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    line-height: 140%; }
 
 .sort-alphabetic-list {
   position: absolute;
@@ -573,7 +600,7 @@ button:focus {
   .card__label {
     margin: 0 0 5px 0;
     overflow-wrap: break-word;
-    font-size: 16px; }
+    font-size: 20px; }
   .card__titre {
     margin: 10px; }
 

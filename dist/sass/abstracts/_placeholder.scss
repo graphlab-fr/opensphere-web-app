@@ -1,24 +1,30 @@
 %font-regular {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     font-style: normal;
 }
 
 %font-italic {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     font-style: italic;
 }
 
 %font-bold {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-style: normal;
 }
 
 %font-mono {
     font-family: monospace;
-    font-weight: normal;
+    font-weight: bold;
+    font-style: normal;
+}
+
+%font-condensed {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
     font-style: normal;
 }
 

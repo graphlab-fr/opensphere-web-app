@@ -1,5 +1,14 @@
+body {
+    font-size: 14px;
+    line-height: 160%;
+}
+
+h2,
+h3 {
+    @extend %font-mono;
+}
+
 h1 {
-    margin: 30px 0 10px 0;
     font-size: 32px;
 }
 
@@ -8,8 +17,7 @@ h2 {
     font-size: 24px;
 }
 
-h1,
-h2,
 h3 {
-    @extend %font-mono;
+    margin: 30px 0 10px 0;
+    font-size: 18px;
 }
