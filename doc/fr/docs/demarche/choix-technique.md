@@ -18,9 +18,7 @@ L'affichage des deux vues émane désormais de l'unique base de données du site
 
 En effet, la vue *Réseau* est davantage centrée sur les relations tandis que la vue *Notices* permet de parcourir les entités listées par ordre alphabétique. La première visualisation étant au centre du projet, nous avons décidé d'y faire converger les utilisateurs.
 
-Le [volet de description](../utilisation/elements-interface.md#volet-de-description) est un intermédiaire entre les deux vues. Le bouton *Visualiser* situé dans son entête permet de retrouver le nœud de l'entité décrite dans la vue *Réseau* et cela même si l'on a sélectionné l'entité depuis la section *Notices*.
-
-Ce raccourci permet de passer facilement de la liste des entités à la visualisation de leurs relations. L'entité ainsi décrite est également mise en avant afin que l'utilisateur puisse rapidement appréhender le réseau l'entourant et ainsi passer à une autre entité.
+Toute entité selectionnées, depuis une des deux vues, est ainsi recentrées sur le *Réseau*. On peut ainsi facilement passer de la liste des entités à la visualisation de leurs relations. L'entité ainsi décrite est également mise en avant afin que l'utilisateur puisse rapidement appréhender le réseau l'entourant et ainsi passer à une autre entité.
 
 ### Connexions entre les nœuds
 

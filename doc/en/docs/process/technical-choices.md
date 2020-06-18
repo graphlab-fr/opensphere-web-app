@@ -18,9 +18,7 @@ Both views are now displayed from the site's single database. The different filt
 
 Indeed, the *Network* view is more focused on relationships while the *Records* view allows to browse the entities listed in alphabetical order. As the first view is at the center of the project, we decided to make the users converge there.
 
-The [description panel]() is an intermediary between the two views. The *View* button located in its header allows you to find the node of the entity described in the *Network* view, even if you have selected the entity from the *Records* section.
-
-This shortcut allows you to easily switch from the list of entities to the visualization of their relationships. The entity thus described is also highlighted so that the user can quickly grasp the network surrounding it and thus switch to another entity.
+Any entity selected, from one of the two views, is thus refocused on the *Network*. You can thus easily switch from the list of entities to the visualization of their relationships. The entity thus described is also highlighted so that the user can quickly grasp the network surrounding it and thus move on to another entity.
 
 ### Connections between nodes
 
