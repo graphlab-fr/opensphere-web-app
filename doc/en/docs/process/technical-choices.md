@@ -8,11 +8,11 @@ Here are a few explanations on the technical choices that were made by the desig
 
 ## Following of navigation
 
-For a complete data reading experience, it is necessary to be able to apprehend the data in different shapes. In this way, the fluidity of navigation is a key point that has determined the current structure of the site as a [stack of sections](). They each fill a screen and the header navigation allows you to switch from one to the other at any time.
+For a complete data reading experience, it is necessary to be able to apprehend the data in different shapes. In this way, the fluidity of navigation is a key point that has determined the current structure of the site as a [stack of sections](../usage/interface-elements.md). They each fill a screen and the header navigation allows you to switch from one to the other at any time.
 
 ### Union of views
 
-Between the two views *Network* and *Records*, there was no link in the [first version of the site](). Neither the content nor the display continued between the two sections, which are now joined together.
+Between the two views *Network* and *Records*, there was no link in the [first version of the site](../version-history.md). Neither the content nor the display continued between the two sections, which are now joined together.
 
 Both views are now displayed from the site's single database. The different filtering options act simultaneously on the *Network* and *Records* sections, so that they become complementary.
 
@@ -22,7 +22,7 @@ Any entity selected, from one of the two views, is thus refocused on the *Networ
 
 ### Connections between nodes
 
-The [Description panel]() provides a list of nodes attached to the node described into. This makes it easier to move from one node to another without having to move around the network with the mouse: when you click on one of the connections, the view automatically refocuses on it.
+The [Description panel](../usage/interface-elements.md#description-panel) provides a list of nodes attached to the node described into. This makes it easier to move from one node to another without having to move around the network with the mouse: when you click on one of the connections, the view automatically refocuses on it.
 
 ### History and addressing
 
@@ -36,7 +36,7 @@ The density of the *Network* is such that it is difficult to read. It was decide
 
 ![Transparence function](../images/fonction transparence.jpg)
 
-When clicking on a node or map, the entity goes into *activated* mode. This has [various effects](), including highlighting the selected node's network by greasing its border and links. This did not seem to us sufficient for ease of reading, since the visualization should not only run through selections.
+When clicking on a node or map, the entity goes into *activated* mode. This has [various effects](../usage/entities-selection.md#effects), including highlighting the selected node's network by greasing its border and links. This did not seem to us sufficient for ease of reading, since the visualization should not only run through selections.
 
 So we added an effect to the hover as well: as soon as the mouse passes over a node, all except its direct network become translucent. This state should not prevent the exceptional visualization of the node of the active entity, so it was also decided that this node and its network could not become translucent under any circumstances.
 

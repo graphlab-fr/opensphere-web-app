@@ -21,7 +21,7 @@ The cartographic representation of a network of people required reflection and g
 This project is based on the observation of Paul Otlet's strong involvement in international peace organizations as well as in bibliographical and documentary institutions.
 This project is based on the observation of Paul Otlet's strong involvement in international peace organizations as well as in bibliographical and documentary institutions.
 
-The initial inspiration comes from the graphic representation of the Marvel transmedia universe produced by the team of the Singaporean newspaper "[The Straits Time]()", which presents itself as a veritable constellation of superheroes, linked together by their relationships within the narrative universes.
+The initial inspiration comes from the graphic representation of the Marvel transmedia universe produced by the team of the Singaporean newspaper "[The Straits Time](https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2018/04/marvel-cinematic-universe-whos-who-interactive/index.html)", which presents itself as a veritable constellation of superheroes, linked together by their relationships within the narrative universes.
 
 ## First version
 
@@ -44,7 +44,7 @@ We note the following major modifications:
 
 - addition of a search tool
 - merge the *View* and *Database* sections to give *Network* and *Cards*.
-- description pane: display connections between nodes and [junction]() between *Network* and *Sheets* with the *View* button
+- description pane: display connections between nodes and [junction](./process/technical-choices.md#union-of-views) between *Network* and *Sheets* with the *View* button
 - browsing history
 
 ### Sustainability
