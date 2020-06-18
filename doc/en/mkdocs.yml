@@ -1,0 +1,67 @@
+# Project information
+site_name: Documentation Otletosphère
+site_url: 'https://hyperotlet.github.io/otletosphere/en/'
+repo_name: 'hyperotlet/otletosphere'
+repo_url: 'https://github.com/hyperotlet/otletosphere'
+edit_uri: ''
+site_description: Documentation of Otletosphère project
+copyright: '© HyperOtlet 2020'
+
+# Navigation
+nav:
+  - Home: index.md
+  - Process:
+    - Technical choices: process/technical-choices.md
+    - Multilingual: process/multilingual.md
+    - Data structure: process/data-structure.md
+  - Development:
+    - Architecture:
+      - Source code: development/architecture-source-code.md
+      - Libraries: development/libraries.md
+    - Download and installation: development/installation.md
+    - Register data: development/register-data.md
+  - FAQ: faq.md
+  - Version history: version-history.md
+
+# Theme configuration
+theme:
+  name: material
+  language: fr
+  palette:
+    primary: indigo
+    accent: indigo
+  font: false
+extra_css:
+  - extras/style.css
+extra_javascript:
+  - https://unpkg.com/mermaid@8.5.1/dist/mermaid.min.js
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: true
+  - toc:
+      permalink: true
+  - meta
+  - footnotes
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.tabbed
+  - pymdownx.tilde
+
+# plugins
+plugins:
+  - search:
+      lang:
+        - en

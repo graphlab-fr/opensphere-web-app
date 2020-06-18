@@ -4,14 +4,14 @@ author: Guillaume Brioudes <https://myllaume.fr/>
 date: 29/05/2020
 ---
 
-Les diagrammes suivants présentent l'organisation du code source. Ils permettent de mieux appréhender le logiciel et ainsi de pouvoir y apporter des [modifications](/installation/#configuration) plus facilement.
+Les diagrammes suivants présentent l'organisation du code source. Ils permettent de mieux appréhender le logiciel et ainsi de pouvoir y apporter des [modifications](../developpement/installation.md#configuration) plus facilement.
 
 ## Arborescence de fichier
 
-Le schéma suivant présente la répartition des fichiers dans le répertoire de code source tel qu'il est possible de [télécharger sur le dépôt GitHub](/installation).
+Le schéma suivant présente la répartition des fichiers dans le répertoire de code source tel qu'il est possible de [télécharger sur le dépôt GitHub](./installation.md).
 
 !!! bug "Avis aux développeurs"
-	Veillez à ne pas égarer de fichier ou répertoire sans quoi certaines [dépendances logicielle](/bibliotheques) du projet pourrait disfonctionner et vous pourriez perdre des fonctionnalités.
+	Veillez à ne pas égarer de fichier ou répertoire sans quoi certaines [dépendances logicielle](./bibliotheques.md) du projet pourrait disfonctionner et vous pourriez perdre des fonctionnalités.
 
 ```mermaid
 graph LR

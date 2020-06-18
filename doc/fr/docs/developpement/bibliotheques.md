@@ -7,9 +7,9 @@ date: 27/05/2020
 Pour réaliser le site web rapidement, mais aussi améliorer la maintenabilité et la lisbilités du code source, l'équipe de développement a recouru aux bibliothèques suivantes.
 
 !!! check "Aucune installation supplémentaire nécessaire"
-	Sauf les [bibliothèques liées à Gulp.js](#gulpjs), toutes sont incluses dans le [répertoire Otletosphere](/architecture code source/#arborescence-de-fichier) et ne nécessitent aucune installation supplémentaire pour fonctionner.
+	Sauf les [bibliothèques liées à Gulp.js](#gulpjs), toutes sont incluses dans le [répertoire Otletosphere](./architecture-code-source.md#arborescence-de-fichier) et ne nécessitent aucune installation supplémentaire pour fonctionner.
 
-Sont listées les différentes documentations pour que les développeurs puissent personnaliser l'utilisation qui a été faite des bibliothèques liées.
+Sont jointes les différentes documentations pour que les développeurs puissent comprendre et adapter l'utilisation de ces bibliothèques.
 
 ## JavaScript
 
@@ -33,7 +33,7 @@ Nous avons utilisé la partie CSS de la bibliothèque [Bootstrap](https://getboo
 
 Retrouvez ci-dessous la liste des dépendances Node.js utilisées pour la production du code source via l'outil [Gulp.js](https://gulpjs.com/).
 
-Cette bibliothèque modularisée n'est pas nécessaire pour l'installation, pas plus qu'elle n'a besoin d'être modifée : les [fichiers de configuration](/architecture code source/#arborescence-de-fichier) `package.json` et `gulpfile.js` sont utiles aux développeurs souhaitant profiter de l'outil de production de code source Gulp.js : il est configuré sur mesure. Une [installation complémentaire](/installation/#gulpjs) est toutefois nécessaire.
+Cette bibliothèque modularisée n'est pas nécessaire pour l'installation, pas plus qu'elle n'a besoin d'être modifée : les [fichiers de configuration](./architecture-code-source.md#arborescence-de-fichier) `package.json` et `gulpfile.js` sont utiles aux développeurs souhaitant profiter de l'outil de production de code source Gulp.js : il est configuré sur mesure. Une [installation complémentaire](./installation.md#gulpjs) est toutefois nécessaire.
 
 - gulp-autoprefixer : https://www.npmjs.com/package/gulp-autoprefixer
 - gulp-concat : https://www.npmjs.com/package/gulp-concat

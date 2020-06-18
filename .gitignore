@@ -1,7 +1,11 @@
+.DS_Store
+
 /node_modules
 package-lock.json
-.DS_Store
+
 /assets/logos
 /assets/photos
 /assets/font
-/site/
+
+site/
+/build

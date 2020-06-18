@@ -1,0 +1,16 @@
+.highlight code {
+    line-height: 1.4rem;
+}
+
+.md-typeset .admonition {
+    font-size: unset !important;
+}
+
+.md-typeset code {
+    font-size: 0.85rem;
+    letter-spacing: 0.01rem;
+}
+
+.md-typeset table:not([class]) {
+    font-size: unset !important ;
+}

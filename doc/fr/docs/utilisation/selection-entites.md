@@ -25,7 +25,7 @@ Les actions suivantes vous permettent de sélectionner une entité :
 Dès qu'une entité est selectionnée, les effets suivants s'appliquent immédiatement :
 
 - Ouverture et actualisation du volet de description avec les métadonnées de l'entité selectionnée
-- Son nœud et son réseau direct ne peuvent devenir [translucides](/navigation reseau/#transparence)
+- Son nœud et son réseau direct ne peuvent devenir [translucides](./navigation-reseau.md#transparence)
 - Inscription de l'identifiant de l'entité à la fin de l'adresse de la page
 - Ajout de l'entité dans l'historique de navigation
 - Modification du nom de la page en fonction du label de l'entité
