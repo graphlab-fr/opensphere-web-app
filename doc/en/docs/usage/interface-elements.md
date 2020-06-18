@@ -26,7 +26,7 @@ Clicking on one of the nodes will allow you to [select the entity](./entities-se
 
 It can be opened by clicking on the *i* icon or by selecting a node.
 
-It contains all the information stored in the database about the [selected entity](./selection-entites.md).
+It contains all the information stored in the database about the [selected entity](./entities-selection.md).
 
 !!! tip "Find the selected node"
 	Wherever you are, clicking the "View" button at the top of the description pane displays the node within the *Network*.

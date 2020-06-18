@@ -14,14 +14,24 @@ nav:
     - Technical choices: process/technical-choices.md
     - Multilingual: process/multilingual.md
     - Data structure: process/data-structure.md
+  - Guide utilisation:
+    - Interface elements: usage/interface-elements.md
+    - Network navigation: usage/network-navigation.md
+    - Entities selection: usage/entities-selection.md
+    - Sort entities: usage/sort-entities.md
+  - FAQ: faq.md
+  - Version history: version-history.md
   - Development:
     - Architecture:
       - Source code: development/architecture-source-code.md
       - Libraries: development/libraries.md
     - Download and installation: development/installation.md
     - Register data: development/register-data.md
-  - FAQ: faq.md
-  - Version history: version-history.md
+    - Modify source code:
+      - Outils développement: modify-source-code/dev-tools.md
+      - Modifier groupes: modify-source-code/modify-groups.md
+      - Modifier volet: modify-source-code/modify-description-panel.md
+      - Modifier traduction: modify-source-code/modify-translation.md
 
 # Theme configuration
 theme:

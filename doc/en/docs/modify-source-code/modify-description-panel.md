@@ -6,7 +6,7 @@ date: 09/06/2020
 
 This tutorial will describe how to modify the content of the [description pane](../usage/interface-elements.md#description-panel), i.e. how to display the information available for each [selected entity](../usage/entities-selection.md#methods).
 
-The following changes are made in the `/dist/scripts/fiche.js` file if you [use the development tools](./modify-source-code/dev-tools.md#using-the-development-tools). Otherwise you will need to modify the `/assets/main.js` file.
+The following changes are made in the `/dist/scripts/fiche.js` file if you [use the development tools](../modify-source-code/dev-tools.md#using-the-development-tools). Otherwise you will need to modify the `/assets/main.js` file.
 
 ## Object architecture
 

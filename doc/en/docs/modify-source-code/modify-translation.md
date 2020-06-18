@@ -76,7 +76,7 @@ graph TD
 
 In the `fill' function of the `file' object in the `/dist/scripts/fiche.js' file is this *switcher* which will allow you to toggle the display of metadata in the [description panel](../usage/interface-elements.md#description-panel) according to the active language.
 
-For each `case' corresponding to a language you will be able to activate certain [display functions](.modify-description-panel.md#injection) in the pane.
+For each `case' corresponding to a language you will be able to activate certain [display functions](./modify-description-panel.md#injection) in the pane.
 
 ```javascript hl_lines="8"
 switch (langage.actual) {
