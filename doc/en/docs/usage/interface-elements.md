@@ -51,8 +51,8 @@ This element links the three sections of the site. The following tasks can be pe
 
 The search bar allows you to find an entity according to its label. As you type, the [most relevant](../development/libraries.md#fusejs) labels appear. Clicking on a proposal allows you to [select the entity](./entities-selection.md) linked.
 
-!!! info
-	Emptying the search bar hides the list of results.
+!!! info "Filtering Search Results"
+	Search results are [filtered according to your instructions](./sort-entities.md). If a result is missing, it's probably because you dismissed it.
 
 ## Records
 

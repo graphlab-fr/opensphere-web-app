@@ -51,8 +51,8 @@ Cet élément fait le liens entre les trois sections du site. On peut y exectuer
 
 La barre de recherche permet de trouver une entité selon son [label](Métadonnées). Au fur et à mesure de la saisie, les labels [les plus pertinent](../developpement/bibliotheques.md#fusejs) apparaissent. Cliquer sur une proposition permet de [sélectionner l'entité](./selection-entites.md) liée.
 
-!!! info
-	Vider la barre de recherche cache la liste des résultats.
+!!! info "Filtrage des résultat de recherche"
+	Les résultats de recherche sont [filtrés selon vos instructions](./trier-entites.md). Si un résultat manque, c'est certainement que vous l'avez écarté.
 
 ## Fiches
 
