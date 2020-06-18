@@ -1,7 +1,7 @@
 ---
 title: Choix techniques Otletosphère
 author: Guillaume Brioudes : https://myllaume.fr/
-date: 29/04/2020
+date: 18/06/2020
 ---
 
 Voici quelques explications sur les choix techniques qui ont été effectué par l'équipe de conception et de développement, toujours dans l'optique de proposer une expérience de lecture optimale et informative aux internautes.
