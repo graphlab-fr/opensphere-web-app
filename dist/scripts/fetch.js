@@ -33,7 +33,9 @@ function createNodeObject(data) {
             font: {
                 face: 'Open Sans',
                 size: 22,
-                strokeWidth: 3
+                color: '#fff',
+                strokeWidth: 2,
+                strokeColor: '#000'
             }
         };
     

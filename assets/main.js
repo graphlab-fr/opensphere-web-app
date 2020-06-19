@@ -118,7 +118,9 @@ function createNodeObject(data) {
             font: {
                 face: 'Open Sans',
                 size: 22,
-                strokeWidth: 3
+                color: '#fff',
+                strokeWidth: 2,
+                strokeColor: '#000'
             }
         };
     
@@ -627,7 +629,10 @@ var network = {
                     id: nodeId,
                     color: chooseColor(nodeGroupName, true),
                     opacity: 0.4,
-                    font: {color: 'rgba(0, 0, 0, 0.5)'}
+                    font: {
+                        color: 'rgba(255, 255, 255, 0.5)',
+                        strokeColor: 'rgba(0, 0, 0, 0.5)'
+                }
                 });
             }
             
@@ -641,7 +646,10 @@ var network = {
                     id: id,
                     color: false,
                     opacity: 1,
-                    font: {color: 'black'}
+                    font: {
+                        color: '#fff',
+                        strokeColor: '#000'
+                    }
                 });
             });
         });
