@@ -1,21 +1,21 @@
 @charset "UTF-8";
-body, button, .title-site {
+body, button {
   font-family: 'Open Sans', sans-serif;
   font-weight: normal;
   font-style: normal; }
 
-.btn-group::after, .title-site__bold, .fiche__titre {
+.btn-group::after, .fiche__titre {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-style: normal; }
 
-h2,
+.title-site, h2,
 h3, .btn-group, .lang-box__flag, .lang-box__separator, .navigation__link, .fiche__cle, .connexions__libelle, .search-box__input, .command-board__btn {
   font-family: 'Inconsolata', monospace;
   font-weight: normal;
   font-style: normal; }
 
-.lang-box__flag--active, .navigation__link--active {
+.title-site__bold, .lang-box__flag--active, .navigation__link--active {
   font-family: 'Inconsolata', monospace;
   font-weight: bold;
   font-style: normal; }
@@ -240,7 +240,7 @@ button:focus {
     cursor: pointer;
     display: flex;
     align-items: center;
-    margin-bottom: 10px; }
+    margin: 5px 0 10px 0; }
 
 .title-site {
   margin: unset;
