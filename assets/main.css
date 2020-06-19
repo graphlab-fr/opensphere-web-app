@@ -317,9 +317,9 @@ button:focus {
   position: absolute;
   top: calc(50% - 40px);
   right: 100%;
-  background-color: #0f0f0f;
+  background-color: #f0f0f0;
   border: unset;
-  color: white;
+  color: #222222;
   height: 80px;
   width: 40px;
   font-size: 20px;
@@ -529,7 +529,7 @@ button:focus {
       background-position: center;
       background-size: 15px;
       border-radius: 50% 0 0 50%;
-      background-color: white; }
+      background-color: #f0f0f0; }
     .command-board__btn--zoom {
       border-left: unset;
       background: url("./icons/zoom.svg");
@@ -537,7 +537,7 @@ button:focus {
       background-position: center;
       background-size: 15px;
       border-radius: 0 50% 50% 0;
-      background-color: white; }
+      background-color: #f0f0f0; }
 
 .board {
   position: relative; }

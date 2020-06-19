@@ -61,7 +61,7 @@
             background-position: center;
             background-size: 15px;
             border-radius: 50% 0 0 50%;
-            background-color: white;
+            background-color: rgb(240, 240, 240);
         }
 
         &--zoom {
@@ -71,7 +71,7 @@
             background-position: center;
             background-size: 15px;
             border-radius: 0 50% 50% 0;
-            background-color: white;
+            background-color: rgb(240, 240, 240);
         }
     }
 }
