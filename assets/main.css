@@ -479,7 +479,8 @@ button:focus {
 .network-wrapper {
   position: relative;
   width: 100vw;
-  height: calc(100vh - 90px); }
+  height: calc(100vh - 90px);
+  background-color: #1b1b1b; }
 
 .network {
   height: 100%; }
