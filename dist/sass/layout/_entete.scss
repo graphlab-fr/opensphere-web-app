@@ -41,12 +41,13 @@
 }
 
 .title-site {
-    @extend %font-regular;
+    @extend %font-mono;
     margin: unset;
     text-transform: uppercase;
+    letter-spacing: 1px;
 
     &__bold {
-        @extend %font-bold;
+        @extend %font-mono-bold;
     }
 }
 

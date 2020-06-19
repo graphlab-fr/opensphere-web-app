@@ -9,8 +9,8 @@ body, button {
   font-weight: 600;
   font-style: normal; }
 
-.title-site, h2,
-h3, .btn-group, .lang-box__flag, .lang-box__separator, .navigation__link, .fiche__cle, .connexions__libelle, .search-box__input, .command-board__btn {
+h2,
+h3, .btn-group, .title-site, .lang-box__flag, .lang-box__separator, .navigation__link, .fiche__cle, .connexions__libelle, .search-box__input, .command-board__btn {
   font-family: 'Inconsolata', monospace;
   font-weight: normal;
   font-style: normal; }
@@ -240,11 +240,12 @@ button:focus {
     cursor: pointer;
     display: flex;
     align-items: center;
-    margin: 5px 0 10px 0; }
+    margin-bottom: 10px; }
 
 .title-site {
   margin: unset;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  letter-spacing: 1px; }
 
 .lang-box {
   display: flex; }
