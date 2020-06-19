@@ -291,8 +291,8 @@ button:focus {
     height: 30px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 25px;
-    background-image: url("./logos/logo_mundaneum_globe.png"); }
+    background-size: contain;
+    background-image: url("./icons/infos.svg"); }
 
 .toolbar {
   display: flex;
