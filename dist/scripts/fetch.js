@@ -53,8 +53,6 @@ function createNodeObject(data) {
 
         generatedNodesObjectList.push(nodeObject);
     });
-
-    return generatedEdgesObjectList;
 }
 
 let generatedEdgesObjectList = [];
@@ -77,8 +75,6 @@ function createEdgeObject(data) {
         };
         generatedEdgesObjectList.push(edgeObject);
     });
-
-    return generatedEdgesObjectList;
 }
 
 Promise.all([

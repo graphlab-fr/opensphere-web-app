@@ -22,8 +22,6 @@ var fiche = {
         else { fiche.body.classList.remove('lateral--fixed'); }
     },
     open: function() {
-        if (!network.isLoaded) { return; }
-        
         this.toggle.classList.add('fiche__toggle-btn--active');
         fiche.body.classList.add('lateral--active');
         this.isOpen = true;

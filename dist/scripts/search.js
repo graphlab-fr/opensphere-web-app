@@ -35,37 +35,33 @@ var search = {
     },
     cleanResultContent: function() {
         search.resultContent.innerHTML = ''; // results
+    },
+    init: function() {
+        const fuse = new Fuse(getNoHiddenNodes(), search.options);
+
+        search.input.addEventListener('input', () => {
+    
+            search.resultContent.innerHTML = '';
+    
+            if (search.input.value == '') { return; }
+    
+            const resultList = fuse.search(search.input.value);
+            
+            if (resultList.length > 5) {
+                // si plus de 5 résultats, limiter à 5
+                var nbResult = 5;
+            } else {
+                // sinon garder l nombre de résultats
+                var nbResult = resultList.length;
+            }
+            
+            for (let i = 0; i < nbResult; i++) {
+                search.showResult(resultList[i]); }
+        });
     }
 }
 
 search.reset();
-
-search.input.addEventListener('focus', () => {
-
-    if (!network.isLoaded) { return; }
-    
-    const fuse = new Fuse(getNoHiddenNodes(), search.options);
-
-    search.input.addEventListener('input', () => {
-
-        search.resultContent.innerHTML = '';
-
-        if (search.input.value == '') { return; }
-
-        const resultList = fuse.search(search.input.value);
-        
-        if (resultList.length > 5) {
-            // si plus de 5 résultats, limiter à 5
-            var nbResult = 5;
-        } else {
-            // sinon garder l nombre de résultats
-            var nbResult = resultList.length;
-        }
-        
-        for (let i = 0; i < nbResult; i++) {
-            search.showResult(resultList[i]); }
-    });
-});
 
 function getNoHiddenNodes() {
     var activeNodes = network.data.nodes.get({
