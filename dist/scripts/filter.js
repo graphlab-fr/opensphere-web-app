@@ -17,8 +17,6 @@ var filter = {
 
                 network.visualisation.stabilize();
         
-                if (!network.isLoaded) { return; }
-        
                 if (isActiveGroup) {
                     network.data.nodes.get({
                         filter: function (item) {
@@ -55,7 +53,6 @@ var filter = {
     }
 }
 
-filter.init();
 filter.volet.btnOpen.addEventListener('click', () => {
     filter.volet.body.classList.add('lateral--active'); });
 filter.volet.btnClose.addEventListener('click', () => {

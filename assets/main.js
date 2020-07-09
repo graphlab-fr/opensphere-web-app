@@ -30,8 +30,6 @@ var board = {
         }
     },
     init: function() {
-        if (!network.isLoaded) { return; }
-
         this.content.innerHTML = '';
         board.sort.caracters = [];
         board.sort.conteneur.innerHTML = '';
@@ -138,8 +136,6 @@ function createNodeObject(data) {
 
         generatedNodesObjectList.push(nodeObject);
     });
-
-    return generatedEdgesObjectList;
 }
 
 let generatedEdgesObjectList = [];
@@ -162,8 +158,6 @@ function createEdgeObject(data) {
         };
         generatedEdgesObjectList.push(edgeObject);
     });
-
-    return generatedEdgesObjectList;
 }
 
 Promise.all([
@@ -212,8 +206,6 @@ var fiche = {
         else { fiche.body.classList.remove('lateral--fixed'); }
     },
     open: function() {
-        if (!network.isLoaded) { return; }
-        
         this.toggle.classList.add('fiche__toggle-btn--active');
         fiche.body.classList.add('lateral--active');
         this.isOpen = true;
@@ -372,8 +364,6 @@ var filter = {
 
                 network.visualisation.stabilize();
         
-                if (!network.isLoaded) { return; }
-        
                 if (isActiveGroup) {
                     network.data.nodes.get({
                         filter: function (item) {
@@ -410,7 +400,6 @@ var filter = {
     }
 }
 
-filter.init();
 filter.volet.btnOpen.addEventListener('click', () => {
     filter.volet.body.classList.add('lateral--active'); });
 filter.volet.btnClose.addEventListener('click', () => {
@@ -528,7 +517,6 @@ window.onresize = function() {
 }
 var network = {
     container: document.querySelector('#network'),
-    isLoaded: false,
     options: {
         physics: {
             enabled: true,
@@ -668,12 +656,17 @@ var network = {
             if (params.scale >= network.zoom.max) {
                 network.visualisation.moveTo({ scale: network.zoom.max }); }
         });
+
+        zoom.btnPlus.addEventListener('click', zoomIn);
+        zoom.btnMoins.addEventListener('click', zoomOut);
+        zoom.btnReinitialiser.addEventListener('click', backToCenterView);
         
         // Stockage données
-        network.isLoaded = true;
         network.allNodesIds = network.data.nodes.getIds();
         
         board.init();
+        search.input.addEventListener('focus', search.init);
+        filter.init();
         
         // Si l'id d'un nœud est entré dans l'URL, on l'active
         var urlPathnameArray = window.location.pathname.split('/');
@@ -834,37 +827,33 @@ var search = {
     },
     cleanResultContent: function() {
         search.resultContent.innerHTML = ''; // results
+    },
+    init: function() {
+        const fuse = new Fuse(getNoHiddenNodes(), search.options);
+
+        search.input.addEventListener('input', () => {
+    
+            search.resultContent.innerHTML = '';
+    
+            if (search.input.value == '') { return; }
+    
+            const resultList = fuse.search(search.input.value);
+            
+            if (resultList.length > 5) {
+                // si plus de 5 résultats, limiter à 5
+                var nbResult = 5;
+            } else {
+                // sinon garder l nombre de résultats
+                var nbResult = resultList.length;
+            }
+            
+            for (let i = 0; i < nbResult; i++) {
+                search.showResult(resultList[i]); }
+        });
     }
 }
 
 search.reset();
-
-search.input.addEventListener('focus', () => {
-
-    if (!network.isLoaded) { return; }
-    
-    const fuse = new Fuse(getNoHiddenNodes(), search.options);
-
-    search.input.addEventListener('input', () => {
-
-        search.resultContent.innerHTML = '';
-
-        if (search.input.value == '') { return; }
-
-        const resultList = fuse.search(search.input.value);
-        
-        if (resultList.length > 5) {
-            // si plus de 5 résultats, limiter à 5
-            var nbResult = 5;
-        } else {
-            // sinon garder l nombre de résultats
-            var nbResult = resultList.length;
-        }
-        
-        for (let i = 0; i < nbResult; i++) {
-            search.showResult(resultList[i]); }
-    });
-});
 
 function getNoHiddenNodes() {
     var activeNodes = network.data.nodes.get({
@@ -910,19 +899,34 @@ langage.flags.forEach(flag => {
             fiche.fill(fiche.memory.activeNodeMetas, fiche.memory.activeNodeConnectedList); }
     });
 });
-var commands = {
-    zoom: {
-        btnPlus: document.querySelector('#zoom-plus'),
-        btnMoins: document.querySelector('#zoom-moins'),
-        btnReinitialiser: document.querySelector('#zoom-general'),
-        interval: 0.2
-    }
+var zoom = {
+    btnPlus: document.querySelector('#zoom-plus'),
+    btnMoins: document.querySelector('#zoom-moins'),
+    btnReinitialiser: document.querySelector('#zoom-general'),
+    interval: 0.1
 }
 
-commands.zoom.btnPlus.addEventListener('click', () => {
-    if (!network.isLoaded) { return; }
+function zoomToNode(nodeId) {
+    var nodeId = Number(nodeId);
+    var nodeCoordonates = network.visualisation.getPosition(nodeId);
+    
+    if (network.data.nodes.get(nodeId).hidden === true) {
+        // si le nœeud est hidden
+        return;
+    }
 
-    var scale = network.visualisation.getScale() + commands.zoom.interval;
+    network.visualisation.moveTo({
+        position: {
+            x: nodeCoordonates.x,
+            y: nodeCoordonates.y
+        },
+        scale: network.zoom.max,
+        animation: true
+    });
+}
+
+function zoomIn() {
+    var scale = network.visualisation.getScale() + zoom.interval;
 
     if (scale >= network.zoom.max) {
         // si l'échelle de zoom dépasse le maximum, elle s'y limite
@@ -930,12 +934,10 @@ commands.zoom.btnPlus.addEventListener('click', () => {
     }
 
     network.visualisation.moveTo({ scale: scale });
-});
+}
 
-commands.zoom.btnMoins.addEventListener('click', () => {
-    if (!network.isLoaded) { return; }
-
-    var scale = network.visualisation.getScale() - commands.zoom.interval;
+function zoomOut() {
+    var scale = network.visualisation.getScale() - zoom.interval;
 
     if (scale <= network.zoom.min) {
         // si l'échelle de zoom dépasse le minium, elle s'y limite
@@ -943,6 +945,8 @@ commands.zoom.btnMoins.addEventListener('click', () => {
     }
 
     network.visualisation.moveTo({ scale: scale });
-});
+}
 
-commands.zoom.btnReinitialiser.addEventListener('click', backToCenterView);
+function backToCenterView() {
+    network.visualisation.fit({ animation: true });
+}

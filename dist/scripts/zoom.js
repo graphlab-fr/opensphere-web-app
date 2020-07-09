@@ -1,16 +1,31 @@
-var commands = {
-    zoom: {
-        btnPlus: document.querySelector('#zoom-plus'),
-        btnMoins: document.querySelector('#zoom-moins'),
-        btnReinitialiser: document.querySelector('#zoom-general'),
-        interval: 0.2
-    }
+var zoom = {
+    btnPlus: document.querySelector('#zoom-plus'),
+    btnMoins: document.querySelector('#zoom-moins'),
+    btnReinitialiser: document.querySelector('#zoom-general'),
+    interval: 0.1
 }
 
-commands.zoom.btnPlus.addEventListener('click', () => {
-    if (!network.isLoaded) { return; }
+function zoomToNode(nodeId) {
+    var nodeId = Number(nodeId);
+    var nodeCoordonates = network.visualisation.getPosition(nodeId);
+    
+    if (network.data.nodes.get(nodeId).hidden === true) {
+        // si le nœeud est hidden
+        return;
+    }
 
-    var scale = network.visualisation.getScale() + commands.zoom.interval;
+    network.visualisation.moveTo({
+        position: {
+            x: nodeCoordonates.x,
+            y: nodeCoordonates.y
+        },
+        scale: network.zoom.max,
+        animation: true
+    });
+}
+
+function zoomIn() {
+    var scale = network.visualisation.getScale() + zoom.interval;
 
     if (scale >= network.zoom.max) {
         // si l'échelle de zoom dépasse le maximum, elle s'y limite
@@ -18,12 +33,10 @@ commands.zoom.btnPlus.addEventListener('click', () => {
     }
 
     network.visualisation.moveTo({ scale: scale });
-});
+}
 
-commands.zoom.btnMoins.addEventListener('click', () => {
-    if (!network.isLoaded) { return; }
-
-    var scale = network.visualisation.getScale() - commands.zoom.interval;
+function zoomOut() {
+    var scale = network.visualisation.getScale() - zoom.interval;
 
     if (scale <= network.zoom.min) {
         // si l'échelle de zoom dépasse le minium, elle s'y limite
@@ -31,6 +44,8 @@ commands.zoom.btnMoins.addEventListener('click', () => {
     }
 
     network.visualisation.moveTo({ scale: scale });
-});
+}
 
-commands.zoom.btnReinitialiser.addEventListener('click', backToCenterView);
+function backToCenterView() {
+    network.visualisation.fit({ animation: true });
+}

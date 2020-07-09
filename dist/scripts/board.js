@@ -30,8 +30,6 @@ var board = {
         }
     },
     init: function() {
-        if (!network.isLoaded) { return; }
-
         this.content.innerHTML = '';
         board.sort.caracters = [];
         board.sort.conteneur.innerHTML = '';

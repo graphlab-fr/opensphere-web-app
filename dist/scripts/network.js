@@ -1,6 +1,5 @@
 var network = {
     container: document.querySelector('#network'),
-    isLoaded: false,
     options: {
         physics: {
             enabled: true,
@@ -140,12 +139,17 @@ var network = {
             if (params.scale >= network.zoom.max) {
                 network.visualisation.moveTo({ scale: network.zoom.max }); }
         });
+
+        zoom.btnPlus.addEventListener('click', zoomIn);
+        zoom.btnMoins.addEventListener('click', zoomOut);
+        zoom.btnReinitialiser.addEventListener('click', backToCenterView);
         
         // Stockage données
-        network.isLoaded = true;
         network.allNodesIds = network.data.nodes.getIds();
         
         board.init();
+        search.input.addEventListener('focus', search.init);
+        filter.init();
         
         // Si l'id d'un nœud est entré dans l'URL, on l'active
         var urlPathnameArray = window.location.pathname.split('/');
