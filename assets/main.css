@@ -321,11 +321,11 @@ button:focus {
   background-color: #f0f0f0;
   border: unset;
   color: #222222;
-  height: 80px;
-  width: 40px;
-  font-size: 20px;
-  border-bottom-left-radius: 80px;
-  border-top-left-radius: 80px; }
+  height: 45px;
+  width: 30px;
+  font-size: 14px;
+  border-bottom-left-radius: 10%;
+  border-top-left-radius: 10%; }
   .fiche__toggle-btn--active span {
     display: inline-block;
     transform: rotate(180deg); }
@@ -529,7 +529,7 @@ button:focus {
       background-repeat: no-repeat;
       background-position: center;
       background-size: 15px;
-      border-radius: 50% 0 0 50%;
+      border-radius: 10% 0 0 10%;
       background-color: #f0f0f0; }
     .command-board__btn--zoom {
       border-left: unset;
@@ -537,7 +537,7 @@ button:focus {
       background-repeat: no-repeat;
       background-position: center;
       background-size: 15px;
-      border-radius: 0 50% 50% 0;
+      border-radius: 0 10% 10% 0;
       background-color: #f0f0f0; }
 
 .board {

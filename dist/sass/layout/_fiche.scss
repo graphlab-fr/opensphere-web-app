@@ -13,7 +13,7 @@
     }
 
     &__toggle-btn {
-        $btn_toggle_size: 40px;
+        $btn_toggle_size: 30px;
 
         position: absolute;
         top: calc(50% - 40px);
@@ -21,11 +21,11 @@
         background-color: rgb(240, 240, 240);
         border: unset;
         color: rgb(34, 34, 34);
-        height: $btn_toggle_size * 2;
+        height: $btn_toggle_size * 1.5;
         width: $btn_toggle_size;
-        font-size: 20px;
-        border-bottom-left-radius: $btn_toggle_size * 2;
-        border-top-left-radius: $btn_toggle_size * 2;
+        font-size: 14px;
+        border-bottom-left-radius: 10%;
+        border-top-left-radius: 10%;
 
         &--active span {
             display: inline-block;

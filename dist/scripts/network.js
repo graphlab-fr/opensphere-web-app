@@ -174,7 +174,7 @@ function chooseColor(relationEntite, lowerOpacity = false) {
         case 'collegue':
             var color = '154, 60, 154'; break;
         case 'contemporain':
-            var color = '0, 128, 0'; break;
+            var color = '128,128,128'; break;
         case 'collaborateur':
             var color = '97, 172, 97'; break;
         case 'opposant':
