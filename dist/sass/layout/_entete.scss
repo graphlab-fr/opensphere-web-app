@@ -2,7 +2,6 @@
     position: relative;
     box-sizing: border-box;
     z-index: 999;
-    user-select: none;
     
     &__fixe {
         left: 0px;
@@ -23,6 +22,7 @@
     &__top {
         display: flex;
         justify-content: space-between;
+        user-select: none;
     }
 
     &__col {

@@ -212,11 +212,7 @@ button:focus {
 .entete {
   position: relative;
   box-sizing: border-box;
-  z-index: 999;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+  z-index: 999; }
   .entete__fixe {
     left: 0px;
     padding: 10px 20px 0 20px; }
@@ -230,7 +226,11 @@ button:focus {
       height: 90px; }
   .entete__top {
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
   .entete__col {
     display: flex;
     flex-direction: column;
