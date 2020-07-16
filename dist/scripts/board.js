@@ -1,83 +1,121 @@
 var board = {
     content: document.querySelector('#board-content'),
     wrapper: document.querySelector('#board-wrapper'),
-    sort: {
-        conteneur: document.querySelector('#board-alphabetic'),
-        caracters: [],
-        lastCaracter: undefined,
-        init: function() {
-            this.caracters.forEach(caracter => {
-                caract = document.createElement('li');
-                caract.classList.add('sort-alphabetic-list__caracter');
-                caract.textContent = caracter.caracter;
-                this.conteneur.appendChild(caract);
+    engine: new Board,
 
-                var caracterSectionTitle = document.createElement('label');
-                caracterSectionTitle.classList.add('board__section-title');
-                caracterSectionTitle.textContent = caracter.caracter;
-                board.content.appendChild(caracterSectionTitle);
-
-                board.content.appendChild(caracter.cardsContent);
-
-                caract.addEventListener('click', () => {
-                    board.wrapper.scrollTop = 0;
-                    board.wrapper.scrollTo({
-                        top: caracter.cardsContent.getBoundingClientRect().y -180,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        }
-    },
     init: function() {
-        this.content.innerHTML = '';
-        board.sort.caracters = [];
-        board.sort.conteneur.innerHTML = '';
-        
-        network.data.nodes.forEach(createCard, { order: 'sortName' });
-        board.sort.init();
+        network.data.nodes.forEach((entity) => {
+            var card = new Card;
+            card.id = entity.id;
+            card.label = entity.label;
+            card.labelFirstLetter = entity.sortName.charAt(0);
+            card.title = entity.title;
+            card.img = entity.image;
+
+            this.engine.cards.push(card);
+        }, { order: 'sortName' });
+
+        this.engine.init();
     }
 }
 
-function createCard(entite) {
+function Card() {
+    this.id = null;
+    this.label = 'No name';
+    this.labelFirstLetter = undefined;
+    this.title = 'No title';
+    this.text = null;
+    this.domElt = document.createElement('article');
+}
 
-    if (entite.hidden == true) { return; }
+Card.prototype.inscribe = function(container) {
+    this.domElt.classList.add('card');
+    this.domElt.innerHTML = 
+    `<div class="card__presentation">
+        <img class="card__img" src="${this.img}" alt="${this.label}">
+        <div class="card__identite">
+            <h3 class="card__label">${this.label}</h3>
+        </div>
+    </div>
+    <h4 class="card__titre">${this.title}</h4>`;
 
-    var firstCaracterFromLabel = entite.sortName.charAt(0);
-    if (firstCaracterFromLabel != board.sort.lastCaracter) {
-        // si le caractère n'est pas le dernier enregistré on a changé de caractère
-        // donc instance d'une nouvelle section de cartes
+    container.appendChild(this.domElt);
 
-        var caracterSection = document.createElement('div');
-        caracterSection.classList.add('board__section');
-
-        board.sort.caracters.push({
-            caracter: firstCaracterFromLabel,
-            cardsContent: caracterSection
-        });
-
-        board.sort.lastCaracter = firstCaracterFromLabel;
-    }
-
-    var photo = '<img class="card__img" src="' + entite.image + '" alt="' + entite.label + '" />';
-    var label = '<h3 class="card__label">' + entite.label + '</h3>';
-    var identite = ['<div class="card__identite">', label, '</div>'].join('');
-    var presentation = ['<div class="card__presentation">', photo, identite, '</div>'].join('');
-
-    var titre = null;
-    if (entite.title !== null) {
-        titre = '<h4 class="card__titre">' + entite.title + '</h4>'; }
-
-    // dernier contenant de cartes créé où mettre les cartes pour un même caractère
-    var cardContent = board.sort.caracters[board.sort.caracters.length - 1].cardsContent;
-
-    const cardBox = document.createElement('div');
-    cardBox.classList.add('card');
-    cardBox.innerHTML = [presentation, titre].join('');
-    cardContent.appendChild(cardBox);
-
-    cardBox.addEventListener('click', () => {
-        switchNode(entite.id)
-        historique.actualiser(entite.id);
+    this.domElt.addEventListener('click', () => {
+        switchNode(this.id)
+        historique.actualiser(this.id);
     });
+}
+
+function Board() {
+    this.domElt = document.querySelector('#board-content');
+    this.domLetterList = document.querySelector('#board-alphabetic');
+    this.cards = [];
+    this.letterList = [];
+    this.alphaSpace = [];
+}
+
+Board.prototype.bundle = function() {
+    var letter = this.cards[0].labelFirstLetter;
+    console.log(letter);
+    var letterBundle = [];
+    
+    this.cards.forEach(card => {
+        if (card.labelFirstLetter != letter) {
+            this.alphaSpace.push(letterBundle);
+            letterBundle = [];
+            letter = card.labelFirstLetter;
+        }
+
+        letterBundle.push(card);
+    });
+}
+
+Board.prototype.fill = function() {
+    this.alphaSpace.forEach(letterStack => {
+        var letter = letterStack[0].labelFirstLetter;
+        this.letterList.push(letter);
+
+        var divider = document.createElement('div');
+        divider.id = 'letter-' + letter;
+        divider.classList.add('board__section-title');
+        divider.textContent = letter;
+        this.domElt.appendChild(divider);
+
+        var cardStack = document.createElement('div');
+        cardStack.classList.add('board__section');
+        this.domElt.appendChild(cardStack);
+
+        letterStack.forEach(card => {
+            card.inscribe(cardStack);
+        });
+    });
+}
+
+Board.prototype.listLetters = function() {
+    this.letterList.forEach(letter => {
+        // this.domLetterList.innerHTML +=
+        // `<li class="sort-alphabetic-list__caracter">
+        //     ${letter}
+        // </li>`;
+
+        var listElt = document.createElement('li');
+        listElt.classList.add('sort-alphabetic-list__caracter');
+        listElt.textContent = letter;
+        this.domLetterList.appendChild(listElt);
+
+        listElt.addEventListener('click', () => {
+            board.wrapper.scrollTop = 0;
+            board.wrapper.scrollTo({
+                top: document.querySelector('#letter-' + letter).getBoundingClientRect().y - header.height,
+                behavior: 'smooth'
+            });
+        })
+    });
+}
+
+Board.prototype.init = function() {
+    this.bundle();
+    this.fill();
+    this.listLetters();
 }
