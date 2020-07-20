@@ -1,6 +1,7 @@
 .btn-group {
     @extend %font-mono;
     @extend %shadow-1;
+    cursor: pointer;
     position: relative;
     border: unset;
     display: block;

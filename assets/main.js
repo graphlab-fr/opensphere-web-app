@@ -4,6 +4,8 @@ var board = {
     engine: new Board,
 
     init: function() {
+        this.engine.empty();
+
         network.data.nodes.forEach((entity) => {
             var card = new Card;
             card.id = entity.id;
@@ -12,7 +14,9 @@ var board = {
             card.title = entity.title;
             card.img = entity.image;
 
-            this.engine.cards.push(card);
+            if (entity.hidden === false) {
+                this.engine.cards.push(card); }
+
         }, { order: 'sortName' });
 
         this.engine.init();
@@ -57,7 +61,6 @@ function Board() {
 
 Board.prototype.bundle = function() {
     var letter = this.cards[0].labelFirstLetter;
-    console.log(letter);
     var letterBundle = [];
     
     this.cards.forEach(card => {
@@ -94,11 +97,6 @@ Board.prototype.fill = function() {
 
 Board.prototype.listLetters = function() {
     this.letterList.forEach(letter => {
-        // this.domLetterList.innerHTML +=
-        // `<li class="sort-alphabetic-list__caracter">
-        //     ${letter}
-        // </li>`;
-
         var listElt = document.createElement('li');
         listElt.classList.add('sort-alphabetic-list__caracter');
         listElt.textContent = letter;
@@ -118,6 +116,15 @@ Board.prototype.init = function() {
     this.bundle();
     this.fill();
     this.listLetters();
+}
+
+Board.prototype.empty = function() {
+    this.domElt.innerHTML = '';
+    this.domLetterList.innerHTML = '';
+
+    this.cards = [];
+    this.alphaSpace = [];
+    this.letterList = [];
 }
 let generatedNodesObjectList = [];
 function createNodeObject(data) {

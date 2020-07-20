@@ -154,6 +154,7 @@ button:focus {
       display: none; }
 
 .btn-group {
+  cursor: pointer;
   position: relative;
   border: unset;
   display: block;
