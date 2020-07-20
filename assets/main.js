@@ -72,6 +72,8 @@ Board.prototype.bundle = function() {
 
         letterBundle.push(card);
     });
+
+    this.alphaSpace.push(letterBundle);
 }
 
 Board.prototype.fill = function() {
