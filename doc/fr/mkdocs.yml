@@ -32,6 +32,7 @@ nav:
       - Modifier groupes: modifier_code/modifier-groupes.md
       - Modifier volet: modifier_code/modifier-volet.md
       - Modifier traduction: modifier_code/modifier-traduction.md
+      - Modifier métadonnées: modifier_code/modifier-metas.md
     
 
 # Theme configuration

@@ -28,10 +28,11 @@ nav:
     - Download and installation: development/installation.md
     - Register data: development/register-data.md
     - Modify source code:
-      - Outils développement: modify-source-code/dev-tools.md
-      - Modifier groupes: modify-source-code/modify-groups.md
-      - Modifier volet: modify-source-code/modify-description-panel.md
-      - Modifier traduction: modify-source-code/modify-translation.md
+      - Development tools: modify-source-code/dev-tools.md
+      - Modify groups: modify-source-code/modify-groups.md
+      - Modify description panel: modify-source-code/modify-description-panel.md
+      - Modify translation: modify-source-code/modify-translation.md
+      - Modify metadatas: modify-source-code/modify-metas.md
 
 # Theme configuration
 theme:
