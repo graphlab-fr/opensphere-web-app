@@ -9,9 +9,6 @@ date: 28/05/2020
 ??? question "Comment partager une fiche ?"
 	Vous pouvez partager l'adresse de la page de votre navigateur une fois que vous avez [sélectionné l'entité](./utilisation/selection-entites.md#methodes) à partager.
 
-??? question "Où proposer des modifications de contenu ?"
-	Ce site est parfait, rien à ajouter.
-
 ## Développement
 
 ??? question "Puis-je réutiliser le projet ?"

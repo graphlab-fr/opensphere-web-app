@@ -2,6 +2,7 @@
 title: Bibliothèques de développement de l'Otletosphère
 author: Guillaume Brioudes <https://myllaume.fr/>
 date: 27/05/2020
+update: 29/07/2020
 ---
 
 Pour réaliser le site web rapidement, mais aussi améliorer la maintenabilité et la lisbilités du code source, l'équipe de développement a recouru aux bibliothèques suivantes.
@@ -13,21 +14,21 @@ Sont jointes les différentes documentations pour que les développeurs puissent
 
 ## JavaScript
 
-### Vis.js
+### Vis.js (v7.10.2)
 
 La bibliothèque JavaScript [Vis.js](https://github.com/visjs/vis-network) nous a permis de réaliser la visualisation de la section *Réseau* grâce à deux de ses composants : *Network* et *DataSet*.
 
 La bibliothèque nous a permis de traiter les données (stockage, tri, circulation de données entre les fonctions), mais aussi de générer le canvas, son animation et enfin la gestion des évenements en son sein (sélection, survol, zoom).
 
-### Fuse.js
+### Fuse.js (v6.4.1)
 
 La bibliothèque JavaScript [Fuse.js](https://fusejs.io/) nous a permis de mettre en place le moteur de recherche d'entité. Elle permet de parcourir des tableaux, entre autres, d'objets JavaScript avec un critère de recherche afin d'en extraire les objets les plus pertinents.
 
 ## CSS
 
-### Bootstrap
+### Bootstrap Grid (v4.5.0)
 
-Nous avons utilisé la partie CSS de la bibliothèque [Bootstrap](https://getbootstrap.com/) afin de réaliser facilement une interface flexible pour tablette et desktop.
+Nous avons utilisé la partie Grid CSS de la bibliothèque [Bootstrap](https://getbootstrap.com/) afin de réaliser facilement une interface flexible pour tablette et desktop.
 
 ## Gulp.js
 

@@ -9,9 +9,6 @@ date: 08/06/2020
 ??? question "How to share a record?"
 	You can share your browser's page address once you have [selected the entity](./usage/entities-selection.md) to share.
 
-??? question "Where to propose content changes?"
-	This site is perfect, nothing to add.
-
 ## Development
 
 ??? question "Can I reuse the project ?"

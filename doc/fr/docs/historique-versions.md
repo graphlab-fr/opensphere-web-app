@@ -3,7 +3,9 @@ title: Historique des versions de l'Otletosphère
 author: Guillaume Brioudes <https://myllaume.fr/>
 date: 28/05/2020
 ---
+
 ## Histoire et logique du projet.
+
 L'Otletosphère est un projet de visualisation web qui s'intègre dans le projet de recherche HyperOtlet. L'Otletosphère a jusqu'ici connu 2 versions publiques.
 Le développement de l'otlétosphère s'inscrit dans le cadre du projet HyperOtlet, financé par l'ANR [ANR-17-CE38-0011]. https://anr.fr/Projet-ANR-17-CE38-0011
 Le carnet de recherche du projet est disponible ici https://hyperotlet.hypotheses.org/
@@ -34,23 +36,23 @@ L'idée de base est issue d'une volonté d'Olivier Le Deuff, maître de confére
 
 Le développement débute en avril 2020 et consiste à réaménager un travail théoriquement abouti et avec une interface complète. Hormis l'ajout d'outils de navigation, c'est un chantier de pérennisation, d'harmonisation et de design.
 
-On note les modifications majeures suivantes :
+On note des modifications majeures dans deux domaines :
 
 ### Navigation
 
-- ajout d'un outil de recherche
-- fusion des sections *Visualisation* et *Base de données* pour donner *Réseau* et *Fiches*
-- volet de description : affichage des connexions entre les nœuds et [point de jonction](./demarche/choix-technique.md#union-des-vues) entre *Réseau* et *Fiches* avec le bouton *Visualiser*
-- historique de navigation
+- ajout d'un outil de recherche ;
+- fusion des sections *Visualisation* et *Base de données* pour donner *Réseau* et *Fiches* ;
+- volet de description : affichage des connexions entre les nœuds et [point de jonction](./demarche/choix-technique.md#union-des-vues) entre *Réseau* et *Fiches* avec le bouton *Visualiser* ;
+- historique de navigation.
 
 ### Pérennisation
 
-- Données : structurer la saisie dans un *GSheet* unique et pérenniser l'injection
-- Programmation : mettre à jour les dépendances et refactoriser le code
-- Faciliter la (ré)utilisation : documentation et ouverture du code source avec API
+- Données : structurer la saisie dans un *GSheet* unique et pérenniser l'injection ;
+- Programmation : mettre à jour les dépendances et refactoriser le code ;
+- Faciliter la (ré)utilisation : documentation et ouverture du code source avec API ;
+- Référencement : utiliser différents ontologies pour assurer le référencement par les moteurs de recherche et autres outils type signet.
 
 
 ## Bibliographie :
 
 Olivier Le Deuff, Jean David, Arthur Perret, Clément Borel. Surfer dans l'Otletosphère Des outils pour visualiser et interroger le réseau de Paul Otlet. H2PTM’19. De l’hypertexte aux humanités numériques, Roxin Ioan, Oct 2019, Montbelliard, France. p.65-76. disponible [ici](https://archivesic.ccsd.cnrs.fr/sic_02480515).
-

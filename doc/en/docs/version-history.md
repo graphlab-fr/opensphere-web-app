@@ -38,7 +38,7 @@ The basic idea came from Olivier Le Deuff, a lecturer in information and communi
 
 The development starts in April 2020 and consists in redesigning a theoretically accomplished work with a complete interface. Apart from the addition of navigation tools, it is a project of perpetuation, harmonization and design.
 
-We note the following major modifications:
+There have been major changes in two areas:
 
 ### Navigation
 
@@ -52,6 +52,7 @@ We note the following major modifications:
 - Data: structure the data entry in a single *GSheet* and make the injection sustainable.
 - Programming: update dependencies and refactor the code
 - Facilitate (re)use: documentation and opening of source code with API
+- Search engine optimization : use different ontologies to ensure referencing by search engines and other bookmark-type tools
 
 ## Bibliography
 
