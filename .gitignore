@@ -3,11 +3,5 @@
 /node_modules
 package-lock.json
 
-/assets/logos
-/assets/photos
-/assets/font
-/assets/favicon
-/assets/image-rs.jpg
-
 site/
 /build
