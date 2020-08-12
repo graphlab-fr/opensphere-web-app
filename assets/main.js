@@ -131,7 +131,7 @@ Board.prototype.empty = function() {
 let generatedNodesObjectList = [];
 function createNodeObject(data) {
 
-    var imagePath  = '/assets/photos/';
+    var imagePath  = '/otletosphere/assets/photos/';
 
     data.forEach(entite => {
                     
@@ -209,8 +209,8 @@ function createEdgeObject(data) {
 }
 
 Promise.all([
-    fetch('/data/entite.json'),
-    fetch('/data/lien.json')
+    fetch('/otletosphere/data/entite.json'),
+    fetch('/otletosphere/data/lien.json')
 ]).then(function(data) {
     // console.log(data);
     const entite = data[0]
