@@ -6,7 +6,7 @@ date: 29/07/2020
 
 ## Métadonnées des différents ontologies
 
-Les métadonnées de l'Otletosphère sont inscrites dans le fichier `index.html` et imbriquées dans la balise `<head>`.
+Les métadonnées de l'Otletosphère sont inscrites dans les fichiers `index.html` et `about.html` et imbriquées dans la balise `<head>`.
 
 ### Impact
 

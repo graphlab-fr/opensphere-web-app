@@ -4,7 +4,7 @@ author: Guillaume Brioudes <https://myllaume.fr/>
 date: 03/05/2020
 ---
 
-Une fois que vous avez [téléchargé et installé le logiciel](../developpement/installation.md) de l'Otletosphère sur votre station de travail, vous pouvez commencer à modifier le code source, soit les fichiers `index.html`, `main.js` et `main.css`. Les autres fonctionnalités émanent des [bibliothèques](../developpement/bibliotheques.md).
+Une fois que vous avez [téléchargé et installé le logiciel](../developpement/installation.md) de l'Otletosphère sur votre station de travail, vous pouvez commencer à modifier le code source, soit les fichiers `index.html`, `about.html`, `main.js` et `main.css`. Les autres fonctionnalités émanent des [bibliothèques](../developpement/bibliotheques.md).
 
 ```mermaid
 graph LR

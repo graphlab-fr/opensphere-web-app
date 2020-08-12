@@ -6,7 +6,7 @@ date: 27/05/2020
 
 L'Otletosphère est un outil de visualisation. Le *Réseau* occupe donc une place centrale sur le site. L'interface permet de consulter par différentes vues la base de données dont est extrait le *Réseau*.
 
-L'interface est divisée en trois sections empilées et présentées dans la navigation du site :
+L'interface est divisée en trois sections et présentées dans la navigation du site :
 
 - À propos
 - Réseau (section d'arrivée)
@@ -29,7 +29,7 @@ Il peut être ouvert en cliquant sur l'icone *i* ou en séléctionnant un nœud.
 Il contient toutes les informations stockées dans la base de données au sujet de l'[entité sélectionnée](./selection-entites.md).
 
 !!! tip "Retrouver le nœud sélectionné"
-	Où que vous soyez, cliquer sur le bouton "Visualiser" en haut du volet de description affiche le nœud au sein du *Réseau*.
+	Où que vous soyez, cliquer sur la photo du volet de description affiche le nœud au sein du *Réseau*.
 
 ### Connexions
 
@@ -67,4 +67,6 @@ Cliquer sur une carte permet de [sélectionner l'entité](./selection-entites.md
 
 ## À propos
 
-Cette dernière section contient une brève description du projet et de ses acteurs, qu'il s'agisse de l'équipe de conception et développement ou bien des partenaires et mécènes.
+Pour y accéder vous devez cliquer sur le "i", dans le coins haut droit du header.
+
+Cette dernière section est une page isolée. Elle contient une brève description du projet et de ses acteurs, qu'il s'agisse de l'équipe de conception et développement ou bien des partenaires et mécènes.

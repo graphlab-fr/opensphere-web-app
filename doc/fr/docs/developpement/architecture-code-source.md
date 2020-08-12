@@ -22,13 +22,13 @@ graph LR
 	/dist --> sass
 	/dist --> scripts
 	/assets --> font
+	/assets --> photos
+	/assets --> favicon
 	/assets --> icons
 	/assets --> main.css
 	/assets --> main.js
 	/data --> entite.json
-	/data --> metas.json
 	/data --> lien.json
-	/data --> /images
 ```
 
 ## Architecture des fonctions du *Réseau*

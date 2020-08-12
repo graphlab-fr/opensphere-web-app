@@ -6,7 +6,7 @@ date: 29/07/2020
 
 ## Metadata from different ontologies
 
-The metadata of the Otletosphere are written in the `index.html` file and nested in the `<head>` tag.
+The metadata of the Otletosphere are written in the files `index.html` and `about.html` and nested in the `<head>` tag.
 
 ### Impact
 

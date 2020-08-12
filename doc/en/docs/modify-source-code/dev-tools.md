@@ -4,7 +4,7 @@ author: Guillaume Brioudes <https://myllaume.fr/>
 date: 09/06/2020
 ---
 
-Once you have [downloaded and installed the Otletosphere software](../development/installation.md) on your workstation, you can start modifying the source code, namely the `index.html`, `main.js` and `main.css` files. The other features come from the [libraries](../development/libraries.md).
+Once you have [downloaded and installed the Otletosphere software](../development/installation.md) on your workstation, you can start modifying the source code, namely the `index.html`, `about.html`, `main.js` and `main.css` files. The other features come from the [libraries](../development/libraries.md).
 
 ```mermaid
 graph LR

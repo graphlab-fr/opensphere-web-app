@@ -6,7 +6,7 @@ date: 09/06/2020
 
 The Otletosphere is a visualization tool. The *Network* therefore occupies a central place on the site. The interface allows you to consult the database from which the *Network* is extracted through different views.
 
-The interface is divided into three stacked sections presented in the site navigation :
+The interface is divided into three sections presented in the site navigation :
 
 - About us
 - Network (inbound section)
@@ -29,7 +29,7 @@ It can be opened by clicking on the *i* icon or by selecting a node.
 It contains all the information stored in the database about the [selected entity](./entities-selection.md).
 
 !!! tip "Find the selected node"
-	Wherever you are, clicking the "View" button at the top of the description pane displays the node within the *Network*.
+	Wherever you are, clicking on the picture in the description pane displays the node within the *Network*.
 
 ### Connections
 
@@ -67,4 +67,6 @@ Clicking on a map allows you to [select entity](./entities-selection.md).
 
 ## About
 
-This last section contains a brief description of the project and its actors, be it the design and development team or the partners and sponsors.
+To access it you must click on the "i" in the top right corner of the header.
+
+This last section is an isolated page. It contains a brief description of the project and its actors, be it the design and development team or the partners and sponsors.
