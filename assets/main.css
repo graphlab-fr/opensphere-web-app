@@ -338,6 +338,7 @@ button:focus {
   display: flex; }
 
 .fiche__img {
+  cursor: pointer;
   border-radius: 2px;
   width: 150px;
   height: 210px;

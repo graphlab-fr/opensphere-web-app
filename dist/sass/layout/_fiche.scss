@@ -49,6 +49,7 @@
 
     &__img {
         @extend %shadow-1;
+        cursor: pointer;
         border-radius: 2px;
         width: 150px;
         height: 210px;
