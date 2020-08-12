@@ -199,6 +199,7 @@ function createEdgeObject(data) {
             // edge metas
             from: lien.from,
             to: lien.to,
+            title: lien.label,
 
             // edge style
             color: color
