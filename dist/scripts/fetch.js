@@ -1,7 +1,7 @@
 let generatedNodesObjectList = [];
 function createNodeObject(data) {
 
-    var imagePath  = './assets/photos/';
+    var imagePath  = '/assets/photos/';
 
     data.forEach(entite => {
                     
@@ -79,8 +79,8 @@ function createEdgeObject(data) {
 }
 
 Promise.all([
-    fetch('./data/entite.json'),
-    fetch('./data/lien.json')
+    fetch('/data/entite.json'),
+    fetch('/data/lien.json')
 ]).then(function(data) {
     // console.log(data);
     const entite = data[0]
