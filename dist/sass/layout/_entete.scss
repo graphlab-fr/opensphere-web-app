@@ -1,29 +1,17 @@
 .entete {
-    position: relative;
-    box-sizing: border-box;
+    @extend %shadow-1;
+    user-select: none;
     z-index: 999;
-    
-    &__fixe {
-        left: 0px;
-        padding: 10px 20px 0 20px;
-
-        &.entete__fixe--active {
-            box-sizing: border-box;
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            background-color: white;
-            width: 100%;
-            height: $header-height;
-            @extend %shadow-1;
-        }
-    }
-
-    &__top {
-        display: flex;
-        justify-content: space-between;
-        user-select: none;
-    }
+    box-sizing: border-box;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px 0 20px;
+    width: 100%;
+    height: $header-height;
+    background-color: white;
 
     &__col {
         display: flex;
@@ -35,7 +23,7 @@
     &__identite {
         cursor: pointer;
         display: flex;
-        align-items: center;
+        // align-items: center;
         margin-bottom: 10px;
     }
 }
@@ -50,8 +38,6 @@
         @extend %font-mono-bold;
     }
 }
-
-$langages: "fr", "en";
 
 .lang-box {
     display: flex;

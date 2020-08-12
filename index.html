@@ -51,8 +51,8 @@
     <meta property="article:published_time" content="2020-02"/>
     <meta itemprop="datePublished" content="2020-02"/>
     <!-- update date -->
-    <meta property="article:modified_time" content="2020-07"/>
-    <meta itemprop="dateModified" content="2020-07"/>
+    <meta property="article:modified_time" content="2020-08"/>
+    <meta itemprop="dateModified" content="2020-08"/>
     <!-- social image -->
     <meta property="og:image" content="https://dev.myllaume.fr/Network/assets/image-rs.jpg"/>
     <meta name="twitter:image" content="https://dev.myllaume.fr/Network/assets/image-rs.jpg"/>
@@ -120,124 +120,68 @@
 
 <body>
 
-    <section class="entete">
+    <!--
+        TOP PAGE HEADER
+    -->
 
-        <!--
-            SECTION A PROPOS
-        -->
+    <header id="header" class="entete" role="banner">
 
-        <section id="introduction" class="introduction">
-
-            <div class="introduction__wrapper || d-flex flex-wrap justify-content-center mt-3">
-                <img class="introduction__img-otlet || col-md-4" src="./assets/photos/OtletPaulColorized.png" alt="">
-    
-                <div class="introduction__texte || col-md-6">
-
-                    <h2>À propos</h2>
-
-                    <p>L’Otletosphère est une cartographie relationnelle des personnalités et institutions liées à Paul Otlet. Elle cherche à mettre en visibilité la forte implication de Paul Otlet au sein des organisations pacifistes internationales ainsi qu'au sein des institutions bibliographiques et documentaires. La mise en oeuvre de ses projets pacifistes, documentaires, féministes lui a permis de côtoyer de nombreuses personnalités scientifiques et artistiques avec lesquelles il a pu entretenir des correspondances, se lier d'amitié, ou collaborer. Ces relations sont souvent connues ou attestées par l'examen des archives du Mundaneum.</p>
-                    <p>À l’exception des images, les contenus de ce site sont sous licence <a href="https://creativecommons.org/licenses/by/2.0/fr/" target="_blank">Creative Commons Attribution</a>. CC BY HyperOtlet (Clément Borel, Guillaume Brioudes, Jean David, Olivier Le Deuff et Arthur Perret)</p>
-        
-                    <h3>Manuel d'utilisation</h3>
-
-                    <p><strong>Le manuel d'utilisation est disponible à l'adresse suivante :  <a href="https://hyperotlet.github.io/otletosphere/">https://hyperotlet.github.io/otletosphere/</a></strong></p>
-
-                    <h3>Liens</h3>
-    
-                    <ul>
-                        <li>Documentation pratique et technique : <a href="https://hyperotlet.github.io/otletosphere/">https://hyperotlet.github.io/otletosphere/</a></li>
-                        <li>Carnet de recherche : <a href="https://hyperotlet.hypotheses.org/">https://hyperotlet.hypotheses.org/</a></li>
-                        <li>Compte Twitter : <a href="https://twitter.com/hyperotlet">https://twitter.com/hyperotlet</a></li>
-                        <li>Frise chronologique interactive sur Paul Otlet : <a href="http://hyperotlet.huma-num.fr/timeline.html">http://hyperotlet.huma-num.fr/timeline.html</a></li>
-                    </ul>
-
-                    <div class="introduction__logo-list">
-                        <img class="introduction__logo" src="./assets/logos/logootletcoul.png" alt="Logo Otletosphère">
-                        <img class="introduction__logo" src="./assets/logos/logo_CMH.png" alt="Logo OtletOsphère">
-                        <img class="introduction__logo" src="./assets/logos/logo_cnrs.png" alt="Logo OtletOsphère">
-                        <img class="introduction__logo" src="./assets/logos/logo_enssib.png" alt="Logo OtletOsphère">
-                        <img class="introduction__logo" src="./assets/logos/logo_mica.png" alt="Logo OtletOsphère">
-                        <img class="introduction__logo" src="./assets/logos/logo_msh.png" alt="Logo OtletOsphère">
-                        <img class="introduction__logo" src="./assets/logos/logo_mundaneum.png" alt="Logo OtletOsphère">
-                        <img class="introduction__logo" src="./assets/logos/logo_ubm.png" alt="Logo OtletOsphère">
-                    </div>
-                </div>
+        <div class="entete__col mr-5">
+            <div class="entete__identite" onclick="movement.goTo('reseau');">
+                <h1 class="title-site"><span class="title-site__bold">Otlet</span>osphère</h1>
             </div>
-            
-        </section>
 
-        <!--
-            SECTION A PROPOS end
-        -->
-
-        <!--
-            TOP PAGE HEADER
-        -->
-
-        <div id="entete-fixeur" class="entete__fixe">
-
-            <header id="header" class="entete__top" role="banner">
-
-                <div class="entete__col mr-5">
-                    <div class="entete__identite" onclick="movement.goTo('reseau');">
-                        <h1 class="title-site"><span class="title-site__bold">Otlet</span>osphère</h1>
-                    </div>
-
-                    <div class="search-box">
-                        <label for="search" class="search-box__label"></label>
-                        <input id="search" class="search-box__input" type="text" placeholder="Rechercher" role="search" autocomplete="off">
-                        <ul id="search-result" class="search-list"></ul>
-                    </div>
-                </div>
-    
-                <div class="entete__col">
-                    <nav class="navigation">
-                        <ul class="navigation__list mb-2">
-                            <li class="navigation__link navigation__link--active" data-section="reseau" data-lang-fr="Réseau" data-lang-en="Network">Réseau</li>
-                            <li class="navigation__link" data-section="fiches" data-lang-fr="Fiches" data-lang-en="Records">Fiches</li>
-                        </ul>
-                    </nav>
-
-                    <section class="toolbar || d-none d-xl-flex">
-                        <div class="toolbar__section">
-                            <button class="btn-group" data-group="otlet" data-lang-fr="Otlet" data-lang-en="Otlet">Otlet</button>
-                        </div>
-        
-                        <div class="toolbar__section">
-                            <button class="btn-group" data-group="famille" data-lang-fr="famille" data-lang-en="family">famille</button>
-                            <button class="btn-group" data-group="collegue" data-lang-fr="collègues" data-lang-en="coworker">collègues</button>
-                            <button class="btn-group" data-group="collaborateur" data-lang-fr="collaborateur" data-lang-en="colleagues">collaborateurs</button>
-                            <!-- <button class="btn-group" data-group="contemporain" data-lang-fr="contemporains" data-lang-en="contemporaries">contemporains</button> -->
-                            <button class="btn-group" data-group="opposant" data-lang-fr="opposants" data-lang-en="rival">opposants</button>
-                        </div>
-        
-                        <div class="toolbar__section">
-                            <button class="btn-group" data-group="œuvre" data-lang-fr="œuvres" data-lang-en="œuvres">œuvres</button>
-                            <button class="btn-group" data-group="évènement" data-lang-fr="évènement" data-lang-en="events">évènements</button>
-                            <button class="btn-group" data-group="institution" data-lang-fr="institutions" data-lang-en="institutions">institutions</button>
-                        </div>
-                
-                    </section>
-                </div>
-
-                <div class="d-flex">
-                    <div class="lang-box">
-                        <div id="lang-fr" data-lang="Fr" class="lang-box__flag lang-box__flag--fr">FR</div>
-                        <span class="lang-box__separator">/</span>
-                        <div id="lang-en" data-lang="En" class="lang-box__flag lang-box__flag--en">EN</div>
-                    </div>
-
-                    <div class="navigation__globe" data-section="a_propos" title="À propos"></div>
-                </div>
-            </header>
-
+            <div class="search-box">
+                <label for="search" class="search-box__label"></label>
+                <input id="search" class="search-box__input" type="text" placeholder="Rechercher" role="search" autocomplete="off">
+                <ul id="search-result" class="search-list"></ul>
+            </div>
         </div>
 
-        <!--
-            TOP PAGE HEADER end
-        -->
+        <div class="entete__col">
+            <nav class="navigation">
+                <ul class="navigation__list mb-2">
+                    <li class="navigation__link navigation__link--active" data-section="reseau" data-lang-fr="Réseau" data-lang-en="Network">Réseau</li>
+                    <li class="navigation__link" data-section="fiches" data-lang-fr="Fiches" data-lang-en="Records">Fiches</li>
+                </ul>
+            </nav>
 
-    </section>
+            <section class="toolbar || d-none d-xl-flex">
+                <div class="toolbar__section">
+                    <button class="btn-group" data-group="otlet" data-lang-fr="Otlet" data-lang-en="Otlet">Otlet</button>
+                </div>
+
+                <div class="toolbar__section">
+                    <button class="btn-group" data-group="famille" data-lang-fr="famille" data-lang-en="family">famille</button>
+                    <button class="btn-group" data-group="collegue" data-lang-fr="collègues" data-lang-en="coworker">collègues</button>
+                    <button class="btn-group" data-group="collaborateur" data-lang-fr="collaborateur" data-lang-en="colleagues">collaborateurs</button>
+                    <!-- <button class="btn-group" data-group="contemporain" data-lang-fr="contemporains" data-lang-en="contemporaries">contemporains</button> -->
+                    <button class="btn-group" data-group="opposant" data-lang-fr="opposants" data-lang-en="rival">opposants</button>
+                </div>
+
+                <div class="toolbar__section">
+                    <button class="btn-group" data-group="œuvre" data-lang-fr="œuvres" data-lang-en="œuvres">œuvres</button>
+                    <button class="btn-group" data-group="évènement" data-lang-fr="évènement" data-lang-en="events">évènements</button>
+                    <button class="btn-group" data-group="institution" data-lang-fr="institutions" data-lang-en="institutions">institutions</button>
+                </div>
+        
+            </section>
+        </div>
+
+        <div class="d-flex">
+            <div class="lang-box">
+                <div id="lang-fr" data-lang="Fr" class="lang-box__flag lang-box__flag--fr">FR</div>
+                <span class="lang-box__separator">/</span>
+                <div id="lang-en" data-lang="En" class="lang-box__flag lang-box__flag--en">EN</div>
+            </div>
+
+            <a href="./about.html" class="navigation__globe" data-section="a_propos" title="À propos"></a>
+        </div>
+    </header>
+
+    <!--
+        TOP PAGE HEADER end
+    -->
 
     <main>
 

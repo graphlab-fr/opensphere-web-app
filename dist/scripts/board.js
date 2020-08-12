@@ -107,7 +107,7 @@ Board.prototype.listLetters = function() {
         listElt.addEventListener('click', () => {
             board.wrapper.scrollTop = 0;
             board.wrapper.scrollTo({
-                top: document.querySelector('#letter-' + letter).getBoundingClientRect().y - header.height,
+                top: document.querySelector('#letter-' + letter).getBoundingClientRect().y - headerHeight,
                 behavior: 'smooth'
             });
         })

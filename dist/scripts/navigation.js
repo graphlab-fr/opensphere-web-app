@@ -1,13 +1,3 @@
-var header = {
-    fixBox: document.querySelector('#entete-fixeur'),
-    height: 140,
-
-    fixer: function(bool) {
-        if (bool) { this.fixBox.classList.add('entete__fixe--active') }
-        else { this.fixBox.classList.remove('entete__fixe--active') }
-    }
-}
-
 var navigation = {
     links: document.querySelectorAll('[data-section]'),
     activLink: function(section) {
@@ -30,12 +20,13 @@ navigation.links.forEach(link => {
     })
 });
 
+const headerHeight = 140;
+
 var movement = {
     currentSection: undefined,
     offset: {
-        introduction: 0,
-        graph: window.innerHeight - header.height,
-        board: window.innerHeight * 2 - header.height
+        graph: 0,
+        board: window.innerHeight + headerHeight
     },
     goTo: function(section) {
 
@@ -43,18 +34,9 @@ var movement = {
         this.currentSection = section;
 
         switch (section) {
-            case 'a_propos':
-                this.scroll(0);
-
-                header.fixer(false);
-                fiche.fixer(false);
-                fiche.canClose(true);
-                break;
-                
             case 'reseau':
                 this.scroll(this.offset.graph);
 
-                header.fixer(true);
                 fiche.fixer(true);
                 fiche.canClose(true);
                 break;
@@ -62,7 +44,6 @@ var movement = {
             case 'fiches':
                 this.scroll(this.offset.board);
 
-                header.fixer(true);
                 fiche.fixer(true);
                 fiche.canClose(false);
                 fiche.open();
@@ -81,9 +62,8 @@ movement.goTo('reseau');
 
 window.onresize = function() {
     movement.offset = {
-        introduction: 0,
-        graph: window.innerHeight - header.height,
-        board: window.innerHeight * 2 - header.height
+        graph: 0,
+        board: window.innerHeight - headerHeight
     }
     movement.goTo(movement.currentSection);
 }
