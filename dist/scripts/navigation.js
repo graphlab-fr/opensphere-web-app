@@ -61,9 +61,5 @@ var movement = {
 movement.goTo('reseau');
 
 window.onresize = function() {
-    movement.offset = {
-        graph: 0,
-        board: window.innerHeight - headerHeight
-    }
     movement.goTo(movement.currentSection);
 }
