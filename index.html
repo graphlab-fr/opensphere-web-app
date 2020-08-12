@@ -175,7 +175,7 @@
                 <div id="lang-en" data-lang="En" class="lang-box__flag lang-box__flag--en">EN</div>
             </div>
 
-            <a href="/about" class="navigation__globe" data-section="a_propos" title="À propos"></a>
+            <div id="about-btn" class="navigation__globe" data-section="a_propos" title="À propos"></div>
         </div>
     </header>
 
@@ -309,9 +309,90 @@
 
     <div id="overflow" class="overflow"></div>
 
+    <!--
+        MODAL ABOUT
+    -->
+
+    <div class="modal micromodal-slide" id="modal-about" aria-hidden="true">
+        <div class="modal__overlay" tabindex="1000" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-about-title">
+    
+                <header class="modal__header">
+                    
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
+    
+                <main class="modal__content || d-flex flex-wrap justify-content-center mt-3" id="modal-about-content">
+                    <img class="about__img-otlet || col-md-4" src="/assets/photos/OtletPaulColorized.png" alt="">
+    
+                    <div class="about__texte || col-md-6">
+                        <h2>À propos</h2>
+
+                        <p
+                            data-lang-fr="L’Otletosphère est une cartographie relationnelle des personnalités et institutions liées à Paul Otlet. Elle cherche à mettre en visibilité la forte implication de Paul Otlet au sein des organisations pacifistes internationales ainsi qu'au sein des institutions bibliographiques et documentaires. La mise en oeuvre de ses projets pacifistes, documentaires, féministes lui a permis de côtoyer de nombreuses personnalités scientifiques et artistiques avec lesquelles il a pu entretenir des correspondances, se lier d'amitié, ou collaborer. Ces relations sont souvent connues ou attestées par l'examen des archives du Mundaneum."
+                            data-lang-en="The Otletosphere is a relational cartography of the personalities and institutions linked to Paul Otlet. It seeks to highlight Paul Otlet's strong involvement in international peace organisations as well as in bibliographical and documentary institutions. The implementation of his pacifist, documentary and feminist projects has enabled him to work with numerous scientific and artistic personalities with whom he has been able to maintain correspondence, make friends and collaborate. These relations are often known or attested by examination of the Mundaneum archives.">
+                        L’Otletosphère est une cartographie relationnelle des personnalités et institutions liées à Paul Otlet. Elle cherche à mettre en visibilité la forte implication de Paul Otlet au sein des organisations pacifistes internationales ainsi qu'au sein des institutions bibliographiques et documentaires. La mise en oeuvre de ses projets pacifistes, documentaires, féministes lui a permis de côtoyer de nombreuses personnalités scientifiques et artistiques avec lesquelles il a pu entretenir des correspondances, se lier d'amitié, ou collaborer. Ces relations sont souvent connues ou attestées par l'examen des archives du Mundaneum.</p>
+
+                        <p
+                            data-lang-fr="À l’exception des images, les contenus de ce site sont sous licence <a href='https://creativecommons.org/licenses/by/2.0/fr/' target='_blank'>Creative Commons Attribution</a>. CC BY HyperOtlet (Clément Borel, Guillaume Brioudes, Jean David, Olivier Le Deuff et Arthur Perret)""
+                            data-lang-en="With the exception of the images, the contents of this site are under license <a href='https://creativecommons.org/licenses/by/2.0/fr/' target='_blank'>Creative Commons Attribution</a>. CC BY HyperOtlet (Clément Borel, Guillaume Brioudes, Jean David, Olivier Le Deuff and Arthur Perret)""
+                        >À l’exception des images, les contenus de ce site sont sous licence <a href="https://creativecommons.org/licenses/by/2.0/fr/" target="_blank">Creative Commons Attribution</a>. CC BY HyperOtlet (Clément Borel, Guillaume Brioudes, Jean David, Olivier Le Deuff et Arthur Perret)</p>
+
+                        <h3
+                            data-lang-fr="Manuel d'utilisation"
+                            data-lang-en="User's manual"
+                        >Manuel d'utilisation</h3>
+
+                        <p>
+                            <strong
+                                data-lang-fr="Le manuel d'utilisation est disponible à l'adresse suivante :  <a href='https://hyperotlet.github.io/otletosphere/'>https://hyperotlet.github.io/otletosphere/</a>"
+                                data-lang-en="The user manual is available at the following address: <a href='https://hyperotlet.github.io/otletosphere/'>https://hyperotlet.github.io/otletosphere/</a>"
+                            >Le manuel d'utilisation est disponible à l'adresse suivante :  <a href="https://hyperotlet.github.io/otletosphere/">https://hyperotlet.github.io/otletosphere/</a></strong></p>
+                        <h3
+                            data-lang-fr="Liens"
+                            data-lang-en="Links"
+                        >Liens</h3>
+                        <ul>
+                            <li
+                                data-lang-fr="Carnet de recherche : <a href='https://hyperotlet.hypotheses.org/'>https://hyperotlet.hypotheses.org/</a>"
+                                data-lang-en="Research notebook : <a href='https://hyperotlet.hypotheses.org/'>https://hyperotlet.hypotheses.org/</a>"
+                            >Carnet de recherche : <a href="https://hyperotlet.hypotheses.org/">https://hyperotlet.hypotheses.org/</a></li>
+                            <li
+                                data-lang-fr="Compte Twitter : <a href='https://twitter.com/hyperotlet'>https://twitter.com/hyperotlet</a>"
+                                data-lang-fr="Twitter account : <a href='https://twitter.com/hyperotlet'>https://twitter.com/hyperotlet</a>"
+                            >Compte Twitter : <a href="https://twitter.com/hyperotlet">https://twitter.com/hyperotlet</a></li>
+                            <li
+                                data-lang-fr="Frise chronologique interactive sur Paul Otlet : <a href='http://hyperotlet.huma-num.fr/timeline.html'>http://hyperotlet.huma-num.fr/timeline.html</a>"
+                                data-lang-en="Interactive Timeline on Paul Otlet : <a href='http://hyperotlet.huma-num.fr/timeline.html'>http://hyperotlet.huma-num.fr/timeline.html</a>"
+                            >Frise chronologique interactive sur Paul Otlet : <a href="http://hyperotlet.huma-num.fr/timeline.html">http://hyperotlet.huma-num.fr/timeline.html</a></li>
+                        </ul>
+    
+                        <div class="about__logo-list">
+                            <img class="about__logo" src="/assets/logos/logootletcoul.png" alt="Logo Otletosphère">
+                            <img class="about__logo" src="/assets/logos/logo_CMH.png" alt="Logo CMH">
+                            <img class="about__logo" src="/assets/logos/logo_cnrs.png" alt="Logo CNRS">
+                            <img class="about__logo" src="/assets/logos/logo_enssib.png" alt="Logo ENSSIB">
+                            <img class="about__logo" src="/assets/logos/logo_mica.png" alt="Logo MICA">
+                            <img class="about__logo" src="/assets/logos/logo_msh.png" alt="Logo MSH">
+                            <img class="about__logo" src="/assets/logos/logo_mundaneum.png" alt="Logo Mundaneum">
+                            <img class="about__logo" src="/assets/logos/logo_ubm.png" alt="Logo Université Bordeaux Montaigne">
+                        </div>
+                    </div>
+    
+                </main>
+    
+            </div>
+        </div>
+    </div>
+
+    <!--
+        MODAL ABOUT end
+    -->
+
     <!-- LIBRAIRIES JS -->
     <script src="/libs/vis-network.min.js"></script>
     <script src="/libs/fuse.min.js"></script>
+    <script src="/libs/micromodal.min.js"></script>
     <!-- LIBRAIRIES JS end -->
 
     <script src="/assets/main.js"></script>

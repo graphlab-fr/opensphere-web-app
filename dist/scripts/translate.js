@@ -3,7 +3,7 @@ var langage = {
     actual: 'Fr',
     translateAll: function() {
         document.querySelectorAll('[data-lang-' + langage.actual.toLowerCase() + ']').forEach(elt => {
-            eval('elt.textContent = elt.dataset.lang' + langage.actual);
+            eval('elt.innerHTML = elt.dataset.lang' + langage.actual);
         });
     }
 }

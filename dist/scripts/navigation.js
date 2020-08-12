@@ -1,3 +1,8 @@
+MicroModal.init();
+document.querySelector('#about-btn').addEventListener('click', () => {
+    MicroModal.show('modal-about');
+})
+
 var navigation = {
     links: document.querySelectorAll('[data-section]'),
     activLink: function(section) {
@@ -39,6 +44,7 @@ var movement = {
 
                 fiche.fixer(true);
                 fiche.canClose(true);
+                // MicroModal.close('modal-about');
                 break;
                 
             case 'fiches':
@@ -47,6 +53,7 @@ var movement = {
                 fiche.fixer(true);
                 fiche.canClose(false);
                 fiche.open();
+                // MicroModal.close('modal-about');
                 break;
         }
     },
