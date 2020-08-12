@@ -161,3 +161,8 @@ fiche.toggle.addEventListener('click', () => {
 });
 
 const overflow = document.querySelector('#overflow');
+
+fiche.fields.img.addEventListener('click', () => {
+    // au clic sur l'image : zoom sur le nœud contenu dans la mémoire
+    zoomToNode(fiche.memory.activeNodeMetas.id);
+});
