@@ -234,7 +234,7 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    memory: {},
+    memory: undefined,
     toggle: document.querySelector('#fiche-toggle'),
     isOpen: false,
     fields: {
@@ -359,8 +359,10 @@ var fiche = {
     fill: function(nodeMetas, nodeConnectedList) {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
-        this.memory.activeNodeMetas = nodeMetas;
-        this.memory.activeNodeConnectedList = nodeConnectedList;
+        this.memory = {
+            activeNodeMetas: nodeMetas,
+            activeNodeConnectedList: nodeConnectedList
+        };
 
         // remplissage métadonnées
         this.setMeta(nodeMetas.label, this.fields.label);
