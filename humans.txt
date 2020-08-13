@@ -1,5 +1,5 @@
 /* TEAM */
-	Chef researcher: Olivier Le Deuff
+	Principal investigator: Olivier Le Deuff
 	Web page: http://www.guidedesegares.info/
 	Twitter: @neuromancien
 	From: Bordeaux, France
@@ -9,8 +9,9 @@
     Twitter: @arthurperret
 	From: Bordeaux, France
 
-	UX Designer: Clément Borel
+	Researcher: Clément Borel
 	Web page: https://mica.u-bordeaux-montaigne.fr/borel-clement/
+	Twitter: @clemB
 	From: Bordeaux, France
 
 	Developer: Jean David
@@ -47,15 +48,16 @@
 	Doctype: HTML5
 	IDE: Visual Studio Code
 
-/* PROJECT */
+/* PROJECT INFORMATION */
 	Twitter: @hyperotlet
     Web page: https://hyperotlet.hypotheses.org/
     Research fund: https://anr.fr/Projet-ANR-17-CE38-0011
 
-/* THANKS */
-    Centre Maurice Halbwachs: https://www.cmh.ens.fr/
-    ENSSIB: https://www.enssib.fr/
-    MICA: https://mica.u-bordeaux-montaigne.fr/
-    Maiseon des Sciences de l'Homme Paris Nord: https://www.mshparisnord.fr/
+/* PARTNERS */
     Mundaneum: http://www.mundaneum.org/
-    Université Bordeaux Montaigne: https://www.u-bordeaux-montaigne.fr/fr/index.html
+    Enssib: https://www.enssib.fr/
+	CNRS: https://www.cnrs.fr/
+    MSH Paris Nord: https://www.mshparisnord.fr/
+    Université Bordeaux Montaigne: https://www.u-bordeaux-montaigne.fr/
+	Centre Maurice Halbwachs: https://www.cmh.ens.fr/
+    MICA: https://mica.u-bordeaux-montaigne.fr/

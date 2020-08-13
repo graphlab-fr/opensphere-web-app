@@ -1,4 +1,4 @@
-# Otletosphère
+# Otletosphère [![DOI](https://zenodo.org/badge/268753837.svg)](https://zenodo.org/badge/latestdoi/268753837)
 
 Visualisation du réseau de Paul Otlet
 
