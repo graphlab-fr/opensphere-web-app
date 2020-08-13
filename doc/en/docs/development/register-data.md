@@ -36,8 +36,8 @@ Below is a sample `entite.json` file and its data table describing the typing of
             "annee_mort": 1944,
             "pays": "Belgique",
             "pays_en": "Belgium",
-            "discipline": "Bibliographie",
-            "discipline_en": "Bibliography",
+            "domaine": "Bibliographie",
+            "domaine_en": "Bibliography",
             "description": "Paul Otlet est la tête pensante du Mundaneum…",
             "description_en": "Paul Otlet is the mind behind the Mundaneum…",
             "photo": "OtletPaul.png",
@@ -58,8 +58,8 @@ Below is a sample `entite.json` file and its data table describing the typing of
     | annee_mort      | integer                      |  year (ex: 1956)                  |
     | pays            | string                |                                    |
     | pays_en         | string                |  English translation               |
-    | discipline      | string                |                                    |
-    | discipline_en   | string                |  English translation               |
+    | domaine      | string                |                                    |
+    | domaine_en   | string                |  English translation               |
     | description     | string                |                                    |
     | description_en  | string                |  English translation               |
     | photo           | file path                  |  path, image name and extension    |
@@ -117,8 +117,8 @@ flowchart TD
         annee_mort
         pays
         pays_en
-        discipline
-        discipline_en
+        domaine
+        domaine_en
         entite_description
         entite_description_en
         photo

@@ -36,8 +36,8 @@ Ci-dessous un modèle de fichier `entite.json` ainsi que sa table de données d�
             "annee_mort": 1944,
             "pays": "Belgique",
             "pays_en": "Belgium",
-            "discipline": "Bibliographie",
-            "discipline_en": "Bibliography",
+            "domaine": "Bibliographie",
+            "domaine_en": "Bibliography",
             "description": "Paul Otlet est la tête pensante du Mundaneum…",
             "description_en": "Paul Otlet is the mind behind the Mundaneum…",
             "photo": "OtletPaul.png",
@@ -58,8 +58,8 @@ Ci-dessous un modèle de fichier `entite.json` ainsi que sa table de données d�
     | annee_mort      | nombre entier                      |  année (ex: 1956)                  |
     | pays            | chaine de caractère                |                                    |
     | pays_en         | chaine de caractère                |  traduction anglaise               |
-    | discipline      | chaine de caractère                |                                    |
-    | discipline_en   | chaine de caractère                |  traduction anglaise               |
+    | domaine      | chaine de caractère                |                                    |
+    | domaine_en   | chaine de caractère                |  traduction anglaise               |
     | description     | chaine de caractère                |                                    |
     | description_en  | chaine de caractère                |  traduction anglaise               |
     | photo           | chemin de fichier                  |  chemin, nom image et extension    |
@@ -117,8 +117,8 @@ flowchart TD
         annee_mort
         pays
         pays_en
-        discipline
-        discipline_en
+        domaine
+        domaine_en
         entite_description
         entite_description_en
         photo

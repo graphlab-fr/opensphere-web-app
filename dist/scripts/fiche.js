@@ -12,7 +12,7 @@ var fiche = {
         date: document.querySelector('#fiche-meta-date'),
         titre: document.querySelector('#fiche-meta-titre'),
         pays: document.querySelector('#fiche-meta-pays'),
-        discipline: document.querySelector('#fiche-meta-discipline'),
+        domaine: document.querySelector('#fiche-meta-domaine'),
         description: document.querySelector('#fiche-meta-description'),
         connexion: document.querySelector('#fiche-connexion')
     },
@@ -132,6 +132,8 @@ var fiche = {
             activeNodeConnectedList: nodeConnectedList
         };
 
+        console.log(nodeMetas);
+
         // remplissage métadonnées
         this.setMeta(nodeMetas.label, this.fields.label);
         this.setMeta(nodeMetas.title, this.fields.titre);
@@ -142,12 +144,12 @@ var fiche = {
         switch (langage.actual) {
             case 'Fr':
                 this.setMeta(nodeMetas.pays, this.fields.pays);
-                this.setMeta(nodeMetas.discipline, this.fields.discipline);
+                this.setMeta(nodeMetas.domaine, this.fields.domaine);
                 this.setMeta(nodeMetas.description, this.fields.description);
                 break;
             case 'En':
                 this.setMeta(nodeMetas.pays_en, this.fields.pays);
-                this.setMeta(nodeMetas.discipline_en, this.fields.discipline);
+                this.setMeta(nodeMetas.domaine_en, this.fields.domaine);
                 this.setMeta(nodeMetas.description_en, this.fields.description);
                 break;
         }
