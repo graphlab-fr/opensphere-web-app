@@ -34,8 +34,8 @@ D'autres feuilles jointes (`Pays`, `Relations` etc.) serviront de base de donné
 | Entité   | prenom         | string  |                                                             |                                                             |
 | Entité   | pays           | list    | liste des pays en français                                  | Extraits de la feuille `Pays`, colonne `label_fr`   |
 | Entité   | pays_en        | list    | liste des pays en anglais                                   | Extraits de la feuille `Pays`, colonne `label_en`   |
-| Entité   | discipline     | string  |                                                             |                                                             |
-| Entité   | discipline_en  | string  |                                                             |                                                             |
+| Entité   | domaine     | string  |                                                             |                                                             |
+| Entité   | domaine_en  | string  |                                                             |                                                             |
 | Entité   | description    | string  |                                                             |                                                             |
 | Entité   | description_en | string  |                                                             |                                                             |
 | Entité   | image          | string  |                                                             |                                                             |

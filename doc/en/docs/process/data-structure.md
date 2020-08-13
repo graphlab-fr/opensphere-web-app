@@ -33,8 +33,8 @@ Other attached sheets (`Countries`, `Relations` etc.) will serve as a database a
 | Entité   | prenom         | string  |                                                             |                                                             |
 | Entité   | pays           | list    | liste des pays en français                                  | From `Pays`, col `label_fr`   |
 | Entité   | pays_en        | list    | liste des pays en anglais                                   | From `Pays`, col `label_en`   |
-| Entité   | discipline     | string  |                                                             |                                                             |
-| Entité   | discipline_en  | string  |                                                             |                                                             |
+| Entité   | domaine     | string  |                                                             |                                                             |
+| Entité   | domaine_en  | string  |                                                             |                                                             |
 | Entité   | description    | string  |                                                             |                                                             |
 | Entité   | description_en | string  |                                                             |                                                             |
 | Entité   | image          | string  |                                                             |                                                             |
