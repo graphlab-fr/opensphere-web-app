@@ -1,5 +1,9 @@
 var network = {
     container: document.querySelector('#network'),
+    data: {
+        nodes: new vis.DataSet(),
+        edges: new vis.DataSet()
+    },
     options: {
         physics: {
             enabled: true,
@@ -42,11 +46,6 @@ var network = {
     init: function() {
         
         // Génération de la visualisation
-        network.data = {
-            nodes: new vis.DataSet(generatedNodesObjectList),
-            edges: new vis.DataSet(generatedEdgesObjectList)
-        }
-        
         network.visualisation = new vis.Network(network.container,
             network.data, network.options);
         
@@ -71,7 +70,6 @@ var network = {
         
         network.visualisation.on('hoverNode', function(params) {
             var idNodeHovered = params.node;
-            var allIds = network.allNodesIds;
         
             // pas d'effet sur le nœud survolé
             var noEffectNodesIds = [idNodeHovered];
@@ -86,43 +84,38 @@ var network = {
                 noEffectNodesIds = noEffectNodesIds
                     .concat(network.visualisation.getConnectedNodes(network.selectedNode));
             }
-        
-            for (let i = 0 ; i < allIds.length ; i++) {
-                const nodeId = allIds[i];
-                if (noEffectNodesIds.indexOf(nodeId) !== -1) {
-                    // si 'nodeId' est compris dans 'noEffectNodesIds'
-                    continue;
-                }
-        
-                var nodeGroupName = network.data.nodes.get(nodeId).group;
-                
-                network.data.nodes.update({
-                    id: nodeId,
-                    color: chooseColor(nodeGroupName, true),
+
+            network.data.nodes.update(
+                network.data.nodes.map(entite => ({
+                    id: entite.id,
+                    color: chooseColor(entite.group, true),
                     opacity: 0.4,
                     font: {
                         color: 'rgba(255, 255, 255, 0.5)',
                         strokeColor: 'rgba(0, 0, 0, 0.5)'
-                }
-                });
-            }
+                    }
+                } ), {
+                    filter: function(entite) {
+                        return(noEffectNodesIds.includes(entite.id) == false);
+                    }
+                })
+            );
             
         });
         
-        network.visualisation.on('blurNode', function(params) {
-            var allIds = network.allNodesIds;
-        
-            allIds.forEach(id => {
-                network.data.nodes.update({
-                    id: id,
-                    color: false,
-                    opacity: 1,
-                    font: {
-                        color: '#fff',
-                        strokeColor: '#000'
-                    }
-                });
-            });
+        network.visualisation.on('blurNode', function() {
+
+            network.data.nodes.update(
+                network.data.nodes.map(entite => ({
+                        id: entite.id,
+                        color: false,
+                        opacity: 1,
+                        font: {
+                            color: '#fff',
+                            strokeColor: '#000'
+                        }
+                } ))
+            );
         });
         
         network.visualisation.on('zoom', function(params) {
@@ -143,9 +136,6 @@ var network = {
         zoom.btnPlus.addEventListener('click', zoomIn);
         zoom.btnMoins.addEventListener('click', zoomOut);
         zoom.btnReinitialiser.addEventListener('click', backToCenterView);
-        
-        // Stockage données
-        network.allNodesIds = network.data.nodes.getIds();
         
         board.init();
         search.input.addEventListener('focus', search.init);
