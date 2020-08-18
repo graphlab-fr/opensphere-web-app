@@ -148,8 +148,10 @@ function createNodeObject(data) {
             annee_naissance: entite.annee_naissance,
             annee_mort: entite.annee_mort,
             pays: entite.pays,
+            pays_fr: entite.pays,
             pays_en: entite.pays_en,
             domaine: entite.domaine,
+            domaine_fr: entite.domaine,
             domaine_en: entite.domaine_en,
             description: entite.description,
             description_fr: entite.description,
@@ -240,7 +242,7 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    memory: undefined,
+    currentEntityId: undefined,
     toggle: document.querySelector('#fiche-toggle'),
     isOpen: false,
     fields: {
@@ -362,13 +364,12 @@ var fiche = {
             }
         }
     },
-    fill: function(nodeMetas, nodeConnectedList) {
+    fill: function() {
+        var nodeMetas = getNodeMetas(network.selectedNode);
+        var nodeConnectedList = findConnectedNodes(network.selectedNode);
+
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
-        this.memory = {
-            activeNodeMetas: nodeMetas,
-            activeNodeConnectedList: nodeConnectedList
-        };
 
         // remplissage métadonnées
         this.setMeta(nodeMetas.label, this.fields.label);
@@ -376,19 +377,9 @@ var fiche = {
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
         this.setWikiLink(nodeMetas.lien_wikipedia);
-
-        switch (langage.actual) {
-            case 'Fr':
-                this.setMeta(nodeMetas.pays, this.fields.pays);
-                this.setMeta(nodeMetas.domaine, this.fields.domaine);
-                this.setMeta(nodeMetas.description, this.fields.description);
-                break;
-            case 'En':
-                this.setMeta(nodeMetas.pays_en, this.fields.pays);
-                this.setMeta(nodeMetas.domaine_en, this.fields.domaine);
-                this.setMeta(nodeMetas.description_en, this.fields.description);
-                break;
-        }
+        this.setMeta(nodeMetas.pays, this.fields.pays);
+        this.setMeta(nodeMetas.domaine, this.fields.domaine);
+        this.setMeta(nodeMetas.description, this.fields.description);
 
         this.setConnexion(nodeConnectedList);
     }
@@ -618,7 +609,7 @@ var network = {
             if (idNode === undefined) { return; }
             
             if (network.selectedNode !== undefined && network.selectedNode == idNode) {
-                // si nœeud est déjà selectionné
+                // si nœud est déjà selectionné
                 return;
             }
         
@@ -829,7 +820,7 @@ function switchNode(nodeId, mustZoom = true) {
 
     if (mustZoom) {zoomToNode(nodeId);}
 
-    fiche.fill(nodeMetas, findConnectedNodes(nodeId));
+    fiche.fill();
     fiche.open();
 
     return true;
@@ -940,46 +931,49 @@ langage.flags.forEach(flag => {
 
         langage.translateAll();
 
-        if (fiche.memory !== undefined) {
-            fiche.fill(fiche.memory.activeNodeMetas, fiche.memory.activeNodeConnectedList);
+        switch (langage.actual) {
+            case 'Fr':
+                network.data.nodes.update(
+                    network.data.nodes.map(entite => ({
+                            id: entite.id,
+                            title: entite.title_fr,
+                            description: entite.description_fr,
+                            domaine: entite.domaine_fr,
+                            pays: entite.pays_fr,
+                        })
+                    )
+                );
+                network.data.edges.update(
+                    network.data.edges.map(lien => ({
+                            id: lien.id,
+                            title: lien.title_fr,
+                        })
+                    )
+                );
+            break;
 
-            switch (langage.actual) {
-                case 'Fr':
-                    network.data.nodes.update(
-                        network.data.nodes.map(entite => ({
-                                id: entite.id,
-                                title: entite.title_fr,
-                            })
-                        )
-                    );
-                    network.data.edges.update(
-                        network.data.edges.map(lien => ({
-                                id: lien.id,
-                                title: lien.title_fr,
-                            })
-                        )
-                    );
-                    break;
-                case 'En':
-                    network.data.nodes.update(
-                        network.data.nodes.map(entite => ({
-                                id: entite.id,
-                                title: entite.title_en,
-                            })
-                        )
-                    );
-                    network.data.edges.update(
-                        network.data.edges.map(lien => ({
-                                id: lien.id,
-                                title: lien.title_en,
-                            })
-                        )
-                    );
-                    break;
-            }
-
-            console.log(network.data.edges.get());
+            case 'En':
+                network.data.nodes.update(
+                    network.data.nodes.map(entite => ({
+                            id: entite.id,
+                            title: entite.title_en,
+                            description: entite.description_en,
+                            domaine: entite.domaine_en,
+                            pays: entite.pays_en,
+                        })
+                    )
+                );
+                network.data.edges.update(
+                    network.data.edges.map(lien => ({
+                            id: lien.id,
+                            title: lien.title_en,
+                        })
+                    )
+                );
+            break;
         }
+
+        fiche.fill();
 
     });
 });

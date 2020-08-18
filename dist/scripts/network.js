@@ -57,7 +57,7 @@ var network = {
             if (idNode === undefined) { return; }
             
             if (network.selectedNode !== undefined && network.selectedNode == idNode) {
-                // si nœeud est déjà selectionné
+                // si nœud est déjà selectionné
                 return;
             }
         
@@ -268,7 +268,7 @@ function switchNode(nodeId, mustZoom = true) {
 
     if (mustZoom) {zoomToNode(nodeId);}
 
-    fiche.fill(nodeMetas, findConnectedNodes(nodeId));
+    fiche.fill();
     fiche.open();
 
     return true;

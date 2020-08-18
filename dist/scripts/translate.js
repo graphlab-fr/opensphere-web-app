@@ -31,46 +31,49 @@ langage.flags.forEach(flag => {
 
         langage.translateAll();
 
-        if (fiche.memory !== undefined) {
-            fiche.fill(fiche.memory.activeNodeMetas, fiche.memory.activeNodeConnectedList);
+        switch (langage.actual) {
+            case 'Fr':
+                network.data.nodes.update(
+                    network.data.nodes.map(entite => ({
+                            id: entite.id,
+                            title: entite.title_fr,
+                            description: entite.description_fr,
+                            domaine: entite.domaine_fr,
+                            pays: entite.pays_fr,
+                        })
+                    )
+                );
+                network.data.edges.update(
+                    network.data.edges.map(lien => ({
+                            id: lien.id,
+                            title: lien.title_fr,
+                        })
+                    )
+                );
+            break;
 
-            switch (langage.actual) {
-                case 'Fr':
-                    network.data.nodes.update(
-                        network.data.nodes.map(entite => ({
-                                id: entite.id,
-                                title: entite.title_fr,
-                            })
-                        )
-                    );
-                    network.data.edges.update(
-                        network.data.edges.map(lien => ({
-                                id: lien.id,
-                                title: lien.title_fr,
-                            })
-                        )
-                    );
-                    break;
-                case 'En':
-                    network.data.nodes.update(
-                        network.data.nodes.map(entite => ({
-                                id: entite.id,
-                                title: entite.title_en,
-                            })
-                        )
-                    );
-                    network.data.edges.update(
-                        network.data.edges.map(lien => ({
-                                id: lien.id,
-                                title: lien.title_en,
-                            })
-                        )
-                    );
-                    break;
-            }
-
-            console.log(network.data.edges.get());
+            case 'En':
+                network.data.nodes.update(
+                    network.data.nodes.map(entite => ({
+                            id: entite.id,
+                            title: entite.title_en,
+                            description: entite.description_en,
+                            domaine: entite.domaine_en,
+                            pays: entite.pays_en,
+                        })
+                    )
+                );
+                network.data.edges.update(
+                    network.data.edges.map(lien => ({
+                            id: lien.id,
+                            title: lien.title_en,
+                        })
+                    )
+                );
+            break;
         }
+
+        fiche.fill();
 
     });
 });
