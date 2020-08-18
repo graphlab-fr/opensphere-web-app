@@ -74,6 +74,7 @@ langage.flags.forEach(flag => {
         }
 
         fiche.fill();
+        board.init();
 
     });
 });
