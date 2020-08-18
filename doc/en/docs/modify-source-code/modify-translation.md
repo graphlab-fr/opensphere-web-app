@@ -29,11 +29,11 @@ In JavaScript, if we keep the same example, you need to add the `#!javascript do
 !!! success
     Therefore, any tag with the attribute `data-lang-ru="Lorem ipsum"` will have its text changed to "Lorem ipsum" when the corresponding button is clicked.
 
-## Translate the data
+## Translate data
 
 The previous method allowed us to translate the interface elements, but the data depends on [methods of VisJs](../development/libraries.md##visjs-v7102). In the `/dist/scripts/translate.js` file you will find a *switch (see code below). It is scanned at each language change and allows you to modify the different values of your entities before they are applied to the [description pane](../usage/interface-elements.md#Description-panel) and the [records](../usage/interface-elements.md#records).
 
-```javascript hl_lines="8"
+```javascript
 switch (langage.actual) {
     case 'Fr':
         network.data.nodes.update(
