@@ -132,8 +132,6 @@ var fiche = {
             activeNodeConnectedList: nodeConnectedList
         };
 
-        console.log(nodeMetas);
-
         // remplissage métadonnées
         this.setMeta(nodeMetas.label, this.fields.label);
         this.setMeta(nodeMetas.title, this.fields.titre);

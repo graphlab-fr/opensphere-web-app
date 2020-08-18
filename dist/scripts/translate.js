@@ -8,6 +8,7 @@ var langage = {
     }
 }
 
+// active actual langage button
 document.querySelector('[data-lang="' + langage.actual + '"]')
     .classList.add('lang-box__flag--active');
 
@@ -31,6 +32,45 @@ langage.flags.forEach(flag => {
         langage.translateAll();
 
         if (fiche.memory !== undefined) {
-            fiche.fill(fiche.memory.activeNodeMetas, fiche.memory.activeNodeConnectedList); }
+            fiche.fill(fiche.memory.activeNodeMetas, fiche.memory.activeNodeConnectedList);
+
+            switch (langage.actual) {
+                case 'Fr':
+                    network.data.nodes.update(
+                        network.data.nodes.map(entite => ({
+                                id: entite.id,
+                                title: entite.title_fr,
+                            })
+                        )
+                    );
+                    network.data.edges.update(
+                        network.data.edges.map(lien => ({
+                                id: lien.id,
+                                title: lien.title_fr,
+                            })
+                        )
+                    );
+                    break;
+                case 'En':
+                    network.data.nodes.update(
+                        network.data.nodes.map(entite => ({
+                                id: entite.id,
+                                title: entite.title_en,
+                            })
+                        )
+                    );
+                    network.data.edges.update(
+                        network.data.edges.map(lien => ({
+                                id: lien.id,
+                                title: lien.title_en,
+                            })
+                        )
+                    );
+                    break;
+            }
+
+            console.log(network.data.edges.get());
+        }
+
     });
 });

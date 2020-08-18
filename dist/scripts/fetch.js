@@ -10,6 +10,8 @@ function createNodeObject(data) {
             id: entite.id,
             label: entite.label,
             title: entite.titre,
+            title_fr: entite.titre,
+            title_en: entite.titre_en,
             group: entite.relation_otlet,
             image: imagePath + entite.photo,
             genre: entite.genre,
@@ -20,6 +22,7 @@ function createNodeObject(data) {
             domaine: entite.domaine,
             domaine_en: entite.domaine_en,
             description: entite.description,
+            description_fr: entite.description,
             description_en: entite.description_en,
             lien_wikipedia: entite.lien_wikipedia,
 
@@ -67,9 +70,12 @@ function createEdgeObject(data) {
     
         var edgeObject = {
             // edge metas
+            id: lien.id,
             from: lien.from,
             to: lien.to,
             title: lien.label,
+            title_fr: lien.label,
+            title_en: lien.label_en,
 
             // edge style
             color: color

@@ -140,6 +140,8 @@ function createNodeObject(data) {
             id: entite.id,
             label: entite.label,
             title: entite.titre,
+            title_fr: entite.titre,
+            title_en: entite.titre_en,
             group: entite.relation_otlet,
             image: imagePath + entite.photo,
             genre: entite.genre,
@@ -150,6 +152,7 @@ function createNodeObject(data) {
             domaine: entite.domaine,
             domaine_en: entite.domaine_en,
             description: entite.description,
+            description_fr: entite.description,
             description_en: entite.description_en,
             lien_wikipedia: entite.lien_wikipedia,
 
@@ -197,9 +200,12 @@ function createEdgeObject(data) {
     
         var edgeObject = {
             // edge metas
+            id: lien.id,
             from: lien.from,
             to: lien.to,
             title: lien.label,
+            title_fr: lien.label,
+            title_en: lien.label_en,
 
             // edge style
             color: color
@@ -363,8 +369,6 @@ var fiche = {
             activeNodeMetas: nodeMetas,
             activeNodeConnectedList: nodeConnectedList
         };
-
-        console.log(nodeMetas);
 
         // remplissage métadonnées
         this.setMeta(nodeMetas.label, this.fields.label);
@@ -913,6 +917,7 @@ var langage = {
     }
 }
 
+// active actual langage button
 document.querySelector('[data-lang="' + langage.actual + '"]')
     .classList.add('lang-box__flag--active');
 
@@ -936,7 +941,46 @@ langage.flags.forEach(flag => {
         langage.translateAll();
 
         if (fiche.memory !== undefined) {
-            fiche.fill(fiche.memory.activeNodeMetas, fiche.memory.activeNodeConnectedList); }
+            fiche.fill(fiche.memory.activeNodeMetas, fiche.memory.activeNodeConnectedList);
+
+            switch (langage.actual) {
+                case 'Fr':
+                    network.data.nodes.update(
+                        network.data.nodes.map(entite => ({
+                                id: entite.id,
+                                title: entite.title_fr,
+                            })
+                        )
+                    );
+                    network.data.edges.update(
+                        network.data.edges.map(lien => ({
+                                id: lien.id,
+                                title: lien.title_fr,
+                            })
+                        )
+                    );
+                    break;
+                case 'En':
+                    network.data.nodes.update(
+                        network.data.nodes.map(entite => ({
+                                id: entite.id,
+                                title: entite.title_en,
+                            })
+                        )
+                    );
+                    network.data.edges.update(
+                        network.data.edges.map(lien => ({
+                                id: lien.id,
+                                title: lien.title_en,
+                            })
+                        )
+                    );
+                    break;
+            }
+
+            console.log(network.data.edges.get());
+        }
+
     });
 });
 var zoom = {
