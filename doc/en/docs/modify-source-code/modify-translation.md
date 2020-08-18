@@ -29,59 +29,20 @@ In JavaScript, if we keep the same example, you need to add the `#!javascript do
 !!! success
     Therefore, any tag with the attribute `data-lang-ru="Lorem ipsum"` will have its text changed to "Lorem ipsum" when the corresponding button is clicked.
 
-### Styliser le bouton
+## Translate the data
 
-Depending on the [approach](./dev-tools.md) you have chosen to modify the source code you will have to follow the guidelines for SCSS or CSS.
-
-=== "CSS"
-    In `/assets/main.css`, find the `lang-box__flag` selector below which you can add the following lines and replace either `lang_ru.svg` with the name of the image of your choice or the full path `./icons/lang_ru.svg` if your image is not in the `/assets/icons/` directory.
-    ```css
-    .lang-box__flag--ru {
-        background-image: url("./icons/lang_ru.svg");
-    }
-    ```
-
-=== "SCSS"
-    If your image matches the following path `./icons/lang_ru.svg` simply modify the following line in the `/dist/sass/layout/_entete.scss` file by adding `, "ru"`.
-    ```scss
-    $langages: "fr", "en", "ru";
-    ```
-    Alternatively, you can embed the following code within `/dist/sass/layout/_entete.scss` with the path to your image.
-    ```scss hl_lines="7-9"
-    .lang-box {
-        ...
-
-        &__flag {
-            ...
-
-            &--ru {
-                background-image: url('lang_ru.svg');
-            }
-    }
-    ```
-
-## Translate description panel
-
-```mermaid
-graph TD
-    evtclick{{Clic sur bouton traduction}} --> fx_translate[translateAll]
-    obj_fiche((Fiche)) -.- fx_fill[fill]
-    obj_fiche -.- memory((memory))
-    memory --> fx_fill
-    evtclick --> memory
-    fx_translate --> html[[HTML Elements]]
-
-    style evtclick fill:#4051b5,color:#fff
-```
-
-In the `fill' function of the `file' object in the `/dist/scripts/fiche.js' file is this *switcher* which will allow you to toggle the display of metadata in the [description panel](../usage/interface-elements.md#description-panel) according to the active language.
-
-For each `case' corresponding to a language you will be able to activate certain [display functions](./modify-description-panel.md#injection) in the pane.
+The previous method allowed us to translate the interface elements, but the data depends on [methods of VisJs](../development/libraries.md##visjs-v7102). In the `/dist/scripts/translate.js` file you will find a *switch (see code below). It is scanned at each language change and allows you to modify the different values of your entities before they are applied to the [description pane](../usage/interface-elements.md#Description-panel) and the [records](../usage/interface-elements.md#records).
 
 ```javascript hl_lines="8"
 switch (langage.actual) {
     case 'Fr':
-        // fonctinos pour le français
+        network.data.nodes.update(
+            network.data.nodes.map(entite => ({
+                    id: entite.id,
+                    title: ... // traduction
+                })
+            )
+        );
         break;
     case 'En':
         // fonctions pour l'anglais
@@ -92,28 +53,35 @@ switch (langage.actual) {
 }
 ```
 
-You can write metadata for a particular language in the `entite.json` file, as in the example below.
+### Add a language
 
-```json hl_lines="6 7"
-    [
-        {
-            "label": "Suzanne Briet",
-            "id": 2,
-            "relation": "contemporain",
-            "description": "en français",
-            "description_en": "en anglais",
-        }
-    ]
+You can provide a version of your metadata dedicated to that language in your `entite.json` and `lien.json` files.
+
+```json
+[
+    {
+        "label": "Paul Otlet",
+        "id": 1,
+        ...
+        "domaine": "Bibliographie",
+        "domaine_en": "Bibliography",
+        "description": "Paul Otlet est la tête pensante du Mundaneum…",
+        "description_en": "Paul Otlet is the mind behind the Mundaneum…"
+    }
+]
 ```
 
-### Default language
+When [data injection](../development/register-data.md#data-injection) in the site, we suggest you apply this template (see code below). The software will take care of the translation.
 
-To change the default language of the pane, you need to change the following line in the `language` object in the `/dist/scripts/translate.js` file. In the example below, the default language is Russian.
 
-```javascript hl_lines="3"
-var langage = {
-    flags: [document.querySelector('#lang-ru'), document.querySelector('#lang-en')],
-    actual: 'Ru',
-    translateAll: function() { ... }
-}
+```javascript
+var entiteObj = {
+    // entite metas
+    id: entite.id,
+    label: entite.label,
+    ...
+    description: entite.description // description dans votre langue par défaut
+    description_fr: entite.description // si le français est votre langue par défaut
+    description_en: entite.description_en // pour prévoir un switch vers l'anglais
+};
 ```

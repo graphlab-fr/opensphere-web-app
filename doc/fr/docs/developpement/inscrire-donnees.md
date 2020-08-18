@@ -4,7 +4,7 @@ author: Guillaume Brioudes <https://myllaume.fr/>
 date: 02/05/2020
 ---
 
-## Saisie des données
+## Modèle des données
 
 Vous trouverez dans l'[arborescence du répertoire](./architecture-code-source.md#arborescence-de-fichier) Otletosphère les deux fichiers d'exemple en JSON : `entite.json` et `lien.json`. Pour apporter votre propre contenu il vous faut remplacer les valeurs inscrites dans ces fichiers selon les recommandations présentées sur cette page.
 
@@ -97,7 +97,39 @@ Ci-dessous un modèle de fichier `lien.json` et sa table de données.
     | to    | nombre entier unique supérieur à 0  | identifiant unique entité                        |
     | label | HTML                                | description avec des balises `<b>`, `<i>`, `<a>` |
 
-## Saisie
+## Injection des données
+
+Pour personnaliser l'injection des données (leur intégration dans le logiciel via les fichiers JSON), vous devez modifier le fichier `/dist/scripts/fetch.js`. Il [peut être modifié de différentes manière selon l'approche](../modifier_code/outils-developpement.md) que vous avez choisi pour modifier le code source.
+
+`#!js network.data.nodes.add` et `#!js network.data.edges.add` sont les deux fonctions permettant d'injecter les données respectivement comme nœuds et liens. Vous trouverez plus d'informations dans [cet exemple de la documentation de VisJs](https://github.com/visjs/vis-network#example). Ces deux fonctions recoivent en paramètre un tableau formé avec la fonction [`#!js Array.map()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/map) (voir code ci-dessous). Elle permet ainsi de transformer les données des fichiers JSON un objet prévu pour le logiciel, avec entre autres des valeurs prévues pour la [traduction](../modifier_code/modifier-traduction.md#traduire-les-données), mais aussi pour l'affichage dans la [visualisation](../utilisation/elements-interface.md#reseau).
+
+```javascript
+network.data.nodes.add(
+    entites.map(function(entite) {
+        var entiteObj = {
+            // entite metas
+            id: entite.id,
+            label: entite.label,
+            title: entite.titre,
+            title_fr: entite.titre,
+            title_en: entite.titre_en,
+            image: '/otletosphere/assets/photos/' + entite.photo,
+
+            // node style
+            size : 30,
+            margin: 20,
+            font: {
+                face: 'Open Sans'
+                ...
+            }
+        };
+
+        return entiteObj;
+    })
+);
+```
+
+## Saisie des données
 
 Afin de compléter, éventuellement de manière collaborative, votre base de données avec les nombreuses métadonnées, tout en respectant les contraintes d'intégrité et avec la possibilité d'exporter facilement en JSON, nous vous conseillons de passer par un logiciel type tableur.
 

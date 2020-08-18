@@ -11,58 +11,48 @@ The following changes are made in the `/dist/scripts/fiche.js` file if you [use 
 ## Object architecture
 
 ```mermaid
-graph TD
-    1[switchNode]
-    2((fiche))
-    3[fill]
-    4[findConnectedNodes]
-    5((network))
-    6((visualisation))
-    7((data))
-    8[getNodeMetas]
-    9[getConnectedNodes]
-    10[getConnectedEdges]
-    11((edges))
-    12[get]
-    13((nodes))
-    14[get]
-    15[setConnexion]
-    16[setMeta]
+graph LR
+    obj_network((Network))
+    obj_data((Data))
+    obj_nodes((Nodes))
+    obj_edges((Edges))
+    fx_getnodemetas[getNodeMetas]
+    obj_visualisation((Visualisation))
+    fx_getconnectednodes[getConnectedNodes]
+    fx_getconnectededges[getConnectedEdges]
+    fx_findconnectednodes[findConnectedNodes]
+    fx_fill[Fiche.fill]
+    fx_switchnode[switchNode]
+    evtclick{{Clic sur bouton traduction}}
 
-    style 3 fill:#4051b5,color:#fff
+    obj_network --> obj_data
+    obj_data --> obj_nodes
+    obj_data --> obj_edges
+    obj_nodes --> fx_getnodemetas
+    obj_network --> obj_visualisation
+    obj_visualisation --> fx_getconnectednodes
+    obj_visualisation --> fx_getconnectededges
+    fx_getconnectednodes --> fx_findconnectednodes
+    fx_getconnectededges --> fx_findconnectednodes
+    obj_edges --> fx_findconnectednodes
+    fx_findconnectednodes --> fx_fill
+    fx_getnodemetas --> fx_fill
 
-    1 --> 3
-    2 -.- 3
-    4 --> 3
-    5 -.- 6
-    5 -.- 7
-    8 --> 1
-    6 --> 9
-    6 --> 10
-    9 --> 4
-    10 --> 4
-    7 -.- 11
-    11 --> 12
-    12 --> 4
-    7 -.- 13
-    13 --> 14
-    14 --> 8
-    2 -.- 15
-    2 -.- 16
-    3 --> 15
-    3 --> 16
+    fx_switchnode --> fx_fill
+    evtclick --> fx_fill
+
+    style fx_fill fill:#4051b5,color:#fff
+    style fx_switchnode fill:#4051b5,color:#fff
+    style evtclick fill:#4051b5,color:#fff
 ```
 
-We will modify the `fill` function of the `fiche` object (noted `fiche.fill`). This function has two inputs:
+We will focus on the `fill` function of the `fiche` object (noted `fiche.fill`). It is self-contained in the sense that calling `#!js fiche.fill()` will always complete the contents of the description pane with the currently selected node (global value `#!js network.selectedNode`) and in the right language (global value `#!js language.actual`).
 
-- `nodeMetas` is an object containing all the metadata of the selected entity (provided by the `getNodeMetas` function).
-- `nodeConnectedList` is an array containing all the links and their metadata (provided by the `findConnectedNodes` function).
-
-It will then redirect the accumulated data to functions that will generate the HTML required for display and inject it into the [HTML tags](#reference-html-element) of the description pane. These tags are referenced in the `fiche.fields' object.
+This function returns the data it retrieves to other functions of the `fiche` object. It is these functions that will generate the HTML needed for the display and inject it into the [HTML tags](#reference-html-element) of the description pane. These tags are referenced in the `fiche.fields' object.
 
 ### Injection
 
-The injection functions are all prefixed `set` and can take two forms.
+The injection functions are all contained in the `fiche' object and are prefixed `set'. They can take two shapes.
 
 In all cases they receive the metadata of an attribute of the `nodeMetas' object: `nodeMetas.year_birth` corresponds to the metadata `year_birth`.
 

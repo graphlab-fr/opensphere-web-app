@@ -11,58 +11,48 @@ Les modifications suivantes s'effectuent dans le fichier `/dist/scripts/fiche.js
 ## Architecture de l'objet *Fiche*
 
 ```mermaid
-graph TD
-    1[switchNode]
-    2((fiche))
-    3[fill]
-    4[findConnectedNodes]
-    5((network))
-    6((visualisation))
-    7((data))
-    8[getNodeMetas]
-    9[getConnectedNodes]
-    10[getConnectedEdges]
-    11((edges))
-    12[get]
-    13((nodes))
-    14[get]
-    15[setConnexion]
-    16[setMeta]
+graph LR
+    obj_network((Network))
+    obj_data((Data))
+    obj_nodes((Nodes))
+    obj_edges((Edges))
+    fx_getnodemetas[getNodeMetas]
+    obj_visualisation((Visualisation))
+    fx_getconnectednodes[getConnectedNodes]
+    fx_getconnectededges[getConnectedEdges]
+    fx_findconnectednodes[findConnectedNodes]
+    fx_fill[Fiche.fill]
+    fx_switchnode[switchNode]
+    evtclick{{Clic sur bouton traduction}}
 
-    style 3 fill:#4051b5,color:#fff
+    obj_network --> obj_data
+    obj_data --> obj_nodes
+    obj_data --> obj_edges
+    obj_nodes --> fx_getnodemetas
+    obj_network --> obj_visualisation
+    obj_visualisation --> fx_getconnectednodes
+    obj_visualisation --> fx_getconnectededges
+    fx_getconnectednodes --> fx_findconnectednodes
+    fx_getconnectededges --> fx_findconnectednodes
+    obj_edges --> fx_findconnectednodes
+    fx_findconnectednodes --> fx_fill
+    fx_getnodemetas --> fx_fill
 
-    1 --> 3
-    2 -.- 3
-    4 --> 3
-    5 -.- 6
-    5 -.- 7
-    8 --> 1
-    6 --> 9
-    6 --> 10
-    9 --> 4
-    10 --> 4
-    7 -.- 11
-    11 --> 12
-    12 --> 4
-    7 -.- 13
-    13 --> 14
-    14 --> 8
-    2 -.- 15
-    2 -.- 16
-    3 --> 15
-    3 --> 16
+    fx_switchnode --> fx_fill
+    evtclick --> fx_fill
+
+    style fx_fill fill:#4051b5,color:#fff
+    style fx_switchnode fill:#4051b5,color:#fff
+    style evtclick fill:#4051b5,color:#fff
 ```
 
-Nous allons modifier la fonction `fill` de l'objet `fiche` (noté `fiche.fill`). Cette fonction possède deux entrées :
+Nous allons nous interesser à la fonction `fill` de l'objet `fiche` (noté `fiche.fill`). Elle est autonome dans le sens où appeler `#!js fiche.fill()` permettra toujours de compléter le contenu du volet de description avec le nœud actuellement sélectionné (valeur globale `#!js network.selectedNode`) et dans la bonne langue (valeur globale `#!js langage.actual`).
 
-- `nodeMetas` est un objet contenant toutes les métadonnées de l'entité sélectionnée (fourni par la fonction `getNodeMetas`).
-- `nodeConnectedList` est un tableau contenant tous les liens et leurs métadonnées (fourni par la fonction `findConnectedNodes`)
-
-Elle va ensuite rediriger les données accumulées vers des fonctions qui vont générer le HTML nécessaire à l'affichage et l'injecter dans les [balises HTML](#element-html-de-reference) du volet de description. Ces balises sont référencées dans l'objet `fiche.fields`.
+Cette fonction renvoie les données qu'elle récupère  vers d'autres fonctions de l'objet `fiche`. Ce sont ces fonctions qui vont générer le HTML nécessaire à l'affichage et l'injecter dans les [balises HTML](#element-html-de-reference) du volet de description. Ces balises sont référencées dans l'objet `fiche.fields`.
 
 ### Injection
 
-Les fonctions d'injection sont toutes préfixées `set` et peuvent prendre deux formes.
+Les fonctions d'injection sont toutes contenues dans l'objet `fiche` et sont préfixées `set`. Elles peuvent prendre deux formes.
 
 Dans tous les cas elles reçoivent les métadonnées d'un attribut de l'objet `nodeMetas` : `nodeMetas.annee_naissance` correspond à la métadonnée `annee_naissance`.
 

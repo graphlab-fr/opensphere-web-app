@@ -4,7 +4,7 @@ author: Guillaume Brioudes <https://myllaume.fr/>
 date: 09/06/2020
 ---
 
-## Data entry
+## Data model
 
 You will find in the [directory tree](./architecture-source-code/#file-tree-structure) Otletosphere the two JSON example files: `entite.json` and `lien.json`. To bring your own content you need to replace the values in these files according to the recommendations presented on this page.
 
@@ -97,7 +97,39 @@ Below is a sample `lien.json' file and its data table.
     | to    | unique integer greater than 0  | identifiant unique entité                        |
     | label | HTML                                | description avec des balises `<b>`, `<i>`, `<a>` |
 
-## Input
+## Data injection
+
+To customize the data injection (their integration in the software via JSON files), you have to modify the `/dist/scripts/fetch.js` file. It [can be modified in different ways depending on the approach](../modify-source-code/dev-tools.md) you have chosen to modify the source code.
+
+`#!js network.data.nodes.add` and `#!js network.data.edges.add` are the two functions for injecting data as nodes and links respectively. More information can be found in [this example of VisJs documentation](https://github.com/visjs/vis-network#example). These two functions are given as parameters an array formed with the [`#!js Array.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function (see code below). It allows to transform the JSON file data into an object intended for the software, with among others values for the [translation](../modify-source-code/modify-translation.md#translate-data), but also for the display in the [visualization](../usage/interface-elements.md#network).
+
+```javascript
+network.data.nodes.add(
+    entites.map(function(entite) {
+        var entiteObj = {
+            // entite metas
+            id: entite.id,
+            label: entite.label,
+            title: entite.titre,
+            title_fr: entite.titre,
+            title_en: entite.titre_en,
+            image: '/otletosphere/assets/photos/' + entite.photo,
+
+            // node style
+            size : 30,
+            margin: 20,
+            font: {
+                face: 'Open Sans'
+                ...
+            }
+        };
+
+        return entiteObj;
+    })
+);
+```
+
+## Input data
 
 In order to complete, possibly in a collaborative way, your database with the numerous metadata, while respecting the integrity constraints and with the possibility of exporting easily in JSON, we advise you to use a spreadsheet type software.
 
