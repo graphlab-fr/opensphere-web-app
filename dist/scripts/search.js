@@ -37,7 +37,17 @@ var search = {
         search.resultContent.innerHTML = ''; // results
     },
     init: function() {
-        const fuse = new Fuse(getNoHiddenNodes(), search.options);
+
+        const noHiddenNodes = network.data.nodes.map(entite => ({
+            id: entite.id,
+            label: entite.label
+        }), {
+            filter: function(entite) {
+                return(entite.hidden !== true);
+            }
+        })
+
+        const fuse = new Fuse(noHiddenNodes, search.options);
 
         search.input.addEventListener('input', () => {
     
@@ -62,12 +72,3 @@ var search = {
 }
 
 search.reset();
-
-function getNoHiddenNodes() {
-    var activeNodes = network.data.nodes.get({
-        filter: function (item) {
-            return (item.hidden !== true);
-        }
-    });
-    return activeNodes;
-}
