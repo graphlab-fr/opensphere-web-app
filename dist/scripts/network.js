@@ -64,10 +64,6 @@ var network = {
             historique.actualiser(idNode);
         });
         
-        network.visualisation.on('deselectNode', function() {
-            network.selectedNode = undefined;
-        });
-        
         network.visualisation.on('hoverNode', function(params) {
             var idNodeHovered = params.node;
         
@@ -142,10 +138,9 @@ var network = {
         filter.init();
         
         // Si l'id d'un nœud est entré dans l'URL, on l'active
-        var urlPathnameArray = window.location.pathname.split('/');
-        var nodeId = urlPathnameArray[urlPathnameArray.length -1];
+        const urlPathnameArray = window.location.pathname.split('/');
+        const nodeId = urlPathnameArray[urlPathnameArray.length -1];
         if (switchNode(nodeId, false)) {
-            fiche.open();
             historique.init(nodeId);
         }
     }

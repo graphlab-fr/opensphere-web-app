@@ -39,7 +39,7 @@
     <meta name="DC.creator" content="Olivier Le Deuff, Arthur Perret, Clément Borel, Jean David et Guillaume Brioudes"/>
     <!-- tags -->
     <meta property="article:tag" content="Paul Otlet"/>
-    <meta itemprop="keywords"" content="Paul Otlet"/>
+    <meta itemprop="keywords" content="Paul Otlet"/>
     <meta property="article:tag" content="Mundaneum"/>
     <meta itemprop="keywords" content="Mundaneum"/>
     <meta property="article:tag" content="documentation"/>
@@ -168,14 +168,14 @@
             </section>
         </div>
 
-        <div class="d-flex">
+        <div class="d-flex align-items-baseline">
             <div class="lang-box">
                 <div id="lang-fr" data-lang="Fr" class="lang-box__flag lang-box__flag--fr">FR</div>
                 <span class="lang-box__separator">/</span>
                 <div id="lang-en" data-lang="En" class="lang-box__flag lang-box__flag--en">EN</div>
             </div>
 
-            <div id="about-btn" class="navigation__globe" data-section="a_propos" title="À propos"></div>
+            <button id="about-btn" class="navigation__link" data-lang-fr="À propos" data-lang-en="About">À propos</button>
         </div>
     </header>
 
@@ -295,7 +295,7 @@
                 <div id="fiche-meta-description" class="fiche__description"></div>
 
                 <div>
-                    <span class="connexions__libelle" data-lang-fr="Connexions" data-lang-en="Connection">Connexions</span>
+                    <span class="connexions__libelle" data-lang-fr="Connexions" data-lang-en="Connections">Connexions</span>
                     <div id="fiche-connexion"></div>
                 </div>
             </main>
@@ -319,14 +319,14 @@
     
                 <header class="modal__header">
                     
-                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                    <button class="modal__close" title="fermer" aria-label="Close modal" data-micromodal-close></button>
                 </header>
     
                 <main class="modal__content || d-flex flex-wrap justify-content-center mt-3" id="modal-about-content">
                     <img class="about__img-otlet || col-md-4" src="/otletosphere/assets/photos/OtletPaulColorized.png" alt="">
     
                     <div class="about__texte || col-md-6">
-                        <h2>À propos</h2>
+                        <h2 data-lang-fr="À propos" data-lang-en="About">À propos</h2>
 
                         <p
                             data-lang-fr="L’Otletosphère est une cartographie relationnelle des personnalités et institutions liées à Paul Otlet. Elle cherche à mettre en visibilité la forte implication de Paul Otlet au sein des organisations pacifistes internationales ainsi qu'au sein des institutions bibliographiques et documentaires. La mise en oeuvre de ses projets pacifistes, documentaires, féministes lui a permis de côtoyer de nombreuses personnalités scientifiques et artistiques avec lesquelles il a pu entretenir des correspondances, se lier d'amitié, ou collaborer. Ces relations sont souvent connues ou attestées par l'examen des archives du Mundaneum."
@@ -334,8 +334,8 @@
                         L’Otletosphère est une cartographie relationnelle des personnalités et institutions liées à Paul Otlet. Elle cherche à mettre en visibilité la forte implication de Paul Otlet au sein des organisations pacifistes internationales ainsi qu'au sein des institutions bibliographiques et documentaires. La mise en oeuvre de ses projets pacifistes, documentaires, féministes lui a permis de côtoyer de nombreuses personnalités scientifiques et artistiques avec lesquelles il a pu entretenir des correspondances, se lier d'amitié, ou collaborer. Ces relations sont souvent connues ou attestées par l'examen des archives du Mundaneum.</p>
 
                         <p
-                            data-lang-fr="À l’exception des images, les contenus de ce site sont sous licence <a href='https://creativecommons.org/licenses/by/2.0/fr/' target='_blank'>Creative Commons Attribution</a>. CC BY HyperOtlet (Clément Borel, Guillaume Brioudes, Jean David, Olivier Le Deuff et Arthur Perret)""
-                            data-lang-en="With the exception of the images, the contents of this site are under license <a href='https://creativecommons.org/licenses/by/2.0/fr/' target='_blank'>Creative Commons Attribution</a>. CC BY HyperOtlet (Clément Borel, Guillaume Brioudes, Jean David, Olivier Le Deuff and Arthur Perret)""
+                            data-lang-fr="À l’exception des images, les contenus de ce site sont sous licence <a href='https://creativecommons.org/licenses/by/2.0/fr/' target='_blank'>Creative Commons Attribution</a>. CC BY HyperOtlet (Clément Borel, Guillaume Brioudes, Jean David, Olivier Le Deuff et Arthur Perret)"
+                            data-lang-en="With the exception of the images, the contents of this site are under license <a href='https://creativecommons.org/licenses/by/2.0/fr/' target='_blank'>Creative Commons Attribution</a>. CC BY HyperOtlet (Clément Borel, Guillaume Brioudes, Jean David, Olivier Le Deuff and Arthur Perret)"
                         >À l’exception des images, les contenus de ce site sont sous licence <a href="https://creativecommons.org/licenses/by/2.0/fr/" target="_blank">Creative Commons Attribution</a>. CC BY HyperOtlet (Clément Borel, Guillaume Brioudes, Jean David, Olivier Le Deuff et Arthur Perret)</p>
 
                         <h3

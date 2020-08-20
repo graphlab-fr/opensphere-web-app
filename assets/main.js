@@ -337,8 +337,6 @@ var fiche = {
             });
 
             if (connectedNode.title !== null) {
-                listElt.setAttribute('title', connectedNode.title);
-
                 listElt.addEventListener('mouseenter', (e) => {
                     overflow.classList.add('overflow--active');
                     overflow.style.left = e.pageX + 20 + 'px';
@@ -353,8 +351,9 @@ var fiche = {
         }
     },
     fill: function() {
-        var nodeMetas = getNodeMetas(network.selectedNode);
-        var nodeConnectedList = findConnectedNodes(network.selectedNode);
+        const nodeMetas = getNodeMetas(network.selectedNode)
+        if (nodeMetas === false)  { return ; }
+        const nodeConnectedList = findConnectedNodes(network.selectedNode);
 
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
@@ -383,7 +382,7 @@ const overflow = document.querySelector('#overflow');
 
 fiche.fields.img.addEventListener('click', () => {
     // au clic sur l'image : zoom sur le nœud contenu dans la mémoire
-    zoomToNode(network.selectedNode);
+    switchNode(network.selectedNode);
 });
 var filter = {
     btnsGroups: document.querySelectorAll('.btn-group'),
@@ -604,10 +603,6 @@ var network = {
             historique.actualiser(idNode);
         });
         
-        network.visualisation.on('deselectNode', function() {
-            network.selectedNode = undefined;
-        });
-        
         network.visualisation.on('hoverNode', function(params) {
             var idNodeHovered = params.node;
         
@@ -682,10 +677,9 @@ var network = {
         filter.init();
         
         // Si l'id d'un nœud est entré dans l'URL, on l'active
-        var urlPathnameArray = window.location.pathname.split('/');
-        var nodeId = urlPathnameArray[urlPathnameArray.length -1];
+        const urlPathnameArray = window.location.pathname.split('/');
+        const nodeId = urlPathnameArray[urlPathnameArray.length -1];
         if (switchNode(nodeId, false)) {
-            fiche.open();
             historique.init(nodeId);
         }
     }

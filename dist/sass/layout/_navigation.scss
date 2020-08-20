@@ -8,7 +8,6 @@
         display: flex;
         list-style: none;
         padding: unset;
-        margin: unset;
         margin: 0 20px 10px 0;
     }
 
@@ -20,6 +19,9 @@
         padding: 5px 7px;
         color: black;
         font-size: 18px;
+        background-color: transparent;
+        border: unset;
+        height: unset;
         
         &:first-child {
             padding: 5px 7px 5px 0;
@@ -34,15 +36,5 @@
         &:hover {
             text-decoration: underline;
         }
-    }
-
-    &__globe {
-        cursor: pointer;
-        width: 30px;
-        height: 30px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        background-image: url("./icons/infos.svg");
     }
 }
