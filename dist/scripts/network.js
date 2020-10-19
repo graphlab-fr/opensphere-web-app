@@ -214,27 +214,6 @@ function findConnectedNodes(nodeId) {
     return connectedNodesList;
 }
 
-function zoomToNode(nodeId) {
-    var nodeId = Number(nodeId);
-    var nodeCoordonates = network.visualisation.getPosition(nodeId);
-    
-    if (network.data.nodes.get(nodeId).hidden === true) {
-        // si le nœeud est hidden
-        return;
-    }
-
-    network.visualisation.moveTo({
-        position: {
-            x: nodeCoordonates.x,
-            y: nodeCoordonates.y
-        },
-        scale: network.zoom.max,
-        animation: true
-    });
-
-    network.visualisation.selectNodes([nodeId]);
-}
-
 function backToCenterView() {
     network.visualisation.fit({ animation: true });
 }

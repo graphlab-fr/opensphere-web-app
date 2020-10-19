@@ -16,7 +16,7 @@ function zoomToNode(nodeId) {
 
     network.visualisation.moveTo({
         position: {
-            x: nodeCoordonates.x,
+            x: nodeCoordonates.x + 100,
             y: nodeCoordonates.y
         },
         scale: network.zoom.max,
