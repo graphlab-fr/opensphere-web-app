@@ -20,9 +20,9 @@ Promise.all([
                     // entite metas
                     id: entite.id,
                     label: entite.label,
-                    title: entite.titre,
-                    title_fr: entite.titre,
-                    title_en: entite.titre_en,
+                    title: (entite.titre || ''),
+                    title_fr: (entite.titre || ''),
+                    title_en: (entite.titre_en || ''),
                     group: entite.relation_otlet,
                     image: '/otletosphere/assets/photos/' + entite.photo,
                     genre: entite.genre,
