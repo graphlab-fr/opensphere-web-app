@@ -163,7 +163,8 @@ button:focus {
   border-radius: 3px;
   width: 100%;
   font-size: 14px;
-  color: white; }
+  color: white;
+  white-space: nowrap; }
   .btn-group:first-child {
     margin: 0 2px 0 0; }
   .btn-group--large {

@@ -565,11 +565,11 @@ var network = {
         },
         groups: {
             collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}},
-            contemporain: {shape: 'circularImage', color: {border: chooseColor('contemporain')}},
             collaborateur: {shape: 'circularImage', color: {border: chooseColor('collaborateur')}},
             famille: {shape: 'circularImage', color: {border: chooseColor('famille')}},
             opposant: {shape: 'circularImage', color: {border: chooseColor('opposant')}},
             otlet: {shape: 'circularImage', color: {border: chooseColor('otlet')}},
+            'non-catégorisé': {shape: 'circularImage', color: {border: chooseColor('non-catégorisé')}},
             institution: {shape: 'image', color: {border: chooseColor('institution')}},
             œuvre: {shape: 'image', color: {border: chooseColor('œuvre')}},
             évènement: {shape: 'image', color: {border: chooseColor('évènement')}}
@@ -697,8 +697,6 @@ function chooseColor(relationEntite, lowerOpacity = false) {
     switch (relationEntite) {
         case 'collegue':
             var color = '154, 60, 154'; break;
-        case 'contemporain':
-            var color = '128,128,128'; break;
         case 'collaborateur':
             var color = '97, 172, 97'; break;
         case 'opposant':
@@ -707,6 +705,8 @@ function chooseColor(relationEntite, lowerOpacity = false) {
             var color = '102, 179, 222'; break;
         case 'otlet':
             var color = '244, 164, 96'; break;
+        case 'non-catégorisé':
+            var color = '128,128,128'; break;
         case 'institution':
             var color = '128,128,128'; break;
         case 'œuvre':
