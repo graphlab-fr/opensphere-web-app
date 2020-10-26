@@ -14,7 +14,8 @@ var fiche = {
         pays: document.querySelector('#fiche-meta-pays'),
         domaine: document.querySelector('#fiche-meta-domaine'),
         description: document.querySelector('#fiche-meta-description'),
-        connexion: document.querySelector('#fiche-connexion')
+        connexion: document.querySelector('#fiche-connexion'),
+        permalien: document.querySelector('#fiche-permalien')
     },
 
     fixer: function(bool) {
@@ -76,6 +77,24 @@ var fiche = {
             content.innerHTML = ''; }
         else {
             content.innerHTML = meta; }
+    },
+    setPermaLink: function(nodeId) {
+        this.fields.permalien.addEventListener('click', () => {
+            var tempInput = document.createElement('input');
+
+            document.body.appendChild(tempInput);
+            tempInput.value = window.location.protocol + '//' + window.location.host + window.location.pathname;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            console.log('ocucou');
+
+            this.fields.permalien.classList.add('fiche__permalien--active')
+            this.fields.permalien.addEventListener('animationend', () => {
+                this.fields.permalien.classList.remove('fiche__permalien--active')
+            })
+        });
     },
     setConnexion: function(nodeConnectedList) {
         this.fields.connexion.innerHTML = '';
@@ -139,6 +158,7 @@ var fiche = {
         this.setMeta(nodeMetas.pays, this.fields.pays);
         this.setMeta(nodeMetas.domaine, this.fields.domaine);
         this.setMeta(nodeMetas.description, this.fields.description);
+        this.setPermaLink(network.selectedNode);
 
         this.setConnexion(nodeConnectedList);
     }

@@ -128,6 +128,20 @@
         }
     }
 
+    &__permalien {
+        width: 100%;
+        background-color: black;
+        color: white;
+        border: 0;
+        padding: 5px 0;
+        margin-top: 15px;
+
+        &--active {
+            animation-name: valid;
+            animation-duration: 1s;
+        }
+    }
+
     &--active {
         transform: unset;
     }
