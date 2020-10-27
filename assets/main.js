@@ -308,7 +308,8 @@ var fiche = {
     },
     setPermaLink: function(nodeId) {
         this.fields.permalien.addEventListener('click', () => {
-            var tempInput = document.createElement('input');
+            const btnOriginalText = this.fields.permalien.textContent
+                , tempInput = document.createElement('input');
 
             document.body.appendChild(tempInput);
             tempInput.value = window.location.protocol + '//' + window.location.host + window.location.pathname;
@@ -316,10 +317,13 @@ var fiche = {
             document.execCommand('copy');
             document.body.removeChild(tempInput);
 
-            this.fields.permalien.classList.add('fiche__permalien--active')
+            this.fields.permalien.classList.add('fiche__permalien--active');
+            this.fields.permalien.textContent = '✓';
+            
             this.fields.permalien.addEventListener('animationend', () => {
+                this.fields.permalien.textContent = btnOriginalText ;
                 this.fields.permalien.classList.remove('fiche__permalien--active')
-            })
+            });
         });
     },
     setConnexion: function(nodeConnectedList) {

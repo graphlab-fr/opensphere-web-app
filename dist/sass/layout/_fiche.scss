@@ -129,16 +129,18 @@
     }
 
     &__permalien {
-        width: 100%;
+        cursor: pointer;
         background-color: black;
         color: white;
         border: 0;
         padding: 5px 0;
         margin-top: 15px;
+        width: 90px;
 
         &--active {
             animation-name: valid;
             animation-duration: 1s;
+            animation-timing-function: linear;
         }
     }
 
