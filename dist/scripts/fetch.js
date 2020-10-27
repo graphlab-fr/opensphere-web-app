@@ -1,6 +1,6 @@
 Promise.all([
-    fetch('/data/entite.json'), // = data[0]
-    fetch('/data/lien.json') // = data[1]
+    fetch('data/entite.json'), // = data[0]
+    fetch('data/lien.json') // = data[1]
 ]).then(function(data) {
     // get data
     const entites = data[0]
@@ -24,7 +24,7 @@ Promise.all([
                     title_fr: (entite.titre || ''),
                     title_en: (entite.titre_en || ''),
                     group: entite.relation_otlet,
-                    image: '/assets/photos/' + entite.photo,
+                    image: './assets/photos/' + entite.photo,
                     genre: entite.genre,
                     annee_naissance: entite.annee_naissance,
                     annee_mort: entite.annee_mort,
