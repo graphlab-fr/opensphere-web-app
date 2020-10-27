@@ -29,7 +29,11 @@ You can also go to the [GitHub repository](https://github.com/hyperotlet/otletos
 - [unzip an archive on Windows](https://support.microsoft.com/en-us/help/14200/windows-compress-uncompress-zip-files)
 - [unzip an archive on macOS](https://support.apple.com/guide/mac-help/compress-uncompress-files-folders-mac-mchlp2528/mac)
 
-## Gulp.js
+## Display the software
+
+The application only works on a local (free) server like [XAMP](https://www.apachefriends.org/fr/index.html) or MAMP (Mac OS) or on a server connected to the Internet. Only a server can ensure internal data exchange.
+
+## Edit source code with Gulp.js
 
 [Gulp.js](https://gulpjs.com/) is a Node.js module that works well with command boxes (*Windows Command Prompt* and MacOS Terminal*). Here is a complete installation tutorial on the subject: https://www.alsacreations.com/tuto/lire/1686-introduction-a-gulp.html
 

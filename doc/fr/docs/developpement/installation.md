@@ -29,7 +29,11 @@ Vous pouvez également vous rendre sur le [dépôt GitHub](https://github.com/hy
 - [décompresser une archive sur Windows](https://support.microsoft.com/fr-fr/help/14200/windows-compress-uncompress-zip-files)
 - [décompresser une archive sur macOS](https://support.apple.com/fr-fr/guide/mac-help/mchlp2528/mac)
 
-## Gulp.js
+## Afficher le logiciel
+
+L'application ne fonctionne que sur un serveur local (gratuit) comme [XAMP](https://www.apachefriends.org/fr/index.html) ou MAMP (Mac OS) ou sur un serveur connecté à Internet. Seul un serveur peut assurer les échanges internes en matière de données.
+
+## Modifier le code avec Gulp.js
 
 [Gulp.js](https://gulpjs.com/) est un module Node.js qui fonctionne largement avec les boîtes commandes (*Invite de commande* de Windows et *Terminal* de macOS). Voici un tutoriel d'installation complet sur le sujet : https://www.alsacreations.com/tuto/lire/1686-introduction-a-gulp.html
 
