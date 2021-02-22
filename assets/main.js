@@ -147,27 +147,32 @@ Promise.all([
         network.data.nodes.add(
             entites.map(function(entite) {
                 var entiteObj = {
-                    // entite metas
+                    // entite metas, default langage
                     id: entite.id,
                     label: entite.label,
                     title: (entite.titre || ''),
-                    title_fr: (entite.titre || ''),
-                    title_en: (entite.titre_en || ''),
                     group: entite.relation_otlet,
                     image: './assets/photos/' + entite.photo,
                     genre: entite.genre,
                     annee_naissance: entite.annee_naissance,
                     annee_mort: ((!entite.annee_mort) ? undefined : ' - ' + entite.annee_mort),
                     pays: entite.pays,
-                    pays_fr: entite.pays,
-                    pays_en: entite.pays_en,
                     domaine: entite.domaine,
-                    domaine_fr: entite.domaine,
-                    domaine_en: entite.domaine_en,
                     description: entite.description,
-                    description_fr: entite.description,
-                    description_en: entite.description_en,
                     lien_wikipedia: entite.lien_wikipedia,
+                    // translated metas
+                    Fr: {
+                        title: (entite.titre || ''),
+                        pays: entite.pays,
+                        domaine: entite.domaine,
+                        description: entite.description
+                    },
+                    En: {
+                        title: (entite.titre_en || ''),
+                        pays: entite.pays_en,
+                        domaine: entite.domaine_en,
+                        description: entite.description_en
+                    },
         
                     // node style
                     size : 30,
@@ -208,8 +213,12 @@ Promise.all([
                     from: lien.from,
                     to: lien.to,
                     title: lien.label,
-                    title_fr: lien.label,
-                    title_en: lien.label_en
+                    Fr: {
+                        title: lien.label
+                    },
+                    En: {
+                        title: lien.label_en
+                    },
                 };
 
                 if (lien.from == 1 || lien.to == 1) {
@@ -854,9 +863,14 @@ var search = {
 }
 
 search.reset();
+(function() {
+const activFlag = document.querySelector('.lang-box__flag[data-active="true"]');
+
+if (!activFlag) { return; }
+
 var langage = {
-    flags: [document.querySelector('#lang-fr'), document.querySelector('#lang-en')],
-    actual: 'Fr',
+    flags: document.querySelectorAll('.lang-box__flag'),
+    actual: activFlag.dataset.lang,
     translateAll: function() {
         document.querySelectorAll('[data-lang-' + langage.actual.toLowerCase() + ']').forEach(elt => {
             eval('elt.innerHTML = elt.dataset.lang' + langage.actual);
@@ -865,8 +879,7 @@ var langage = {
 }
 
 // active actual langage button
-document.querySelector('[data-lang="' + langage.actual + '"]')
-    .classList.add('lang-box__flag--active');
+activFlag.classList.add('lang-box__flag--active');
 
 langage.flags.forEach(flag => {
     flag.addEventListener('click', (e) => {
@@ -885,55 +898,33 @@ langage.flags.forEach(flag => {
 
         langage.actual = flagCliked.dataset.lang;
 
+        // translate website interface
         langage.translateAll();
-
-        switch (langage.actual) {
-            case 'Fr':
-                network.data.nodes.update(
-                    network.data.nodes.map(entite => ({
-                            id: entite.id,
-                            title: entite.title_fr,
-                            description: entite.description_fr,
-                            domaine: entite.domaine_fr,
-                            pays: entite.pays_fr,
-                        })
-                    )
-                );
-                network.data.edges.update(
-                    network.data.edges.map(lien => ({
-                            id: lien.id,
-                            title: lien.title_fr,
-                        })
-                    )
-                );
-            break;
-
-            case 'En':
-                network.data.nodes.update(
-                    network.data.nodes.map(entite => ({
-                            id: entite.id,
-                            title: entite.title_en,
-                            description: entite.description_en,
-                            domaine: entite.domaine_en,
-                            pays: entite.pays_en,
-                        })
-                    )
-                );
-                network.data.edges.update(
-                    network.data.edges.map(lien => ({
-                            id: lien.id,
-                            title: lien.title_en,
-                        })
-                    )
-                );
-            break;
-        }
+        // translate graph & entities metas
+        network.data.nodes.update(
+            network.data.nodes.map(entite => ({
+                    id: entite.id,
+                    title: entite[langage.actual].title,
+                    description: entite[langage.actual].description,
+                    domaine: entite[langage.actual].domaine,
+                    pays: entite[langage.actual].pays,
+                })
+            )
+        );
+        network.data.edges.update(
+            network.data.edges.map(lien => ({
+                    id: lien.id,
+                    title: lien[langage.actual].title,
+                })
+            )
+        );
 
         fiche.fill();
         board.init();
 
     });
 });
+})()
 var zoom = {
     btnPlus: document.querySelector('#zoom-plus'),
     btnMoins: document.querySelector('#zoom-moins'),

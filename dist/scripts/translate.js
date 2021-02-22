@@ -1,6 +1,11 @@
+(function() {
+const activFlag = document.querySelector('.lang-box__flag[data-active="true"]');
+
+if (!activFlag) { return; }
+
 var langage = {
-    flags: [document.querySelector('#lang-fr'), document.querySelector('#lang-en')],
-    actual: 'Fr',
+    flags: document.querySelectorAll('.lang-box__flag'),
+    actual: activFlag.dataset.lang,
     translateAll: function() {
         document.querySelectorAll('[data-lang-' + langage.actual.toLowerCase() + ']').forEach(elt => {
             eval('elt.innerHTML = elt.dataset.lang' + langage.actual);
@@ -9,8 +14,7 @@ var langage = {
 }
 
 // active actual langage button
-document.querySelector('[data-lang="' + langage.actual + '"]')
-    .classList.add('lang-box__flag--active');
+activFlag.classList.add('lang-box__flag--active');
 
 langage.flags.forEach(flag => {
     flag.addEventListener('click', (e) => {
@@ -29,52 +33,30 @@ langage.flags.forEach(flag => {
 
         langage.actual = flagCliked.dataset.lang;
 
+        // translate website interface
         langage.translateAll();
-
-        switch (langage.actual) {
-            case 'Fr':
-                network.data.nodes.update(
-                    network.data.nodes.map(entite => ({
-                            id: entite.id,
-                            title: entite.title_fr,
-                            description: entite.description_fr,
-                            domaine: entite.domaine_fr,
-                            pays: entite.pays_fr,
-                        })
-                    )
-                );
-                network.data.edges.update(
-                    network.data.edges.map(lien => ({
-                            id: lien.id,
-                            title: lien.title_fr,
-                        })
-                    )
-                );
-            break;
-
-            case 'En':
-                network.data.nodes.update(
-                    network.data.nodes.map(entite => ({
-                            id: entite.id,
-                            title: entite.title_en,
-                            description: entite.description_en,
-                            domaine: entite.domaine_en,
-                            pays: entite.pays_en,
-                        })
-                    )
-                );
-                network.data.edges.update(
-                    network.data.edges.map(lien => ({
-                            id: lien.id,
-                            title: lien.title_en,
-                        })
-                    )
-                );
-            break;
-        }
+        // translate graph & entities metas
+        network.data.nodes.update(
+            network.data.nodes.map(entite => ({
+                    id: entite.id,
+                    title: entite[langage.actual].title,
+                    description: entite[langage.actual].description,
+                    domaine: entite[langage.actual].domaine,
+                    pays: entite[langage.actual].pays,
+                })
+            )
+        );
+        network.data.edges.update(
+            network.data.edges.map(lien => ({
+                    id: lien.id,
+                    title: lien[langage.actual].title,
+                })
+            )
+        );
 
         fiche.fill();
         board.init();
 
     });
 });
+})()
