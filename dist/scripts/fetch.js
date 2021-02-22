@@ -27,7 +27,7 @@ Promise.all([
                     image: './assets/photos/' + entite.photo,
                     genre: entite.genre,
                     annee_naissance: entite.annee_naissance,
-                    annee_mort: entite.annee_mort,
+                    annee_mort: ((!entite.annee_mort) ? undefined : ' - ' + entite.annee_mort),
                     pays: entite.pays,
                     pays_fr: entite.pays,
                     pays_en: entite.pays_en,

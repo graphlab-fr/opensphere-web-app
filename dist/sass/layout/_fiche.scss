@@ -57,10 +57,6 @@
         object-fit: cover;
     }
 
-    &__text-resume {
-        width: 150px;
-    }
-
     &__label {
         @extend %font-condensed;
         display: inline-block;

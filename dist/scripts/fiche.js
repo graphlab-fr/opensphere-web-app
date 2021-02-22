@@ -1,3 +1,5 @@
+const overflow = document.querySelector('#overflow');
+
 var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
@@ -6,17 +8,13 @@ var fiche = {
     toggle: document.querySelector('#fiche-toggle'),
     isOpen: false,
     fields: {
+        head: document.querySelector('#fiche-head'),
         wikiLink: document.querySelector('#fiche-wiki-link'),
         img: document.querySelector('#fiche-meta-img'),
-        label: document.querySelector('#fiche-meta-label'),
-        date: document.querySelector('#fiche-meta-date'),
-        titre: document.querySelector('#fiche-meta-titre'),
-        pays: document.querySelector('#fiche-meta-pays'),
-        domaine: document.querySelector('#fiche-meta-domaine'),
-        description: document.querySelector('#fiche-meta-description'),
         connexion: document.querySelector('#fiche-connexion'),
         permalien: document.querySelector('#fiche-permalien')
     },
+    domFields: document.querySelectorAll('[data-meta]'),
 
     fixer: function(bool) {
         if (bool) { fiche.body.classList.add('lateral--fixed'); }
@@ -39,31 +37,15 @@ var fiche = {
         else { this.toggle.classList.add('d-none'); }
     },
     setImage: function(entitePhoto, entiteLabel) {
+        if (!this.fields.img) { return ; }
+        if (!entitePhoto) { return this.fields.img.style.display = 'none'; }
+
         this.fields.img.setAttribute('src', entitePhoto);
         this.fields.img.setAttribute('alt', 'photo de ' + entiteLabel);
     },
-    setDates: function(entiteDateNaissance, entiteDateMort) {
-        if (entiteDateNaissance === null && entiteDateMort === null) {
-            this.fields.date.innerHTML = '';
-            return;
-        }
-
-        let naissance = '';
-        let mort = '';
-
-        if (entiteDateNaissance !== null) {
-            naissance = '<div class="fiche__dates"><time class="" datetime="' 
-                + entiteDateNaissance + '">' + entiteDateNaissance + '</time>';
-        }
-
-        if (entiteDateMort !== null) {
-            mort = ' - <time  datetime="' + entiteDateMort + '">' +
-                entiteDateMort + '</time><div>';
-        }
-
-        this.fields.date.innerHTML = [naissance, mort].join('');
-    },
     setWikiLink: function(wikiLink) {
+        if (!this.fields.wikiLink) { return ; }
+
         if (wikiLink === null) {
             this.fields.wikiLink.classList.remove('fiche__wiki-link--visible')
             this.fields.wikiLink.setAttribute('href', '')
@@ -73,12 +55,14 @@ var fiche = {
         }
     },
     setMeta: function(meta, content) {
-        if (meta === null) {
+        if (!content) { return ; }
+
+        if (!meta) {
             content.innerHTML = ''; }
         else {
             content.innerHTML = meta; }
     },
-    setPermaLink: function(nodeId) {
+    setPermaLink: function() {
         this.fields.permalien.addEventListener('click', () => {
             const btnOriginalText = this.fields.permalien.textContent
                 , tempInput = document.createElement('input');
@@ -151,15 +135,14 @@ var fiche = {
         // affichage du contenant
         this.content.classList.add('fiche__content--visible');
 
+        this.domFields.forEach(elt => {
+            const metaName = elt.dataset.meta;
+            this.setMeta(nodeMetas[metaName], elt);
+        });
+
         // remplissage métadonnées
-        this.setMeta(nodeMetas.label, this.fields.label);
-        this.setMeta(nodeMetas.title, this.fields.titre);
         this.setImage(nodeMetas.image, nodeMetas.label);
-        this.setDates(nodeMetas.annee_naissance, nodeMetas.annee_mort);
         this.setWikiLink(nodeMetas.lien_wikipedia);
-        this.setMeta(nodeMetas.pays, this.fields.pays);
-        this.setMeta(nodeMetas.domaine, this.fields.domaine);
-        this.setMeta(nodeMetas.description, this.fields.description);
         this.setPermaLink(network.selectedNode);
 
         this.setConnexion(nodeConnectedList);
@@ -172,9 +155,7 @@ fiche.toggle.addEventListener('click', () => {
     else { fiche.open(); }
 });
 
-const overflow = document.querySelector('#overflow');
-
-fiche.fields.img.addEventListener('click', () => {
+fiche.fields.head.addEventListener('click', () => {
     // au clic sur l'image : zoom sur le nœud contenu dans la mémoire
     switchNode(network.selectedNode);
 });

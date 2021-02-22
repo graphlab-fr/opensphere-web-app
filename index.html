@@ -128,7 +128,7 @@
 
         <div class="entete__col mr-5">
             <div class="entete__identite" onclick="movement.goTo('reseau');">
-                <h1 class="title-site"><span class="title-site__bold">Otlet</span>osphère</h1>
+                <h1 class="title-site"><span class="title-site__bold">Open</span>sphère</h1>
             </div>
 
             <div class="search-box">
@@ -156,6 +156,7 @@
             </nav>
 
             <section class="toolbar || d-none d-xl-flex">
+
                 <div class="toolbar__section">
                     <button class="btn-group" data-group="otlet" data-lang-fr="Otlet" data-lang-en="Otlet">Otlet</button>
                 </div>
@@ -270,13 +271,16 @@
 
             <main id="fiche-content" class="fiche__content">
 
-                <div class="fiche__identite">
+                <div id="fiche-head" class="fiche__identite">
                     <img id="fiche-meta-img" class="fiche__img" src="" alt="">
 
                     <div class="fiche__text-resume">
-                        <span id="fiche-meta-label" class="fiche__label"></span>
-                        <div id="fiche-meta-date"></div>
-                        <div id="fiche-meta-titre" class="fiche__titre"></div>
+                        <span class="fiche__label" data-meta="label"></span>
+                        <div class="fiche__dates">
+                            <span data-meta="annee_naissance"></span>
+                            <span data-meta="annee_mort"></span>
+                        </div>
+                        <div id="fiche-meta-titre" class="fiche__titre" data-meta="titre"></div>
                         <div class="d-flex justify-content-between">
                             <a id="fiche-wiki-link" class="fiche__wiki-link" title="Page wikipédia liée" target="_blank" href=""></a>
                             <button id="fiche-permalien" class="fiche__permalien" data-lang-fr="Permalien" data-lang-en="Permalink">Permalien</button>
@@ -287,15 +291,15 @@
     
                 <div class="fiche__couple">
                     <span class="fiche__cle" data-lang-fr="pays" data-lang-en="country">pays</span>
-                    <span id="fiche-meta-pays"></span>
+                    <span data-meta="pays"></span>
                 </div>
 
                 <div class="fiche__couple">
                     <span class="fiche__cle" data-lang-fr="domaine" data-lang-en="field">domaine</span>
-                    <span id="fiche-meta-domaine"></span>
+                    <span data-meta="domaine"></span>
                 </div>
                 
-                <div id="fiche-meta-description" class="fiche__description"></div>
+                <div class="fiche__description" data-meta="description"></div>
 
                 <div>
                     <span class="connexions__libelle" data-lang-fr="Connexions" data-lang-en="Connections">Connexions</span>
