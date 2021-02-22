@@ -14,7 +14,7 @@ var fiche = {
         connexion: document.querySelector('#fiche-connexion'),
         permalien: document.querySelector('#fiche-permalien')
     },
-    domFields: document.querySelectorAll('[data-meta]'),
+    domFields: document.querySelectorAll('#fiche [data-meta]'),
 
     fixer: function(bool) {
         if (bool) { fiche.body.classList.add('lateral--fixed'); }

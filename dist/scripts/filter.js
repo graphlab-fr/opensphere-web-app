@@ -7,9 +7,10 @@ var filter = {
     },
     init: function() {
         this.btnsGroups.forEach(btn => {
-            var group = btn.dataset.group;
+            var meta = btn.dataset.meta;
+            var type = btn.dataset.type;
         
-            btn.style.backgroundColor = chooseColor(group);
+            btn.style.backgroundColor = chooseColor(meta);
         
             let isActiveGroup = true;
         
@@ -20,26 +21,26 @@ var filter = {
                 if (isActiveGroup) {
                     network.data.nodes.get({
                         filter: function (item) {
-                            if (item.group == group) {
+                            if (item[type] == meta) {
                                 network.data.nodes.update({id: item.id, hidden: true}) }
                         }
                     });
 
                     // activation visuelle boutons filtre de entête et volet
-                    document.querySelectorAll('[data-group="' + btn.dataset.group + '"]').forEach(btn => {
+                    document.querySelectorAll('[data-meta="' + btn.dataset.meta + '"]').forEach(btn => {
                         btn.classList.add('active'); });
         
                     isActiveGroup = false;
                 } else {
                     network.data.nodes.get({
                         filter: function (item) {
-                            if (item.group == group) {
+                            if (item[type] == meta) {
                                 network.data.nodes.update({id: item.id, hidden: false}) }
                         }
                     });
 
                     // deactivation visuelle boutons filtre de entête et volet
-                    document.querySelectorAll('[data-group="' + btn.dataset.group + '"]').forEach(btn => {
+                    document.querySelectorAll('[data-meta="' + btn.dataset.meta + '"]').forEach(btn => {
                         btn.classList.remove('active'); });
 
                     isActiveGroup = true;
