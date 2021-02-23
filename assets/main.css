@@ -387,8 +387,6 @@ button:focus {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 18px; }
-  .fiche__wiki-link--visible {
-    display: flex; }
 
 .fiche__couple {
   display: flex;

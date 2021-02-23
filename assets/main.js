@@ -288,8 +288,7 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    currentEntityId: undefined,
-    toggle: document.querySelector('#fiche-toggle'),
+    toggle: document.querySelector('#fiche-toggle'), // arrow button
     isOpen: false,
     fields: {
         head: document.querySelector('#fiche-head'),
@@ -300,15 +299,18 @@ var fiche = {
     },
     domFields: document.querySelectorAll('#fiche [data-meta]'),
 
+    /** position; fixed; the description bar on Board view */
     fixer: function(bool) {
         if (bool) { fiche.body.classList.add('lateral--fixed'); }
         else { fiche.body.classList.remove('lateral--fixed'); }
     },
+    /** open description bar */
     open: function() {
         this.toggle.classList.add('fiche__toggle-btn--active');
         fiche.body.classList.add('lateral--active');
         this.isOpen = true;
     },
+    /** close description bar */
     close: function() {
         if (movement.currentSection === 'fiches') { return; }
         
@@ -316,28 +318,43 @@ var fiche = {
         fiche.body.classList.remove('lateral--active');
         this.isOpen = false;
     },
+    /** show/hide closure button from the description bar */
     canClose: function(bool) {
         if (bool) { this.toggle.classList.remove('d-none'); }
         else { this.toggle.classList.add('d-none'); }
     },
-    setImage: function(entitePhoto, entiteLabel) {
+    /**
+     * Show entity image on description bar
+     * @param {string} photoPath - photo path
+     * @param {string} entiteLabel - Entity name for alt img attribute
+     */
+    setImage: function(photoPath, entiteLabel) {
         if (!this.fields.img) { return ; }
-        if (!entitePhoto) { return this.fields.img.style.display = 'none'; }
+        if (!photoPath) { return this.fields.img.style.display = 'none'; }
 
-        this.fields.img.setAttribute('src', entitePhoto);
+        this.fields.img.setAttribute('src', photoPath);
         this.fields.img.setAttribute('alt', 'photo de ' + entiteLabel);
     },
+    /**
+     * Set the entity link to Wikipedia on description bar 
+     * @param {string} wikiLink - URL adress
+     */
     setWikiLink: function(wikiLink) {
         if (!this.fields.wikiLink) { return ; }
 
-        if (wikiLink === null) {
-            this.fields.wikiLink.classList.remove('fiche__wiki-link--visible')
+        if (!wikiLink) {
+            this.fields.wikiLink.style.display = 'none';
             this.fields.wikiLink.setAttribute('href', '')
         } else {
-            this.fields.wikiLink.classList.add('fiche__wiki-link--visible')
+            this.fields.wikiLink.style.display = 'flex';
             this.fields.wikiLink.setAttribute('href', wikiLink)
         }
     },
+    /**
+     * Set an entity meta on a field from description bar 
+     * @param {string} meta - meta text
+     * @param {HTMLElement} content - HTML element from description bar
+     */
     setMeta: function(meta, content) {
         if (!content) { return ; }
 
@@ -346,10 +363,13 @@ var fiche = {
         else {
             content.innerHTML = meta; }
     },
+    /**
+     * Set the permanent link button from description bar
+     * onlick : save link on clipboard
+     */
     setPermaLink: function() {
         this.fields.permalien.addEventListener('click', () => {
-            const btnOriginalText = this.fields.permalien.textContent
-                , tempInput = document.createElement('input');
+            const tempInput = document.createElement('input');
 
             document.body.appendChild(tempInput);
             tempInput.value = window.location.protocol + '//' + window.location.host + window.location.pathname;
@@ -357,17 +377,21 @@ var fiche = {
             document.execCommand('copy');
             document.body.removeChild(tempInput);
 
-            this.fields.permalien.classList.add('fiche__permalien--active');
+            this.fields.permalien.classList.add('fiche__permalien--active'); // CSS animation
             this.fields.permalien.textContent = '✓';
             
             this.fields.permalien.addEventListener('animationend', () => {
-                this.fields.permalien.textContent = btnOriginalText ;
+                this.fields.permalien.textContent = 'Permalink' ;
                 this.fields.permalien.classList.remove('fiche__permalien--active')
             });
         });
     },
+    /**
+     * Generate the connected nodes <ul> list, its description frame
+     * @param {array} nodeConnectedList - Connected nodes array
+     */
     setConnexion: function(nodeConnectedList) {
-        this.fields.connexion.innerHTML = '';
+        this.fields.connexion.innerHTML = ''; // reset
 
         if (nodeConnectedList === null) { return; }
 
@@ -375,12 +399,8 @@ var fiche = {
         list.classList.add('connexions__list');
         this.fields.connexion.appendChild(list);
 
-        for (let i = 0; i < nodeConnectedList.length; i++) {
-            const connectedNode = nodeConnectedList[i];
-
-            if (connectedNode.hidden == true) {
-                continue;
-            }
+        for (const connectedNode of nodeConnectedList) {
+            if (connectedNode.hidden == true) { continue; }
 
             var listElt = document.createElement('li');
             listElt.classList.add('connexions__elt');
@@ -396,7 +416,7 @@ var fiche = {
                 switchNode(connectedNode.id);
                 historique.actualiser(connectedNode.id);
             });
-
+            // link description frame at scroll on list element
             if (connectedNode.title !== null) {
                 listElt.addEventListener('mouseenter', (e) => {
                     overflow.classList.add('overflow--active');
@@ -406,25 +426,26 @@ var fiche = {
                 })
 
                 listElt.addEventListener('mouseout', () => {
-                    overflow.classList.remove('overflow--active');
-                })
+                    overflow.classList.remove('overflow--active'); })
             }
         }
     },
+    /**
+     * Feed all fields from the description bar about the selected entity
+     */
     fill: function() {
         const nodeMetas = getNodeMetas(network.selectedNode)
         if (nodeMetas === false)  { return ; }
         const nodeConnectedList = findConnectedNodes(network.selectedNode);
 
-        // affichage du contenant
+        // show description bar fields
         this.content.classList.add('fiche__content--visible');
-
+        // feed all element marked by [data-meta] into description bar
         this.domFields.forEach(elt => {
             const metaName = elt.dataset.meta;
             this.setMeta(nodeMetas[metaName], elt);
         });
 
-        // remplissage métadonnées
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setWikiLink(nodeMetas.lien_wikipedia);
         this.setPermaLink(network.selectedNode);
@@ -434,15 +455,12 @@ var fiche = {
 }
 
 fiche.toggle.addEventListener('click', () => {
-    // toggle close and open du lateral fiche
     if (fiche.isOpen) { fiche.close(); }
     else { fiche.open(); }
 });
 
 fiche.fields.head.addEventListener('click', () => {
-    // au clic sur l'image : zoom sur le nœud contenu dans la mémoire
-    switchNode(network.selectedNode);
-});
+    switchNode(network.selectedNode); });
 var filter = {
     btnsGroups: document.querySelectorAll('.btn-group'),
     volet: {
