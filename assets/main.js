@@ -710,7 +710,7 @@ var network = {
                 forceDirection: 'horizontal'
             }
         },
-        groups: {
+        groups: { // massive styling, by group name
             collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}},
             collaborateur: {shape: 'circularImage', color: {border: chooseColor('collaborateur')}},
             famille: {shape: 'circularImage', color: {border: chooseColor('famille')}},
@@ -728,7 +728,7 @@ var network = {
         min: 0.2
     },
     selectedNode: undefined,
-
+    /** diplay graph & activate events, board and search engine */
     init: function() {
         
         // Génération de la visualisation
@@ -749,20 +749,20 @@ var network = {
             switchNode(idNode);
             historique.actualiser(idNode);
         });
-        
+        // nodes become transparents if one is hovered by mouse
         network.visualisation.on('hoverNode', function(params) {
             var idNodeHovered = params.node;
         
-            // pas d'effet sur le nœud survolé
+            // no effect on hovermouse node
             var noEffectNodesIds = [idNodeHovered];
-            // ni sur les nœuds qui y sont connectés
+            // and his connections
             noEffectNodesIds = noEffectNodesIds
                 .concat(network.visualisation.getConnectedNodes(idNodeHovered));
         
             if (network.selectedNode !== undefined) {
-                // pas d'effet sur le nœud selectionné
+                // no effect on the 'selectedNode'
                 noEffectNodesIds.push(network.selectedNode)
-                // ni sur les nœuds qui y sont connectés
+                // and his connections
                 noEffectNodesIds = noEffectNodesIds
                     .concat(network.visualisation.getConnectedNodes(network.selectedNode));
             }
@@ -784,7 +784,7 @@ var network = {
             );
             
         });
-        
+        // revert the nodes transparency
         network.visualisation.on('blurNode', function() {
 
             network.data.nodes.update(
@@ -802,7 +802,7 @@ var network = {
         
         network.visualisation.on('zoom', function(params) {
         
-            // limiter le de-zoom
+            // restrict un-zoom
             if (params.scale <= network.zoom.min) {
                 network.visualisation.moveTo({
                     position: { x: 0, y: 0 },
@@ -810,20 +810,21 @@ var network = {
                 });
             }
         
-            // limiter le zoom
+            // restrict zoom
             if (params.scale >= network.zoom.max) {
                 network.visualisation.moveTo({ scale: network.zoom.max }); }
         });
 
+        // activate zoom buttons
         zoom.btnPlus.addEventListener('click', zoomIn);
         zoom.btnMoins.addEventListener('click', zoomOut);
         zoom.btnReinitialiser.addEventListener('click', backToCenterView);
+
+        board.init(); // activate the alphabetical list display
+        search.input.addEventListener('focus', search.init); // activate the search engine
+        filter.init(); // activate filters
         
-        board.init();
-        search.input.addEventListener('focus', search.init);
-        filter.init();
-        
-        // Si l'id d'un nœud est entré dans l'URL, on l'active
+        // If there is entity id one URL : activate
         const urlPathnameArray = window.location.pathname.split('/');
         const nodeId = urlPathnameArray[urlPathnameArray.length -1];
         if (switchNode(nodeId, false)) {
@@ -833,15 +834,14 @@ var network = {
 }
 
 /**
- * Retourne une couleur type RGB ou RGBA
- * selon le nom d'un groupe d'entité
- * @param {String} relationEntite 
- * @param {Boolean} [lowerOpacity = false] true : retuns RGBA : false : retuns RGB
- * @returns {String}
+ * Return a color RGB or RGBA from a list
+ * @param {string} name - Color's reference name
+ * @param {string} lowerOpacity -  if true : retuns RGBA, else retuns RGB
+ * @returns {string} color
  */
 
-function chooseColor(relationEntite, lowerOpacity = false) {
-    switch (relationEntite) {
+function chooseColor(name, lowerOpacity = false) {
+    switch (name) {
         case 'collegue':
             var color = '154, 60, 154'; break;
         case 'collaborateur':
@@ -865,6 +865,12 @@ function chooseColor(relationEntite, lowerOpacity = false) {
     else { return ['rgb(', color, ')'].join(''); }
 }
 
+/**
+ * Return the metadatas from a entity
+ * @param {number} id - Entity id
+ * @returns {object} metadatas of false if malfunction
+ */
+
 function getNodeMetas(id) { 
     var nodeMetas = false;
 
@@ -879,6 +885,12 @@ function getNodeMetas(id) {
     return nodeMetas;
 }
 
+/**
+ * Return metas from connected nodes
+ * @param {number} id - Entity id
+ * @returns {array} objects arrau contains metadatas
+ */
+
 function findConnectedNodes(nodeId) {
     var nodesConnected = network.visualisation.getConnectedNodes(nodeId);
     var edgesConnected = network.visualisation.getConnectedEdges(nodeId);
@@ -887,6 +899,7 @@ function findConnectedNodes(nodeId) {
     for (let i = 0; i < nodesConnected.length; i++) {
         const id = nodesConnected[i];
         var nodeMetas = getNodeMetas(id);
+        // get the link description :
         var nodeLinkTitle = network.data.edges.get(edgesConnected[i]).title;
         connectedNodesList.push({
             id: nodeMetas.id,
@@ -900,9 +913,12 @@ function findConnectedNodes(nodeId) {
     return connectedNodesList;
 }
 
-function backToCenterView() {
-    network.visualisation.fit({ animation: true });
-}
+/**
+ * Change view (graph focus & description bar content) about an entity
+ * @param {number} nodeId - Entity id
+ * @param {boolean} mustZoom - if true : zoom on node
+ * @returns {boolean} if it works
+ */
 
 function switchNode(nodeId, mustZoom = true) {
 
@@ -913,7 +929,7 @@ function switchNode(nodeId, mustZoom = true) {
     network.visualisation.selectNodes([nodeId]);
     network.selectedNode = Number(nodeId);
 
-    // renommer la page web
+    // rename webpage
     document.title = nodeMetas.label + ' - Otetosphère';
 
     if (mustZoom) {zoomToNode(nodeId);}
