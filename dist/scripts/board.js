@@ -1,3 +1,11 @@
+/**
+ * ================================================================================================
+ * board.js =======================================================================================
+ * ================================================================================================
+ * Display of the alphabetical list of entities in the form of cards
+ */
+
+
 var board = {
     content: document.querySelector('#board-content'),
     wrapper: document.querySelector('#board-wrapper'),

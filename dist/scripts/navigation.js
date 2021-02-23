@@ -1,3 +1,13 @@
+
+
+/**
+ * ================================================================================================
+ * navigation.js ==================================================================================
+ * ================================================================================================
+ * Display and coordinate three website sections : graph, board & about menu
+ */
+
+
 MicroModal.init();
 document.querySelector('#about-btn').addEventListener('click', () => {
     MicroModal.show('modal-about');

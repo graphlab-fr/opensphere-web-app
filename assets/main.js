@@ -1,3 +1,11 @@
+/**
+ * ================================================================================================
+ * board.js =======================================================================================
+ * ================================================================================================
+ * Display of the alphabetical list of entities in the form of cards
+ */
+
+
 var board = {
     content: document.querySelector('#board-content'),
     wrapper: document.querySelector('#board-wrapper'),
@@ -171,6 +179,16 @@ Board.prototype.empty = function() {
     this.alphaSpace = [];
     this.letterList = [];
 }
+
+
+/**
+ * ================================================================================================
+ * fetch.js =======================================================================================
+ * ================================================================================================
+ * Extract data from JSON files for activate diplays (graph, board, search engine)
+ */
+
+
 Promise.all([
     fetch('data/entite.json'), // = data[0]
     fetch('data/lien.json') // = data[1]
@@ -282,6 +300,16 @@ Promise.all([
 
     });
 });
+
+
+/**
+ * ================================================================================================
+ * fiche.js ========================================================================================
+ * ================================================================================================
+ * Display the description bar & its fields
+ */
+
+
 const overflow = document.querySelector('#overflow');
 
 var fiche = {
@@ -461,6 +489,16 @@ fiche.toggle.addEventListener('click', () => {
 
 fiche.fields.head.addEventListener('click', () => {
     switchNode(network.selectedNode); });
+
+
+/**
+ * ================================================================================================
+ * filter.js =======================================================================================
+ * ================================================================================================
+ * Activate filters buttons & hide/show entitied from the graph
+ */
+
+
 var filter = {
     btnsGroups: document.querySelectorAll('.btn-group'),
     volet: {
@@ -521,6 +559,16 @@ filter.volet.btnOpen.addEventListener('click', () => {
     filter.volet.body.classList.add('lateral--active'); });
 filter.volet.btnClose.addEventListener('click', () => {
     filter.volet.body.classList.remove('lateral--active'); });
+
+
+/**
+ * ================================================================================================
+ * history.js =====================================================================================
+ * ================================================================================================
+ * Manage the navigation history by sync with the web browser historical functions
+ */
+
+
 var historique = {
     actualiser: function(nodeId) {
         if (history.state == null) { this.init(nodeId); }
@@ -543,6 +591,16 @@ window.onpopstate = function(e) {
     var nodeId = timeline[timeline.length - 1];
     switchNode(nodeId);
 };
+
+
+/**
+ * ================================================================================================
+ * navigation.js ==================================================================================
+ * ================================================================================================
+ * Display and coordinate three website sections : graph, board & about menu
+ */
+
+
 MicroModal.init();
 document.querySelector('#about-btn').addEventListener('click', () => {
     MicroModal.show('modal-about');
@@ -615,6 +673,17 @@ movement.goTo('reseau');
 window.onresize = function() {
     movement.goTo(movement.currentSection);
 }
+
+
+/**
+ * ================================================================================================
+ * network.js =====================================================================================
+ * ================================================================================================
+ * Display & lauch events of the graph
+ * Distribute the data extracted from fetch.js
+ */
+
+
 var network = {
     container: document.querySelector('#network'),
     data: {
@@ -854,6 +923,16 @@ function switchNode(nodeId, mustZoom = true) {
 
     return true;
 }
+
+
+/**
+ * ================================================================================================
+ * search.js ======================================================================================
+ * ================================================================================================
+ * Set search engine parameters & data
+ */
+
+
 var search = {
     input: document.querySelector('#search'),
     resultContent: document.querySelector('#search-result'),
@@ -928,6 +1007,16 @@ var search = {
 }
 
 search.reset();
+
+
+/**
+ * ================================================================================================
+ * translate.js ===================================================================================
+ * ================================================================================================
+ * Activate translate buttons & translate website elements on click
+ */
+
+
 (function() {
 const activFlag = document.querySelector('.lang-box__flag[data-active="true"]');
 
@@ -990,6 +1079,16 @@ langage.flags.forEach(flag => {
     });
 });
 })()
+
+
+/**
+ * ================================================================================================
+ * zoom.js ========================================================================================
+ * ================================================================================================
+ * Manage the point of view of the user on the graph, on nodes
+ */
+
+
 var zoom = {
     btnPlus: document.querySelector('#zoom-plus'),
     btnMoins: document.querySelector('#zoom-moins'),

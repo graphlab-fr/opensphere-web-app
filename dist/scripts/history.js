@@ -1,3 +1,13 @@
+
+
+/**
+ * ================================================================================================
+ * history.js =====================================================================================
+ * ================================================================================================
+ * Manage the navigation history by sync with the web browser historical functions
+ */
+
+
 var historique = {
     actualiser: function(nodeId) {
         if (history.state == null) { this.init(nodeId); }
