@@ -59,10 +59,15 @@ Promise.all([
                         strokeColor: '#000'
                     }
                 };
-            
+
+                /**
+                 * We set a sortName value without the 'de' particle
+                 * sortName value is used on board.js for alphabetical ordering
+                 */
+
                 if (entite.nom) {
                     var splitName = entite.nom.split(' ', 2);
-                    // rejet de la particule "de"
+
                     if (splitName.length == 2 && splitName[0] == 'de') {
                         entiteObj.sortName = splitName[1];
                     } else {
@@ -72,6 +77,7 @@ Promise.all([
                     entiteObj.sortName = entite.label
                 }
 
+                console.log(entiteObj);
                 return entiteObj;
             })
         );
@@ -83,6 +89,7 @@ Promise.all([
                     from: lien.from,
                     to: lien.to,
                     title: lien.label,
+
                     Fr: {
                         title: lien.label
                     },
@@ -91,10 +98,8 @@ Promise.all([
                     },
                 };
 
-                if (lien.from == 1 || lien.to == 1) {
-                    // si le lien a une relation avec Otlet
-                    lienObj.color = null; }
-                else {
+                if (lien.from !== 1 && lien.to !== 1) {
+                    // if link not about Otlet -> gray color
                     lienObj.color = 'gray'; }
 
                 return lienObj;
