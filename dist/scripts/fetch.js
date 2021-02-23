@@ -77,7 +77,6 @@ Promise.all([
                     entiteObj.sortName = entite.label
                 }
 
-                console.log(entiteObj);
                 return entiteObj;
             })
         );

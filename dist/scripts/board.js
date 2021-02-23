@@ -6,6 +6,7 @@ var board = {
     init: function() {
         this.engine.empty();
 
+        // nodes become cards in alphabetical order
         network.data.nodes.forEach((entity) => {
             var card = new Card;
             card.id = entity.id;
@@ -23,14 +24,28 @@ var board = {
     }
 }
 
+/**
+ * Init instance of Card.
+ * @constructs Card
+ * @param {number} id - Entity id
+ * @param {string} label - Entity label
+ * @param {string} labelFirstLetter - Letter for alphabetical diplaying
+ * @param {string} title - Entity title
+ * @param {HTMLElement} domElt - <article> who contain card HTML
+ */
+
 function Card() {
     this.id = null;
     this.label = 'No name';
     this.labelFirstLetter = undefined;
     this.title = '';
-    this.text = null;
     this.domElt = document.createElement('article');
 }
+
+/**
+ * Make card HTML & appendChild in its container
+ * @param {HTMLElement} container - Container for cards linked by the same first letter
+ */
 
 Card.prototype.inscribe = function(container) {
     this.domElt.classList.add('card');
@@ -46,10 +61,18 @@ Card.prototype.inscribe = function(container) {
     container.appendChild(this.domElt);
 
     this.domElt.addEventListener('click', () => {
-        switchNode(this.id)
+        switchNode(this.id);
         historique.actualiser(this.id);
     });
 }
+
+/**
+ * Init instance of Card.
+ * @constructs Card
+ * @param {array} cards - Cards objects
+ * @param {array} letterList - First letters list, feed by Board.fill()
+ * @param {array} alphaSpace - For store same first letter cards in groups, feed by Board.bundle()
+ */
 
 function Board() {
     this.domElt = document.querySelector('#board-content');
@@ -59,12 +82,19 @@ function Board() {
     this.alphaSpace = [];
 }
 
+/**
+ * For each card, verif the first letter. If it change between
+ * two card put the second and others in a new array (group) while waiting
+ * for another change
+ */
+
 Board.prototype.bundle = function() {
-    var letter = this.cards[0].labelFirstLetter;
-    var letterBundle = [];
+    var letter = this.cards[0].labelFirstLetter; // current letter
+    var letterBundle = []; // same first letter cards array
     
     this.cards.forEach(card => {
         if (card.labelFirstLetter != letter) {
+            // first letter has change
             this.alphaSpace.push(letterBundle);
             letterBundle = [];
             letter = card.labelFirstLetter;
@@ -75,6 +105,11 @@ Board.prototype.bundle = function() {
 
     this.alphaSpace.push(letterBundle);
 }
+
+/**
+ * For each cards groups, appendCild the Board elements
+ * and the Cards prototypes
+ */
 
 Board.prototype.fill = function() {
     this.alphaSpace.forEach(letterStack => {
@@ -96,6 +131,10 @@ Board.prototype.fill = function() {
         });
     });
 }
+
+/**
+ * Generate the nav bar with all context letters
+ */
 
 Board.prototype.listLetters = function() {
     this.letterList.forEach(letter => {
@@ -119,6 +158,10 @@ Board.prototype.init = function() {
     this.fill();
     this.listLetters();
 }
+
+/**
+ * Delete all Board elements & data
+ */
 
 Board.prototype.empty = function() {
     this.domElt.innerHTML = '';
