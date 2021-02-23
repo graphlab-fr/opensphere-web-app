@@ -11,7 +11,7 @@ var board = {
             card.id = entity.id;
             card.label = entity.label;
             card.labelFirstLetter = entity.sortName.charAt(0);
-            card.title = entity.title;
+            card.title = (entity.title || '');
             card.img = entity.image;
 
             if (entity.hidden === false) {
@@ -27,7 +27,7 @@ function Card() {
     this.id = null;
     this.label = 'No name';
     this.labelFirstLetter = undefined;
-    this.title = 'No title';
+    this.title = '';
     this.text = null;
     this.domElt = document.createElement('article');
 }
@@ -150,7 +150,7 @@ Promise.all([
                     // entite metas, default langage
                     id: entite.id,
                     label: entite.label,
-                    title: (entite.titre || ''),
+                    title: entite.titre,
                     group: entite.relation_otlet,
                     image: './assets/photos/' + entite.photo,
                     genre: entite.genre,
@@ -162,13 +162,13 @@ Promise.all([
                     lien_wikipedia: entite.lien_wikipedia,
                     // translated metas
                     Fr: {
-                        title: (entite.titre || ''),
+                        title: entite.titre,
                         pays: entite.pays,
                         domaine: entite.domaine,
                         description: entite.description
                     },
                     En: {
-                        title: (entite.titre_en || ''),
+                        title: entite.titre,
                         pays: entite.pays_en,
                         domaine: entite.domaine_en,
                         description: entite.description_en

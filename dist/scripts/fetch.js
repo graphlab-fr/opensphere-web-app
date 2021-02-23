@@ -20,7 +20,7 @@ Promise.all([
                     // entite metas, default langage
                     id: entite.id,
                     label: entite.label,
-                    title: (entite.titre || ''),
+                    title: entite.titre,
                     group: entite.relation_otlet,
                     image: './assets/photos/' + entite.photo,
                     genre: entite.genre,
@@ -32,13 +32,13 @@ Promise.all([
                     lien_wikipedia: entite.lien_wikipedia,
                     // translated metas
                     Fr: {
-                        title: (entite.titre || ''),
+                        title: entite.titre,
                         pays: entite.pays,
                         domaine: entite.domaine,
                         description: entite.description
                     },
                     En: {
-                        title: (entite.titre_en || ''),
+                        title: entite.titre,
                         pays: entite.pays_en,
                         domaine: entite.domaine_en,
                         description: entite.description_en

@@ -11,7 +11,7 @@ var board = {
             card.id = entity.id;
             card.label = entity.label;
             card.labelFirstLetter = entity.sortName.charAt(0);
-            card.title = entity.title;
+            card.title = (entity.title || '');
             card.img = entity.image;
 
             if (entity.hidden === false) {
@@ -27,7 +27,7 @@ function Card() {
     this.id = null;
     this.label = 'No name';
     this.labelFirstLetter = undefined;
-    this.title = 'No title';
+    this.title = '';
     this.text = null;
     this.domElt = document.createElement('article');
 }
