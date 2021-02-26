@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr" >
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+        <meta name="author" content="Guillaume Brioudes https://myllaume.fr/" />
+            <meta name="dcterms.date" content="2021-02-26" />
+            <meta name="keywords" content="développeur" />
+        <title>Intégration de la base de données</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    </head>
+
+<body>
+
+            
+        <aside>
+        <nav id="TOC" role="doc-toc">
+                        <ul>
+                        <li><a href="#fichiers-de-données"><span class="toc-section-number">1</span> Fichiers de données</a>
+                        <ul>
+                        <li><a href="#entrées-minimums"><span class="toc-section-number">1.1</span> Entrées minimums</a></li>
+                        <li><a href="#données-de-description"><span class="toc-section-number">1.2</span> Données de description</a></li>
+                        </ul></li>
+                        <li><a href="#enregistrement-des-données"><span class="toc-section-number">2</span> Enregistrement des données</a>
+                        <ul>
+                        <li><a href="#airtable"><span class="toc-section-number">2.1</span> Airtable</a></li>
+                        <li><a href="#google-sheet"><span class="toc-section-number">2.2</span> Google Sheet</a></li>
+                        </ul></li>
+                        <li><a href="#intégration"><span class="toc-section-number">3</span> Intégration</a></li>
+                        </ul>
+        </nav>
+    </aside>
+    
+    <main>
+        <h1 class="title">Intégration de la base de données</h1>
+
+        <p>Plusieurs outils vous permettent de créer une base de données adaptée à l’Opensphère. Nous allons d’abord nous intéresser aux contraintes dues à l’environnement du logiciel. Elles vont vous permettre d’utiliser des outils de manière adaptée et que nous allons présenter à la fin de ce tutoriel.</p>
+        <h1 data-number="1" id="fichiers-de-données"><span class="header-section-number">1</span> Fichiers de données</h1>
+        <p>L’Opensphère extrait les données de deux <a href="https://developer.mozilla.org/fr/docs/Learn/JavaScript/Objects/JSON">fichiers JSON</a>. Vous trouverez un exemple de chaque dans le répertoire initial :</p>
+        <ul>
+        <li><code>entite.json</code> : liste des entités du graphe, correspondant aux nœuds ;</li>
+        <li><code>lien.json</code> : liste des liens entre ces nœuds.</li>
+        </ul>
+        <h2 data-number="1.1" id="entrées-minimums"><span class="header-section-number">1.1</span> Entrées minimums</h2>
+        <p>Soit ci-dessous un exemple simplifié du fichier <code>entite.json</code>. Le nœud appelé « Paul Otlet » possède l’identifiant <strong>unique</strong> « 1 » et possède un type « Personne ». Ce sont les informations minimums pour afficher une entité, la filtrer parmi toutes les autres.</p>
+        <div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="fu">{</span></span>
+        <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Paul Otlet&quot;</span><span class="fu">,</span></span>
+        <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+        <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;Personne&quot;</span><span class="fu">,</span></span>
+        <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Fondateur du Mundaneum&quot;</span></span>
+        <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span><span class="ot">,</span></span>
+        <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+        <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Mundaneum&quot;</span><span class="fu">,</span></span>
+        <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+        <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;Institution&quot;</span><span class="fu">,</span></span>
+        <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Le projet phare de Paul Otlet&quot;</span></span>
+        <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span><span class="ot">]</span></span></code></pre></div>
+        <p>On complète ce premier fichier avec l’entrée suivante dans <code>lien.json</code>. <strong>Tout se joue sur les identifiants</strong> : le lien « 1 » relie les nœuds « 1 » et « 2 » correspondant respectivement à nos deux entités, nœuds, précédents. On ajoute par ailleurs une label à la liaison pour constitué le niveau d’information minimum des liens.</p>
+        <div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="fu">{</span></span>
+        <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+        <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;from&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+        <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;to&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+        <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Paul Otlet est le fondateur du Mundaneum.&quot;</span></span>
+        <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span><span class="ot">]</span></span></code></pre></div>
+        <h2 data-number="1.2" id="données-de-description"><span class="header-section-number">1.2</span> Données de description</h2>
+        <p>Vous pouvez ajouter autant d’informations que vous le souhaitez pour chaque entité. Comme illustré ci-dessous, vous pouvez renseigner des dates, des catégories. Vous pouvez faire cela dans plusieurs langues si vous souhaitez obtenir une interface multilingue.</p>
+        <div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="fu">{</span></span>
+        <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Paul Otlet&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+        <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;Personne&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Fondateur du Mundaneum&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;annee_naissance&quot;</span><span class="fu">:</span> <span class="dv">1868</span><span class="fu">,</span></span>
+        <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;annee_mort&quot;</span><span class="fu">:</span> <span class="dv">1944</span><span class="fu">,</span></span>
+        <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;pays&quot;</span><span class="fu">:</span> <span class="st">&quot;Belgique&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;pays_en&quot;</span><span class="fu">:</span> <span class="st">&quot;Belgium&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;domaine&quot;</span><span class="fu">:</span> <span class="st">&quot;Bibliographie&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;domaine_en&quot;</span><span class="fu">:</span> <span class="st">&quot;Bibliography&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;lien_wikipedia&quot;</span><span class="fu">:</span><span class="st">&quot;https://fr.wikipedia.org/wiki/Paul_Otlet&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;lien_wikipedia_en&quot;</span><span class="fu">:</span><span class="st">&quot;https://en.wikipedia.org/wiki/Paul_Otlet&quot;</span></span>
+        <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span><span class="ot">]</span></span></code></pre></div>
+        <p>Nous verrons plus tard comment intégrer ces informations de manière systématiques dans l’interface.</p>
+        <h1 data-number="2" id="enregistrement-des-données"><span class="header-section-number">2</span> Enregistrement des données</h1>
+        <p>Nous avons donc besoin d’outil qui vont nous permettre d’entrer nos données, de mettre en relation nos entités (faire correspondre de leurs identifiants <strong>uniques</strong>) et enfin d’obtenir ces données au format JSON.</p>
+        <p>Les tableurs sont les interfaces les plus efficaces. Ils vous permettent de compléter systématiquement une liste d’entité (en ligne) pour une série d’informations (en colonne) que vous avez décidé de renseigner. Vous verrez rapidement les cases qu’il vous reste à compléter, les informations que vous pouvez croiser (calcul) à l’aide de formules.</p>
+        <p>Nous vous proposons deux outils en ligne collaboratifs. Ce sont deux tableurs que vous pourrez utiliser avec une équipe et éventuellement en même temps.</p>
+        <p>Nous vous avons facilité le travail en vous proposant des modèles à copier pour votre propre compte. Vous retrouverez pour chaque modèle les tables « entites » et « liens » vous permettant d’enregistrer vos nœuds. Faites bien attention à distribuer les identifiants <strong>uniques</strong> dans les colonnes « id » prévues à cet effet.</p>
+        <h2 data-number="2.1" id="airtable"><span class="header-section-number">2.1</span> Airtable</h2>
+        <p>Pour les personnes qui sont habituées aux tableurs comme Excel, Calc ou Sheet, <a href="https://airtable.com/">Airtable</a> peut être un peu déroutant. Ça n’est pas un tableau de calcul, mais bien une série de tables de données comme en utilisent les professionnels des bases de données. L’interface reste simple et la <a href="https://support.airtable.com/hc/en-us">documentation (en anglais)</a> bien fournie. Il est plus facile d’y mettre en place une vérification, correspondance systématique des données en mettant en relation une colonne d’une table « A » avec le contenu d’une table « B ». Nous avons déjà assuré la correspondance des identifiants dans le modèle ci-après.</p>
+        <p>Retrouvez sur la page suivante un modèle de base de données adapté à l’Opensphère : <a href="https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs">https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs</a></p>
+        <p>L’export se fait en CSV pour les deux tables « entites » et « liens ». Vous devrez utiliser un <a href="http://convertcsv.com/json-to-csv.htm">convertisseur CSV → JSON</a> pour obtenir les fichiers <code>entite.json</code> et <code>lien.json</code>.</p>
+        <h2 data-number="2.2" id="google-sheet"><span class="header-section-number">2.2</span> Google Sheet</h2>
+        <p>C’est un tableur traditionnel dont les vérifications, correspondances entre les colonnes sont assurées par des formules. Sur notre modèle de données, que vous pourrez retrouver ci-après, nous avons automatisé la correspondance des identifiants.</p>
+        <p>Retrouvez sur la page suivante un modèle de base de données adapté à l’Opensphère : <a href="https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing</a></p>
+        <p>L’export se fait en CSV pour les deux feuilles « Entites » et « Extraction ». Cette dernière est une image de la feuille « Liens ». Grâce à la <a href="https://support.google.com/docs/answer/3093318?hl=fr">fonction <code>RECHERCHEV</code></a>, les labels mis en relation dans la feuille « Liens » sont remplacés par leurs identifiants respectifs dans la feuille « Extraction », laquelle peut être traitée par le logiciel.</p>
+        <p>Vous pouvez également exporter les données directement en JSON. Pour cela installez l’extension <em>Export Sheet Data</em> depuis l’onglet « Modules complémentaires » dans Google Sheet. Une fois installée, vous pouvez la retrouver dans le même onglet et afficher le panneau de l’outil avec le bouton « Open Sidebar ». La configuration est détaillée dans <a href="https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit#gid=1378398983">la feuille « Notice export »</a>.</p>
+        <h1 data-number="3" id="intégration"><span class="header-section-number">3</span> Intégration</h1>
+        <p>Une fois les fichiers <code>entite.json</code> et <code>lien.json</code> obtenus (renommer vos exports si nécessaire), vous devez les placer dans le répertoire <code>/data</code>, en remplacement des deux fichiers d’exemple. Vos données peuvent alors être captées par le logiciel. Il faut maintenant les intégrer au flux interne.</p>
+        <p>Dans le fichier <code>/assets/main.js</code>, à partir de la ligne 200, vous allez retrouver la commande d’intégration, simplifiée ci-dessous. Elle vous permet de faire correspondre vos champs (colonnes du tableur) à des constantes. Par exemple, dans cette liste, notre champ « label » (appelé « entite.label » dans ce contexte) est associé à la constante « label ». Ce sont ces constantes que vous allez pouvoir employer lors des autres étapes de la réutilisation du logiciel.</p>
+        <p>Avec cette configuration</p>
+        <ul>
+        <li>on fait correspondre « label », « description » et « id » à des constantes équivalentes ;</li>
+        <li>on traduit notre champ « titre » en constante « title » ;</li>
+        <li>on assigne la traduction du champ « titre » en français et en anglais.</li>
+        </ul>
+        <div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>network<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">nodes</span><span class="op">.</span><span class="fu">add</span>(</span>
+        <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    entites<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(entite) {</span>
+        <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> entiteObj <span class="op">=</span> {</span>
+        <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="co">// entite metas, default langage</span></span>
+        <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            <span class="dt">id</span><span class="op">:</span> entite<span class="op">.</span><span class="at">id</span><span class="op">,</span></span>
+        <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
+        <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">titre</span><span class="op">:</span> entite<span class="op">.</span><span class="at">titre</span><span class="op">,</span></span>
+        <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="dt">type</span><span class="op">:</span> entite<span class="op">.</span><span class="at">type</span><span class="op">,</span></span>
+        <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">description</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description</span><span class="op">,</span></span>
+        <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="co">// translated metas</span></span>
+        <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            <span class="dt">Fr</span><span class="op">:</span> {</span>
+        <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">titre</span></span>
+        <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
+        <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            <span class="dt">En</span><span class="op">:</span> {</span>
+        <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">titre_en</span></span>
+        <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span></code></pre></div>
+    </main>
+
+    
+    
+</body>
+
+</html>
