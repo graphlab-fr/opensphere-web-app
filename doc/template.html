@@ -17,6 +17,7 @@
     <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
 
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
 
     $for(header-includes)$
     $header-includes$
@@ -52,6 +53,9 @@
     $for(include-after)$
     $include-after$
     $endfor$
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
 </body>
 

@@ -8,18 +8,57 @@
         <meta name="author" content="Guillaume Brioudes https://myllaume.fr/" />
             <meta name="dcterms.date" content="2021-02-26" />
             <meta name="keywords" content="développeur" />
-        <title>Accueil</title>
+        <title>Documentation de développement Openshpère</title>
 
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
 
     </head>
 
 <body>
 
             
+        <aside>
+        <nav id="TOC" role="doc-toc">
+                        <ul>
+                        <li><a href="#téléchargement-et-déploiement"><span class="toc-section-number">1</span> Téléchargement et déploiement</a>
+                        <ul>
+                        <li><a href="#téléchargement"><span class="toc-section-number">1.1</span> Téléchargement</a></li>
+                        <li><a href="#mise-en-route"><span class="toc-section-number">1.2</span> Mise en route</a></li>
+                        </ul></li>
+                        <li><a href="#intégration-de-la-base-de-données"><span class="toc-section-number">2</span> Intégration de la base de données</a>
+                        <ul>
+                        <li><a href="#fichiers-de-données"><span class="toc-section-number">2.1</span> Fichiers de données</a>
+                        <ul>
+                        <li><a href="#entrées-minimums"><span class="toc-section-number">2.1.1</span> Entrées minimums</a></li>
+                        <li><a href="#données-de-description"><span class="toc-section-number">2.1.2</span> Données de description</a></li>
+                        </ul></li>
+                        <li><a href="#enregistrement-des-données"><span class="toc-section-number">2.2</span> Enregistrement des données</a>
+                        <ul>
+                        <li><a href="#airtable"><span class="toc-section-number">2.2.1</span> Airtable</a></li>
+                        <li><a href="#google-sheet"><span class="toc-section-number">2.2.2</span> Google Sheet</a></li>
+                        </ul></li>
+                        <li><a href="#intégration"><span class="toc-section-number">2.3</span> Intégration</a></li>
+                        <li><a href="#images"><span class="toc-section-number">2.4</span> Images</a></li>
+                        </ul></li>
+                        <li><a href="#paramétrer-le-menu-de-description"><span class="toc-section-number">3</span> Paramétrer le menu de description</a>
+                        <ul>
+                        <li><a href="#intégration-des-champs"><span class="toc-section-number">3.1</span> Intégration des champs</a></li>
+                        </ul></li>
+                        <li><a href="#paramétrer-les-filtres"><span class="toc-section-number">4</span> Paramétrer les filtres</a></li>
+                        <li><a href="#ajouter-une-langue-daffichage-et-description"><span class="toc-section-number">5</span> Ajouter une langue d’affichage et description</a></li>
+                        <li><a href="#environnement-de-développement"><span class="toc-section-number">6</span> Environnement de développement</a>
+                        <ul>
+                        <li><a href="#bibliothèques"><span class="toc-section-number">6.1</span> Bibliothèques</a></li>
+                        <li><a href="#outil-de-développement"><span class="toc-section-number">6.2</span> Outil de développement</a></li>
+                        </ul></li>
+                        <li><a href="#exemples-de-réutilisation-de-lopenshpère"><span class="toc-section-number">7</span> Exemples de réutilisation de l’Openshpère</a></li>
+                        </ul>
+        </nav>
+    </aside>
     
     <main>
-        <h1 class="title">Accueil</h1>
+        <h1 class="title">Documentation de développement Openshpère</h1>
 
         <p>Cette documentation technique s’adresse aux réutilisateurs (gestionnaire de données, développeurs) souhaitant <strong>créer</strong> leur propre Opensphère. Nous avons mis à disposition une <a href="https://hyperotlet.github.io/otletosphere/">autre documentation dédiée aux utilisateurs souhaitant comprendre comment utiliser son interface</a>.</p>
         <p>L’Opensphère est un logiciel permettant de présenter une cartographie relationnelle. C’est un nuage de nœuds reliés par des liens et interactif. Un <a href="https://hyperotlet.github.io/otletosphere/">série de fonctionnalités</a> (moteur de recherche, menu de description, index…) permettent de naviguer au sein d’une base de données. Vous trouverez des <a href="./reutilisations.html">exemples de réutilisation sur cette page</a>. conçue par l’équipe du programme de recherche ANR <a href="https://hyperotlet.hypotheses.org/">HyperOtlet</a>.</p>
@@ -36,10 +75,199 @@
         <li>Environnement de développement</li>
         <li>Architecture du logiciel</li>
         </ol>
+        <h1 data-number="1" id="téléchargement-et-déploiement"><span class="header-section-number">1</span> Téléchargement et déploiement</h1>
+        <p>Les consignes suivantes permettent de télécharger et d’installer le logiciel afin de l’utiliser pour votre propre projet. Nous vous rappelons que vous aurez besoin d’un serveur web (local ou en ligne) pour le faire fonctionner. Veillez à adapter l’emplacement de votre installation selon cette contrainte.</p>
+        <h2 data-number="1.1" id="téléchargement"><span class="header-section-number">1.1</span> Téléchargement</h2>
+        <p>La dernière version testée du code source est entreposée sur <a href="https://github.com/hyperotlet/opensphere">notre dépôt GitHub</a>. Plusieurs méthodes d’installation s’offrent à vous.</p>
+        <p>Vous pouvez <a href="https://github.com/hyperotlet/opensphere/archive/master.zip"><strong>télécharger l’ensemble des fichiers</strong> en suivant ce lien</a>. Il s’agit de la version « master » du logiciel, sable et vérifiée. Vous n’avez alors plus qu’à décompresser (<a href="https://support.microsoft.com/fr-fr/windows/compresser-et-d%C3%A9compresser-des-fichiers-8d28fa72-f2f9-712f-67df-f80cf89fd4e5">sur Windows</a>, <a href="https://support.apple.com/fr-fr/guide/mac-help/mchlp2528/mac">sur MacOs</a>) l’archive téléchargée.</p>
+        <p>Deux autres méthodes vous permettent de <strong>conserver l’historique de développement</strong>, utile si vous souhaitez à votre tour élaborer différentes versions de votre Opensphère grâce à l’outil <a href="https://git-scm.com/">Git</a>.</p>
+        <ul>
+        <li><strong>Via une ligne de commande</strong>, si vous avez installé le <a href="https://git-scm.com/">logiciel Git</a>. La commande <code>git clone https://github.com/hyperotlet/opensphere.git</code> inclue l’ensemble des fichiers et l’historique de développement.</li>
+        <li><strong>Via <a href="https://desktop.github.com/">GitHub Desktop</a></strong>, une interface graphique intégrant Git.</li>
+        </ul>
+        <h2 data-number="1.2" id="mise-en-route"><span class="header-section-number">1.2</span> Mise en route</h2>
+        <p>Il vous faut un serveur web pour faire fonctionner l’Opensphère. Les fichiers de données ne peuvent être captés que grâce à des protocoles propres aux serveurs. Votre serveur peut être</p>
+        <ul>
+        <li><strong>en local</strong>, grâce à un logiciel comme <a href="https://www.wampserver.com/">WAMP</a> (Windows), <a href="https://www.mamp.info/en/downloads/">MAMP</a> (MacOs, Windows) ou <a href="https://www.apachefriends.org/fr/index.html">XAMP</a> (MacOs, Windows, Linux) ;</li>
+        <li><strong>en ligne</strong>, et dans ce cas il vous faut transférer les fichiers de l’Opensphère grâce à un <a href="https://filezilla-project.org/">client FTP, comme FileZilla</a>.</li>
+        </ul>
+        <p>Déplacez vos fichiers à la source de votre serveur ou déplacez la source pour que la racine puisse être le fichier <code>index.html</code>.</p>
+        <h1 data-number="2" id="intégration-de-la-base-de-données"><span class="header-section-number">2</span> Intégration de la base de données</h1>
+        <p>Plusieurs outils vous permettent de créer une base de données adaptée à l’Opensphère. Nous allons d’abord nous intéresser aux contraintes dues à l’environnement du logiciel. Elles vont vous permettre d’utiliser des outils de manière adaptée et que nous allons présenter à la fin de ce tutoriel.</p>
+        <h2 data-number="2.1" id="fichiers-de-données"><span class="header-section-number">2.1</span> Fichiers de données</h2>
+        <p>L’Opensphère extrait les données de deux <a href="https://developer.mozilla.org/fr/docs/Learn/JavaScript/Objects/JSON">fichiers JSON</a>. Vous trouverez un exemple de chaque dans le répertoire initial :</p>
+        <ul>
+        <li><code>entite.json</code> : liste des entités du graphe, correspondant aux nœuds ;</li>
+        <li><code>lien.json</code> : liste des liens entre ces nœuds.</li>
+        </ul>
+        <h3 data-number="2.1.1" id="entrées-minimums"><span class="header-section-number">2.1.1</span> Entrées minimums</h3>
+        <p>Soit ci-dessous un exemple simplifié du fichier <code>entite.json</code>. Le nœud appelé « Paul Otlet » possède l’identifiant <strong>unique</strong> « 1 » et appartient au groupe « Personne ». Ce sont les informations minimums pour afficher une entité, la filtrer parmi toutes les autres.</p>
+        <div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="fu">{</span></span>
+        <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Paul Otlet&quot;</span><span class="fu">,</span></span>
+        <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+        <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;group&quot;</span><span class="fu">:</span> <span class="st">&quot;Personne&quot;</span><span class="fu">,</span></span>
+        <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Fondateur du Mundaneum&quot;</span></span>
+        <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span><span class="ot">,</span></span>
+        <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+        <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Mundaneum&quot;</span><span class="fu">,</span></span>
+        <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+        <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;group&quot;</span><span class="fu">:</span> <span class="st">&quot;Institution&quot;</span><span class="fu">,</span></span>
+        <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Le projet phare de Paul Otlet&quot;</span></span>
+        <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span><span class="ot">]</span></span></code></pre></div>
+        <p>On complète ce premier fichier avec l’entrée suivante dans <code>lien.json</code>. <strong>Tout se joue sur les identifiants</strong> : le lien « 1 » relie les nœuds « 1 » et « 2 » correspondant respectivement à nos deux entités, nœuds, précédents. On ajoute par ailleurs un label à la liaison pour constitué le niveau d’information minimum des liens.</p>
+        <div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="fu">{</span></span>
+        <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+        <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;from&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+        <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;to&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+        <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Paul Otlet est le fondateur du Mundaneum.&quot;</span></span>
+        <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span><span class="ot">]</span></span></code></pre></div>
+        <h3 data-number="2.1.2" id="données-de-description"><span class="header-section-number">2.1.2</span> Données de description</h3>
+        <p>Vous pouvez ajouter autant d’informations que vous le souhaitez pour chaque entité. Comme illustré ci-dessous, vous pouvez renseigner des dates, des catégories. Vous pouvez faire cela dans plusieurs langues si vous souhaitez obtenir une interface multilingue.</p>
+        <div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span><span class="fu">{</span></span>
+        <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Paul Otlet&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+        <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;Personne&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;description&quot;</span><span class="fu">:</span> <span class="st">&quot;Fondateur du Mundaneum&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;annee_naissance&quot;</span><span class="fu">:</span> <span class="dv">1868</span><span class="fu">,</span></span>
+        <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;annee_mort&quot;</span><span class="fu">:</span> <span class="dv">1944</span><span class="fu">,</span></span>
+        <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;pays&quot;</span><span class="fu">:</span> <span class="st">&quot;Belgique&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;pays_en&quot;</span><span class="fu">:</span> <span class="st">&quot;Belgium&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;domaine&quot;</span><span class="fu">:</span> <span class="st">&quot;Bibliographie&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;domaine_en&quot;</span><span class="fu">:</span> <span class="st">&quot;Bibliography&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;lien_wikipedia&quot;</span><span class="fu">:</span><span class="st">&quot;https://fr.wikipedia.org/wiki/Paul_Otlet&quot;</span><span class="fu">,</span></span>
+        <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;lien_wikipedia_en&quot;</span><span class="fu">:</span><span class="st">&quot;https://en.wikipedia.org/wiki/Paul_Otlet&quot;</span></span>
+        <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span><span class="ot">]</span></span></code></pre></div>
+        <p>Nous verrons plus tard comment intégrer ces informations de manière systématique dans l’interface.</p>
+        <h2 data-number="2.2" id="enregistrement-des-données"><span class="header-section-number">2.2</span> Enregistrement des données</h2>
+        <p>Nous avons donc besoin d’outil qui vont nous permettre d’entrer nos données, de mettre en relation nos entités (faire correspondre de leurs identifiants <strong>uniques</strong>) et enfin d’obtenir ces données au format JSON.</p>
+        <p>Les tableurs sont les interfaces les plus efficaces. Ils vous permettent de compléter systématiquement une liste d’entité (en ligne) pour une série d’informations (en colonne) que vous avez décidé de renseigner. Vous verrez rapidement les cases qu’il vous reste à compléter, les informations que vous pouvez croiser (calcul) à l’aide de formules.</p>
+        <p>Nous vous proposons deux outils en ligne collaboratifs. Ce sont deux tableurs que vous pourrez utiliser avec une équipe et éventuellement en même temps.</p>
+        <p>Nous vous avons facilité le travail en vous proposant des modèles à copier pour votre propre compte. Vous retrouverez pour chaque modèle les tables « entites » et « liens » vous permettant d’enregistrer vos nœuds. Faites bien attention à distribuer les identifiants <strong>uniques</strong> dans les colonnes « id » prévues à cet effet.</p>
+        <h3 data-number="2.2.1" id="airtable"><span class="header-section-number">2.2.1</span> Airtable</h3>
+        <p>Pour les personnes qui sont habituées aux tableurs comme Excel, Calc ou Sheet, <a href="https://airtable.com/">Airtable</a> peut être un peu déroutant. Ça n’est pas un tableau de calcul, mais bien une série de tables de données comme en utilisent les professionnels des bases de données. L’interface reste simple et la <a href="https://support.airtable.com/hc/en-us">documentation (en anglais)</a> bien fournie. Il est plus facile d’y mettre en place une vérification, correspondance systématique des données en mettant en relation une colonne d’une table « A » avec le contenu d’une table « B ». Nous avons déjà assuré la correspondance des identifiants dans le modèle ci-après.</p>
+        <p>Retrouvez sur la page suivante un modèle de base de données adapté à l’Opensphère : <a href="https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs">https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs</a></p>
+        <p>L’export se fait en CSV pour les deux tables « entites » et « liens ». Vous devrez utiliser un <a href="http://convertcsv.com/json-to-csv.htm">convertisseur CSV → JSON</a> pour obtenir les fichiers <code>entite.json</code> et <code>lien.json</code>.</p>
+        <h3 data-number="2.2.2" id="google-sheet"><span class="header-section-number">2.2.2</span> Google Sheet</h3>
+        <p>C’est un tableur traditionnel dont les vérifications, correspondances entre les colonnes sont assurées par des formules. Sur notre modèle de données, que vous pourrez retrouver ci-après, nous avons automatisé la correspondance des identifiants.</p>
+        <p>Retrouvez sur la page suivante un modèle de base de données adapté à l’Opensphère : <a href="https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing</a></p>
+        <p>L’export se fait en CSV pour les deux feuilles « Entites » et « Extraction ». Cette dernière est une image de la feuille « Liens ». Grâce à la <a href="https://support.google.com/docs/answer/3093318?hl=fr">fonction <code>RECHERCHEV</code></a>, les labels mis en relation dans la feuille « Liens » sont remplacés par leurs identifiants respectifs dans la feuille « Extraction », laquelle peut être traitée par le logiciel.</p>
+        <p>Vous pouvez également exporter les données directement en JSON. Pour cela installez l’extension <em>Export Sheet Data</em> depuis l’onglet « Modules complémentaires » dans Google Sheet. Une fois installée, vous pouvez la retrouver dans le même onglet et afficher le panneau de l’outil avec le bouton « Open Sidebar ». La configuration est détaillée dans <a href="https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit#gid=1378398983">la feuille « Notice export »</a>.</p>
+        <h2 data-number="2.3" id="intégration"><span class="header-section-number">2.3</span> Intégration</h2>
+        <p>Une fois les fichiers <code>entite.json</code> et <code>lien.json</code> obtenus (renommez vos exports si nécessaire), vous devez les placer dans le répertoire <code>/data</code>, en remplacement des deux fichiers d’exemple. Vos données peuvent alors être captées par le logiciel. Il faut maintenant les intégrer au flux interne.</p>
+        <p>Dans le fichier <code>/assets/main.js</code>, à partir de la ligne 20, vous allez retrouver la commande d’intégration, simplifiée ci-dessous. Elle vous permet de faire correspondre vos champs (colonnes du tableur) à des constantes. Par exemple, dans cette liste, notre champ « label » (appelé « entite.label » dans ce contexte) est associé à la constante « label ». Ce sont ces constantes que vous allez pouvoir employer lors des autres étapes de la réutilisation du logiciel.</p>
+        <p>Avec cette configuration</p>
+        <ul>
+        <li>on fait correspondre « label », « description » et « id » à des constantes équivalentes ;</li>
+        <li>on traduit notre champ « titre » en constante « title » ;</li>
+        <li>on assigne la traduction du champ « titre » en français et en anglais.</li>
+        </ul>
+        <div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>network<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">nodes</span><span class="op">.</span><span class="fu">add</span>(</span>
+        <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    entites<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(entite) {</span>
+        <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> entiteObj <span class="op">=</span> {</span>
+        <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            <span class="co">// entite metas, default langage</span></span>
+        <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            <span class="dt">id</span><span class="op">:</span> entite<span class="op">.</span><span class="at">id</span><span class="op">,</span></span>
+        <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
+        <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">titre</span><span class="op">:</span> entite<span class="op">.</span><span class="at">titre</span><span class="op">,</span></span>
+        <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="dt">type</span><span class="op">:</span> entite<span class="op">.</span><span class="at">type</span><span class="op">,</span></span>
+        <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">description</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description</span><span class="op">,</span></span>
+        <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="co">// translated metas</span></span>
+        <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            <span class="dt">Fr</span><span class="op">:</span> {</span>
+        <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">titre</span></span>
+        <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
+        <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            <span class="dt">En</span><span class="op">:</span> {</span>
+        <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">titre_en</span></span>
+        <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span></code></pre></div>
+        <h2 data-number="2.4" id="images"><span class="header-section-number">2.4</span> Images</h2>
+        <p>Par défaut, toutes les entités doivent avoir une image, éventuellement de remplacement. Si vous souhaitez ne plus afficher d’images dans le graphe et le panneau de description, veuillez suivre les étapes suivantes :</p>
+        <ul>
+        <li>dans Fetch (ligne ~20)
+        <ul>
+        <li>retirer le champ « image » de la <a href="#integration">commande d’intégration</a></li>
+        </ul></li>
+        <li>dans Network (ligne ~150)
+        <ul>
+        <li>modifier le champ <code>network.options.nodes.shape</code> avec la valeur « circle », « square » ou <a href="https://visjs.github.io/vis-network/docs/network/nodes.html">autre forme valide</a></li>
+        <li>modifier les champs de <code>network.options.groups</code> en retirant les valeurs <code>shape:'circularImage'</code></li>
+        </ul></li>
+        </ul>
+        <h1 data-number="3" id="paramétrer-le-menu-de-description"><span class="header-section-number">3</span> Paramétrer le menu de description</h1>
+        <p>Lors de l’utilisation de l’Opensphère, l’utilisateur est amené à consulter le menu de description, un volet apparaissant à droite de l’interface et contenant des informations sur les entités. Pour chaque entité inscrite dans la base de données <code>entite.json</code> (et figurant par conséquent dans le graphe), il est possible d’afficher son <code>label</code>, son <code>title</code> (l’information <code>titre</code> ayant été réaffectée au terme <code>title</code>) ou tout autre information qui a été <a href="#integration">intégrée dans la configuration</a>.</p>
+        <p>Ces informations apparaissent dans des champs que vous allez pouvoir définir. Lorsqu’une entité est sélectionnée (via le graphe, l’index, le moteur de recherche ou ce même volet), l’ensemble de ces champs sont complétés avec les informations à disposition pour l’entité depuis la base de données. Le point d’entrée d’une information <em>vide</em> est caché.</p>
+        <h2 data-number="3.1" id="intégration-des-champs"><span class="header-section-number">3.1</span> Intégration des champs</h2>
+        <p>Dans le fichier <code>index.html</code>, vous retrouverez une marque <code>LATERAL FICHE</code>, peu après la ligne 250. S’en suit le code intégrant le volet <code>&lt;aside&gt;</code> et la boîte identifiée <code>fiche-content</code>. En son sein, vous pouvez modifier tout les éléments relatifs à cet affichage. L’attribut <code>data-meta</code> est inscrit sur les différents balises qui permettent déjà d’afficher l’information passée en paramètre. Par exemple, la balises <code>&lt;p&gt;</code> ci-dessous permet d’afficher la description de l’entité active.</p>
+        <div class="sourceCode" id="cb5"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;aside</span><span class="ot"> id=</span><span class="st">&quot;fiche&quot;</span><span class="kw">&gt;</span></span>
+        <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    …</span>
+        <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;main</span><span class="ot"> id=</span><span class="st">&quot;fiche-content&quot;</span><span class="kw">&gt;</span></span>
+        <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        …</span>
+        <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;p</span><span class="ot"> data-meta=</span><span class="st">&quot;description&quot;</span><span class="kw">&gt;&lt;/p&gt;</span></span>
+        <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/main&gt;</span></span>
+        <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/aside&gt;</span></span></code></pre></div>
+        <h1 data-number="4" id="paramétrer-les-filtres"><span class="header-section-number">4</span> Paramétrer les filtres</h1>
+        <p>Les filtres sont des leviers « on/off ». Affichés sous forme de boutons en entête du site et dans le volet de filtre (affiché sur les petits écran de tablette), ils permettent d’afficher ou de cacher des entités correspondant à certains critères. Ces critères sont renseignés dans ces mêmes boutons portant la classe <code>btn-group</code>. Il peuvent être modifiés dans le fichier <code>index.html</code>.</p>
+        <p>La valeur de l’attribut <code>data-type</code> correspond au <a href="#integration">champ</a> qui va être analysé. La valeur de l’attribut <code>data-meta</code> correspond à la pivot. Avec les boutons ci-dessous, il est possible d’afficher/cacher les entités pour lesquelles le champ « genre » a la valeur « homme » et le champ « group » a la valeur « institution ».</p>
+        <div class="sourceCode" id="cb6"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;button</span><span class="ot"> class=</span><span class="st">&quot;btn-group&quot;</span><span class="ot"> data-type=</span><span class="st">&quot;genre&quot;</span><span class="ot"> data-meta=</span><span class="st">&quot;homme&quot;</span><span class="kw">&gt;</span>homme<span class="kw">&lt;/button&gt;</span></span>
+        <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;button</span><span class="ot"> class=</span><span class="st">&quot;btn-group&quot;</span><span class="ot"> data-type=</span><span class="st">&quot;group&quot;</span><span class="ot"> data-meta=</span><span class="st">&quot;institution&quot;</span><span class="kw">&gt;</span>institution<span class="kw">&lt;/button&gt;</span></span></code></pre></div>
+        <p>Pensez à modifier en miroir l’entête de la page (identifié <code>header</code>) et le volet de filtre <code>&lt;aside&gt;</code> (identifié <code>filter-volet</code>).</p>
+        <h1 data-number="5" id="ajouter-une-langue-daffichage-et-description"><span class="header-section-number">5</span> Ajouter une langue d’affichage et description</h1>
+        <p>Dans l’entête de la page vous trouverez les boutons de traduction du site. Il se trouvent dans la boite portant la classe <code>lang-box</code>. Vous pouvez ajouter une langue très facilement, comme pour le Russe ci-dessous.</p>
+        <div class="sourceCode" id="cb7"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span><span class="ot"> data-lang=</span><span class="st">&quot;Ru&quot;</span><span class="kw">&gt;</span>RU<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+        <p>Une fois le bouton disposé, vous pouvez intégrer les traductions</p>
+        <ul>
+        <li><strong>au site web</strong> : en déposant des attributs <code>data-lang-ru="traduction en russe"</code> sur les balises contenant du texte ;</li>
+        <li><strong>à la base de données</strong> : en ajoutant des informations propre à la langue lors de l’<a href="#integration">intégration de la configuration</a> comme ci-dessous.</li>
+        </ul>
+        <div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>{</span>
+        <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">// entite metas, default langage</span></span>
+        <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">titre</span><span class="op">:</span> entite<span class="op">.</span><span class="at">titre</span><span class="op">,</span></span>
+        <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description</span><span class="op">,</span></span>
+        <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">// translated metas</span></span>
+        <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="dt">Fr</span><span class="op">:</span> {</span>
+        <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">titre</span><span class="op">,</span></span>
+        <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">description</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description</span></span>
+        <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span></span>
+        <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="dt">En</span><span class="op">:</span> {</span>
+        <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">titre_en</span><span class="op">,</span></span>
+        <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">description</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description_en</span></span>
+        <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span></span>
+        <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="dt">Ru</span><span class="op">:</span> {</span>
+        <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">titre_ru</span><span class="op">,</span></span>
+        <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">description</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description_ru</span></span>
+        <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+        <h1 data-number="6" id="environnement-de-développement"><span class="header-section-number">6</span> Environnement de développement</h1>
+        <h2 data-number="6.1" id="bibliothèques"><span class="header-section-number">6.1</span> Bibliothèques</h2>
+        <p>Pour réaliser le site web rapidement, mais aussi améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement a recouru aux bibliothèques suivantes. Elles sont été intégrées directement au code source de l’Opensphère et ne nécessitent par conséquent aucun téléchargement.</p>
+        <ul>
+        <li><strong><a href="https://github.com/visjs/vis-network">Vis.js</a> v7.10.2 (Apache License 2.0)</strong> : réalisation la visualisation (graphe) ainsi que l’ensemble du système de circulation des données grâce à ses deux composants Network et DataSet.</li>
+        <li><strong><a href="https://github.com/krisk/Fuse/">Fuse.js</a> v6.4.1 (Apache License 2.0)</strong> : mise en place du moteur de recherche.</li>
+        <li><strong><a href="https://github.com/twbs/bootstrap">Bootstrap Grid</a> v4.5.0 (MIT License)</strong> : flexibilité de l’interface pour tablettes.</li>
+        </ul>
+        <h2 data-number="6.2" id="outil-de-développement"><span class="header-section-number">6.2</span> Outil de développement</h2>
+        <p>Nous avons fait le choix de l’outil <a href="https://gulpjs.com/">GulpJs</a> pour nous aider au développement de l’Opensphère. Il nous permet de transpiler les fichiers CSS et JavaScript contenus dans le répertoire <code>/dist</code> en deux fichiers <code>main.css</code> et <code>main.js</code>. Ainsi, on compense la complexité du projet (un millier de ligne de JavaScript), la variété des modules (une dizaine d’objets), en la répartissant dans quelques fichiers d’une centaine de lignes.</p>
+        <p>Une fois GulpJs lancé, il suffit de modifier l’un des fichiers du répertoire <code>/dist</code> pour que les modifications soient répercutées au niveau global. Au début de chaque fichier, vous pourrez trouver une description de son contenu et d’autres commentaires sur le code source.</p>
+        <p>Pour utiliser Gulp, veuillez suivre les <a href="https://gulpjs.com/docs/en/getting-started/quick-start">consignes d’installation</a>, puis exécuter successivement les commandes suivantes dans votre terminal. L’ensemble des instructions sont commentées dans le fichier <code>gulpfile.js</code>.</p>
+        <pre><code>npm i
+        gulp watch</code></pre>
+        <h1 data-number="7" id="exemples-de-réutilisation-de-lopenshpère"><span class="header-section-number">7</span> Exemples de réutilisation de l’Openshpère</h1>
+        <p>Les projets suivants ont été réalisés à l’aide du logiciel Openshpère. Ils peuvent vous servir d’exemple, d’inspiration pour réaliser votre propre réutilisation.</p>
+        <ul>
+        <li><strong>Otletosphère</strong> : réalisée par l’équipe du programme de recherche ANR <a href="https://hyperotlet.hypotheses.org/">HyperOtlet</a> autour de Paul Otlet.
+        <ul>
+        <li>site : <a href="http://hyperotlet.huma-num.fr/otletosphere/">http://hyperotlet.huma-num.fr/otletosphere/</a></li>
+        <li>code source : <a href="https://github.com/hyperotlet/otletosphere">https://github.com/hyperotlet/otletosphere</a></li>
+        </ul></li>
+        <li><strong>OpenDataSphère</strong> : réalisée par les étudiantes et étudiants de la <a href="http://www.infonumbordeaux.fr/mind/">licence professionnelle MIND</a> pour traiter de l’opend data en France.
+        <ul>
+        <li>site : <a href="https://www.arthurperret.fr/opendatasphere/">https://www.arthurperret.fr/opendatasphere/</a></li>
+        <li>code source : <a href="https://github.com/hyperotlet/opendatasphere">https://github.com/hyperotlet/opendatasphere</a></li>
+        </ul></li>
+        </ul>
     </main>
 
     
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
 </body>
 
 </html>
