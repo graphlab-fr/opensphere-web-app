@@ -45,23 +45,28 @@ langage.flags.forEach(flag => {
 
         // translate website interface
         langage.translateAll();
+
         // translate graph & entities metas
         network.data.nodes.update(
-            network.data.nodes.map(entite => ({
+            network.data.nodes.map(function(entite) {
+                if (!entite[langage.actual]) { return; }
+                return {
                     id: entite.id,
                     title: entite[langage.actual].title,
                     description: entite[langage.actual].description,
                     domaine: entite[langage.actual].domaine,
                     pays: entite[langage.actual].pays,
-                })
-            )
+                };
+            })
         );
         network.data.edges.update(
-            network.data.edges.map(lien => ({
+            network.data.nodes.map(function(lien) {
+                if (!lien[langage.actual]) { return; }
+                return {
                     id: lien.id,
                     title: lien[langage.actual].title,
-                })
-            )
+                };
+            })
         );
 
         fiche.fill();
