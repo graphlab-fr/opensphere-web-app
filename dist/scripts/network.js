@@ -35,6 +35,9 @@ var network = {
                 forceDirection: 'horizontal'
             }
         },
+        nodes: {
+            shape: 'image'
+        },
         groups: { // massive styling, by group name
             collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}},
             collaborateur: {shape: 'circularImage', color: {border: chooseColor('collaborateur')}},
@@ -42,9 +45,9 @@ var network = {
             opposant: {shape: 'circularImage', color: {border: chooseColor('opposant')}},
             otlet: {shape: 'circularImage', color: {border: chooseColor('otlet')}},
             'non-catégorisé': {shape: 'circularImage', color: {border: chooseColor('non-catégorisé')}},
-            institution: {shape: 'image', color: {border: chooseColor('institution')}},
-            œuvre: {shape: 'image', color: {border: chooseColor('œuvre')}},
-            évènement: {shape: 'image', color: {border: chooseColor('évènement')}}
+            institution: {color: {border: chooseColor('institution')}},
+            œuvre: {color: {border: chooseColor('œuvre')}},
+            évènement: {color: {border: chooseColor('évènement')}}
         },
         interaction: {hover:true}
     },

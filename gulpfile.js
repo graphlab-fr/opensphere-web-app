@@ -43,13 +43,13 @@ gulp.task('css', function () {
 // https://www.npmjs.com/package/gulp-concat
 var concat = require('gulp-concat');
 
+const jsFiles = ['fetch', 'network', 'board', 'filter', 'fiche', 'search', 'translate', 'zoom', 'navigation', 'history']
+    .map(file => `./dist/scripts/${file}.js`);
+
 gulp.task('js', function () {
-    return gulp.src('./dist/scripts/*.js')
+    return gulp.src(jsFiles)
         .pipe(concat('main.js'))
         .pipe(gulp.dest('./assets/'))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
 });
 
 /**
