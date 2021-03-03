@@ -200,7 +200,7 @@ network.data.edges.add(
 
 ## Groupes
 
-Lors de l’[intégration](#integration), toutes vos entités doivent être enregistrées avec une constante `group`. Celle-ci vous permet de styliser toutes les entités qui partagent la même valeur, par exemple `group: amis` représenté différemment de `group: ennemis`. Vous pouvez leur ajouter une couleur de contour commune, une forme ou tout autre [caractéristique valide pour le graphe](https://visjs.github.io/vis-network/docs/network/nodes.html).
+Lors de l’[intégration](#intégration), toutes vos entités doivent être enregistrées avec une constante `group`. Celle-ci vous permet de styliser toutes les entités qui partagent la même valeur, par exemple `group: amis` représenté différemment de `group: ennemis`. Vous pouvez leur ajouter une couleur de contour commune, une forme ou tout autre [caractéristique valide pour le graphe](https://visjs.github.io/vis-network/docs/network/nodes.html).
 
 Vous pouvez entrer les styles comme présentés ci-dessous dans le fichier `/assets/main.js`, vers la ligne 160.
 
@@ -216,14 +216,14 @@ groups: { // massive styling, by group name
 Par défaut, toutes les entités doivent avoir une image, éventuellement de remplacement. Si vous souhaitez ne plus afficher d’images dans le graphe et le panneau de description, veuillez suivre les étapes suivantes :
 
 - dans `/assets/main.js`, ligne ~30)
-    - retirer le champ « image » de la [commande d’intégration](#integration)
+    - retirer le champ « image » de la [commande d’intégration](#intégration)
 - dans `/assets/main.js`, ligne ~150)
     - modifier le champ `shape:'image'` avec la valeur « circle », « square » ou [autre forme valide](https://visjs.github.io/vis-network/docs/network/nodes.html)
     - modifier les champs de `groups` en retirant les valeurs `shape:'circularImage'`
 
 # Paramétrer le menu de description
 
-Lors de l’utilisation de l’Opensphère, l’utilisateur est amené à consulter le menu de description, un volet apparaissant à droite de l’interface et contenant des informations sur les entités. Pour chaque entité inscrite dans la base de données `entite.json` (et figurant par conséquent dans le graphe), il est possible d’afficher son `label`, son `title` (l’information `titre` ayant été réaffectée au terme `title` dans notre exemple) ou tout autre information qui a été [intégrée dans la configuration](#integration).
+Lors de l’utilisation de l’Opensphère, l’utilisateur est amené à consulter le menu de description, un volet apparaissant à droite de l’interface et contenant des informations sur les entités. Pour chaque entité inscrite dans la base de données `entite.json` (et figurant par conséquent dans le graphe), il est possible d’afficher son `label`, son `title` (l’information `titre` ayant été réaffectée au terme `title` dans notre exemple) ou tout autre information qui a été [intégrée dans la configuration](#intégration).
 
 Ces informations apparaissent dans des champs que vous allez pouvoir placer et définir. Lorsqu’une entité est sélectionnée (via le graphe, l’index, le moteur de recherche ou ce même volet), l’ensemble de ces champs sont complétés avec les informations à disposition pour l’entité depuis la base de données.
 
@@ -247,7 +247,7 @@ Vous pouvez ajouter tout élément pouvant contenir du texte dans comme les bali
 
 Les filtres sont des leviers « on/off ». Affichés sous forme de boutons en entête du site et dans le volet de filtre (affiché sur les petits écrans de tablette), ils permettent d’afficher ou de cacher les entités correspondant à certains critères. Ces critères sont renseignés dans ces mêmes boutons portant la classe `btn-group`. Il peuvent être modifiés dans le fichier `index.html`.
 
-La valeur de l’attribut `data-type` correspond au [champ](#integration) qui va être analysé. La valeur de l’attribut `data-meta` correspond à la valeur pivot. Avec les boutons ci-dessous, il est possible respectivement d’afficher/cacher les entités pour lesquelles le champ « genre » a la valeur « homme » et le champ « group » a la valeur « institution ».
+La valeur de l’attribut `data-type` correspond au [champ](#intégration) qui va être analysé. La valeur de l’attribut `data-meta` correspond à la valeur pivot. Avec les boutons ci-dessous, il est possible respectivement d’afficher/cacher les entités pour lesquelles le champ « genre » a la valeur « homme » et le champ « group » a la valeur « institution ».
 
 ```html
 <button class="btn-group" data-type="genre" data-meta="homme">homme</button>
@@ -272,7 +272,7 @@ Une fois le bouton disposé, vous pouvez intégrer les traductions
 <p data-lang-ru="traduction en russe">texte d’origine</p>
 ```
 
-- **à la base de données** : en ajoutant des informations propre à la langue lors de l’[intégration de la configuration](#integration) comme ci-dessous.
+- **à la base de données** : en ajoutant des informations propre à la langue lors de l’[intégration de la configuration](#intégration) comme ci-dessous.
 
 ```javascript
 {

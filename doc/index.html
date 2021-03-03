@@ -205,7 +205,7 @@
         <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            }</span>
         <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        }<span class="op">;</span></span></code></pre></div>
         <h2 data-number="2.4" id="groupes"><span class="header-section-number">2.4</span> Groupes</h2>
-        <p>Lors de l’<a href="#integration">intégration</a>, toutes vos entités doivent être enregistrées avec une constante <code>group</code>. Celle-ci vous permet de styliser toutes les entités qui partagent la même valeur, par exemple <code>group: amis</code> représenté différemment de <code>group: ennemis</code>. Vous pouvez leur ajouter une couleur de contour commune, une forme ou tout autre <a href="https://visjs.github.io/vis-network/docs/network/nodes.html">caractéristique valide pour le graphe</a>.</p>
+        <p>Lors de l’<a href="#intégration">intégration</a>, toutes vos entités doivent être enregistrées avec une constante <code>group</code>. Celle-ci vous permet de styliser toutes les entités qui partagent la même valeur, par exemple <code>group: amis</code> représenté différemment de <code>group: ennemis</code>. Vous pouvez leur ajouter une couleur de contour commune, une forme ou tout autre <a href="https://visjs.github.io/vis-network/docs/network/nodes.html">caractéristique valide pour le graphe</a>.</p>
         <p>Vous pouvez entrer les styles comme présentés ci-dessous dans le fichier <code>/assets/main.js</code>, vers la ligne 160.</p>
         <div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>groups<span class="op">:</span> { <span class="co">// massive styling, by group name</span></span>
         <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">amis</span><span class="op">:</span> {<span class="dt">shape</span><span class="op">:</span> <span class="st">&#39;circle&#39;</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> {<span class="dt">border</span><span class="op">:</span> grey}<span class="op">,</span> <span class="dt">size</span><span class="op">:</span> <span class="dv">20</span>}<span class="op">,</span></span>
@@ -216,7 +216,7 @@
         <ul>
         <li>dans <code>/assets/main.js</code>, ligne ~30)
         <ul>
-        <li>retirer le champ « image » de la <a href="#integration">commande d’intégration</a></li>
+        <li>retirer le champ « image » de la <a href="#intégration">commande d’intégration</a></li>
         </ul></li>
         <li>dans <code>/assets/main.js</code>, ligne ~150)
         <ul>
@@ -225,7 +225,7 @@
         </ul></li>
         </ul>
         <h1 data-number="3" id="paramétrer-le-menu-de-description"><span class="header-section-number">3</span> Paramétrer le menu de description</h1>
-        <p>Lors de l’utilisation de l’Opensphère, l’utilisateur est amené à consulter le menu de description, un volet apparaissant à droite de l’interface et contenant des informations sur les entités. Pour chaque entité inscrite dans la base de données <code>entite.json</code> (et figurant par conséquent dans le graphe), il est possible d’afficher son <code>label</code>, son <code>title</code> (l’information <code>titre</code> ayant été réaffectée au terme <code>title</code> dans notre exemple) ou tout autre information qui a été <a href="#integration">intégrée dans la configuration</a>.</p>
+        <p>Lors de l’utilisation de l’Opensphère, l’utilisateur est amené à consulter le menu de description, un volet apparaissant à droite de l’interface et contenant des informations sur les entités. Pour chaque entité inscrite dans la base de données <code>entite.json</code> (et figurant par conséquent dans le graphe), il est possible d’afficher son <code>label</code>, son <code>title</code> (l’information <code>titre</code> ayant été réaffectée au terme <code>title</code> dans notre exemple) ou tout autre information qui a été <a href="#intégration">intégrée dans la configuration</a>.</p>
         <p>Ces informations apparaissent dans des champs que vous allez pouvoir placer et définir. Lorsqu’une entité est sélectionnée (via le graphe, l’index, le moteur de recherche ou ce même volet), l’ensemble de ces champs sont complétés avec les informations à disposition pour l’entité depuis la base de données.</p>
         <h2 data-number="3.1" id="intégration-des-champs"><span class="header-section-number">3.1</span> Intégration des champs</h2>
         <p>Dans le fichier <code>index.html</code>, vous retrouverez une marque <code>LATERAL FICHE</code>, peu après la ligne 250. S’en suit le code intégrant le volet <code>&lt;aside&gt;</code> et la boîte identifiée <code>fiche-content</code>. En son sein, vous pouvez modifier tout les éléments relatifs à cet affichage.</p>
@@ -239,7 +239,7 @@
         <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/aside&gt;</span></span></code></pre></div>
         <h1 data-number="4" id="paramétrer-les-filtres"><span class="header-section-number">4</span> Paramétrer les filtres</h1>
         <p>Les filtres sont des leviers « on/off ». Affichés sous forme de boutons en entête du site et dans le volet de filtre (affiché sur les petits écrans de tablette), ils permettent d’afficher ou de cacher les entités correspondant à certains critères. Ces critères sont renseignés dans ces mêmes boutons portant la classe <code>btn-group</code>. Il peuvent être modifiés dans le fichier <code>index.html</code>.</p>
-        <p>La valeur de l’attribut <code>data-type</code> correspond au <a href="#integration">champ</a> qui va être analysé. La valeur de l’attribut <code>data-meta</code> correspond à la valeur pivot. Avec les boutons ci-dessous, il est possible respectivement d’afficher/cacher les entités pour lesquelles le champ « genre » a la valeur « homme » et le champ « group » a la valeur « institution ».</p>
+        <p>La valeur de l’attribut <code>data-type</code> correspond au <a href="#intégration">champ</a> qui va être analysé. La valeur de l’attribut <code>data-meta</code> correspond à la valeur pivot. Avec les boutons ci-dessous, il est possible respectivement d’afficher/cacher les entités pour lesquelles le champ « genre » a la valeur « homme » et le champ « group » a la valeur « institution ».</p>
         <div class="sourceCode" id="cb8"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;button</span><span class="ot"> class=</span><span class="st">&quot;btn-group&quot;</span><span class="ot"> data-type=</span><span class="st">&quot;genre&quot;</span><span class="ot"> data-meta=</span><span class="st">&quot;homme&quot;</span><span class="kw">&gt;</span>homme<span class="kw">&lt;/button&gt;</span></span>
         <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;button</span><span class="ot"> class=</span><span class="st">&quot;btn-group&quot;</span><span class="ot"> data-type=</span><span class="st">&quot;group&quot;</span><span class="ot"> data-meta=</span><span class="st">&quot;institution&quot;</span><span class="kw">&gt;</span>institution<span class="kw">&lt;/button&gt;</span></span></code></pre></div>
         <p>Pensez à modifier en miroir le volet de filtre <code>&lt;aside id="filter-volet"&gt;</code>.</p>
@@ -252,7 +252,7 @@
         </ul>
         <div class="sourceCode" id="cb10"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span><span class="ot"> data-lang-ru=</span><span class="st">&quot;traduction en russe&quot;</span><span class="kw">&gt;</span>texte d’origine<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
         <ul>
-        <li><strong>à la base de données</strong> : en ajoutant des informations propre à la langue lors de l’<a href="#integration">intégration de la configuration</a> comme ci-dessous.</li>
+        <li><strong>à la base de données</strong> : en ajoutant des informations propre à la langue lors de l’<a href="#intégration">intégration de la configuration</a> comme ci-dessous.</li>
         </ul>
         <div class="sourceCode" id="cb11"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>{</span>
         <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">// entite metas, default langage</span></span>
