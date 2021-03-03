@@ -34,10 +34,13 @@
 
     $if(toc)$
     <aside>
+        $if(github)$
+        <p class="github">
+            <a href="$github$">GitHub</a>
+        </p>
+        $endif$
         <nav id="$idprefix$TOC" role="doc-toc">
-            $if(toc-title)$
-            <h2 id="$idprefix$toc-title">$toc-title$</h2>
-            $endif$
+            <h2 id="toc-title">Sommaire</h2>
             $table-of-contents$
         </nav>
     </aside>

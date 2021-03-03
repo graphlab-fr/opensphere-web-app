@@ -20,6 +20,7 @@ aside {
 	left: 0;
 	top: 0;
 	width: 250px;
+	overflow: auto;
 }
 
 main {
@@ -83,8 +84,22 @@ nav a:hover {
 	background: var(--accent-color);
 }
 
+figure {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: var(--accent-color) 1px solid;
+	padding: 15px 10px;
+}
+
 img {
 	width: 100%;
+	max-width: 350px;
+}
+
+figcaption {
+	font-size: 0.8rem;
+	font-family: monospace;
 }
 
 code {
@@ -129,4 +144,11 @@ ul.languages a {
 
 ul.languages a:hover {
 	background: #ccc;
+}
+
+.github {
+	font-size: 1.2rem;
+	font-family: sans-serif;
+	text-align: center;
+	margin: 0;
 }
