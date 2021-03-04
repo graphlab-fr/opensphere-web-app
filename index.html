@@ -45,7 +45,6 @@
     <meta property="article:tag" content="documentation"/>
     <meta itemprop="keywords" content="documentation"/>
     <meta property="article:tag" content="cartographie relationnelle"/>
-    <meta itemprop="keywords" content="cartographie relationnelle"/>
     <meta name="DC.subject" content="cartographie relationnelle"/>
     <!-- publish date -->
     <meta property="article:published_time" content="2020-02"/>
@@ -74,7 +73,7 @@
         "url": "http://hyperotlet.huma-num.fr/",
         "image": "http://hyperotlet.huma-num.fr/otletosphere/assets/image-rs.jpg",
         "inLanguage": "fr",
-        "keywords": "Paul Otlet, Mundaneum, documentation, cartographie relationnelle",
+        "keywords": "hypertexte, documentation, cartographie relationnelle",
         "datePublished": "2020-02",
         "dateModified": "2020-07",
         "description": "L’Opensphère est un logiciel de cartographie relationnelle développé par l'équipe HyperOtlet.",
@@ -126,42 +125,46 @@
 
     <header id="header" class="entete" role="banner">
 
-        <div class="entete__col mr-5">
-            <div class="entete__identite" onclick="movement.goTo('reseau');">
-                <h1 class="title-site"><span class="title-site__bold">Open</span>sphère</h1>
+        <div class="entete-col">
+            <div class="identite" onclick="movement.goTo('reseau');">
+                <h1 class="title-site mono"><span>Open</span>sphère</h1>
             </div>
 
             <div class="search-box">
-                <label for="search" class="search-box__label"></label>
-                <input id="search" class="search-box__input" type="text" placeholder="Rechercher" role="search" autocomplete="off">
-                <ul id="search-result" class="search-list"></ul>
+                <label for="search">Rechercher</label>
+                <input id="search" class="mono" type="text" placeholder="Rechercher" role="search" autocomplete="off">
+                <ul id="search-result" class="search-list no-list-style"></ul>
             </div>
         </div>
 
-        <div class="entete__col">
-            <nav class="navigation">
-                <ul class="navigation__list mb-2">
-                    <li class="navigation__link navigation__link--active" data-section="reseau" data-lang-fr="Réseau" data-lang-en="Network">Réseau</li>
-                    <li class="navigation__link" data-section="fiches" data-lang-fr="Fiches" data-lang-en="Records">Fiches</li>
-                </ul>
-                <div class="d-flex align-items-baseline">
-                    <div class="lang-box">
-                        <div data-lang="Fr" data-active="true" class="lang-box__flag lang-box__flag--fr">FR</div>
-                        <span class="lang-box__separator">/</span>
-                        <div data-lang="En" class="lang-box__flag lang-box__flag--en">EN</div>
-                    </div>
-        
-                    <button id="about-btn" class="navigation__link" data-lang-fr="À propos" data-lang-en="About">À propos</button>
+        <div class="entete-col">
+            <div class="entete-row">
+                <nav class="navigation" role="navigation">
+                    <ul class="no-list-style">
+                        <li class="active" data-section="reseau" data-lang-fr="Réseau" data-lang-en="Network">Réseau</li>
+                        <li data-section="fiches" data-lang-fr="Fiches" data-lang-en="Records">Fiches</li>
+                    </ul>
+                </nav>
+    
+                <div class="entete-row">
+                    <section class="lang-box">
+                        <div data-lang="Fr" data-active="true" class="lang-flag mono">FR</div>
+                        <span class="mono">/</span>
+                        <div data-lang="En" class="lang-flag mono">EN</div>
+                    </section>
+                
+                    <button id="about-btn" data-lang-fr="À propos" data-lang-en="About">À propos</button>
                 </div>
-            </nav>
+            </div>
 
-            <section class="toolbar || d-none d-xl-flex">
 
-                <div class="toolbar__section">
+            <section class="filter-bar || d-none d-xl-flex">
+
+                <div class="entete-row">
                     <button class="btn-group" data-type="group" data-meta="otlet" data-lang-fr="Otlet" data-lang-en="Otlet">Otlet</button>
                 </div>
 
-                <div class="toolbar__section">
+                <div class="entete-row">
                     <button class="btn-group" data-type="group" data-meta="famille" data-lang-fr="famille" data-lang-en="family">famille</button>
                     <button class="btn-group" data-type="group" data-meta="collegue" data-lang-fr="collègues" data-lang-en="coworkers">collègues</button>
                     <button class="btn-group" data-type="group" data-meta="collaborateur" data-lang-fr="collaborateurs" data-lang-en="colleagues">collaborateurs</button>
@@ -169,7 +172,7 @@
                     <button class="btn-group" data-type="group" data-meta="non-catégorisé" data-lang-fr="non-classé" data-lang-en="uncategorized">non-classé</button>
                 </div>
 
-                <div class="toolbar__section">
+                <div class="entete-row">
                     <button class="btn-group" data-type="group" data-meta="œuvre" data-lang-fr="œuvres" data-lang-en="works">œuvres</button>
                     <button class="btn-group" data-type="group" data-meta="évènement" data-lang-fr="évènement" data-lang-en="events">évènements</button>
                     <button class="btn-group" data-type="group" data-meta="institution" data-lang-fr="institutions" data-lang-en="institutions">institutions</button>
@@ -192,13 +195,14 @@
 
         <section class="network-wrapper">
 
-            <button id="filtre-open" class="network__btn network__btn--left || d-xl-none" title="Afficher les fitres"></button>
+            <button id="filtre-open" class="filter-volet-btn || d-xl-none" title="Afficher les fitres"></button>
 
             <div id="network" class="network"></div>
 
             <div class="command-board">
-                <div class="command-board__btn-wrapper d-flex justify-content-center">
-                    <button id="zoom-moins" class="command-board__btn command-board__btn--dezoom" title="Dezoom"></button><button id="zoom-plus" class="command-board__btn command-board__btn--zoom" title="Zoom"></button>
+                <div class="zoom-box">
+                    <button id="zoom-moins" class="dezoom" title="Dezoom"></button>
+                    <button id="zoom-plus" class="zoom" title="Zoom"></button>
                 </div>
 
                 <button id="zoom-general" class="command-board__btn" title="Vue initiale">Réinitialiser</button>
@@ -215,7 +219,7 @@
         -->
 
         <section class="board">
-            <div id="board-wrapper" class="board__wrapper">
+            <div id="board-wrapper" class="board-wrapper">
                 <ul id="board-alphabetic" class="sort-alphabetic-list"></ul>
                 <div id="board-content" class="board__conteneur"></div>
             </div>
@@ -230,30 +234,18 @@
         -->
 
         <aside id="filter-volet" class="lateral lateral--left || d-xl-none">
-            <header class="lateral__entete">
-                <button id="filtre-close" class="lateral__btn-control" data-lang-fr="Fermer" data-lang-en="Close">Fermer</button>
-            </header>
+            <button id="filtre-close" data-lang-fr="Fermer" data-lang-en="Close">Fermer</button>
 
             <main>
-                <h3 class="ml-2">Filtrer la vue</h3>
-    
-                <div>
-                    <button class="btn-group btn-group--large" data-type="group" data-meta="otlet" data-lang-fr="Otlet" data-lang-en="Otlet">Otlet</button>
-                </div>
-    
-                <div>
-                    <button class="btn-group btn-group--large" data-type="group" data-meta="famille" data-lang-fr="famille" data-lang-en="family">famille</button>
-                    <button class="btn-group btn-group--large" data-type="group" data-meta="collegue" data-lang-fr="collègues" data-lang-en="coworkers">collègues</button>
-                    <button class="btn-group btn-group--large" data-type="group" data-meta="collaborateur" data-lang-fr="collaborateurs" data-lang-en="colleagues">collaborateurs</button>
-                    <button class="btn-group btn-group--large" data-type="group" data-meta="opposant" data-lang-fr="opposants" data-lang-en="rivals">opposants</button>
-                    <button class="btn-group btn-group--large" data-type="group" data-meta="non-catégorisé" data-lang-fr="non-classé" data-lang-en="uncategorized">non-classé</button>
-                </div>
-    
-                <div>
-                    <button class="btn-group btn-group--large" data-type="group" data-meta="œuvre" data-lang-fr="œuvres" data-lang-en="œuvres">œuvres</button>
-                    <button class="btn-group btn-group--large" data-type="group" data-meta="évènement" data-lang-fr="évènement" data-lang-en="events">évènements</button>
-                    <button class="btn-group btn-group--large" data-type="group" data-meta="institution" data-lang-fr="institutions" data-lang-en="institutions">institutions</button>
-                </div>
+                <button class="btn-group btn-group--large" data-type="group" data-meta="otlet" data-lang-fr="Otlet" data-lang-en="Otlet">Otlet</button>
+                <button class="btn-group btn-group--large" data-type="group" data-meta="famille" data-lang-fr="famille" data-lang-en="family">famille</button>
+                <button class="btn-group btn-group--large" data-type="group" data-meta="collegue" data-lang-fr="collègues" data-lang-en="coworkers">collègues</button>
+                <button class="btn-group btn-group--large" data-type="group" data-meta="collaborateur" data-lang-fr="collaborateurs" data-lang-en="colleagues">collaborateurs</button>
+                <button class="btn-group btn-group--large" data-type="group" data-meta="opposant" data-lang-fr="opposants" data-lang-en="rivals">opposants</button>
+                <button class="btn-group btn-group--large" data-type="group" data-meta="non-catégorisé" data-lang-fr="non-classé" data-lang-en="uncategorized">non-classé</button>
+                <button class="btn-group btn-group--large" data-type="group" data-meta="œuvre" data-lang-fr="œuvres" data-lang-en="œuvres">œuvres</button>
+                <button class="btn-group btn-group--large" data-type="group" data-meta="évènement" data-lang-fr="évènement" data-lang-en="events">évènements</button>
+                <button class="btn-group btn-group--large" data-type="group" data-meta="institution" data-lang-fr="institutions" data-lang-en="institutions">institutions</button>
             </main>
         </aside>
 
@@ -267,45 +259,47 @@
 
         <aside id="fiche" class="lateral lateral--right fiche">
 
-            <button id="fiche-toggle" class="fiche__toggle-btn"><span>◄</span></button>
+            <button id="fiche-toggle-btn"><span>◄</span></button>
 
-            <main id="fiche-content" class="fiche__content">
+            <div id="fiche-content">
 
-                <div id="fiche-head" class="fiche__identite">
-                    <img id="fiche-meta-img" class="fiche__img" src="" alt="">
+                <header id="fiche-head">
+                    <img id="fiche-meta-img" src="" alt="">
 
-                    <div class="fiche__text-resume">
-                        <span class="fiche__label" data-meta="label"></span>
-                        <div class="fiche__dates">
+                    <div>
+                        <span id="fiche-title" class="label" data-meta="label"></span>
+                        <div class="fiche-dates">
                             <span data-meta="annee_naissance"></span>
                             <span data-meta="annee_mort"></span>
                         </div>
-                        <div id="fiche-meta-titre" class="fiche__titre" data-meta="titre"></div>
-                        <div class="d-flex justify-content-between">
-                            <a id="fiche-wiki-link" class="fiche__wiki-link" title="Page wikipédia liée" target="_blank" href=""></a>
-                            <button id="fiche-permalien" class="fiche__permalien" data-lang-fr="Permalien" data-lang-en="Permalink">Permalien</button>
+                        <div data-meta="title"></div>
+                        <div class="fiche-btns-box">
+                            <a id="fiche-wiki-link" title="Page wikipédia liée" target="_blank" href=""></a>
+                            <button id="fiche-permalien" data-lang-fr="Permalien" data-lang-en="Permalink">Permalien</button>
                         </div>
                     </div>
-                </div>
-    
-    
-                <div class="fiche__couple">
-                    <span class="fiche__cle" data-lang-fr="pays" data-lang-en="country">pays</span>
-                    <span data-meta="pays"></span>
-                </div>
+                </header>
 
-                <div class="fiche__couple">
-                    <span class="fiche__cle" data-lang-fr="domaine" data-lang-en="field">domaine</span>
-                    <span data-meta="domaine"></span>
-                </div>
-                
-                <div class="fiche__description" data-meta="description"></div>
+                <main>
+                    <div class="fiche-row">
+                        <span data-lang-fr="pays" data-lang-en="country">pays</span>
+                        <span data-meta="pays"></span>
+                    </div>
+    
+                    <div class="fiche-row">
+                        <span data-lang-fr="domaine" data-lang-en="field">domaine</span>
+                        <span data-meta="domaine"></span>
+                    </div>
+                    
+                    <div class="fiche-description" data-meta="description"></div>
+    
+                    <div class="connexions">
+                        <span class="libelle mono" data-lang-fr="Connexions" data-lang-en="Connections">Connexions</span>
+                        <ul id="fiche-connexion" class="no-list-style"></ul>
+                    </div>
+                </main>
 
-                <div>
-                    <span class="connexions__libelle" data-lang-fr="Connexions" data-lang-en="Connections">Connexions</span>
-                    <div id="fiche-connexion"></div>
-                </div>
-            </main>
+            </div>
         </aside>
 
         <!--
@@ -314,25 +308,24 @@
 
     </main>
 
-    <div id="overflow" class="overflow"></div>
+    <div id="overflow"></div>
 
     <!--
         MODAL ABOUT
     -->
 
     <div class="modal micromodal-slide" id="modal-about" aria-hidden="true">
-        <div class="modal__overlay" tabindex="1000" data-micromodal-close>
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-about-title">
+        <div class="modal-overlay" tabindex="1000" data-micromodal-close>
+            <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-about-title">
     
-                <header class="modal__header">
-                    
-                    <button class="modal__close" title="fermer" aria-label="Close modal" data-micromodal-close></button>
+                <header class="modal-header">
+                    <button class="modal-close" title="fermer" aria-label="Close modal" data-micromodal-close></button>
                 </header>
     
-                <main class="modal__content || d-flex flex-wrap justify-content-center mt-3" id="modal-about-content">
+                <main class="modal-content || d-flex flex-wrap justify-content-center mt-3" id="modal-about-content">
                     <img class="about__img-otlet || col-md-4" src="./assets/photos/OtletPaulColorized.png" alt="">
     
-                    <div class="about__texte || col-md-6">
+                    <div class="col-md-6">
                         <h2 data-lang-fr="À propos" data-lang-en="About">À propos</h2>
 
                         <p
@@ -374,15 +367,15 @@
                             >Frise chronologique interactive sur Paul Otlet : <a href="http://hyperotlet.huma-num.fr/timeline.html">http://hyperotlet.huma-num.fr/timeline.html</a></li>
                         </ul>
     
-                        <div class="about__logo-list">
-                            <img class="about__logo" src="./assets/logos/logootletcoul.png" alt="Logo HyperOtlet">
-                            <img class="about__logo" src="./assets/logos/logo_CMH.png" alt="Logo CMH">
-                            <img class="about__logo" src="./assets/logos/logo_cnrs.png" alt="Logo CNRS">
-                            <img class="about__logo" src="./assets/logos/logo_enssib.png" alt="Logo ENSSIB">
-                            <img class="about__logo" src="./assets/logos/logo_mica.png" alt="Logo MICA">
-                            <img class="about__logo" src="./assets/logos/logo_msh.png" alt="Logo MSH">
-                            <img class="about__logo" src="./assets/logos/logo_mundaneum.png" alt="Logo Mundaneum">
-                            <img class="about__logo" src="./assets/logos/logo_ubm.png" alt="Logo Université Bordeaux Montaigne">
+                        <div class="logo-list">
+                            <img src="./assets/logos/logootletcoul.png" alt="Logo HyperOtlet">
+                            <img src="./assets/logos/logo_CMH.png" alt="Logo CMH">
+                            <img src="./assets/logos/logo_cnrs.png" alt="Logo CNRS">
+                            <img src="./assets/logos/logo_enssib.png" alt="Logo ENSSIB">
+                            <img src="./assets/logos/logo_mica.png" alt="Logo MICA">
+                            <img src="./assets/logos/logo_msh.png" alt="Logo MSH">
+                            <img src="./assets/logos/logo_mundaneum.png" alt="Logo Mundaneum">
+                            <img src="./assets/logos/logo_ubm.png" alt="Logo Université Bordeaux Montaigne">
                         </div>
                     </div>
     

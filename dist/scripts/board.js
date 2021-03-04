@@ -60,12 +60,12 @@ function Card() {
 Card.prototype.inscribe = function(container) {
     this.domElt.classList.add('card');
     this.domElt.innerHTML = 
-    `<div class="card__presentation">
-        <img class="card__img" src="${this.img}" alt="${this.label}">
-        <div class="card__identite">
+    `<header>
+        <img src="${this.img}" alt="${this.label}">
+        <div class="card-identite">
             <h3 class="card__label">${this.label}</h3>
         </div>
-    </div>
+    </header>
     <h4 class="card__titre">${this.title}</h4>`;
 
     container.appendChild(this.domElt);
@@ -126,15 +126,15 @@ Board.prototype.fill = function() {
         var letter = letterStack[0].labelFirstLetter;
         this.letterList.push(letter);
 
+        var cardStack = document.createElement('div');
+        cardStack.classList.add('section');
+        this.domElt.appendChild(cardStack);
+
         var divider = document.createElement('div');
         divider.id = 'letter-' + letter;
-        divider.classList.add('board__section-title');
+        divider.classList.add('title');
         divider.textContent = letter;
-        this.domElt.appendChild(divider);
-
-        var cardStack = document.createElement('div');
-        cardStack.classList.add('board__section');
-        this.domElt.appendChild(cardStack);
+        cardStack.appendChild(divider);
 
         letterStack.forEach(card => {
             card.inscribe(cardStack);
@@ -149,14 +149,13 @@ Board.prototype.fill = function() {
 Board.prototype.listLetters = function() {
     this.letterList.forEach(letter => {
         var listElt = document.createElement('li');
-        listElt.classList.add('sort-alphabetic-list__caracter');
         listElt.textContent = letter;
         this.domLetterList.appendChild(listElt);
 
         listElt.addEventListener('click', () => {
             board.wrapper.scrollTop = 0;
             board.wrapper.scrollTo({
-                top: document.querySelector('#letter-' + letter).getBoundingClientRect().y - headerHeight,
+                top: document.querySelector('#letter-' + letter).getBoundingClientRect().y - 100,
                 behavior: 'smooth'
             });
         })

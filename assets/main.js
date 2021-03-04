@@ -448,12 +448,12 @@ function Card() {
 Card.prototype.inscribe = function(container) {
     this.domElt.classList.add('card');
     this.domElt.innerHTML = 
-    `<div class="card__presentation">
-        <img class="card__img" src="${this.img}" alt="${this.label}">
-        <div class="card__identite">
+    `<header>
+        <img src="${this.img}" alt="${this.label}">
+        <div class="card-identite">
             <h3 class="card__label">${this.label}</h3>
         </div>
-    </div>
+    </header>
     <h4 class="card__titre">${this.title}</h4>`;
 
     container.appendChild(this.domElt);
@@ -514,15 +514,15 @@ Board.prototype.fill = function() {
         var letter = letterStack[0].labelFirstLetter;
         this.letterList.push(letter);
 
+        var cardStack = document.createElement('div');
+        cardStack.classList.add('section');
+        this.domElt.appendChild(cardStack);
+
         var divider = document.createElement('div');
         divider.id = 'letter-' + letter;
-        divider.classList.add('board__section-title');
+        divider.classList.add('title');
         divider.textContent = letter;
-        this.domElt.appendChild(divider);
-
-        var cardStack = document.createElement('div');
-        cardStack.classList.add('board__section');
-        this.domElt.appendChild(cardStack);
+        cardStack.appendChild(divider);
 
         letterStack.forEach(card => {
             card.inscribe(cardStack);
@@ -537,14 +537,13 @@ Board.prototype.fill = function() {
 Board.prototype.listLetters = function() {
     this.letterList.forEach(letter => {
         var listElt = document.createElement('li');
-        listElt.classList.add('sort-alphabetic-list__caracter');
         listElt.textContent = letter;
         this.domLetterList.appendChild(listElt);
 
         listElt.addEventListener('click', () => {
             board.wrapper.scrollTop = 0;
             board.wrapper.scrollTo({
-                top: document.querySelector('#letter-' + letter).getBoundingClientRect().y - headerHeight,
+                top: document.querySelector('#letter-' + letter).getBoundingClientRect().y - 100,
                 behavior: 'smooth'
             });
         })
@@ -655,10 +654,10 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    toggle: document.querySelector('#fiche-toggle'), // arrow button
+    toggle: document.querySelector('#fiche-toggle-btn'), // arrow button
     isOpen: false,
     fields: {
-        head: document.querySelector('#fiche-head'),
+        title: document.querySelector('#fiche-title'),
         wikiLink: document.querySelector('#fiche-wiki-link'),
         img: document.querySelector('#fiche-meta-img'),
         connexion: document.querySelector('#fiche-connexion'),
@@ -673,7 +672,7 @@ var fiche = {
     },
     /** open description bar */
     open: function() {
-        this.toggle.classList.add('fiche__toggle-btn--active');
+        this.toggle.classList.add('active');
         fiche.body.classList.add('lateral--active');
         this.isOpen = true;
     },
@@ -681,7 +680,7 @@ var fiche = {
     close: function() {
         if (movement.currentSection === 'fiches') { return; }
         
-        this.toggle.classList.remove('fiche__toggle-btn--active');
+        this.toggle.classList.remove('active');
         fiche.body.classList.remove('lateral--active');
         this.isOpen = false;
     },
@@ -744,12 +743,12 @@ var fiche = {
             document.execCommand('copy');
             document.body.removeChild(tempInput);
 
-            this.fields.permalien.classList.add('fiche__permalien--active'); // CSS animation
+            this.fields.permalien.classList.add('active'); // CSS animation
             this.fields.permalien.textContent = '✓';
             
             this.fields.permalien.addEventListener('animationend', () => {
                 this.fields.permalien.textContent = 'Permalink' ;
-                this.fields.permalien.classList.remove('fiche__permalien--active')
+                this.fields.permalien.classList.remove('active')
             });
         });
     },
@@ -762,20 +761,14 @@ var fiche = {
 
         if (nodeConnectedList === null) { return; }
 
-        var list = document.createElement('ul');
-        list.classList.add('connexions__list');
-        this.fields.connexion.appendChild(list);
-
         for (const connectedNode of nodeConnectedList) {
             if (connectedNode.hidden == true) { continue; }
 
             var listElt = document.createElement('li');
-            listElt.classList.add('connexions__elt');
             listElt.textContent = connectedNode.label;
             this.fields.connexion.appendChild(listElt);
 
             var puceColored = document.createElement('span');
-            puceColored.classList.add('connexions__puce');
             puceColored.style.backgroundColor = chooseColor(connectedNode.relation);
             listElt.prepend(puceColored);
 
@@ -786,14 +779,14 @@ var fiche = {
             // link description frame at scroll on list element
             if (connectedNode.title !== null) {
                 listElt.addEventListener('mouseenter', (e) => {
-                    overflow.classList.add('overflow--active');
+                    overflow.classList.add('active');
                     overflow.style.left = e.pageX + 20 + 'px';
                     overflow.style.top = e.pageY - overflow.offsetHeight + 'px';
                     overflow.textContent = connectedNode.title;
                 })
 
                 listElt.addEventListener('mouseout', () => {
-                    overflow.classList.remove('overflow--active'); })
+                    overflow.classList.remove('active'); })
             }
         }
     },
@@ -806,7 +799,7 @@ var fiche = {
         const nodeConnectedList = findConnectedNodes(network.selectedNode);
 
         // show description bar fields
-        this.content.classList.add('fiche__content--visible');
+        this.content.classList.add('visible');
         // feed all element marked by [data-meta] into description bar
         this.domFields.forEach(elt => {
             const metaName = elt.dataset.meta;
@@ -826,7 +819,7 @@ fiche.toggle.addEventListener('click', () => {
     else { fiche.open(); }
 });
 
-fiche.fields.head.addEventListener('click', () => {
+fiche.fields.title.addEventListener('click', () => {
     switchNode(network.selectedNode); });
 
 
@@ -923,12 +916,12 @@ search.reset();
 
 
 (function() {
-const activFlag = document.querySelector('.lang-box__flag[data-active="true"]');
+const activFlag = document.querySelector('.lang-flag[data-active="true"]');
 
 if (!activFlag) { return; }
 
 var langage = {
-    flags: document.querySelectorAll('.lang-box__flag'),
+    flags: document.querySelectorAll('.lang-flag'),
     actual: activFlag.dataset.lang,
     translateAll: function() {
         document.querySelectorAll('[data-lang-' + langage.actual.toLowerCase() + ']').forEach(elt => {
@@ -936,9 +929,6 @@ var langage = {
         });
     }
 }
-
-// active actual langage button
-activFlag.classList.add('lang-box__flag--active');
 
 langage.flags.forEach(flag => {
     flag.addEventListener('click', (e) => {
@@ -951,9 +941,9 @@ langage.flags.forEach(flag => {
 
         // désactiver la surbrillance du flag de la précédante langue
         document.querySelector('[data-lang="' + langage.actual + '"]')
-            .classList.remove('lang-box__flag--active');
+            .dataset.active = 'false';
         // activer la surbrillance du flag de l'actuelle langue
-        flagCliked.classList.add('lang-box__flag--active');
+        flagCliked.dataset.active = 'true';
 
         langage.actual = flagCliked.dataset.lang;
 
@@ -1072,12 +1062,12 @@ var navigation = {
         if (movement.currentSection !== undefined) {
             // désactiver la surbrillance du lien vers la précédante section
             document.querySelector('[data-section="' + movement.currentSection + '"]')
-                .classList.remove('navigation__link--active');
+                .classList.remove('active');
         }
 
         // activer la surbrillance du lien vers la nouvelle section
         document.querySelector('[data-section="' + section + '"]')
-            .classList.add('navigation__link--active');
+            .classList.add('active');
     }
 }
 
@@ -1106,7 +1096,6 @@ var movement = {
 
                 fiche.fixer(true);
                 fiche.canClose(true);
-                // MicroModal.close('modal-about');
                 break;
                 
             case 'fiches':
@@ -1115,7 +1104,6 @@ var movement = {
                 fiche.fixer(true);
                 fiche.canClose(false);
                 fiche.open();
-                // MicroModal.close('modal-about');
                 break;
         }
     },

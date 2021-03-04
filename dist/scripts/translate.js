@@ -9,12 +9,12 @@
 
 
 (function() {
-const activFlag = document.querySelector('.lang-box__flag[data-active="true"]');
+const activFlag = document.querySelector('.lang-flag[data-active="true"]');
 
 if (!activFlag) { return; }
 
 var langage = {
-    flags: document.querySelectorAll('.lang-box__flag'),
+    flags: document.querySelectorAll('.lang-flag'),
     actual: activFlag.dataset.lang,
     translateAll: function() {
         document.querySelectorAll('[data-lang-' + langage.actual.toLowerCase() + ']').forEach(elt => {
@@ -22,9 +22,6 @@ var langage = {
         });
     }
 }
-
-// active actual langage button
-activFlag.classList.add('lang-box__flag--active');
 
 langage.flags.forEach(flag => {
     flag.addEventListener('click', (e) => {
@@ -37,9 +34,9 @@ langage.flags.forEach(flag => {
 
         // désactiver la surbrillance du flag de la précédante langue
         document.querySelector('[data-lang="' + langage.actual + '"]')
-            .classList.remove('lang-box__flag--active');
+            .dataset.active = 'false';
         // activer la surbrillance du flag de l'actuelle langue
-        flagCliked.classList.add('lang-box__flag--active');
+        flagCliked.dataset.active = 'true';
 
         langage.actual = flagCliked.dataset.lang;
 

@@ -14,10 +14,10 @@ var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
     entete: document.querySelector('#fiche-entete'),
-    toggle: document.querySelector('#fiche-toggle'), // arrow button
+    toggle: document.querySelector('#fiche-toggle-btn'), // arrow button
     isOpen: false,
     fields: {
-        head: document.querySelector('#fiche-head'),
+        title: document.querySelector('#fiche-title'),
         wikiLink: document.querySelector('#fiche-wiki-link'),
         img: document.querySelector('#fiche-meta-img'),
         connexion: document.querySelector('#fiche-connexion'),
@@ -32,7 +32,7 @@ var fiche = {
     },
     /** open description bar */
     open: function() {
-        this.toggle.classList.add('fiche__toggle-btn--active');
+        this.toggle.classList.add('active');
         fiche.body.classList.add('lateral--active');
         this.isOpen = true;
     },
@@ -40,7 +40,7 @@ var fiche = {
     close: function() {
         if (movement.currentSection === 'fiches') { return; }
         
-        this.toggle.classList.remove('fiche__toggle-btn--active');
+        this.toggle.classList.remove('active');
         fiche.body.classList.remove('lateral--active');
         this.isOpen = false;
     },
@@ -103,12 +103,12 @@ var fiche = {
             document.execCommand('copy');
             document.body.removeChild(tempInput);
 
-            this.fields.permalien.classList.add('fiche__permalien--active'); // CSS animation
+            this.fields.permalien.classList.add('active'); // CSS animation
             this.fields.permalien.textContent = '✓';
             
             this.fields.permalien.addEventListener('animationend', () => {
                 this.fields.permalien.textContent = 'Permalink' ;
-                this.fields.permalien.classList.remove('fiche__permalien--active')
+                this.fields.permalien.classList.remove('active')
             });
         });
     },
@@ -121,20 +121,14 @@ var fiche = {
 
         if (nodeConnectedList === null) { return; }
 
-        var list = document.createElement('ul');
-        list.classList.add('connexions__list');
-        this.fields.connexion.appendChild(list);
-
         for (const connectedNode of nodeConnectedList) {
             if (connectedNode.hidden == true) { continue; }
 
             var listElt = document.createElement('li');
-            listElt.classList.add('connexions__elt');
             listElt.textContent = connectedNode.label;
             this.fields.connexion.appendChild(listElt);
 
             var puceColored = document.createElement('span');
-            puceColored.classList.add('connexions__puce');
             puceColored.style.backgroundColor = chooseColor(connectedNode.relation);
             listElt.prepend(puceColored);
 
@@ -145,14 +139,14 @@ var fiche = {
             // link description frame at scroll on list element
             if (connectedNode.title !== null) {
                 listElt.addEventListener('mouseenter', (e) => {
-                    overflow.classList.add('overflow--active');
+                    overflow.classList.add('active');
                     overflow.style.left = e.pageX + 20 + 'px';
                     overflow.style.top = e.pageY - overflow.offsetHeight + 'px';
                     overflow.textContent = connectedNode.title;
                 })
 
                 listElt.addEventListener('mouseout', () => {
-                    overflow.classList.remove('overflow--active'); })
+                    overflow.classList.remove('active'); })
             }
         }
     },
@@ -165,7 +159,7 @@ var fiche = {
         const nodeConnectedList = findConnectedNodes(network.selectedNode);
 
         // show description bar fields
-        this.content.classList.add('fiche__content--visible');
+        this.content.classList.add('visible');
         // feed all element marked by [data-meta] into description bar
         this.domFields.forEach(elt => {
             const metaName = elt.dataset.meta;
@@ -185,5 +179,5 @@ fiche.toggle.addEventListener('click', () => {
     else { fiche.open(); }
 });
 
-fiche.fields.head.addEventListener('click', () => {
+fiche.fields.title.addEventListener('click', () => {
     switchNode(network.selectedNode); });
