@@ -1,68 +1,66 @@
 ---
-title: Documentation de développement Opensphère
+title: Documentation de l'Opensphère
 author: Guillaume Brioudes <https://myllaume.fr/>
 date: 2021-02-26
 lang: fr
-github: https://github.com/hyperotlet/opensphere
 keywords:
   - développeur
 ---
 
-Cette documentation technique s’adresse aux réutilisateurs (gestionnaire de données, développeurs) souhaitant **créer** leur propre Opensphère. Nous avons mis à disposition une [autre documentation dédiée aux utilisateurs souhaitant comprendre comment utiliser son interface](https://hyperotlet.github.io/otletosphere/). Nous vous recommandons sa lecture pour prendre pleinement conscience de l’ensemble des fonctionnalités du logiciel.
+L’Opensphère est un logiciel de cartographie relationnelle interactive conçu par l’équipe du programme de recherche ANR [HyperOtlet](https://hyperotlet.hypotheses.org/).
 
-L’Opensphère est un logiciel permettant de présenter une cartographie relationnelle. C’est un nuage de nœuds, reliés par des liens, et interactif. Une série de fonctionnalités (graphe, moteur de recherche, index…) permettent d’explorer la base de données (menu de description, liste des relations…). Vous trouverez des [exemples de réutilisation sur cette page](). Le logiciel a été conçu par l’équipe du programme de recherche ANR [HyperOtlet](https://hyperotlet.hypotheses.org/).
+Les fonctionnalités du logiciel sont décrites dans le [manuel d'utilisation](https://hyperotlet.github.io/otletosphere/) de l'Otletosphère, qui constitue l'origine du projet (voir les [exemples d'utilisation](#) plus bas).
 
-Nous avons facilité au maximum la mise en place de ce système. Il peut être installé sur un serveur web (local ou en ligne). Il n’est pas nécessaire pour les réutilisatrices et réutilisateurs de savoir programmer en JavaScript, mais vous faudra plonger dans le code et y modifier des termes dans une logique sémantique et dupliquer des structures syntaxiques déjà construites. Des instructions et interfaces graphiques vous permettent de personnaliser le logiciel et ses données. Il est aussi recommandé d’avoir des [notions de base en langage HTML](https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/HTML_basics).
+Cette documentation s’adresse aux personnes souhaitant réutiliser le code de l'Opensphère.
 
-1. [Téléchargement et déploiement](#téléchargement-et-déploiement)
-2. [Intégration de la base de données](#intégration-de-la-base-de-données)
-3. [Paramétrer le menu de description](#paramétrer-le-menu-de-description)
-4. [Paramétrer les filtres](#paramétrer-les-filtres)
-5. [Ajouter une langue d’affichage et description](#ajouter-une-langue-daffichage-et-description)
-6. [Modifier la description du site web](#modifier-la-description-du-site-web)
+L'Opensphère a été conçue pour faciliter la réutilisation. Son fonctionnement nécessite uniquement un serveur web local ou en ligne. Le code est écrit en JavaScript mais il n'est pas nécessaire de connaître ce langage pour s'approprier le logiciel : il suffit de modifier le code aux endroits indiqués dans cette documentation pour l'adapter à ses données et métadonnées. Il est toutefois recommandé d’avoir des [notions de base en HTML](https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/HTML_basics).
 
-Les développeurs maîtrisant le langage JavaScript pourront également trouver des ressources pour personnaliser le logiciel en profondeur.
+La documentation fournit également des ressources pour personnaliser le logiciel en profondeur aux personnes maîtrisant JavaScript.
 
-7. [Environnement de développement](#environnement-de-développement)
+::: sommaire
+1. [Installation](#)
+2. [Intégration des données](#)
+3. [Paramétrer le menu de description](#)
+4. [Paramétrer les filtres](#)
+5. [Ajouter une langue d’affichage et description](#)
+6. [Modifier la description du site web](#)
+7. [Environnement de développement](#)
+8. [Exemples d'utilisation]()
+:::
 
-# Téléchargement et déploiement
+# Installation
 
-Les consignes suivantes permettent de télécharger et d’installer le logiciel afin de l’utiliser pour votre propre projet. Nous vous rappelons que vous aurez besoin d’un [serveur web (local ou en ligne)](#mise-en-route) pour le faire fonctionner. Veillez à adapter l’emplacement de votre installation dans ce sens.
+## Pré-requis
+
+Il vous faut un serveur web pour faire fonctionner l’Opensphère. En effet, les fichiers de données ne peuvent être captés que grâce à des protocoles propres aux serveurs.
+
+Pour afficher l'Opensphère en local, utilisez un logiciel comme [WAMP](https://www.wampserver.com/) (Windows), [MAMP](https://www.mamp.info/fr/downloads/) (Windows, macOS) ou [XAMP](https://www.apachefriends.org/fr/index.html) (Windows, macOS, Linux).
+
+Pour héberger l'Opensphère en ligne, il vous faudra un moyen de transférer les fichiers de l’Opensphère sur un serveur, par exemple avec un client FTP comme [FileZilla](https://filezilla-project.org/) (Windows, macOS, Linux).
 
 ## Téléchargement
 
-La dernière version testée du code source est entreposée sur [notre dépôt GitHub](https://github.com/hyperotlet/opensphere). Plusieurs méthodes d’installation s’offrent à vous.
+Le code de l'Opensphère est hébergé sur GitHub : <https://github.com/hyperotlet/opensphere>. Pour télécharger la dernière version, rendez-vous sur [la page des téléchargements](https://github.com/hyperotlet/opensphere/releases).
 
-Vous pouvez [**télécharger l’ensemble des fichiers** en suivant ce lien](https://github.com/hyperotlet/opensphere/archive/master.zip). Il s’agit de la version « master » du logiciel, stable et vérifiée. Vous n’avez alors plus qu’à décompresser ([sur Windows](https://support.microsoft.com/fr-fr/windows/compresser-et-d%C3%A9compresser-des-fichiers-8d28fa72-f2f9-712f-67df-f80cf89fd4e5), [sur MacOs](https://support.apple.com/fr-fr/guide/mac-help/mchlp2528/mac)) l’archive téléchargée.
+Vous pouvez également cloner le dépôt via un client Git, comme par exemple [GitHub Desktop](https://desktop.github.com/) (Windows, macOS), ou via un terminal en saisissant la commande suivante :
 
-Deux autres méthodes vous permettent de **conserver l’historique de développement**, utile si vous souhaitez à votre tour élaborer différentes versions de votre Opensphère, grâce à l’outil [Git](https://git-scm.com/).
-
-- **Via une ligne de commande**, si vous avez installé le [logiciel Git](https://git-scm.com/). La commande `git clone https://github.com/hyperotlet/opensphere.git` inclut l’ensemble des fichiers et l’historique de développement.
-- **Via [GitHub Desktop](https://desktop.github.com/)**, une interface graphique intégrant Git (Windows, MacOs).
+```bash
+git clone https://github.com/hyperotlet/opensphere.git
+```
 
 ## Mise en route
 
-Il vous faut un serveur web pour faire fonctionner l’Opensphère. En effet, les fichiers de données ne peuvent être captés que grâce à des protocoles propres aux serveurs. Votre serveur peut être
+Déplacez le dossier `opensphere` dans le dossier racine de votre serveur, ou bien configurez votre serveur pour faire du dossier `opensphere` la racine.
 
-- **en local**, grâce à un logiciel comme [WAMP](https://www.wampserver.com/) (Windows), [MAMP](https://www.mamp.info/en/downloads/) (Windows, MacOs) ou [XAMP](https://www.apachefriends.org/fr/index.html) (Windows, MacOs, Linux) ;
-- **en ligne**, et dans ce cas il vous faut transférer les fichiers de l’Opensphère grâce à un [client FTP, comme FileZilla](https://filezilla-project.org/) (Windows, MacOs, Linux).
+# Format des données
 
-Déplacez vos fichiers à la source de votre serveur ou déplacez la source pour que la racine soit le fichier `index.html`.
+L’Opensphère requiert que les données décrivant les entités et leurs relations soient contenues séparément dans deux fichiers [JSON](https://developer.mozilla.org/fr/docs/Learn/JavaScript/Objects/JSON) nommés respectivement `entite.json` et `lien.json`. Ces deux fichiers doivent être placés dans le répertoire `/data`.
 
-# Intégration de la base de données
+## Entités
 
-Il s’agit de disposer et structurer l’ensemble des informations qui vont nous permettre d’afficher le graphe, l’index et toutes les informations relatives à votre sujet de cartographie. Nous allons d’abord nous intéresser aux contraintes dues à l’environnement du logiciel. Elles vont vous permettre d’utiliser des outils (type tableur) de manière adaptée. Nous allons ensuite [vous présenter deux applications](#enregistrement-des-données) vous permettant d’enregistrer et structurer vos données.
+### Métadonnées requises
 
-## Fichiers de données
-
-L’Opensphère extrait les données de deux [fichiers JSON](https://developer.mozilla.org/fr/docs/Learn/JavaScript/Objects/JSON), contenus dans le répertoire `/data`. Vous trouverez un exemple de chaque dans le répertoire téléchargé :
-
-- `entite.json` : liste des entités du graphe, correspondant aux nœuds ;
-- `lien.json` : liste des liens entre ces nœuds.
-
-### Entrées minimums
-
-Soit ci-dessous un exemple simplifié du fichier `entite.json`. Le nœud appelé « Paul Otlet » possède l’identifiant **unique** « 1 » et appartient au groupe « Personne ». Ce sont les informations minimums pour afficher une entité, la filtrer parmi toutes les autres.
+L'exemple ci-dessous constitue une version simplifiée du fichier `entite.json`. Il présente les métadonnées qui doivent obligatoirement être présentes pour que l'Opensphère fonctionne :
 
 ```json
 [{
@@ -79,20 +77,9 @@ Soit ci-dessous un exemple simplifié du fichier `entite.json`. Le nœud appelé
 }]
 ```
 
-On complète ce premier fichier avec l’entrée suivante dans `lien.json`. **Tout le système de liaison repose sur les identifiants** : le lien « 1 » relie les nœuds « 1 » et « 2 » correspondant respectivement à nos deux entités précédentes. On ajoute par ailleurs un label à la liaison pour constituer le niveau d’information minimum des liens.
+### Ajouter des métadonnées
 
-```json
-[{
-    "id": 1,
-    "from": 1,
-    "to": 2,
-    "label": "Paul Otlet est le fondateur du Mundaneum."
-}]
-```
-
-### Données de description
-
-Vous pouvez ajouter autant d’informations que vous le souhaitez pour chaque entité. Comme illustré ci-dessous, vous pouvez renseigner des dates, des catégories. Vous pouvez faire cela dans plusieurs langues si vous souhaitez obtenir une [description multilingue des entités](#ajouter-une-langue-daffichage-et-description).
+Vous pouvez ajouter autant de métadonnées que vous le souhaitez pour chaque entité. Ceci permet notamment de décliner les informations dans plusieurs langues. <!-- ajouter: (voir [multilinguisme](#) plus bas) -->
 
 ```json
 [{
@@ -111,54 +98,61 @@ Vous pouvez ajouter autant d’informations que vous le souhaitez pour chaque en
 }]
 ```
 
-Nous verrons plus tard comment [intégrer ces informations de manière systématique](#intégration) dans l’interface.
+<!-- Nous verrons plus tard comment [intégrer ces informations de manière systématique](#) dans l’interface. -->
 
-## Enregistrement des données
+## Liens
 
-Nous avons besoin d’outils qui vont nous permettre d’enregistrer nos données, de mettre en relation nos entités (faire correspondre de leurs identifiants **uniques**) et enfin d’obtenir ces données au format JSON.
+L'exemple ci-dessous constitue une version simplifiée du fichier `lien.json`. Les liens reposent sur les identifiants des entités. Les liens eux-mêmes ont un identifiant distinct. Par exemple, le lien `1` relie les entités `1` et `2`.
 
-Les tableurs sont les interfaces les plus efficaces. Ils vous permettent de compléter systématiquement une liste d’entité (en ligne) pour une série d’informations (en colonne) que vous avez décidé de renseigner. Vous verrez rapidement les champs (cases) qu’il vous reste à compléter, les informations que vous pouvez croiser à l’aide de formules (calcul) ou formater (limiter les enregistrement à des nombres, comme pour les dates).
+```json
+[{
+    "id": 1,
+    "from": 1,
+    "to": 2,
+    "label": "Paul Otlet est le fondateur du Mundaneum."
+}]
+```
 
-Nous vous proposons deux outils en ligne collaboratifs. Ce sont deux tableurs que vous pourrez utiliser avec une équipe et éventuellement simultanément.
+## Générer des données au format requis
 
-Pour aller plus vite, nous vous proposons des modèles à dupliquer pour votre propre compte. Vous retrouverez pour chaque modèle les tables « entites » et « liens » vous permettant d’enregistrer vos nœuds et liens.
+Générer des données au format requis pour l'Opensphère nécessite de disposer d'outils permettant la saisie des données, leur mise en relation par un système d'identifiants uniques, et leur export au format JSON. Nous proposons des modèles Google Sheets et Airtable afin de faciliter ces différentes étapes.
 
-Faites bien attention à distribuer les identifiants **uniques** dans les colonnes « id » prévues à cet effet.
+### Modèle Google Sheets
 
-### Airtable
+Un modèle Google Sheets pour l'Opensphère est disponible à l'adresse suivante : [https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing)
 
-Pour les personnes qui sont habituées aux tableurs comme Excel, Calc ou Sheet, [Airtable](https://airtable.com/) peut être un peu déroutant. Ça n’est pas un tableau de calcul, mais bien une série de tables de données comme en utilisent les professionnels des bases de données. L’interface reste simple et la [documentation (en anglais)](https://support.airtable.com/hc/en-us) bien fournie. Il est plus facile d’y mettre en place une vérification, correspondance systématique des données en limitant les entrées potentielles dans une colonne d’une table « A » au contenu d’une table « B ». Nous avons déjà assuré la correspondance des identifiants dans le modèle ci-après.
+[Google Sheets](https://www.google.com/sheets/about/) est un tableur classique, qui repose sur des formules pour contrôler la saisie des données. Notre modèle inclut des formules, notamment pour faire correspondre automatiquement les identifiants d'une feuille à l'autre. Afin de ne pas rencontrer de difficultés, n'oubliez pas d'étendre les formules sur plusieurs lignes après avoir saisi des données.
 
-Retrouvez sur la page suivante un modèle de base de données adapté à l’Opensphère : [https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs](https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs)
+La saisie des données concernant les entités se fait dans la feuille « Entités ». La saisie des données concernant leurs relations se fait dans la feuille « Liens ». La feuille « Extraction » doit être remplie automatiquement grâce une formule qui remplace les noms des identités par les identifiants correspondants (grâce à la [fonction `RECHERCHEV`](https://support.google.com/docs/answer/3093318?hl=fr). Ceci permet de saisir les relations dans une interface confortable (la feuille « Liens ») tout en exportant les données au format requis depuis une feuille ad hoc (la feuille « Extraction »).
 
-L’export se fait au format CSV pour les deux tables « entites » et « liens ». Vous devrez utiliser un [convertisseur format CSV vers format JSON](http://convertcsv.com/json-to-csv.htm) pour obtenir les fichiers `entite.json` et `lien.json`.
+Pour exporter les données au format JSON, installez l’extension [Export Sheet Data](https://workspace.google.com/marketplace/app/export_sheet_data/903838927001) depuis l’onglet `Modules complémentaires` dans Google Sheets.
 
-### Google Sheet
+Une fois l'extension installée, cliquez sur `Modules complémentaires` › `Export Sheet Data` › `Open Sidebar`. Suivez les instructions détaillées dans la feuille « Notice export » et reprises ci-dessous :
 
-C’est un tableur traditionnel dont les vérifications, correspondances entre les colonnes sont assurées par des formules. Sur notre modèle de données, que vous pourrez retrouver ci-après, nous avons automatisé la correspondance des identifiants. Veillez toutefois à étendre les formules dans les colonnes une fois que vous avez effectué des entrées.
+<!-- Inclure les instructions ici. Bien préciser quelles feuilles exporter. -->
 
-Retrouvez sur la page suivante un modèle de base de données adapté à l’Opensphère : [https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing)
+### Modèle Airtable
 
-L’export se fait au format CSV pour les deux feuilles « Entites » et « Extraction ».
+Un modèle Airtable pour l'Opensphère est disponible à l'adresse suivante : [https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs](https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs)
 
-La feuille « Extraction » est une image de la feuille « Liens », mais le nom des entités est substitué par leur identifiant (grâce à la [fonction `RECHERCHEV`](https://support.google.com/docs/answer/3093318?hl=fr), d’après le contenu le feuille « Entites »).
+[Airtable](https://airtable.com/) est un logiciel qui permet d'utiliser une base de données via l'interface d'un tableur collaboratif en ligne. [Une documentation](https://support.airtable.com/hc/en-us) est disponible en anglais. Notre modèle inclut des règles qui permettent de contrôler la saisie des données.
 
-Vous pouvez également exporter les données directement au format JSON. Pour cela installez l’extension *Export Sheet Data* depuis l’onglet « Modules complémentaires » dans Google Sheet. Une fois installée, vous pouvez la retrouver dans le même onglet et afficher le panneau de l’outil avec le bouton « Open Sidebar ». La configuration de ce dernier est détaillée dans [la feuille « Notice export »](https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit#gid=1378398983).
+Les tables « entites » et « liens » peuvent être exportées au format CSV. Vous devrez utiliser un [convertisseur CSV-JSON](http://convertcsv.com/json-to-csv.htm) pour obtenir les fichiers `entite.json` et `lien.json` requis.
 
-## Intégration
+# Intégration des données
 
-Une fois les fichiers `entite.json` et `lien.json` obtenus (renommez vos exports si nécessaire), vous devez les placer dans le répertoire `/data`, en écrasant les deux fichiers d’exemple. Vos données peuvent alors être captées par le logiciel. Il faut maintenant les intégrer (« brancher ») à son flux interne.
+Une fois les fichiers `entite.json` et `lien.json` placés dans le répertoire `/data`, il faut modifier le code de l'Opensphère pour qu'elle puisse lire les données.
 
-![Transfère des données](transfert-data.svg)
+![Transfert des données](transfert-data.svg)
 
-Dans le fichier `/assets/main.js`, à partir de la ligne 20, vous allez retrouver la commande d’intégration, simplifiée ci-dessous. Elle vous permet de faire correspondre vos champs (colonnes du tableur) à des constantes. Par exemple, dans cette commande, notre champ « titre » (appelé « entite.titre » dans ce contexte) est associé à la constante « title ». Ainsi, dans le contexte du logiciel, « titre » est devenu « title ». Ce sont ces constantes que vous allez pouvoir employer lors des autres étapes de la réutilisation du logiciel.
+Dans le fichier `/assets/main.js`, à partir de la ligne 20, vous allez retrouver la commande d’intégration, simplifiée ci-dessous. Elle vous permet de faire correspondre vos champs (colonnes du tableur) à des constantes. Par exemple, dans cette commande, notre champ « titre » (appelé « entite.titre » dans ce contexte) est associé à la constante « title ». Ainsi, dans le contexte du logiciel, « titre » est devenu « title ». Ce sont ces constantes que vous allez pouvoir employer lors des autres étapes de la réutilisation du logiciel.
 
 Avec cette configuration
 
-- on fait correspondre « label », « description » et « id » à des constantes équivalentes ;
-- on traduit notre champ « titre » en constante « title » ;
+- on fait correspondre « label », « description » et « id » à des constantes équivalentes ;
+- on traduit notre champ « titre » en constante « title » ;
 - on augmente l’âge de toutes les entités de 6 ;
-- on assigne la traduction du champ « titre » en français et en anglais.
+- on assigne la traduction du champ « titre » en français et en anglais.
 
 ```javascript
 network.data.nodes.add(
@@ -204,7 +198,7 @@ network.data.edges.add(
 
 ## Groupes
 
-Lors de l’[intégration](#intégration), toutes vos entités doivent être enregistrées avec une constante `group`. Celle-ci vous permet de styliser toutes les entités qui partagent la même valeur, par exemple `group: amis` représenté différemment de `group: ennemis`. Vous pouvez leur ajouter une couleur de contour commune, une forme ou tout autre [caractéristique valide pour le graphe](https://visjs.github.io/vis-network/docs/network/nodes.html).
+Lors de l’[intégration](#), toutes vos entités doivent être enregistrées avec une constante `group`. Celle-ci vous permet de styliser toutes les entités qui partagent la même valeur, par exemple `group: amis` représenté différemment de `group: ennemis`. Vous pouvez leur ajouter une couleur de contour commune, une forme ou tout autre [caractéristique valide pour le graphe](https://visjs.github.io/vis-network/docs/network/nodes.html).
 
 Vous pouvez entrer les styles comme présentés ci-dessous dans le fichier `/assets/main.js`, vers la ligne 160.
 
@@ -221,23 +215,21 @@ Par défaut, toutes les entités doivent avoir une image, éventuellement de rem
 
 Si vous souhaitez ne plus afficher d’images dans le graphe et le panneau de description, veuillez suivre les étapes suivantes :
 
-- dans `/assets/main.js`, ligne ~30)
-    - retirer le champ « image » de la [commande d’intégration](#intégration)
-- dans `/assets/main.js`, ligne ~150)
-    - modifier le champ `shape:'image'` avec la valeur « circle », « square » ou [autre forme valide](https://visjs.github.io/vis-network/docs/network/nodes.html)
+- dans `/assets/main.js`, ligne ~30
+    - retirer le champ « image » de la [commande d’intégration](#)
+- dans `/assets/main.js`, ligne ~150
+    - modifier le champ `shape:'image'` avec la valeur `circle`, `square` ou [autre forme valide](https://visjs.github.io/vis-network/docs/network/nodes.html)
     - modifier les champs de `groups` en retirant les valeurs `shape:'circularImage'`
 
-# Paramétrer le menu de description
+## Affichage latéral
 
-Lors de l’utilisation de l’Opensphère, l’utilisateur est amené à consulter le menu de description, un volet apparaissant à droite de l’interface et contenant des informations sur les entités. Pour chaque entité inscrite dans la base de données `entite.json` (et figurant par conséquent dans le graphe), il est possible d’afficher son `label`, son `title` (l’information `titre` ayant été réaffectée au terme `title` dans [notre exemple](#intégration)) ou tout autre information qui a été [intégrée dans la configuration](#intégration).
+L’Opensphère permet d'afficher les informations sur chaque entité dans un panneau latéral situé à droite de l’interface. Pour chaque entité inscrite dans la base de données `entite.json` (et figurant par conséquent dans le graphe), il est possible d’afficher son `label`, son `title` (l’information `titre` ayant été réaffectée au terme `title` dans [notre exemple](#)) ou tout autre information qui a été [intégrée dans la configuration](#).
 
 Ces informations apparaissent dans des champs que vous allez pouvoir définir et placer. Lorsqu’une entité est sélectionnée (via le graphe, l’index, le moteur de recherche ou ce même volet), l’ensemble de ces champs sont complétés avec les informations à disposition pour l’entité depuis la base de données.
 
-## Intégration des champs
-
 Dans le fichier `index.html`, vous retrouverez une marque `LATERAL FICHE`, peu après la ligne 250. S’en suit le code intégrant le volet `<aside>` et la boîte identifiée `fiche-content`. En son sein, vous pouvez modifier tout les éléments relatifs à cet affichage.
 
-Vous pouvez ajouter tout élément pouvant contenir du texte dans comme les balises `<span>` et `<div>` et les marquer avec l’attribut `data-meta`. C’est lui qui va permettre d’insérer comme texte dans l’élément que vous avez défini l’information passée en paramètre. Par exemple, les balises ci-dessous permet d’afficher les informations liées au constantes « title » et « description » de l’entité active.
+Vous pouvez ajouter tout élément pouvant contenir du texte dans comme les balises `<span>` et `<div>` et les marquer avec l’attribut `data-meta`. C’est lui qui va permettre d’insérer comme texte dans l’élément que vous avez défini l’information passée en paramètre. Par exemple, les balises ci-dessous permet d’afficher les informations liées au constantes « title » et « description » de l’entité active.
 
 ```html
 <aside id="fiche">
@@ -250,11 +242,11 @@ Vous pouvez ajouter tout élément pouvant contenir du texte dans comme les bali
 </aside>
 ```
 
-# Paramétrer les filtres
+## Filtres
 
-Les filtres sont des leviers « on/off ». Affichés sous forme de boutons en entête du site et dans le volet de filtre (affiché sur les petits écrans de tablette), ils permettent d’afficher ou de cacher les entités correspondant à certains critères. Ces critères sont renseignés dans ces mêmes boutons portant la classe `btn-group`. Il peuvent être modifiés dans le fichier `index.html`.
+Les filtres sont des leviers « on/off ». Affichés sous forme de boutons en entête du site et dans le volet de filtre (affiché sur les petits écrans de tablette), ils permettent d’afficher ou de cacher les entités correspondant à certains critères. Ces critères sont renseignés dans ces mêmes boutons portant la classe `btn-group`. Il peuvent être modifiés dans le fichier `index.html`.
 
-La valeur de l’attribut `data-type` correspond à la constante qui va être analysée. La valeur de l’attribut `data-meta` correspond à la valeur attendue de cette constante. Avec les boutons ci-dessous, il est possible respectivement d’afficher/cacher les entités pour lesquelles la constante « genre » a la valeur « homme » et la constante « group » a la valeur « institution ».
+La valeur de l’attribut `data-type` correspond à la constante qui va être analysée. La valeur de l’attribut `data-meta` correspond à la valeur attendue de cette constante. Avec les boutons ci-dessous, il est possible respectivement d’afficher/cacher les entités pour lesquelles la constante « genre » a la valeur « homme » et la constante « group » a la valeur « institution ».
 
 ```html
 <button class="btn-group" data-type="genre" data-meta="homme">homme</button>
@@ -263,7 +255,7 @@ La valeur de l’attribut `data-type` correspond à la constante qui va être an
 
 Pensez à modifier en miroir le volet de filtre `<aside id="filter-volet">`, vers la ligne 230 de `index.html`.
 
-# Ajouter une langue d’affichage et description
+# Langues
 
 Dans l’entête de la page vous trouverez les boutons de traduction du site. Il se trouvent dans la boite portant la classe `lang-box`, vers la ligne 150 de `index.html`. Vous pouvez ajouter une langue très facilement, comme pour le Russe avec l’exemple ci-dessous.
 
@@ -279,7 +271,7 @@ Une fois le bouton disposé, vous pouvez intégrer les traductions
 <p data-lang-ru="traduction en russe">texte d’origine</p>
 ```
 
-- **à la base de données** : en ajoutant des informations propre à la langue lors de l’[intégration de la configuration](#intégration) comme ci-dessous.
+- **à la base de données** : en ajoutant des informations propre à la langue lors de l’[intégration de la configuration](#) comme ci-dessous.
 
 ```javascript
 {
@@ -301,7 +293,7 @@ Ru: {
 }
 ```
 
-# Modifier la description du site web
+# Métadonnées du site
 
 Les métadonnées sont les informations sur votre création récoltées par les robots qui parcourent le Web. Il s’agit du titre et de la description affichés par les moteurs de recherches. D’autres informations comme la liste des auteurs, la date de mise en ligne peuvent également être captée par des logiciels d’enregistrement comme Zotero. Pour le **référencement de votre projet**, il est primordial que vous complétiez ces champs.
 
@@ -330,7 +322,7 @@ npm i
 gulp watch
 ```
 
-# Exemples de réutilisation de l’Opensphère
+# Exemples d'utilisation
 
 Les projets suivants ont été réalisés à l’aide du logiciel Opensphère. Ils peuvent vous servir d’exemple, d’inspiration pour réaliser votre propre réutilisation.
 
@@ -338,5 +330,5 @@ Les projets suivants ont été réalisés à l’aide du logiciel Opensphère. I
     - site : [http://hyperotlet.huma-num.fr/otletosphere/](http://hyperotlet.huma-num.fr/otletosphere/)
     - code source : [https://github.com/hyperotlet/otletosphere](https://github.com/hyperotlet/otletosphere)
 - **OpenDataSphère** : réalisée par les étudiantes et étudiants de la [licence professionnelle MIND](http://www.infonumbordeaux.fr/mind/) pour traiter de l’open data en France.
-    - site : [https://www.arthurperret.fr/opendatasphere/](https://www.arthurperret.fr/opendatasphere/)
+    - site : [http://hyperotlet.huma-num.fr/opendatasphere/](http://hyperotlet.huma-num.fr/opendatasphere/)
     - code source : [https://github.com/hyperotlet/opendatasphere](https://github.com/hyperotlet/opendatasphere)
