@@ -17,8 +17,6 @@
 <body>
 
         
-    <div class="container">
-
         <nav id="TOC" role="doc-toc">
     <ul>
     <li><a href="#installation"><span class="toc-section-number">1</span> Installation</a>
@@ -202,7 +200,7 @@ Tant qu'il est actif, Gulp surveille le répertoire `/dist`. Lorsque des modific
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        }<span class="op">;</span></span></code></pre></div>
 <p>Cette commande permet de faire correspondre les métadonnées, c’est-à-dire les entêtes de colonnes dans le tableur, à des constantes JavaScript. Ce sont ces constantes qui sont ensuite utilisées ensuite dans tout le logiciel pour manipuler les métadonnées correspondante. Le schéma ci-dessous permet de bien distinguer métadonnées et constantes.</p>
 <figure>
-<img src="transfert-data.svg" alt="Intégration des données" /><figcaption aria-hidden="true">Intégration des données</figcaption>
+<img src="transfert-data.svg" width="350" alt="Intégration des données" /><figcaption aria-hidden="true">Intégration des données</figcaption>
 </figure>
 <p>Chaque métadonnée est préfixée par le nom du jeu de données auquel elle appartient (<code>entite</code> ou <code>lien</code>). On fait correspondre cette métadonnée préfixée à une constante. <!-- dont le nom peut être choisi de manière arbitraire mais pas toujours, certaines dépendent de vis.js ?--> Par exemple, la métadonnée <code>titre</code> est appelée sous la forme <code>entite.titre</code> et associée à une constante <code>title</code>.</p>
 <p>Les constantes peuvent être définies en incluant des transformations, comme par exemple en effectuant une opération mathématique sur une métadonnée numérique.</p>
@@ -347,8 +345,6 @@ Tant qu'il est actif, Gulp surveille le répertoire `/dist`. Lorsque des modific
 
     
         
-    </div>
-
 </body>
 
 </html>
