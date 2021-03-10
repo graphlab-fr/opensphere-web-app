@@ -18,6 +18,8 @@ html,
 }
 
 body {
+	margin: 0;
+	padding: 0;
 	font-family: var(--serif);
 	font-size: 1rem;
 	line-height: 1.5;
@@ -36,7 +38,7 @@ body {
 nav {
 	width: 25%;
 	overflow: auto;
-	margin: 2rem 1rem;
+	margin: 2rem 1rem 0 1rem;
 }
 
 nav {
@@ -80,9 +82,14 @@ h1 {
 	margin: 3rem 0 0.5rem 0;
 }
 h2 {
-	font-size: 1.1em;
+	font-size: 1.2em;
 	margin: 2rem 0 0.3rem 0;
 }
+h3 {
+	font-size: 1em;
+	margin: 2rem 0 0 0;
+}
+
 
 h2#toc-title { padding: 0 0 0 0.5em }
 
@@ -109,9 +116,15 @@ a:hover {
 }
 nav a {
 	display: block;
-	padding: 0 0 0.5rem 0rem;
+	padding: 0 0 0.2rem 0rem;
 	margin: 0;
 }
+:target { animation: highlight 3s ease; }
+@keyframes highlight {
+  0% { background-color: #ffa; }
+  100% { background-color: #ffffff; }
+}
+
 
 figure {
 	display: flex;
@@ -129,6 +142,7 @@ img {
 figcaption {
 	font-size: 0.8rem;
 	font-family: var(--mono);
+	padding: 1rem 0 0 0;
 }
 
 code, pre { font-family: var(--mono); }
@@ -219,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 .astuce, .tip {
 	position: relative;
-	background: rgb(201, 201, 250);
+	background: rgb(225, 225, 225);
 	padding: 30px 10px 3px 10px;
 	border-radius: 5px;
 }
@@ -239,6 +253,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 	left: 5px;
 	font-size: 12px;
 	font-family: var(--mono);
+}
+
+dt {
+	font-weight: bold;
+	float: left;
+	padding: 0 0.5rem 0 0;
+}
+dd {
+	margin: 0;
+	padding: 0 0 0.2rem 1rem;
 }
 
 /* RESPONSIVENESS */
