@@ -47,6 +47,14 @@ nav a {
   margin: 0;
 }
 .sommaire { display: none; }
+main {
+  position: relative;
+  padding: 1rem 1rem 0 1rem;
+  width: 100%;
+}
+article { max-width: 700px; }
+.header-section-number::after,
+.toc-section-number::after { content: '.'; }
 @media (max-width: 900px) {
   nav { display: none; }
   .sommaire { display: block }
@@ -54,14 +62,8 @@ nav a {
     margin: 0 auto;
     width: 99vw;
   }
+  article { margin: 0 auto; }
 }
-main {
-  position: relative;
-  padding: 1rem;
-  max-width: 700px;
-}
-.header-section-number::after,
-.toc-section-number::after { content: '.'; }
 
 /* HEADINGS */
 
@@ -81,7 +83,7 @@ h3 {
   font-size: 1em;
   margin: 2rem 0 0 0;
 }
-main h1.title {
+h1.title {
   font-size: 2em;
   text-align: center;
   margin: 1rem 0 2rem 0;

@@ -1,10 +1,10 @@
 ---
 title: Documentation de l'Opensphère
-author: Guillaume Brioudes <https://myllaume.fr/>
-date: 2021-02-26
-lang: fr
-keywords:
-  - développeur
+author:
+  - Guillaume Brioudes <https://myllaume.fr/>
+  - Arthur Perret <https://www.arthurperret.fr/>
+date: 2021-03-11
+lang: fr-FR
 ---
 
 L’Opensphère est un logiciel de cartographie relationnelle interactive conçu par l’équipe du programme de recherche ANR [HyperOtlet].
@@ -139,9 +139,9 @@ Ici également, vous pouvez anticiper l'étape d'[intégration des données](#in
 
 Générer des données au format requis pour l'Opensphère nécessite de disposer d'outils permettant la saisie des données, leur mise en relation par un système d'identifiants uniques, et leur export au format JSON.
 
-## Modèle Google Sheets
+## Google Sheets
 
-Un modèle Google Sheets pour l'Opensphère est disponible à l'adresse suivante : [https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing)
+Un modèle Google Sheets pour l'Opensphère est disponible à l'adresse suivante : <https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing>
 
 [Google Sheets](https://www.google.com/sheets/about/) est un tableur classique, qui repose sur des formules pour contrôler la saisie des données. Notre modèle inclut des formules, notamment pour faire correspondre automatiquement les identifiants d'une feuille à l'autre. Afin de ne pas rencontrer de difficultés, n'oubliez pas d'étendre les formules sur plusieurs lignes après avoir saisi des données.
 
@@ -151,15 +151,24 @@ Pour exporter les données au format JSON, installez l’extension [Export Sheet
 
 Une fois l'extension installée, cliquez sur `Modules complémentaires` › `Export Sheet Data` › `Open Sidebar`. Suivez les instructions détaillées dans la feuille « Notice export » pour exporter les feuilles « Entités » et « Extraction ».
 
-## Modèle Airtable
+## Airtable
 
-Un modèle Airtable pour l'Opensphère est disponible à l'adresse suivante : [https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs](https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs)
+Un modèle Airtable pour l'Opensphère est disponible à l'adresse suivante : <https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs>
 
 [Airtable](https://airtable.com/) est un logiciel qui permet d'utiliser une base de données via l'interface d'un tableur collaboratif en ligne. [Une documentation](https://support.airtable.com/hc/en-us) est disponible en anglais. Notre modèle inclut des règles qui permettent de contrôler la saisie des données.
 
 Les tables « entites » et « liens » peuvent être exportées au format CSV. Vous devrez utiliser un [convertisseur CSV-JSON](http://convertcsv.com/json-to-csv.htm) pour obtenir les fichiers `entites.json` et `liens.json` requis.
 
-<!-- GEXF ? -->
+## Gephi
+
+Un modèle Gephi pour l'Opensphère est disponible à l'adresse suivante : <https://drive.google.com/file/d/1A_b12rrpGjw11JHGPsAA4pnlQMYFOmTX/view?usp=sharing>
+
+[Gephi](https://gephi.org) est un logiciel qui permet de construire et analyser des graphes et des réseaux. Il inclut notamment une interface d'édition des données sous forme de tableur qui facilite la création d'entités (*nodes*) et de liens (*edges*).
+
+Le plugin [JSON Exporter](https://gephi.org/plugins/#/plugin/jsonexporter-plugin) pour Gephi permet de générer un fichier au format JSON. Dans Gephi, cliquez sur `Outils` › `Modules d'extension` puis cherchez le plugin et installez-le. Une fois le plugin installé, pour exporter vos données cliquez sur `Fichier` › `Export` › `Fichier de graphe…` puis dans le menu déroulant `Format de fichier`, sélectionnez `JSON Graph (*.json)`. Traitez ensuite les données pour qu'elles soient lisibles par l'Opensphère :
+
+- Effacez les chaînes de caractères `"attributes":{` et `}` qui encadrent les attributs de chaque entité. Utilisez par exemple des expressions régulières : cherchez `"attributes":{([^}]+)}` et remplacez les résultats par `\1`.
+- Copiez et enregistrez le contenu des objets `nodes` et `edges` dans des fichiers séparés intitulés respectivement `entites.json` et `liens.json`.
 
 # Intégration des données
 

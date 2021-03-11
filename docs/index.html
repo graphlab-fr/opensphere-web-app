@@ -1,68 +1,69 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr" >
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr-FR" xml:lang="fr-FR" >
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="generator" content="pandoc" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-        <meta name="author" content="Guillaume Brioudes https://myllaume.fr/" />
-            <meta name="dcterms.date" content="2021-02-26" />
-            <meta name="keywords" content="développeur" />
-        <title>Documentation de l’Opensphère</title>
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="author" content="Guillaume Brioudes https://myllaume.fr/" />
+<meta name="author" content="Arthur Perret https://www.arthurperret.fr/" />
+<meta name="dcterms.date" content="2021-03-11" />
+<title>Documentation de l’Opensphère</title>
 
-    <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css" />
 
-    </head>
+</head>
 
 <body>
 
-        
-        <nav id="TOC" role="doc-toc">
-    <ul>
-    <li><a href="#installation"><span class="toc-section-number">1</span> Installation</a>
-    <ul>
-    <li><a href="#pre-requis"><span class="toc-section-number">1.1</span> Pré-requis</a></li>
-    <li><a href="#telechargement"><span class="toc-section-number">1.2</span> Téléchargement</a></li>
-    </ul></li>
-    <li><a href="#format-des-donnees"><span class="toc-section-number">2</span> Format des données</a>
-    <ul>
-    <li><a href="#entites"><span class="toc-section-number">2.1</span> Entités</a></li>
-    <li><a href="#liens"><span class="toc-section-number">2.2</span> Liens</a></li>
-    </ul></li>
-    <li><a href="#generation-des-donnees"><span class="toc-section-number">3</span> Génération des données</a>
-    <ul>
-    <li><a href="#modele-google-sheets"><span class="toc-section-number">3.1</span> Modèle Google Sheets</a></li>
-    <li><a href="#modele-airtable"><span class="toc-section-number">3.2</span> Modèle Airtable</a></li>
-    </ul></li>
-    <li><a href="#integration-des-donnees"><span class="toc-section-number">4</span> Intégration des données</a>
-    <ul>
-    <li><a href="#entites-1"><span class="toc-section-number">4.1</span> Entités</a></li>
-    <li><a href="#liens-1"><span class="toc-section-number">4.2</span> Liens</a></li>
-    <li><a href="#groupes"><span class="toc-section-number">4.3</span> Groupes</a></li>
-    <li><a href="#images"><span class="toc-section-number">4.4</span> Images</a></li>
-    <li><a href="#affichage-lateral"><span class="toc-section-number">4.5</span> Affichage latéral</a></li>
-    <li><a href="#filtres"><span class="toc-section-number">4.6</span> Filtres</a></li>
-    </ul></li>
-    <li><a href="#langues"><span class="toc-section-number">5</span> Langues</a>
-    <ul>
-    <li><a href="#donnees"><span class="toc-section-number">5.1</span> Données</a></li>
-    <li><a href="#elements-dinterface"><span class="toc-section-number">5.2</span> Éléments d’interface</a></li>
-    <li><a href="#selecteur-de-langue"><span class="toc-section-number">5.3</span> Sélecteur de langue</a></li>
-    </ul></li>
-    <li><a href="#publication"><span class="toc-section-number">6</span> Publication</a></li>
-    <li><a href="#exemples-dutilisation"><span class="toc-section-number">7</span> Exemples d’utilisation</a></li>
-    <li><a href="#credits"><span class="toc-section-number">8</span> Crédits</a>
-    <ul>
-    <li><a href="#equipe"><span class="toc-section-number">8.1</span> Équipe</a></li>
-    <li><a href="#historique-du-projet"><span class="toc-section-number">8.2</span> Historique du projet</a></li>
-    <li><a href="#bibliotheques-utilisees"><span class="toc-section-number">8.3</span> Bibliothèques utilisées</a></li>
-    </ul></li>
-    </ul>
-    </nav>
-    
-    <main>
-        <h1 class="title">Documentation de l’Opensphère</h1>
 
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#installation"><span class="toc-section-number">1</span> Installation</a>
+<ul>
+<li><a href="#pre-requis"><span class="toc-section-number">1.1</span> Pré-requis</a></li>
+<li><a href="#telechargement"><span class="toc-section-number">1.2</span> Téléchargement</a></li>
+</ul></li>
+<li><a href="#format-des-donnees"><span class="toc-section-number">2</span> Format des données</a>
+<ul>
+<li><a href="#entites"><span class="toc-section-number">2.1</span> Entités</a></li>
+<li><a href="#liens"><span class="toc-section-number">2.2</span> Liens</a></li>
+</ul></li>
+<li><a href="#generation-des-donnees"><span class="toc-section-number">3</span> Génération des données</a>
+<ul>
+<li><a href="#google-sheets"><span class="toc-section-number">3.1</span> Google Sheets</a></li>
+<li><a href="#airtable"><span class="toc-section-number">3.2</span> Airtable</a></li>
+<li><a href="#gephi"><span class="toc-section-number">3.3</span> Gephi</a></li>
+</ul></li>
+<li><a href="#integration-des-donnees"><span class="toc-section-number">4</span> Intégration des données</a>
+<ul>
+<li><a href="#entites-1"><span class="toc-section-number">4.1</span> Entités</a></li>
+<li><a href="#liens-1"><span class="toc-section-number">4.2</span> Liens</a></li>
+<li><a href="#groupes"><span class="toc-section-number">4.3</span> Groupes</a></li>
+<li><a href="#images"><span class="toc-section-number">4.4</span> Images</a></li>
+<li><a href="#affichage-lateral"><span class="toc-section-number">4.5</span> Affichage latéral</a></li>
+<li><a href="#filtres"><span class="toc-section-number">4.6</span> Filtres</a></li>
+</ul></li>
+<li><a href="#langues"><span class="toc-section-number">5</span> Langues</a>
+<ul>
+<li><a href="#donnees"><span class="toc-section-number">5.1</span> Données</a></li>
+<li><a href="#elements-dinterface"><span class="toc-section-number">5.2</span> Éléments d’interface</a></li>
+<li><a href="#selecteur-de-langue"><span class="toc-section-number">5.3</span> Sélecteur de langue</a></li>
+</ul></li>
+<li><a href="#publication"><span class="toc-section-number">6</span> Publication</a></li>
+<li><a href="#exemples-dutilisation"><span class="toc-section-number">7</span> Exemples d’utilisation</a></li>
+<li><a href="#credits"><span class="toc-section-number">8</span> Crédits</a>
+<ul>
+<li><a href="#equipe"><span class="toc-section-number">8.1</span> Équipe</a></li>
+<li><a href="#historique-du-projet"><span class="toc-section-number">8.2</span> Historique du projet</a></li>
+<li><a href="#bibliotheques-utilisees"><span class="toc-section-number">8.3</span> Bibliothèques utilisées</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<main>
+<article>
+<h1 class="title">Documentation de l’Opensphère</h1>
 <p>L’Opensphère est un logiciel de cartographie relationnelle interactive conçu par l’équipe du programme de recherche ANR <a href="https://hyperotlet.hypotheses.org/">HyperOtlet</a>.</p>
 <p>Les fonctionnalités du logiciel et leur utilisation sont décrites dans le <a href="https://hyperotlet.github.io/otletosphere/">manuel d’utilisation</a> de l’<a href="http://hyperotlet.huma-num.fr/otletosphere/">Otletosphère</a>, qui constitue l’origine du projet (voir les <a href="#exemples-dutilisation">exemples d’utilisation</a> plus bas).</p>
 <p>Cette documentation s’adresse aux personnes souhaitant réutiliser le code de l’Opensphère.</p>
@@ -152,17 +153,24 @@
 </div>
 <h1 data-number="3" id="generation-des-donnees"><span class="header-section-number">3</span> Génération des données</h1>
 <p>Générer des données au format requis pour l’Opensphère nécessite de disposer d’outils permettant la saisie des données, leur mise en relation par un système d’identifiants uniques, et leur export au format JSON.</p>
-<h2 data-number="3.1" id="modele-google-sheets"><span class="header-section-number">3.1</span> Modèle Google Sheets</h2>
-<p>Un modèle Google Sheets pour l’Opensphère est disponible à l’adresse suivante : <a href="https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing</a></p>
+<h2 data-number="3.1" id="google-sheets"><span class="header-section-number">3.1</span> Google Sheets</h2>
+<p>Un modèle Google Sheets pour l’Opensphère est disponible à l’adresse suivante : <a href="https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing" class="uri">https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing</a></p>
 <p><a href="https://www.google.com/sheets/about/">Google Sheets</a> est un tableur classique, qui repose sur des formules pour contrôler la saisie des données. Notre modèle inclut des formules, notamment pour faire correspondre automatiquement les identifiants d’une feuille à l’autre. Afin de ne pas rencontrer de difficultés, n’oubliez pas d’étendre les formules sur plusieurs lignes après avoir saisi des données.</p>
 <p>La saisie des données concernant les entités se fait dans la feuille « Entités ». La saisie des données concernant leurs relations se fait dans la feuille « Liens ». La feuille « Extraction » doit être remplie automatiquement grâce une formule qui remplace les noms des identités par les identifiants correspondants (grâce à la <a href="https://support.google.com/docs/answer/3093318?hl=fr">fonction <code>RECHERCHEV</code></a>. Ceci permet de saisir les relations dans une interface confortable (la feuille « Liens ») tout en exportant les données au format requis depuis une feuille ad hoc (la feuille « Extraction »).</p>
 <p>Pour exporter les données au format JSON, installez l’extension <a href="https://workspace.google.com/marketplace/app/export_sheet_data/903838927001">Export Sheet Data</a> depuis l’onglet <code>Modules complémentaires</code> dans Google Sheets.</p>
 <p>Une fois l’extension installée, cliquez sur <code>Modules complémentaires</code> › <code>Export Sheet Data</code> › <code>Open Sidebar</code>. Suivez les instructions détaillées dans la feuille « Notice export » pour exporter les feuilles « Entités » et « Extraction ».</p>
-<h2 data-number="3.2" id="modele-airtable"><span class="header-section-number">3.2</span> Modèle Airtable</h2>
-<p>Un modèle Airtable pour l’Opensphère est disponible à l’adresse suivante : <a href="https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs">https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs</a></p>
+<h2 data-number="3.2" id="airtable"><span class="header-section-number">3.2</span> Airtable</h2>
+<p>Un modèle Airtable pour l’Opensphère est disponible à l’adresse suivante : <a href="https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs" class="uri">https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs</a></p>
 <p><a href="https://airtable.com/">Airtable</a> est un logiciel qui permet d’utiliser une base de données via l’interface d’un tableur collaboratif en ligne. <a href="https://support.airtable.com/hc/en-us">Une documentation</a> est disponible en anglais. Notre modèle inclut des règles qui permettent de contrôler la saisie des données.</p>
 <p>Les tables « entites » et « liens » peuvent être exportées au format CSV. Vous devrez utiliser un <a href="http://convertcsv.com/json-to-csv.htm">convertisseur CSV-JSON</a> pour obtenir les fichiers <code>entites.json</code> et <code>liens.json</code> requis.</p>
-<!-- GEXF ? -->
+<h2 data-number="3.3" id="gephi"><span class="header-section-number">3.3</span> Gephi</h2>
+<p>Un modèle Gephi pour l’Opensphère est disponible à l’adresse suivante : <a href="https://drive.google.com/file/d/1A_b12rrpGjw11JHGPsAA4pnlQMYFOmTX/view?usp=sharing" class="uri">https://drive.google.com/file/d/1A_b12rrpGjw11JHGPsAA4pnlQMYFOmTX/view?usp=sharing</a></p>
+<p><a href="https://gephi.org">Gephi</a> est un logiciel qui permet de construire et analyser des graphes et des réseaux. Il inclut notamment une interface d’édition des données sous forme de tableur qui facilite la création d’entités (<em>nodes</em>) et de liens (<em>edges</em>).</p>
+<p>Le plugin <a href="https://gephi.org/plugins/#/plugin/jsonexporter-plugin">JSON Exporter</a> pour Gephi permet de générer un fichier au format JSON. Dans Gephi, cliquez sur <code>Outils</code> › <code>Modules d'extension</code> puis cherchez le plugin et installez-le. Une fois le plugin installé, pour exporter vos données cliquez sur <code>Fichier</code> › <code>Export</code> › <code>Fichier de graphe…</code> puis dans le menu déroulant <code>Format de fichier</code>, sélectionnez <code>JSON Graph (*.json)</code>. Traitez ensuite les données pour qu’elles soient lisibles par l’Opensphère :</p>
+<ul>
+<li>Effacez les chaînes de caractères <code>"attributes":{</code> et <code>}</code> qui encadrent les attributs de chaque entité. Utilisez par exemple des expressions régulières : cherchez <code>"attributes":{([^}]+)}</code> et remplacez les résultats par <code>\1</code>.</li>
+<li>Copiez et enregistrez le contenu des objets <code>nodes</code> et <code>edges</code> dans des fichiers séparés intitulés respectivement <code>entites.json</code> et <code>liens.json</code>.</li>
+</ul>
 <h1 data-number="4" id="integration-des-donnees"><span class="header-section-number">4</span> Intégration des données</h1>
 <p>Une fois les fichiers <code>entites.json</code> et <code>liens.json</code> placés dans le répertoire <code>/data</code>, il faut modifier le code de l’Opensphère pour qu’elle puisse intégrer les données.</p>
 <h2 data-number="4.1" id="entites-1"><span class="header-section-number">4.1</span> Entités</h2>
@@ -350,10 +358,11 @@
 <li><a href="https://github.com/krisk/Fuse/">Fuse.js</a> v6.4.1 (licence Apache 2.0) : mise en place du moteur de recherche.</li>
 <li><a href="https://github.com/twbs/bootstrap">Bootstrap Grid</a> v4.5.0 (licence MIT) : flexibilité de l’interface pour mobile.</li>
 </ul>
-    </main>
+</article>
+</main>
 
-    
-        
+
+
 </body>
 
 </html>
