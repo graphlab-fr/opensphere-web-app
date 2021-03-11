@@ -134,11 +134,11 @@ L'exemple ci-dessous constitue une version simplifiée du fichier `liens.json` 
 Ici également, vous pouvez anticiper l'étape d'[intégration des données](#integration-des-donnees) en nommant les métadonnées conformément à la nomenclature de [Vis.js]. C'est le cas dans l'exemple ci-dessus.
 :::
 
-## Générer des données au format requis
+# Générer des données
 
 Générer des données au format requis pour l'Opensphère nécessite de disposer d'outils permettant la saisie des données, leur mise en relation par un système d'identifiants uniques, et leur export au format JSON.
 
-### Modèle Google Sheets
+## Modèle Google Sheets
 
 Un modèle Google Sheets pour l'Opensphère est disponible à l'adresse suivante : [https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing)
 
@@ -150,7 +150,7 @@ Pour exporter les données au format JSON, installez l’extension [Export Sheet
 
 Une fois l'extension installée, cliquez sur `Modules complémentaires` › `Export Sheet Data` › `Open Sidebar`. Suivez les instructions détaillées dans la feuille « Notice export » pour exporter les feuilles « Entités » et « Extraction ».
 
-### Modèle Airtable
+## Modèle Airtable
 
 Un modèle Airtable pour l'Opensphère est disponible à l'adresse suivante : [https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs](https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs)
 

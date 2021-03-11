@@ -28,34 +28,34 @@
     <ul>
     <li><a href="#entites"><span class="toc-section-number">2.1</span> Entités</a></li>
     <li><a href="#liens"><span class="toc-section-number">2.2</span> Liens</a></li>
-    <li><a href="#generer-des-donnees-au-format-requis"><span class="toc-section-number">2.3</span> Générer des données au format requis</a>
-    <ul>
-    <li><a href="#modele-google-sheets"><span class="toc-section-number">2.3.1</span> Modèle Google Sheets</a></li>
-    <li><a href="#modele-airtable"><span class="toc-section-number">2.3.2</span> Modèle Airtable</a></li>
     </ul></li>
-    </ul></li>
-    <li><a href="#integration-des-donnees"><span class="toc-section-number">3</span> Intégration des données</a>
+    <li><a href="#generer-des-donnees"><span class="toc-section-number">3</span> Générer des données</a>
     <ul>
-    <li><a href="#entites-1"><span class="toc-section-number">3.1</span> Entités</a></li>
-    <li><a href="#liens-1"><span class="toc-section-number">3.2</span> Liens</a></li>
-    <li><a href="#groupes"><span class="toc-section-number">3.3</span> Groupes</a></li>
-    <li><a href="#images"><span class="toc-section-number">3.4</span> Images</a></li>
-    <li><a href="#affichage-lateral"><span class="toc-section-number">3.5</span> Affichage latéral</a></li>
-    <li><a href="#filtres"><span class="toc-section-number">3.6</span> Filtres</a></li>
+    <li><a href="#modele-google-sheets"><span class="toc-section-number">3.1</span> Modèle Google Sheets</a></li>
+    <li><a href="#modele-airtable"><span class="toc-section-number">3.2</span> Modèle Airtable</a></li>
     </ul></li>
-    <li><a href="#langues"><span class="toc-section-number">4</span> Langues</a>
+    <li><a href="#integration-des-donnees"><span class="toc-section-number">4</span> Intégration des données</a>
     <ul>
-    <li><a href="#donnees"><span class="toc-section-number">4.1</span> Données</a></li>
-    <li><a href="#elements-dinterface"><span class="toc-section-number">4.2</span> Éléments d’interface</a></li>
-    <li><a href="#selecteur-de-langue"><span class="toc-section-number">4.3</span> Sélecteur de langue</a></li>
+    <li><a href="#entites-1"><span class="toc-section-number">4.1</span> Entités</a></li>
+    <li><a href="#liens-1"><span class="toc-section-number">4.2</span> Liens</a></li>
+    <li><a href="#groupes"><span class="toc-section-number">4.3</span> Groupes</a></li>
+    <li><a href="#images"><span class="toc-section-number">4.4</span> Images</a></li>
+    <li><a href="#affichage-lateral"><span class="toc-section-number">4.5</span> Affichage latéral</a></li>
+    <li><a href="#filtres"><span class="toc-section-number">4.6</span> Filtres</a></li>
     </ul></li>
-    <li><a href="#publication"><span class="toc-section-number">5</span> Publication</a></li>
-    <li><a href="#exemples-dutilisation"><span class="toc-section-number">6</span> Exemples d’utilisation</a></li>
-    <li><a href="#credits"><span class="toc-section-number">7</span> Crédits</a>
+    <li><a href="#langues"><span class="toc-section-number">5</span> Langues</a>
     <ul>
-    <li><a href="#equipe"><span class="toc-section-number">7.1</span> Équipe</a></li>
-    <li><a href="#historique-du-projet"><span class="toc-section-number">7.2</span> Historique du projet</a></li>
-    <li><a href="#bibliotheques-utilisees"><span class="toc-section-number">7.3</span> Bibliothèques utilisées</a></li>
+    <li><a href="#donnees"><span class="toc-section-number">5.1</span> Données</a></li>
+    <li><a href="#elements-dinterface"><span class="toc-section-number">5.2</span> Éléments d’interface</a></li>
+    <li><a href="#selecteur-de-langue"><span class="toc-section-number">5.3</span> Sélecteur de langue</a></li>
+    </ul></li>
+    <li><a href="#publication"><span class="toc-section-number">6</span> Publication</a></li>
+    <li><a href="#exemples-dutilisation"><span class="toc-section-number">7</span> Exemples d’utilisation</a></li>
+    <li><a href="#credits"><span class="toc-section-number">8</span> Crédits</a>
+    <ul>
+    <li><a href="#equipe"><span class="toc-section-number">8.1</span> Équipe</a></li>
+    <li><a href="#historique-du-projet"><span class="toc-section-number">8.2</span> Historique du projet</a></li>
+    <li><a href="#bibliotheques-utilisees"><span class="toc-section-number">8.3</span> Bibliothèques utilisées</a></li>
     </ul></li>
     </ul>
     </nav>
@@ -149,22 +149,22 @@
 <div class="astuce">
 <p>Ici également, vous pouvez anticiper l’étape d’<a href="#integration-des-donnees">intégration des données</a> en nommant les métadonnées conformément à la nomenclature de <a href="https://visjs.org">Vis.js</a>. C’est le cas dans l’exemple ci-dessus.</p>
 </div>
-<h2 data-number="2.3" id="generer-des-donnees-au-format-requis"><span class="header-section-number">2.3</span> Générer des données au format requis</h2>
+<h1 data-number="3" id="generer-des-donnees"><span class="header-section-number">3</span> Générer des données</h1>
 <p>Générer des données au format requis pour l’Opensphère nécessite de disposer d’outils permettant la saisie des données, leur mise en relation par un système d’identifiants uniques, et leur export au format JSON.</p>
-<h3 data-number="2.3.1" id="modele-google-sheets"><span class="header-section-number">2.3.1</span> Modèle Google Sheets</h3>
+<h2 data-number="3.1" id="modele-google-sheets"><span class="header-section-number">3.1</span> Modèle Google Sheets</h2>
 <p>Un modèle Google Sheets pour l’Opensphère est disponible à l’adresse suivante : <a href="https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1hiONQ5SM82vKTAzMH2NRU3nNGQMToOU-TGaTfxxT0u4/edit?usp=sharing</a></p>
 <p><a href="https://www.google.com/sheets/about/">Google Sheets</a> est un tableur classique, qui repose sur des formules pour contrôler la saisie des données. Notre modèle inclut des formules, notamment pour faire correspondre automatiquement les identifiants d’une feuille à l’autre. Afin de ne pas rencontrer de difficultés, n’oubliez pas d’étendre les formules sur plusieurs lignes après avoir saisi des données.</p>
 <p>La saisie des données concernant les entités se fait dans la feuille « Entités ». La saisie des données concernant leurs relations se fait dans la feuille « Liens ». La feuille « Extraction » doit être remplie automatiquement grâce une formule qui remplace les noms des identités par les identifiants correspondants (grâce à la <a href="https://support.google.com/docs/answer/3093318?hl=fr">fonction <code>RECHERCHEV</code></a>. Ceci permet de saisir les relations dans une interface confortable (la feuille « Liens ») tout en exportant les données au format requis depuis une feuille ad hoc (la feuille « Extraction »).</p>
 <p>Pour exporter les données au format JSON, installez l’extension <a href="https://workspace.google.com/marketplace/app/export_sheet_data/903838927001">Export Sheet Data</a> depuis l’onglet <code>Modules complémentaires</code> dans Google Sheets.</p>
 <p>Une fois l’extension installée, cliquez sur <code>Modules complémentaires</code> › <code>Export Sheet Data</code> › <code>Open Sidebar</code>. Suivez les instructions détaillées dans la feuille « Notice export » pour exporter les feuilles « Entités » et « Extraction ».</p>
-<h3 data-number="2.3.2" id="modele-airtable"><span class="header-section-number">2.3.2</span> Modèle Airtable</h3>
+<h2 data-number="3.2" id="modele-airtable"><span class="header-section-number">3.2</span> Modèle Airtable</h2>
 <p>Un modèle Airtable pour l’Opensphère est disponible à l’adresse suivante : <a href="https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs">https://airtable.com/shrBRlWxvzFatUoFF/tblHqN5RE9z7j5HdU/viwn2Q7y4fijyAfSs</a></p>
 <p><a href="https://airtable.com/">Airtable</a> est un logiciel qui permet d’utiliser une base de données via l’interface d’un tableur collaboratif en ligne. <a href="https://support.airtable.com/hc/en-us">Une documentation</a> est disponible en anglais. Notre modèle inclut des règles qui permettent de contrôler la saisie des données.</p>
 <p>Les tables « entites » et « liens » peuvent être exportées au format CSV. Vous devrez utiliser un <a href="http://convertcsv.com/json-to-csv.htm">convertisseur CSV-JSON</a> pour obtenir les fichiers <code>entites.json</code> et <code>liens.json</code> requis.</p>
 <!-- GEXF ? -->
-<h1 data-number="3" id="integration-des-donnees"><span class="header-section-number">3</span> Intégration des données</h1>
+<h1 data-number="4" id="integration-des-donnees"><span class="header-section-number">4</span> Intégration des données</h1>
 <p>Une fois les fichiers <code>entites.json</code> et <code>liens.json</code> placés dans le répertoire <code>/data</code>, il faut modifier le code de l’Opensphère pour qu’elle puisse intégrer les données.</p>
-<h2 data-number="3.1" id="entites-1"><span class="header-section-number">3.1</span> Entités</h2>
+<h2 data-number="4.1" id="entites-1"><span class="header-section-number">4.1</span> Entités</h2>
 <p>La commande d’intégration des données représentant les entités se trouve dans le fichier <code>/assets/main.js</code> à partir de la ligne 20. Un extrait simplifié est présenté ci-dessous.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>network<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">nodes</span><span class="op">.</span><span class="fu">add</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    entites<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(entite) {</span>
@@ -192,7 +192,7 @@
 </div>
 <p>Les constantes peuvent être définies en incluant des transformations, comme par exemple en effectuant une opération mathématique sur une métadonnée numérique.</p>
 <p>Pour associer des métadonnées dans différentes langues à une même constante, voir la section <a href="#langues">Langues</a> plus bas.</p>
-<h2 data-number="3.2" id="liens-1"><span class="header-section-number">3.2</span> Liens</h2>
+<h2 data-number="4.2" id="liens-1"><span class="header-section-number">4.2</span> Liens</h2>
 <p>L’intégration des données représentant les relations utilise une commande similaire située quelques lignes plus bas, toujours dans le fichier <code>/assets/main.js</code>.</p>
 <p>Exemple :</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>network<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">edges</span><span class="op">.</span><span class="fu">add</span>(</span>
@@ -209,7 +209,7 @@
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                <span class="dt">title</span><span class="op">:</span> lien<span class="op">.</span><span class="at">label_en</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            }</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        }<span class="op">;</span></span></code></pre></div>
-<h2 data-number="3.3" id="groupes"><span class="header-section-number">3.3</span> Groupes</h2>
+<h2 data-number="4.3" id="groupes"><span class="header-section-number">4.3</span> Groupes</h2>
 <p>Lors de l’intégration, une constante <code>group</code> doit être déclarée pour chaque entité. Cette constante est pensée pour correspondre à une catégorisation des entités.</p>
 <p>La constante <code>group</code> permet de définir des paramètres d’affichage dans le graphe qui s’appliquent en bloc à toutes les entités au sein du même groupe. La liste complète des paramètres est disponible sur la page <a href="https://visjs.github.io/vis-network/docs/network/nodes.html">Network - Nodes</a> de la documentation de <a href="https://visjs.org">Vis.js</a>.</p>
 <p>Ces paramètres doivent être déclarés dans le fichier <code>/assets/main.js</code>, vers la ligne 160. Un extrait simplifié est présenté ci-dessous :</p>
@@ -220,7 +220,7 @@
 <div class="important">
 <p>L’Opensphère permet d’ajouter d’autres constantes (liées à d’autres métadonnées) qui jouent un rôle de catégorisation similaire (voir la section <a href="#filtres">Filtres</a> plus bas). Mais seule la constante <code>group</code> peut être utilisée pour définir des paramètres liés à l’affichage du graphe comme expliqué ci-dessus.</p>
 </div>
-<h2 data-number="3.4" id="images"><span class="header-section-number">3.4</span> Images</h2>
+<h2 data-number="4.4" id="images"><span class="header-section-number">4.4</span> Images</h2>
 <p>Par défaut, toutes les entités doivent être associées à une image. Chaque entité peut avoir sa propre image, ou bien la partager avec d’autres entités.</p>
 <div class="astuce">
 <p>L’<a href="http://hyperotlet.huma-num.fr/otletosphere/">Otletosphère</a> et l’<a href="http://hyperotlet.huma-num.fr/opendatasphère/">OpenDataSphère</a> montrent deux façons d’envisager l’utilisation des images : la première utilise des photographies pour mettre en valeur les personnes, tandis que la seconde utilise des icônes qui font ressortir les catégories des entités.</p>
@@ -234,7 +234,7 @@
 <li>Ligne ~150 : remplacer la valeur de <code>shape</code> (initialement <code>image</code>) une autre valeur comme <code>circle</code> ou <code>square</code>. La liste complète des paramètres est disponible sur la page <a href="https://visjs.github.io/vis-network/docs/network/nodes.html">Network - Nodes</a> de la documentation de <a href="https://visjs.org">Vis.js</a>.</li>
 <li>Ligne ~160 : supprimer le paramètre <code>shape:'circularImage'</code> pour les différents groupes définis dans <code>groups</code>.</li>
 </ul>
-<h2 data-number="3.5" id="affichage-lateral"><span class="header-section-number">3.5</span> Affichage latéral</h2>
+<h2 data-number="4.5" id="affichage-lateral"><span class="header-section-number">4.5</span> Affichage latéral</h2>
 <p>L’affichage des métadonnées dans l’Opensphère reprend la logique de la fiche, incarnée par un panneau latéral situé à droite de l’interface. Le paramétrage de cette « fiche » consiste à modifier le fichier <code>index.html</code> pour créer des champs faisant appel aux différentes constantes définies au préalable dans <code>/assets/main.js</code>.</p>
 <p>Dans le fichier <code>index.html</code>, la région à modifier se trouve peu après la ligne 250 au niveau du commentaire indiquant <code>LATERAL FICHE</code>. Le volet correspond à l’élément <code>aside</code>. Le contenu à modifier est situé dans le <code>div</code> portant l’identifiant <code>fiche-content</code>.</p>
 <p>Pour ajouter un champ, ajoutez un élément <code>span</code> ou <code>div</code> portant l’attribut <code>data-meta</code>. La valeur de cet attribut doit être l’une des constantes définies dans <code>/assets/main.js</code>. L’élement doit rester vide (la balise fermante suit immédiatement la balise ouvrante). Lorsqu’une entité est sélectionnée dans l’interface de l’Opensphère, le logiciel remplit automatiquement chaque élément <code>span</code> ou <code>div</code> présent dans le volet avec la valeur des métadonnées correspondantes.</p>
@@ -247,7 +247,7 @@
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">&lt;div</span><span class="ot"> data-meta=</span><span class="st">&quot;description&quot;</span><span class="kw">&gt;&lt;/div&gt;</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/main&gt;</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/aside&gt;</span></span></code></pre></div>
-<h2 data-number="3.6" id="filtres"><span class="header-section-number">3.6</span> Filtres</h2>
+<h2 data-number="4.6" id="filtres"><span class="header-section-number">4.6</span> Filtres</h2>
 <p>L’Opensphère inclut un système de filtres qui permettent d’afficher ou de cacher les entités en fonction d’un paramètre donné.</p>
 <p>Les boutons s’affichent soit dans l’entête du site pour les grands écrans (affichage <em>« desktop »</em> ), soit dans un menu accessible depuis le bouton entonnoir en haut à droite de la zone d’affichage du graphe, pour les petits écrans (affichage <em>« mobile »</em> ). Ils sont créés via le fichier <code>index.html</code> à deux endroits distincts : ligne ~160 pour les boutons <em>desktop</em> et ligne ~260 pour les boutons <em>mobile</em>.</p>
 <p>Chaque filtre correspond à un élément <code>button</code> avec la classe <code>btn-group</code>, un attribut <code>data-type</code> et un attribut <code>data-meta</code>. La valeur de <code>data-type</code> doit être l’une des constantes définies dans <code>/assets/main.js</code> : c’est le paramètre sur lequel doit jouer le filtre. La valeur de l’attribut <code>data-meta</code> correspond à la valeur de cette constante pour le filtre. Le texte situé entre les deux balises est affiché sur le bouton.</p>
@@ -257,7 +257,7 @@
 <p>Ceci implique que les constantes aient bien été définies au préalable dans <code>/assets/main.js</code> :</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>group<span class="op">:</span> entite<span class="op">.</span><span class="at">categorie</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>type<span class="op">:</span> entite<span class="op">.</span><span class="at">type</span></span></code></pre></div>
-<h1 data-number="4" id="langues"><span class="header-section-number">4</span> Langues</h1>
+<h1 data-number="5" id="langues"><span class="header-section-number">5</span> Langues</h1>
 <p>L’Otletosphère peut accueillir plusieurs langues, aussi bien au niveau des données que de l’interface.</p>
 <p>Il est recommandé d’utiliser les codes de langue définis par la norme <a href="https://www.iso.org/iso-639-language-codes.html">ISO 639</a> pour désigner les différentes langues à la fois dans les données, le code et l’interface.</p>
 <div class="important">
@@ -267,7 +267,7 @@
 <li>dans les fichiers HTML comme <code>index.html</code>, les codes de langue doivent être en minuscules (ex : <code>fr</code>).</li>
 </ul>
 </div>
-<h2 data-number="4.1" id="donnees"><span class="header-section-number">4.1</span> Données</h2>
+<h2 data-number="5.1" id="donnees"><span class="header-section-number">5.1</span> Données</h2>
 <p>Pour les données, la gestion des langues se fait au niveau de la commande d’intégration dans <code>/assets/main.js</code> à partir de la ligne 20. En procédant par langue, il faut associer chaque constante à la métadonnée correspondante pour la langue en question. Les métadonnées qui correspondent à la langue « par défaut » doivent être traitées de la même manière, ce qui ne remplace pas la définition initiale des constantes : elles sont donc présentes deux fois.</p>
 <p>Exemple :</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>{</span>
@@ -284,18 +284,18 @@
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">nom_ru</span><span class="op">,</span></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description_ru</span><span class="op">,</span></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<h2 data-number="4.2" id="elements-dinterface"><span class="header-section-number">4.2</span> Éléments d’interface</h2>
+<h2 data-number="5.2" id="elements-dinterface"><span class="header-section-number">5.2</span> Éléments d’interface</h2>
 <p>Pour traduire un élément de l’interface, ajoutez-y un attribut <code>data-lang-&lt;code&gt;</code> ayant pour valeur la traduction de l’élément, en remplaçant <code>&lt;code&gt;</code> par la constante correspondant à la langue de la traduction, définie précédemment. Attention, comme indiqué plus haut la casse est différente : on écrira <code>fr</code> et pas <code>Fr</code>.</p>
 <p>Exemple :</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span><span class="ot"> data-lang-ru=</span><span class="st">&quot;traduction en russe&quot;</span><span class="kw">&gt;</span>texte d’origine<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
-<h2 data-number="4.3" id="selecteur-de-langue"><span class="header-section-number">4.3</span> Sélecteur de langue</h2>
+<h2 data-number="5.3" id="selecteur-de-langue"><span class="header-section-number">5.3</span> Sélecteur de langue</h2>
 <p>Un sélecteur situé en haut à droite de l’interface permet de changer de langue à la volée. Pour ajouter une langue, localisez l’élément <code>section</code> portant la classe <code>lang-box</code>, vers la ligne 150 du fichier <code>index.html</code>. Ajoutez à l’intérieur un <code>div</code> avec un attribut <code>data-lang</code> : la valeur de l’attribut doit être la constante que vous avez définie pour la langue en question, la valeur du <code>div</code> sera le texte affiché sur le bouton.</p>
 <p>Exemple :</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span><span class="ot"> data-lang=</span><span class="st">&quot;Ru&quot;</span><span class="kw">&gt;</span>Russe<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<h1 data-number="5" id="publication"><span class="header-section-number">5</span> Publication</h1>
+<h1 data-number="6" id="publication"><span class="header-section-number">6</span> Publication</h1>
 <p>L’Opensphère se présente sous la forme d’un fichier <code>index.html</code> pensé pour être publié sur le Web. Pour faciliter la tâche des programmes d’indexation et de moissonnage du Web, vous pouvez compléter les métadonnées incluses dans le <code>head</code> du fichier <code>index.html</code>, notamment les attributs <code>content</code> et <code>href</code> vides ou contenant du texte par défaut.</p>
 <!-- Lister les fichiers à inclure notamment .htaccess et son importance -->
-<h1 data-number="6" id="exemples-dutilisation"><span class="header-section-number">6</span> Exemples d’utilisation</h1>
+<h1 data-number="7" id="exemples-dutilisation"><span class="header-section-number">7</span> Exemples d’utilisation</h1>
 <dl>
 <dt>Otletosphère</dt>
 <dd>Cartographie relationnelle autour de Paul Otlet réalisée par l’équipe du programme de recherche ANR <a href="https://hyperotlet.hypotheses.org/">HyperOtlet</a>
@@ -312,15 +312,15 @@
 <dd>Code source : <a href="https://github.com/hyperotlet/opendatasphere" class="uri">https://github.com/hyperotlet/opendatasphere</a>
 </dd>
 </dl>
-<h1 data-number="7" id="credits"><span class="header-section-number">7</span> Crédits</h1>
-<h2 data-number="7.1" id="equipe"><span class="header-section-number">7.1</span> Équipe</h2>
+<h1 data-number="8" id="credits"><span class="header-section-number">8</span> Crédits</h1>
+<h2 data-number="8.1" id="equipe"><span class="header-section-number">8.1</span> Équipe</h2>
 <ul>
 <li><a href="http://www.guidedesegares.info">Olivier Le Deuff</a> (chef de projet)</li>
 <li><a href="https://myllaume.fr/">Guillaume Brioudes</a> (développeur)</li>
 <li><a href="https://www.arthurperret.fr">Arthur Perret</a> (chercheur)</li>
 <li><a href="https://mica.u-bordeaux-montaigne.fr/borel-clement/">Clément Borel</a> (chercheur)</li>
 </ul>
-<h2 data-number="7.2" id="historique-du-projet"><span class="header-section-number">7.2</span> Historique du projet</h2>
+<h2 data-number="8.2" id="historique-du-projet"><span class="header-section-number">8.2</span> Historique du projet</h2>
 <dl>
 <dt>2019</dt>
 <dd>Développement de l’<a href="http://jdavid.fr/projets/otletosphere.html">Otletosphère 1.0</a> par <a href="http://jdavid.fr">Jean David</a>.
@@ -332,7 +332,7 @@
 <dd>Réutilisation de l’Otletosphère par les étudiants de la LP MIND 2020-2021 sous la direction d’Arthur Perret. Développement de l’Opensphère comme projet central autonome.
 </dd>
 </dl>
-<h2 data-number="7.3" id="bibliotheques-utilisees"><span class="header-section-number">7.3</span> Bibliothèques utilisées</h2>
+<h2 data-number="8.3" id="bibliotheques-utilisees"><span class="header-section-number">8.3</span> Bibliothèques utilisées</h2>
 <p>Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement a recouru aux bibliothèques suivantes. Elles sont été intégrées directement au code source de l’Opensphère et ne nécessitent par conséquent aucun téléchargement.</p>
 <ul>
 <li><a href="https://visjs.org">Vis.js</a> v7.10.2 (licence Apache 2.0) : réalisation de la visualisation ainsi que du système de circulation des données grâce à ses deux composants <em>Network</em> et <em>DataSet</em>.</li>
