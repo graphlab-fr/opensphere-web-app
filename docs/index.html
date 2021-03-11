@@ -295,7 +295,17 @@
 <div class="sourceCode" id="cb15"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span><span class="ot"> data-lang=</span><span class="st">&quot;Ru&quot;</span><span class="kw">&gt;</span>Russe<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <h1 data-number="6" id="publication"><span class="header-section-number">6</span> Publication</h1>
 <p>L’Opensphère se présente sous la forme d’un fichier <code>index.html</code> pensé pour être publié sur le Web. Pour faciliter la tâche des programmes d’indexation et de moissonnage du Web, vous pouvez compléter les métadonnées incluses dans le <code>head</code> du fichier <code>index.html</code>, notamment les attributs <code>content</code> et <code>href</code> vides ou contenant du texte par défaut.</p>
-<!-- Lister les fichiers à inclure notamment .htaccess et son importance -->
+<p>Les répertoires et fichiers à déposer sur un serveur afin de publier l’Opensphère sont les suivants :</p>
+<ul>
+<li><code>assets/</code></li>
+<li><code>data/</code></li>
+<li><code>libs/</code></li>
+<li><code>.htaccess</code></li>
+<li><code>index.html</code></li>
+</ul>
+<div class="important">
+<p>Le fichier <code>.htaccess</code> inclut des règles destinées au serveur qui permettent de circuler entre les données. Il est indispensable au fonctionnement de l’Opensphère. Par conséquent, celle-ci ne peut fonctionner que sur un serveur permettant d’inclure un fichier <code>.htaccess</code>. Ceci exclut certain services gratuits comme GitHub Pages.</p>
+</div>
 <h1 data-number="7" id="exemples-dutilisation"><span class="header-section-number">7</span> Exemples d’utilisation</h1>
 <dl>
 <dt>Otletosphère</dt>

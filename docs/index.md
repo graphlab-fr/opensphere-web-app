@@ -369,7 +369,17 @@ Exemple :
 
 L'Opensphère se présente sous la forme d'un fichier `index.html` pensé pour être publié sur le Web. Pour faciliter la tâche des programmes d'indexation et de moissonnage du Web, vous pouvez compléter les métadonnées incluses dans le `head` du fichier `index.html`, notamment les attributs `content` et `href` vides ou contenant du texte par défaut.
 
-<!-- Lister les fichiers à inclure notamment .htaccess et son importance -->
+Les répertoires et fichiers à déposer sur un serveur afin de publier l'Opensphère sont les suivants :
+
+- `assets/`
+- `data/`
+- `libs/`
+- `.htaccess`
+- `index.html`
+
+::: important
+Le fichier `.htaccess` inclut des règles destinées au serveur qui permettent de circuler entre les données. Il est indispensable au fonctionnement de l'Opensphère. Par conséquent, celle-ci ne peut fonctionner que sur un serveur permettant d'inclure un fichier `.htaccess`. Ceci exclut certain services gratuits comme GitHub Pages.
+:::
 
 # Exemples d'utilisation
 
