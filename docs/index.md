@@ -20,11 +20,12 @@ L'Opensphère est faite pour afficher des jeux de données d'une taille plutôt 
 ::: sommaire
 1. [Installation](#installation)
 2. [Format des données](#format-des-donnees)
-3. [Intégration des données](#integration-des-donnees)
-4. [Langues](#langues)
-5. [Publication](#publication)
-6. [Exemples d’utilisation](#exemples-dutilisation)
-7. [Crédits](#credits)
+3. [Génération des données](#generation-des-donnees)
+4. [Intégration des données](#integration-des-donnees)
+5. [Langues](#langues)
+6. [Publication](#publication)
+7. [Exemples d’utilisation](#exemples-dutilisation)
+8. [Crédits](#credits)
 :::
 
 # Installation
@@ -134,7 +135,7 @@ L'exemple ci-dessous constitue une version simplifiée du fichier `liens.json` 
 Ici également, vous pouvez anticiper l'étape d'[intégration des données](#integration-des-donnees) en nommant les métadonnées conformément à la nomenclature de [Vis.js]. C'est le cas dans l'exemple ci-dessus.
 :::
 
-# Générer des données
+# Génération des données
 
 Générer des données au format requis pour l'Opensphère nécessite de disposer d'outils permettant la saisie des données, leur mise en relation par un système d'identifiants uniques, et leur export au format JSON.
 
