@@ -13,7 +13,9 @@ Les fonctionnalités du logiciel et leur utilisation sont décrites dans le [man
 
 Cette documentation s’adresse aux personnes souhaitant réutiliser le code de l'Opensphère.
 
-L'Opensphère a été conçue pour faciliter la réutilisation. Son fonctionnement nécessite uniquement un serveur web local ou en ligne. Le code est écrit en JavaScript mais il n'est pas nécessaire de connaître ce langage pour s'approprier le logiciel : il suffit de modifier le code aux endroits indiqués dans cette documentation pour l'adapter à ses données et métadonnées. Quelques [notions de base en HTML](https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/HTML_basics) peuvent être utiles. La documentation s'adresse également aux personnes maîtrisant JavaScript, avec des ressources permettant personnaliser le logiciel en profondeur.
+L'Opensphère a été conçue pour faciliter la réutilisation. Son fonctionnement nécessite uniquement un serveur web local ou en ligne. Le code est écrit en JavaScript mais il n'est pas nécessaire de connaître ce langage pour s'approprier le logiciel : il suffit de modifier le code aux endroits indiqués dans cette documentation pour l'adapter à ses données et métadonnées. Quelques [notions de base en HTML](https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/HTML_basics) peuvent être utiles. La documentation s'adresse également aux personnes maîtrisant JavaScript, avec des ressources permettant personnaliser le logiciel en profondeur.
+
+L'Opensphère est faite pour afficher des jeux de données d'une taille plutôt modeste : au-delà de 300 entités, les performances du logiciel diminuent.
 
 ::: sommaire
 1. [Installation](#installation)
@@ -35,29 +37,9 @@ Pour afficher l'Opensphère en local, utilisez un logiciel comme [WAMP](https://
 
 Pour héberger l'Opensphère en ligne, il vous faudra un moyen de transférer les fichiers de l’Opensphère sur un serveur, par exemple avec un client FTP comme [FileZilla](https://filezilla-project.org/) (Windows, macOS, Linux).
 
-<!-- 
-[Téléchargez et installez Node.js](https://nodejs.org/fr/).
-
-Installez NPM :
-
-```bash
-npm install -g npm
-```
-
-[Téléchargez et installez Gulp](https://gulpjs.com/docs/en/getting-started/quick-start).
-
-[Gulp] est utilisé pour transpiler les fichiers JavaScript contenus dans le répertoire `/dist` en un seul fichier `main.js`. Ceci permet de compenser la complexité du projet (un millier de lignes de JavaScript) et la diversité des fonctions en les répartissant dans quelques fichiers d’une centaine de lignes seulement chacun.
-
-Installation des dépendances :
-
-```bash
-npm i
-```
- -->
-
 ## Téléchargement
 
-Le code de l'Opensphère est hébergé sur GitHub : <https://github.com/hyperotlet/opensphere>. Pour télécharger la dernière version, rendez-vous sur [la page des téléchargements](https://github.com/hyperotlet/opensphere/releases).
+Le code de l'Opensphère est hébergé sur GitHub : <https://github.com/hyperotlet/opensphere>. Pour télécharger la dernière version, rendez-vous sur [la page des téléchargements](https://github.com/hyperotlet/opensphere/releases).
 
 Vous pouvez également cloner le dépôt via un client Git, comme par exemple [GitHub Desktop](https://desktop.github.com/) (Windows, macOS), ou via un terminal en saisissant la commande suivante :
 
@@ -67,46 +49,52 @@ git clone https://github.com/hyperotlet/opensphere.git
 
 Déplacez le dossier `opensphere` dans le dossier racine de votre serveur, ou bien configurez votre serveur pour faire du dossier `opensphere` la racine.
 
-<!-- 
-## Utilisation
-
-La modification des fichiers HTML et CSS ne nécessite pas de manipulation particulière.
-
-La modification des fichiers JavaScript contenus dans le dossier `/dist` nécessite de lancer Gulp.
-
-```bash
-gulp watch
-```
-
-Tant qu'il est actif, Gulp surveille le répertoire `/dist`. Lorsque des modifications sont enregistrées dans un fichier de ce répertoire, Gulp répercute les modifications sur le fichier `/assets/main.js`.
- -->
-
 # Format des données
 
-L’Opensphère requiert que les données décrivant les entités et leurs relations soient contenues séparément dans deux fichiers [JSON](https://developer.mozilla.org/fr/docs/Learn/JavaScript/Objects/JSON) nommés respectivement `entite.json` et `lien.json`. Ces deux fichiers doivent être placés dans le répertoire `/data`.
+L’Opensphère requiert que les données décrivant les entités et leurs relations soient contenues séparément dans deux fichiers [JSON](https://developer.mozilla.org/fr/docs/Learn/JavaScript/Objects/JSON) nommés respectivement `entites.json` et `liens.json`. Ces deux fichiers doivent être placés dans le répertoire `/data`.
+
+L'Opensphère utilise la bibliothèque de visualisation [Vis.js]. Celle-ci impose la présence de certaines métadonnées.
 
 ## Entités
 
-### Métadonnées requises
+En raison de l'utilisation de [Vis.js], l'Opensphère requiert que les entités soient décrites au minimum via quatre métadonnées : un identifiant unique, un nom, une description et un groupe. Dans le jeu de données, les noms de ces quatre métadonnées peuvent être choisis de manière arbitraire. La description peut être vide, mais la métadonnée doit être présente.
 
-L'exemple ci-dessous constitue une version simplifiée du fichier `entite.json`. Il présente les métadonnées qui doivent obligatoirement être présentes pour que l'Opensphère fonctionne :
+L'exemple ci-dessous constitue une version simplifiée du fichier `entites.json` :
+
+```json
+[{
+    "nom": "Paul Otlet",
+    "identifiant": 1,
+    "groupe": "Personne",
+    "description": "Fondateur du Mundaneum"
+},
+{
+    "nom": "Mundaneum",
+    "identifiant": 2,
+    "groupe": "Institution",
+    "description": "Le projet phare de Paul Otlet"
+}]
+```
+
+::: astuce
+L'[intégration des données](#integration-des-donnees) nécessite de relier chaque métadonnée à une constante dont le nom doit respecter la nomenclature de [Vis.js] : `label`, `id`, `group` et `title`. Pour éviter toute confusion lors de cette étape, on peut choisir de donner ces noms aux métadonnées dès le départ :
 
 ```json
 [{
     "label": "Paul Otlet",
     "id": 1,
     "group": "Personne",
-    "description": "Fondateur du Mundaneum"
+    "title": "Fondateur du Mundaneum"
 },
 {
     "label": "Mundaneum",
     "id": 2,
     "group": "Institution",
-    "description": "Le projet phare de Paul Otlet"
+    "title": "Le projet phare de Paul Otlet"
 }]
 ```
 
-### Ajouter des métadonnées
+:::
 
 Vous pouvez ajouter autant de métadonnées que vous le souhaitez pour chaque entité. Ceci permet notamment de décliner les informations dans plusieurs [langues](#langues). L'exemple ci-dessous montre un extrait des données de l'[Otletosphère].
 
@@ -114,8 +102,8 @@ Vous pouvez ajouter autant de métadonnées que vous le souhaitez pour chaque en
 [{
     "label": "Paul Otlet",
     "id": 1,
-    "type": "Personne",
-    "description": "Fondateur du Mundaneum",
+    "group": "Personne",
+    "title": "Fondateur du Mundaneum",
     "annee_naissance": 1868,
     "annee_mort": 1944,
     "pays": "Belgique",
@@ -129,7 +117,9 @@ Vous pouvez ajouter autant de métadonnées que vous le souhaitez pour chaque en
 
 ## Liens
 
-L'exemple ci-dessous constitue une version simplifiée du fichier `lien.json`. Les liens reposent sur les identifiants des entités. Les liens eux-mêmes ont un identifiant distinct. Par exemple, le lien `1` relie les entités `1` et `2`.
+En raison de l'utilisation de [Vis.js], l'Opensphère requiert que les liens soient décrits au minimum via quatre métadonnées : un identifiant unique, un point de départ, un point d'arrivée et une description. Les points de départ et d'arrivée correspondent à des identifiants d'entités. Les identifiants des liens eux-mêmes sont indépendents de ceux des entités. Exemple : le lien `1` relie les entités `1` et `2`. La description peut être vide, mais la métadonnée doit être présente.
+
+L'exemple ci-dessous constitue une version simplifiée du fichier `liens.json` :
 
 ```json
 [{
@@ -140,9 +130,13 @@ L'exemple ci-dessous constitue une version simplifiée du fichier `lien.json`. L
 }]
 ```
 
-## Modèles réutilisables
+::: astuce
+Ici également, vous pouvez anticiper l'étape d'[intégration des données](#integration-des-donnees) en nommant les métadonnées conformément à la nomenclature de [Vis.js]. C'est le cas dans l'exemple ci-dessus.
+:::
 
-Générer des données au format requis pour l'Opensphère nécessite de disposer d'outils permettant la saisie des données, leur mise en relation par un système d'identifiants uniques, et leur export au format JSON. Nous proposons des modèles Google Sheets et Airtable afin de faciliter ces différentes étapes.
+## Générer des données au format requis
+
+Générer des données au format requis pour l'Opensphère nécessite de disposer d'outils permettant la saisie des données, leur mise en relation par un système d'identifiants uniques, et leur export au format JSON.
 
 ### Modèle Google Sheets
 
@@ -162,11 +156,13 @@ Un modèle Airtable pour l'Opensphère est disponible à l'adresse suivante : [
 
 [Airtable](https://airtable.com/) est un logiciel qui permet d'utiliser une base de données via l'interface d'un tableur collaboratif en ligne. [Une documentation](https://support.airtable.com/hc/en-us) est disponible en anglais. Notre modèle inclut des règles qui permettent de contrôler la saisie des données.
 
-Les tables « entites » et « liens » peuvent être exportées au format CSV. Vous devrez utiliser un [convertisseur CSV-JSON](http://convertcsv.com/json-to-csv.htm) pour obtenir les fichiers `entite.json` et `lien.json` requis.
+Les tables « entites » et « liens » peuvent être exportées au format CSV. Vous devrez utiliser un [convertisseur CSV-JSON](http://convertcsv.com/json-to-csv.htm) pour obtenir les fichiers `entites.json` et `liens.json` requis.
+
+<!-- GEXF ? -->
 
 # Intégration des données
 
-Une fois les fichiers `entite.json` et `lien.json` placés dans le répertoire `/data`, il faut modifier le code de l'Opensphère pour qu'elle puisse intégrer les données.
+Une fois les fichiers `entites.json` et `liens.json` placés dans le répertoire `/data`, il faut modifier le code de l'Opensphère pour qu'elle puisse intégrer les données.
 
 ## Entités
 
@@ -176,18 +172,17 @@ La commande d’intégration des données représentant les entités se trouve d
 network.data.nodes.add(
     entites.map(function(entite) {
         var entiteObj = {
-            id: entite.id,
-            label: entite.label,
-            title: entite.titre,
-            age: Number(entite.age) + 6,
-            type: entite.type,
-            description: entite.description,
+            id: entite.identifiant,
+            label: entite.nom,
+            title: entite.description,
+            group: entite.groupe,
             image:'./assets/photos/' + entite.photo,
+            age: Number(entite.age) + 6,
             Fr: {
-                title: entite.titre
+                title: entite.description
             },
             En: {
-                title: entite.titre_en
+                title: entite.description_en
             }
         };
 ```
@@ -196,11 +191,15 @@ Cette commande permet de faire correspondre les métadonnées, c'est-à-dire les
 
 ![Intégration des données](transfert-data.svg){width=350}
 
-Chaque métadonnée est préfixée par le nom du jeu de données auquel elle appartient (`entite` ou `lien`). On fait correspondre cette métadonnée préfixée à une constante. <!-- dont le nom peut être choisi de manière arbitraire mais pas toujours, certaines dépendent de vis.js ?--> Par exemple, la métadonnée `titre` est appelée sous la forme `entite.titre` et associée à une constante `title`.
+Chaque métadonnée est préfixée par le nom du jeu de données auquel elle appartient (`entite` ou `lien`). On fait correspondre cette métadonnée préfixée à une constante. Par exemple, la métadonnée `titre` est appelée sous la forme `entite.titre` et associée à une constante `title`.
+
+::: important
+L'utilisation de [Vis.js] pose des contraintes sur le nommage de certaines constantes. Quatre constantes sont obligatoires et doivent être nommées telles quelles : `label`, `id`, `group` et `title`. La constante `image` est facultative mais doit être nommée telle quelle. Les autres constantes sont facultatives et peuvent être nommées de manière arbitraire.
+:::
 
 Les constantes peuvent être définies en incluant des transformations, comme par exemple en effectuant une opération mathématique sur une métadonnée numérique.
 
-Les métadonnées peuvent être regroupées pour gérer les [langues](#langues).
+Pour associer des métadonnées dans différentes langues à une même constante, voir la section [Langues](#langues) plus bas.
 
 ## Liens
 
@@ -227,7 +226,9 @@ network.data.edges.add(
 
 ## Groupes
 
-Lors de l’intégration, une constante `group` doit être déclarée pour chaque entité. Idéalement, celle-ci correspond à une catégorisation des entités, effectuée via une métadonnée dédiée. Ceci permet de définir des paramètres d'affichage dans le graphe qui s'appliquent en bloc à toutes les entités au sein du même groupe. La liste complète des paramètres est disponible sur la page [Network - Nodes](https://visjs.github.io/vis-network/docs/network/nodes.html) de la documentation de [Vis.js](https://visjs.org).
+Lors de l’intégration, une constante `group` doit être déclarée pour chaque entité. Cette constante est pensée pour correspondre à une catégorisation des entités.
+
+La constante `group` permet de définir des paramètres d'affichage dans le graphe qui s'appliquent en bloc à toutes les entités au sein du même groupe. La liste complète des paramètres est disponible sur la page [Network - Nodes](https://visjs.github.io/vis-network/docs/network/nodes.html) de la documentation de [Vis.js].
 
 Ces paramètres doivent être déclarés dans le fichier `/assets/main.js`, vers la ligne 160. Un extrait simplifié est présenté ci-dessous :
 
@@ -238,12 +239,16 @@ groups: {
 }
 ```
 
+::: important
+L'Opensphère permet d'ajouter d'autres constantes (liées à d'autres métadonnées) qui jouent un rôle de catégorisation similaire (voir la section [Filtres](#filtres) plus bas). Mais seule la constante `group` peut être utilisée pour définir des paramètres liés à l'affichage du graphe comme expliqué ci-dessus.
+:::
+
 ## Images
 
 Par défaut, toutes les entités doivent être associées à une image. Chaque entité peut avoir sa propre image, ou bien la partager avec d'autres entités.
 
 ::: astuce
-L'[Otletosphère](http://hyperotlet.huma-num.fr/otletosphere/) et l'[OpenDataSphère](http://hyperotlet.huma-num.fr/opendatasphère/) montrent deux façons d'envisager l'utilisation des images. La première utilise des photographies pour mettre en valeur les personnes. La seconde utilise des icônes qui font ressortir les catégories des entités.
+L'[Otletosphère](http://hyperotlet.huma-num.fr/otletosphere/) et l'[OpenDataSphère](http://hyperotlet.huma-num.fr/opendatasphère/) montrent deux façons d'envisager l'utilisation des images : la première utilise des photographies pour mettre en valeur les personnes, tandis que la seconde utilise des icônes qui font ressortir les catégories des entités.
 :::
 
 Les images doivent être placées dans le répertoire `/assets/photos`. La métadonnée utilisée pour déclarer l'image associée à une entité doit contenir le nom complet du fichier (nom et extension). Exemple : `nom_image.jpg`.
@@ -257,7 +262,7 @@ image:'./assets/photos/' + entite.photo`
 Si vous ne souhaitez pas utiliser d’images, effectuez les modifications suivantes dans `/assets/main.js` :
 
 - Ligne ~30 : supprimer la ligne correspondant à la constante `image` dans la commande d’intégration.
-- Ligne ~150 : remplacer la valeur de `shape` (initialement `image`) une autre valeur comme `circle` ou `square`. La liste complète des paramètres est disponible sur la page [Network - Nodes](https://visjs.github.io/vis-network/docs/network/nodes.html) de la documentation de [Vis.js](https://visjs.org).
+- Ligne ~150 : remplacer la valeur de `shape` (initialement `image`) une autre valeur comme `circle` ou `square`. La liste complète des paramètres est disponible sur la page [Network - Nodes](https://visjs.github.io/vis-network/docs/network/nodes.html) de la documentation de [Vis.js].
 - Ligne ~160 : supprimer le paramètre `shape:'circularImage'` pour les différents groupes définis dans `groups`.
 
 ## Affichage latéral
@@ -287,49 +292,61 @@ L'Opensphère inclut un système de filtres qui permettent d’afficher ou de ca
 
 Les boutons s'affichent soit dans l'entête du site pour les grands écrans (affichage *« desktop »* ), soit dans un menu accessible depuis le bouton entonnoir en haut à droite de la zone d'affichage du graphe, pour les petits écrans (affichage *« mobile »* ). Ils sont créés via le fichier `index.html` à deux endroits distincts : ligne ~160 pour les boutons *desktop* et ligne ~260 pour les boutons *mobile*.
 
-Chaque filtre correspond à un élément `button` avec la classe `btn-group`, un attribut `data-type` et un attribut `data-meta`. La valeur de `data-type` doit être l'une des constantes définies dans `/assets/main.js` : c'est le paramètre sur lequel doit jouer le filtre. La valeur de l’attribut `data-meta` correspond à la valeur de cette constante pour le filtre.
+Chaque filtre correspond à un élément `button` avec la classe `btn-group`, un attribut `data-type` et un attribut `data-meta`. La valeur de `data-type` doit être l'une des constantes définies dans `/assets/main.js` : c'est le paramètre sur lequel doit jouer le filtre. La valeur de l’attribut `data-meta` correspond à la valeur de cette constante pour le filtre. Le texte situé entre les deux balises est affiché sur le bouton.
 
-::: astuce
-Ce mécanisme permet de combiner plusieurs modes de catégorisation dans un même jeu de données. Par exemple, l'[OpenDataSphère] classe les entités de deux manières : par type, c'est-à-dire en fonction de la nature de l'entité (personne, organisation…) et par catégorie thématique.
-:::
-
-L'exemple ci-dessous correspond à un filtre qui permet d'afficher ou de cacher les entités appartenant au groupe `institution` :
+Ce mécanisme permet d'utiliser plusieurs modes de catégorisation dans un même jeu de données, comme le montre l'exemple ci-dessous :
 
 ```html
-<button class="btn-group" data-type="group" data-meta="institution">institution</button>
+<button class="btn-group" data-type="group" data-meta="politique">Politique</button>
+<button class="btn-group" data-type="type" data-meta="personne">personne</button>
+```
+
+Ceci implique que les constantes aient bien été définies au préalable dans `/assets/main.js` :
+
+```javascript
+group: entite.categorie
+type: entite.type
 ```
 
 # Langues
 
-L'Otletosphère peut accueillir plusieurs langues, aussi bien au niveau des données que de l'interface. Il est recommandé d'utiliser les codes de langue définis par la norme [ISO 639](https://www.iso.org/iso-639-language-codes.html) pour désigner les différentes langues à la fois dans les données, le code et l'interface.
+L'Otletosphère peut accueillir plusieurs langues, aussi bien au niveau des données que de l'interface.
+
+Il est recommandé d'utiliser les codes de langue définis par la norme [ISO 639](https://www.iso.org/iso-639-language-codes.html) pour désigner les différentes langues à la fois dans les données, le code et l'interface.
+
+::: important
+Les codes de langue sont sensibles à la casse, et la règle n'est pas la même selon le type des fichiers dans lesquels ils sont utilisés :
+
+- dans les fichiers JavaScript comme `main.js`, la première lettre doit être majuscule (ex : `Fr`) ;
+- dans les fichiers HTML comme `index.html`, les codes de langue doivent être en minuscules (ex : `fr`).
+:::
 
 ## Données
 
-L'intégration de métadonnées exprimées dans plusieurs langues se fait au même niveau que les métadonnées standard dans `/assets/main.js`. Chaque métadonnée doit être associée à une constante, de manière normale. Il faut ensuite regrouper les déclarations par langue.
+Pour les données, la gestion des langues se fait au niveau de la commande d'intégration dans `/assets/main.js` à partir de la ligne 20. En procédant par langue, il faut associer chaque constante à la métadonnée correspondante pour la langue en question. Les métadonnées qui correspondent à la langue « par défaut » doivent être traitées de la même manière, ce qui ne remplace pas la définition initiale des constantes : elles sont donc présentes deux fois.
 
 Exemple :
 
 ```javascript
 {
-titre: entite.titre,
-description: entite.description,
+label: entite.nom,
+title: entite.description,
 Fr: {
-    title: entite.titre,
-    description: entite.description
-},
+    label: entite.nom,
+    title: entite.description,},
 En: {
-    title: entite.titre_en,
-    description: entite.description_en
+    label: entite.nom_en,
+    title: entite.description_en,
 },
 Ru: {
-    title: entite.titre_ru,
-    description: entite.description_ru
+    label: entite.nom_ru,
+    title: entite.description_ru,
 }
 ```
 
 ## Éléments d'interface
 
-Pour traduire un élément de l'interface, ajoutez-y un attribut `data-lang-<code>` ayant pour valeur la traduction de l'élément, en remplaçant `<code>` par la constante correspondant à la langue de la traduction, définie précédemment. <!-- sensibilité à la casse ? -->
+Pour traduire un élément de l'interface, ajoutez-y un attribut `data-lang-<code>` ayant pour valeur la traduction de l'élément, en remplaçant `<code>` par la constante correspondant à la langue de la traduction, définie précédemment. Attention, comme indiqué plus haut la casse est différente : on écrira `fr` et pas `Fr`.
 
 Exemple :
 
@@ -373,7 +390,6 @@ OpenDataSphère
 - [Guillaume Brioudes](https://myllaume.fr/) (développeur)
 - [Arthur Perret](https://www.arthurperret.fr) (chercheur)
 - [Clément Borel](https://mica.u-bordeaux-montaigne.fr/borel-clement/) (chercheur)
-- [Jean David](http://jdavid.fr) (développeur)
 
 ## Historique du projet
 
@@ -381,7 +397,7 @@ OpenDataSphère
 : Développement de l'[Otletosphère 1.0](http://jdavid.fr/projets/otletosphere.html) par [Jean David](http://jdavid.fr).
 
 2020
-: Développement de l'[Otletosphère 2.0](https://hyperotlet.huma-num.fr/otletosphere/) par Guillaume Brioudes.
+: Développement de l'[Otletosphère 2.0](https://hyperotlet.huma-num.fr/otletosphere/) par [Guillaume Brioudes](https://myllaume.fr/).
 
 2021
 : Réutilisation de l'Otletosphère par les étudiants de la LP MIND 2020-2021 sous la direction d'Arthur Perret. Développement de l'Opensphère comme projet central autonome.
@@ -390,11 +406,11 @@ OpenDataSphère
 
 Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement a recouru aux bibliothèques suivantes. Elles sont été intégrées directement au code source de l’Opensphère et ne nécessitent par conséquent aucun téléchargement.
 
-- [Vis.js](https://github.com/visjs/vis-network) v7.10.2 (licence Apache 2.0) : réalisation de la visualisation ainsi que du système de circulation des données grâce à ses deux composants *Network* et *DataSet*.
+- [Vis.js] v7.10.2 (licence Apache 2.0) : réalisation de la visualisation ainsi que du système de circulation des données grâce à ses deux composants *Network* et *DataSet*.
 - [Fuse.js](https://github.com/krisk/Fuse/) v6.4.1 (licence Apache 2.0) : mise en place du moteur de recherche.
 - [Bootstrap Grid](https://github.com/twbs/bootstrap) v4.5.0 (licence MIT) : flexibilité de l’interface pour mobile.
 
-[Gulp]: https://gulpjs.com/
 [HyperOtlet]: https://hyperotlet.hypotheses.org/
 [OpenDataSphère]: http://hyperotlet.huma-num.fr/opendatasphere/
 [Otletosphère]: http://hyperotlet.huma-num.fr/otletosphere/
+[Vis.js]: https://visjs.org
