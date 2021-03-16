@@ -46,7 +46,7 @@ Promise.all([
                         description: entite.description
                     },
                     En: {
-                        title: entite.titre,
+                        title: entite.titre_en,
                         pays: entite.pays_en,
                         domaine: entite.domaine_en,
                         description: entite.description_en

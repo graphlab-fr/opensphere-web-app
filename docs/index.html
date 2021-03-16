@@ -68,7 +68,10 @@
 <p>Les fonctionnalités du logiciel et leur utilisation sont décrites dans le <a href="https://hyperotlet.github.io/otletosphere/">manuel d’utilisation</a> de l’<a href="http://hyperotlet.huma-num.fr/otletosphere/">Otletosphère</a>, qui constitue l’origine du projet (voir les <a href="#exemples-dutilisation">exemples d’utilisation</a> plus bas).</p>
 <p>Cette documentation s’adresse aux personnes souhaitant réutiliser le code de l’Opensphère.</p>
 <p>L’Opensphère a été conçue pour faciliter la réutilisation. Son fonctionnement nécessite uniquement un serveur web local ou en ligne. Le code est écrit en JavaScript mais il n’est pas nécessaire de connaître ce langage pour s’approprier le logiciel : il suffit de modifier le code aux endroits indiqués dans cette documentation pour l’adapter à ses données et métadonnées. Quelques <a href="https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/HTML_basics">notions de base en HTML</a> peuvent être utiles. La documentation s’adresse également aux personnes maîtrisant JavaScript, avec des ressources permettant personnaliser le logiciel en profondeur.</p>
-<p>L’Opensphère est faite pour afficher des jeux de données d’une taille plutôt modeste : au-delà de 300 entités, les performances du logiciel diminuent.</p>
+<div class="astuce">
+<p>Il vous semble qu’il y a une erreur ? Allez <a href="https://qastack.fr/webmasters/8525/how-do-i-open-the-javascript-console-in-different-browsers">vérifier la console du navigateur web</a>. Vous pourrez y trouver des messages vous indiquant d’où elle provient.</p>
+</div>
+<p>L’Opensphère est faite pour afficher des jeux de données d’une taille plutôt modeste : au-delà de 800 entités, les performances du logiciel diminuent (variable selon les navigateurs web).</p>
 <div class="sommaire">
 <ol type="1">
 <li><a href="#installation">Installation</a></li>
@@ -235,6 +238,9 @@
 <p>L’<a href="http://hyperotlet.huma-num.fr/otletosphere/">Otletosphère</a> et l’<a href="http://hyperotlet.huma-num.fr/opendatasphère/">OpenDataSphère</a> montrent deux façons d’envisager l’utilisation des images : la première utilise des photographies pour mettre en valeur les personnes, tandis que la seconde utilise des icônes qui font ressortir les catégories des entités.</p>
 </div>
 <p>Les images doivent être placées dans le répertoire <code>/assets/photos</code>. La métadonnée utilisée pour déclarer l’image associée à une entité doit contenir le nom complet du fichier (nom et extension). Exemple : <code>nom_image.jpg</code>.</p>
+<div class="astuce">
+<p>Pensez à bien redimensionner et compresser vos images pour leur intégration. Elles peuvent largement ralentir l’affichage du site.</p>
+</div>
 <p>L’intégration de la métadonnée se fait via une constante <code>image</code>. Exemple avec une métadonnée intitulée <code>photo</code> :</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>image<span class="op">:</span><span class="st">&#39;./assets/photos/&#39;</span> <span class="op">+</span> entite<span class="op">.</span><span class="fu">photo</span><span class="vs">`</span></span></code></pre></div>
 <p>Si vous ne souhaitez pas utiliser d’images, effectuez les modifications suivantes dans <code>/assets/main.js</code> :</p>
