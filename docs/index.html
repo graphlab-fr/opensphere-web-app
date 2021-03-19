@@ -68,9 +68,6 @@
 <p>Les fonctionnalités du logiciel et leur utilisation sont décrites dans le <a href="https://hyperotlet.github.io/otletosphere/">manuel d’utilisation</a> de l’<a href="http://hyperotlet.huma-num.fr/otletosphere/">Otletosphère</a>, qui constitue l’origine du projet (voir les <a href="#exemples-dutilisation">exemples d’utilisation</a> plus bas).</p>
 <p>Cette documentation s’adresse aux personnes souhaitant réutiliser le code de l’Opensphère.</p>
 <p>L’Opensphère a été conçue pour faciliter la réutilisation. Son fonctionnement nécessite uniquement un serveur web local ou en ligne. Le code est écrit en JavaScript mais il n’est pas nécessaire de connaître ce langage pour s’approprier le logiciel : il suffit de modifier le code aux endroits indiqués dans cette documentation pour l’adapter à ses données et métadonnées. Quelques <a href="https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/HTML_basics">notions de base en HTML</a> peuvent être utiles. La documentation s’adresse également aux personnes maîtrisant JavaScript, avec des ressources permettant personnaliser le logiciel en profondeur.</p>
-<div class="astuce">
-<p>Il vous semble qu’il y a une erreur ? Allez <a href="https://qastack.fr/webmasters/8525/how-do-i-open-the-javascript-console-in-different-browsers">vérifier la console du navigateur web</a>. Vous pourrez y trouver des messages vous indiquant d’où elle provient.</p>
-</div>
 <p>L’Opensphère est faite pour afficher des jeux de données d’une taille plutôt modeste : au-delà de 800 entités, les performances du logiciel diminuent (variable selon les navigateurs web).</p>
 <div class="sommaire">
 <ol type="1">
@@ -309,6 +306,7 @@
 <div class="sourceCode" id="cb15"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span><span class="ot"> data-lang=</span><span class="st">&quot;Ru&quot;</span><span class="kw">&gt;</span>Russe<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
 <h1 data-number="6" id="publication"><span class="header-section-number">6</span> Publication</h1>
 <p>L’Opensphère se présente sous la forme d’un fichier <code>index.html</code> pensé pour être publié sur le Web. Pour faciliter la tâche des programmes d’indexation et de moissonnage du Web, vous pouvez compléter les métadonnées incluses dans le <code>head</code> du fichier <code>index.html</code>, notamment les attributs <code>content</code> et <code>href</code> vides ou contenant du texte par défaut.</p>
+<p>Avant de publier l’Opensphère, il est recommandé de prévisualiser l’affichage via un serveur web local. Utilisez <a href="https://qastack.fr/webmasters/8525/how-do-i-open-the-javascript-console-in-different-browsers">la console du navigateur web</a> pour consulter les messages d’erreur en cas de problème.</p>
 <p>Les répertoires et fichiers à déposer sur un serveur afin de publier l’Opensphère sont les suivants :</p>
 <ul>
 <li><code>assets/</code></li>
