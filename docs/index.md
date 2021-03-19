@@ -15,10 +15,6 @@ Cette documentation s’adresse aux personnes souhaitant réutiliser le code de 
 
 L'Opensphère a été conçue pour faciliter la réutilisation. Son fonctionnement nécessite uniquement un serveur web local ou en ligne. Le code est écrit en JavaScript mais il n'est pas nécessaire de connaître ce langage pour s'approprier le logiciel : il suffit de modifier le code aux endroits indiqués dans cette documentation pour l'adapter à ses données et métadonnées. Quelques [notions de base en HTML](https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/HTML_basics) peuvent être utiles. La documentation s'adresse également aux personnes maîtrisant JavaScript, avec des ressources permettant personnaliser le logiciel en profondeur.
 
-::: astuce
-Il vous semble qu'il y a une erreur ? Allez [vérifier la console du navigateur web](https://qastack.fr/webmasters/8525/how-do-i-open-the-javascript-console-in-different-browsers). Vous pourrez y trouver des messages vous indiquant d'où elle provient.
-:::
-
 L'Opensphère est faite pour afficher des jeux de données d'une taille plutôt modeste : au-delà de 800 entités, les performances du logiciel diminuent (variable selon les navigateurs web).
 
 ::: sommaire
@@ -385,6 +381,8 @@ Exemple :
 # Publication
 
 L'Opensphère se présente sous la forme d'un fichier `index.html` pensé pour être publié sur le Web. Pour faciliter la tâche des programmes d'indexation et de moissonnage du Web, vous pouvez compléter les métadonnées incluses dans le `head` du fichier `index.html`, notamment les attributs `content` et `href` vides ou contenant du texte par défaut.
+
+Avant de publier l'Opensphère, il est recommandé de prévisualiser l'affichage via un serveur web local. Utilisez [la console du navigateur web](https://qastack.fr/webmasters/8525/how-do-i-open-the-javascript-console-in-different-browsers) pour consulter les messages d'erreur en cas de problème.
 
 Les répertoires et fichiers à déposer sur un serveur afin de publier l'Opensphère sont les suivants :
 
