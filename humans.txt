@@ -1,0 +1,61 @@
+/* TEAM */
+	Chef researcher: Olivier Le Deuff
+	Web page: http://www.guidedesegares.info/
+	Twitter: @neuromancien
+	From: Bordeaux, France
+
+	Researcher: Arthur Perret
+	Web page: https://arthurperret.fr/
+    Twitter: @arthurperret
+	From: Bordeaux, France
+
+	UX Designer: Clément Borel
+	Web page: https://mica.u-bordeaux-montaigne.fr/borel-clement/
+	From: Bordeaux, France
+
+	Developer: Guillaume Brioudes
+	Web page: https://myllaume.fr/
+    Twitter: @guill_brioudes
+	From: Bordeaux, France
+
+	Developer: Jean David
+	Web page: http://www.jdavid.fr
+	From: Bordeaux, France
+
+/* LIBRARIES */
+    Lead developer: Kiro Risk
+    Web page: http://kiro.me/
+    Library name: FuseJs (v6.4.1)
+    License: Apache Software License 2.0
+    Library repository: https://github.com/krisk/fuse
+
+    Lead developer: Almende B.V
+    Web page: http://almende.com/
+    Library name: VisJs (v7.10.2)
+    License: MIT License
+    Library repository: https://github.com/visjs
+
+    Community: The Bootstrap Authors & Twitter, Inc
+    Web page: http://almende.com/
+    Library name: Bootstrap Grid (v4.5.0)
+    License: MIT License
+    Library repository: https://github.com/twbs/bootstrap
+
+/* SITE */
+	Documentation: https://hyperotlet.github.io/otletosphere/
+	Language: French, English
+	Doctype: HTML5
+	IDE: Visual Studio Code
+
+/* PROJECT */
+	Twitter: @hyperotlet
+    Web page: https://hyperotlet.hypotheses.org/
+    Research fund: https://anr.fr/Projet-ANR-17-CE38-0011
+
+/* THANKS */
+    Centre Maurice Halbwachs: https://www.cmh.ens.fr/
+    ENSSIB: https://www.enssib.fr/
+    MICA: https://mica.u-bordeaux-montaigne.fr/
+    Maiseon des Sciences de l'Homme Paris Nord: https://www.mshparisnord.fr/
+    Mundaneum: http://www.mundaneum.org/
+    Université Bordeaux Montaigne: https://www.u-bordeaux-montaigne.fr/fr/index.html
