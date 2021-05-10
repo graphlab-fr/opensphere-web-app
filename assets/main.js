@@ -51,6 +51,8 @@ Promise.all([
                         domaine: entite.domaine_en,
                         description: entite.description_en
                     },
+
+                    sortName: entite.nom || entite.label,
         
                     // node style
                     size : 30,
@@ -67,23 +69,6 @@ Promise.all([
                         strokeColor: '#000'
                     }
                 };
-
-                /**
-                 * We set a sortName value without the 'de' particle
-                 * sortName value is used on board.js for alphabetical ordering
-                 */
-
-                if (entite.nom) {
-                    var splitName = entite.nom.split(' ', 2);
-
-                    if (splitName.length == 2 && splitName[0] == 'de') {
-                        entiteObj.sortName = splitName[1];
-                    } else {
-                        entiteObj.sortName = entite.nom;
-                    }
-                } else {
-                    entiteObj.sortName = entite.label
-                }
 
                 return entiteObj;
             })
@@ -307,6 +292,8 @@ function chooseColor(name, lowerOpacity = false) {
             var color = '128,128,128'; break;
         case 'évènement':
             var color = '128,128,128'; break;
+        default:
+            var color = '169, 169, 169'; break;
     }
     if (lowerOpacity) { return ['rgba(', color, ', 0.4)'].join(''); }
     else { return ['rgb(', color, ')'].join(''); }

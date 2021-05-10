@@ -322,6 +322,10 @@ group: entite.categorie
 type: entite.type
 ```
 
+# Liste alphabétique des entités
+
+La vue "Fiches" (accessible via la navigation, en haut de page) permet de consulter la liste de toutes les entités du graphe sous forme de cartes. Elles sont rangées dans l'ordre alphabétique d'après les opérations inscrites environs à la ligne 416 dans `/assets/main.js`. On y extrait la première lettre de la variable `sortName` définie avec la [même méthode que les entités](#entites-1). Vous pouvez écrire différents algorithmes permettant de transformer cette variable `sortName` et ainsi modifier l'affichage de cette liste alphabétique.
+
 # Langues
 
 L'Otletosphère peut accueillir plusieurs langues, aussi bien au niveau des données que de l'interface.

@@ -44,19 +44,20 @@
 <li><a href="#affichage-lateral"><span class="toc-section-number">4.5</span> Affichage latéral</a></li>
 <li><a href="#filtres"><span class="toc-section-number">4.6</span> Filtres</a></li>
 </ul></li>
-<li><a href="#langues"><span class="toc-section-number">5</span> Langues</a>
+<li><a href="#liste-alphabetique-des-entites"><span class="toc-section-number">5</span> Liste alphabétique des entités</a></li>
+<li><a href="#langues"><span class="toc-section-number">6</span> Langues</a>
 <ul>
-<li><a href="#donnees"><span class="toc-section-number">5.1</span> Données</a></li>
-<li><a href="#elements-dinterface"><span class="toc-section-number">5.2</span> Éléments d’interface</a></li>
-<li><a href="#selecteur-de-langue"><span class="toc-section-number">5.3</span> Sélecteur de langue</a></li>
+<li><a href="#donnees"><span class="toc-section-number">6.1</span> Données</a></li>
+<li><a href="#elements-dinterface"><span class="toc-section-number">6.2</span> Éléments d’interface</a></li>
+<li><a href="#selecteur-de-langue"><span class="toc-section-number">6.3</span> Sélecteur de langue</a></li>
 </ul></li>
-<li><a href="#publication"><span class="toc-section-number">6</span> Publication</a></li>
-<li><a href="#exemples-dutilisation"><span class="toc-section-number">7</span> Exemples d’utilisation</a></li>
-<li><a href="#credits"><span class="toc-section-number">8</span> Crédits</a>
+<li><a href="#publication"><span class="toc-section-number">7</span> Publication</a></li>
+<li><a href="#exemples-dutilisation"><span class="toc-section-number">8</span> Exemples d’utilisation</a></li>
+<li><a href="#credits"><span class="toc-section-number">9</span> Crédits</a>
 <ul>
-<li><a href="#equipe"><span class="toc-section-number">8.1</span> Équipe</a></li>
-<li><a href="#historique-du-projet"><span class="toc-section-number">8.2</span> Historique du projet</a></li>
-<li><a href="#bibliotheques-utilisees"><span class="toc-section-number">8.3</span> Bibliothèques utilisées</a></li>
+<li><a href="#equipe"><span class="toc-section-number">9.1</span> Équipe</a></li>
+<li><a href="#historique-du-projet"><span class="toc-section-number">9.2</span> Historique du projet</a></li>
+<li><a href="#bibliotheques-utilisees"><span class="toc-section-number">9.3</span> Bibliothèques utilisées</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -269,7 +270,9 @@
 <p>Ceci implique que les constantes aient bien été définies au préalable dans <code>/assets/main.js</code> :</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>group<span class="op">:</span> entite<span class="op">.</span><span class="at">categorie</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>type<span class="op">:</span> entite<span class="op">.</span><span class="at">type</span></span></code></pre></div>
-<h1 data-number="5" id="langues"><span class="header-section-number">5</span> Langues</h1>
+<h1 data-number="5" id="liste-alphabetique-des-entites"><span class="header-section-number">5</span> Liste alphabétique des entités</h1>
+<p>La vue “Fiches” (accessible via la navigation, en haut de page) permet de consulter la liste de toutes les entités du graphe sous forme de cartes. Elles sont rangées dans l’ordre alphabétique d’après les opérations inscrites environs à la ligne 416 dans <code>/assets/main.js</code>. On y extrait la première lettre de la variable <code>sortName</code> définie avec la <a href="#entites-1">même méthode que les entités</a>. Vous pouvez écrire différents algorithmes permettant de transformer cette variable <code>sortName</code> et ainsi modifier l’affichage de cette liste alphabétique.</p>
+<h1 data-number="6" id="langues"><span class="header-section-number">6</span> Langues</h1>
 <p>L’Otletosphère peut accueillir plusieurs langues, aussi bien au niveau des données que de l’interface.</p>
 <p>Il est recommandé d’utiliser les codes de langue définis par la norme <a href="https://www.iso.org/iso-639-language-codes.html">ISO 639</a> pour désigner les différentes langues à la fois dans les données, le code et l’interface.</p>
 <div class="important">
@@ -279,7 +282,7 @@
 <li>dans les fichiers HTML comme <code>index.html</code>, les codes de langue doivent être en minuscules (ex : <code>fr</code>).</li>
 </ul>
 </div>
-<h2 data-number="5.1" id="donnees"><span class="header-section-number">5.1</span> Données</h2>
+<h2 data-number="6.1" id="donnees"><span class="header-section-number">6.1</span> Données</h2>
 <p>Pour les données, la gestion des langues se fait au niveau de la commande d’intégration dans <code>/assets/main.js</code> à partir de la ligne 20. En procédant par langue, il faut associer chaque constante à la métadonnée correspondante pour la langue en question. Les métadonnées qui correspondent à la langue « par défaut » doivent être traitées de la même manière, ce qui ne remplace pas la définition initiale des constantes : elles sont donc présentes deux fois.</p>
 <p>Exemple :</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>{</span>
@@ -296,15 +299,15 @@
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">nom_ru</span><span class="op">,</span></span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description_ru</span><span class="op">,</span></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<h2 data-number="5.2" id="elements-dinterface"><span class="header-section-number">5.2</span> Éléments d’interface</h2>
+<h2 data-number="6.2" id="elements-dinterface"><span class="header-section-number">6.2</span> Éléments d’interface</h2>
 <p>Pour traduire un élément de l’interface, ajoutez-y un attribut <code>data-lang-&lt;code&gt;</code> ayant pour valeur la traduction de l’élément, en remplaçant <code>&lt;code&gt;</code> par la constante correspondant à la langue de la traduction, définie précédemment. Attention, comme indiqué plus haut la casse est différente : on écrira <code>fr</code> et pas <code>Fr</code>.</p>
 <p>Exemple :</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span><span class="ot"> data-lang-ru=</span><span class="st">&quot;traduction en russe&quot;</span><span class="kw">&gt;</span>texte d’origine<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
-<h2 data-number="5.3" id="selecteur-de-langue"><span class="header-section-number">5.3</span> Sélecteur de langue</h2>
+<h2 data-number="6.3" id="selecteur-de-langue"><span class="header-section-number">6.3</span> Sélecteur de langue</h2>
 <p>Un sélecteur situé en haut à droite de l’interface permet de changer de langue à la volée. Pour ajouter une langue, localisez l’élément <code>section</code> portant la classe <code>lang-box</code>, vers la ligne 150 du fichier <code>index.html</code>. Ajoutez à l’intérieur un <code>div</code> avec un attribut <code>data-lang</code> : la valeur de l’attribut doit être la constante que vous avez définie pour la langue en question, la valeur du <code>div</code> sera le texte affiché sur le bouton.</p>
 <p>Exemple :</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span><span class="ot"> data-lang=</span><span class="st">&quot;Ru&quot;</span><span class="kw">&gt;</span>Russe<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<h1 data-number="6" id="publication"><span class="header-section-number">6</span> Publication</h1>
+<h1 data-number="7" id="publication"><span class="header-section-number">7</span> Publication</h1>
 <p>L’Opensphère se présente sous la forme d’un fichier <code>index.html</code> pensé pour être publié sur le Web. Pour faciliter la tâche des programmes d’indexation et de moissonnage du Web, vous pouvez compléter les métadonnées incluses dans le <code>head</code> du fichier <code>index.html</code>, notamment les attributs <code>content</code> et <code>href</code> vides ou contenant du texte par défaut.</p>
 <p>Avant de publier l’Opensphère, il est recommandé de prévisualiser l’affichage via un serveur web local. Utilisez <a href="https://qastack.fr/webmasters/8525/how-do-i-open-the-javascript-console-in-different-browsers">la console du navigateur web</a> pour consulter les messages d’erreur en cas de problème.</p>
 <p>Les répertoires et fichiers à déposer sur un serveur afin de publier l’Opensphère sont les suivants :</p>
@@ -318,7 +321,7 @@
 <div class="important">
 <p>Le fichier <code>.htaccess</code> inclut des règles destinées au serveur qui permettent de circuler entre les données. Il est indispensable au fonctionnement de l’Opensphère. Par conséquent, celle-ci ne peut fonctionner que sur un serveur permettant d’inclure un fichier <code>.htaccess</code>. Ceci exclut certain services gratuits comme GitHub Pages.</p>
 </div>
-<h1 data-number="7" id="exemples-dutilisation"><span class="header-section-number">7</span> Exemples d’utilisation</h1>
+<h1 data-number="8" id="exemples-dutilisation"><span class="header-section-number">8</span> Exemples d’utilisation</h1>
 <dl>
 <dt>Otletosphère</dt>
 <dd>Cartographie relationnelle autour de Paul Otlet réalisée par l’équipe du programme de recherche ANR <a href="https://hyperotlet.hypotheses.org/">HyperOtlet</a>
@@ -335,15 +338,15 @@
 <dd>Code source : <a href="https://github.com/hyperotlet/opendatasphere" class="uri">https://github.com/hyperotlet/opendatasphere</a>
 </dd>
 </dl>
-<h1 data-number="8" id="credits"><span class="header-section-number">8</span> Crédits</h1>
-<h2 data-number="8.1" id="equipe"><span class="header-section-number">8.1</span> Équipe</h2>
+<h1 data-number="9" id="credits"><span class="header-section-number">9</span> Crédits</h1>
+<h2 data-number="9.1" id="equipe"><span class="header-section-number">9.1</span> Équipe</h2>
 <ul>
 <li><a href="http://www.guidedesegares.info">Olivier Le Deuff</a> (chef de projet)</li>
 <li><a href="https://myllaume.fr/">Guillaume Brioudes</a> (développeur)</li>
 <li><a href="https://www.arthurperret.fr">Arthur Perret</a> (chercheur)</li>
 <li><a href="https://mica.u-bordeaux-montaigne.fr/borel-clement/">Clément Borel</a> (chercheur)</li>
 </ul>
-<h2 data-number="8.2" id="historique-du-projet"><span class="header-section-number">8.2</span> Historique du projet</h2>
+<h2 data-number="9.2" id="historique-du-projet"><span class="header-section-number">9.2</span> Historique du projet</h2>
 <dl>
 <dt>2019</dt>
 <dd>Développement de l’<a href="http://jdavid.fr/projets/otletosphere.html">Otletosphère 1.0</a> par <a href="http://jdavid.fr">Jean David</a>.
@@ -355,7 +358,7 @@
 <dd>Réutilisation de l’Otletosphère par les étudiants de la LP MIND 2020-2021 sous la direction d’Arthur Perret. Développement de l’Opensphère comme projet central autonome.
 </dd>
 </dl>
-<h2 data-number="8.3" id="bibliotheques-utilisees"><span class="header-section-number">8.3</span> Bibliothèques utilisées</h2>
+<h2 data-number="9.3" id="bibliotheques-utilisees"><span class="header-section-number">9.3</span> Bibliothèques utilisées</h2>
 <p>Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement a recouru aux bibliothèques suivantes. Elles sont été intégrées directement au code source de l’Opensphère et ne nécessitent par conséquent aucun téléchargement.</p>
 <ul>
 <li><a href="https://visjs.org">Vis.js</a> v7.10.2 (licence Apache 2.0) : réalisation de la visualisation ainsi que du système de circulation des données grâce à ses deux composants <em>Network</em> et <em>DataSet</em>.</li>
