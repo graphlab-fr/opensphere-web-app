@@ -360,6 +360,17 @@ graph.init = function() {
     }
 
     toPosition();
+
+    board.init(); // activate the alphabetical list display
+    search.input.addEventListener('focus', search.init); // activate the search engine
+    filter.init(); // activate filters
+    
+    // If there is entity id one URL : activate
+    const urlPathnameArray = window.location.pathname.split('/');
+    const nodeId = urlPathnameArray[urlPathnameArray.length -1];
+    if (switchNode(nodeId, false)) {
+        historique.init(nodeId);
+    }
 }
 
 /**
@@ -459,16 +470,7 @@ var network = {
     /** diplay graph & activate events, board and search engine */
     init: function() {
 
-        board.init(); // activate the alphabetical list display
-        search.input.addEventListener('focus', search.init); // activate the search engine
-        filter.init(); // activate filters
         
-        // If there is entity id one URL : activate
-        const urlPathnameArray = window.location.pathname.split('/');
-        const nodeId = urlPathnameArray[urlPathnameArray.length -1];
-        if (switchNode(nodeId, false)) {
-            historique.init(nodeId);
-        }
     }
 }
 
@@ -513,7 +515,7 @@ function chooseColor(name, lowerOpacity = false) {
  */
 
 function getNodeMetas(nodeId) {
-    const nodeMetas = graph.nodes.find(node => node.id === nodeId);
+    const nodeMetas = graph.elts.nodes.filter(node => node.id === nodeId).data()[0];
 
     if (!nodeMetas) { return false; }
 
@@ -1149,27 +1151,20 @@ langage.flags.forEach(flag => {
         langage.translateAll();
 
         // translate graph & entities metas
-        network.data.nodes.update(
-            network.data.nodes.map(function(entite) {
-                if (!entite[langage.actual]) { return; }
-                return {
-                    id: entite.id,
-                    title: entite[langage.actual].title,
-                    description: entite[langage.actual].description,
-                    domaine: entite[langage.actual].domaine,
-                    pays: entite[langage.actual].pays,
-                };
-            })
-        );
-        network.data.edges.update(
-            network.data.nodes.map(function(lien) {
-                if (!lien[langage.actual]) { return; }
-                return {
-                    id: lien.id,
-                    title: lien[langage.actual].title,
-                };
-            })
-        );
+        graph.elts.nodes.each(function(d) {
+            if (!d[langage.actual]) { return; }
+
+            d.title = d[langage.actual].title,
+            d.description = d[langage.actual].description,
+            d.domaine = d[langage.actual].domaine,
+            d.pays = d[langage.actual].pays
+        });
+
+        graph.elts.links.each(function(d) {
+            if (!d[langage.actual]) { return; }
+
+            d.title = d[langage.actual].title
+        });
 
         fiche.fill();
         board.init();
