@@ -10,7 +10,7 @@ const graph = {
     links: [],
     elts: {},
     defs: {},
-    selectedNode: {},
+    selectedNodeId: undefined,
     svg: d3.select("#graph")
 }
 
@@ -174,7 +174,8 @@ graph.params = {
     nodeSize: 12,
     nodeStrokeSize: 8,
     force: 6000,
-    distanceMax: 3000
+    distanceMax: 3000,
+    highlightColor: 'red'
 };
 
 graph.width =+ graph.svg.node().getBoundingClientRect().width;
@@ -194,6 +195,19 @@ graph.init = function() {
         .force("link", d3.forceLink().id(function(d) { return d.id; }))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(graph.width / 2, graph.height / 2));
+
+    graph.elts.links = graph.svg.append("g")
+        .attr("class", "links")
+        .selectAll("line")
+        .data(graph.links)
+        .enter().append("line")
+        .attr("class", (d) => 'l_' + d.type)
+        .attr("data-source", (d) => d.source)
+        .attr("data-target", (d) => d.target)
+        .attr("x1", (d) => d.source.x)
+        .attr("y1", (d) => d.source.y)
+        .attr("x2", (d) => d.target.x)
+        .attr("y2", (d) => d.target.y);
 
     graph.elts.nodes = graph.svg.append("g")
         .attr("class", "nodes")
@@ -236,7 +250,36 @@ graph.init = function() {
                 if (!d3.event.active) graph.simulation.alphaTarget(0.0001);
                 d.fx = null;
                 d.fy = null; })
-        );
+        )
+        .on('mouseenter', function(d) {
+
+            graph.elts.nodes.classed('translucent', true);
+            graph.elts.links.classed('translucent', true);
+
+            const ntwOfHoveredNode = getNodeNetwork(d.id)
+                , nodeHovered = ntwOfHoveredNode.node
+                , linksHovered = ntwOfHoveredNode.links
+                , connectedNodesHovered = ntwOfHoveredNode.connectedNodes;
+
+            nodeHovered.classed('translucent', false);
+            linksHovered.classed('translucent', false);
+            connectedNodesHovered.classed('translucent', false);
+
+            if (graph.selectedNodeId) {
+                const ntwOfSelectedNode = getNodeNetwork(graph.selectedNodeId)
+                    , nodeSelected = ntwOfSelectedNode.node
+                    , linksSelected = ntwOfSelectedNode.links
+                    , connectedNodesSelected = ntwOfSelectedNode.connectedNodes;
+
+                nodeSelected.classed('translucent', false);
+                linksSelected.classed('translucent', false);
+                connectedNodesSelected.classed('translucent', false);
+            }
+        })
+        .on('mouseout', function(d) {
+            graph.elts.nodes.classed('translucent', false);
+            graph.elts.links.classed('translucent', false);
+        })
 
     graph.elts.labels = graph.elts.nodes.append("text")
         .each(function(d) {
@@ -265,19 +308,6 @@ graph.init = function() {
         .attr('y', (d) => graph.params.nodeSize)
         .attr('dominant-baseline', 'middle')
         .attr('text-anchor', 'middle');
-
-    graph.elts.links = graph.svg.append("g")
-        .attr("class", "links")
-        .selectAll("line")
-        .data(graph.links)
-        .enter().append("line")
-        .attr("class", (d) => 'l_' + d.type)
-        .attr("data-source", (d) => d.source)
-        .attr("data-target", (d) => d.target)
-        .attr("x1", (d) => d.source.x)
-        .attr("y1", (d) => d.source.y)
-        .attr("x2", (d) => d.target.x)
-        .attr("y2", (d) => d.target.y);
 
     graph.elts.defs = graph.svg.append("defs")
 
@@ -325,6 +355,53 @@ graph.init = function() {
     }
 
     toPosition();
+}
+
+/**
+ * Get d3 elts objects : the node, its links and its linked nodes
+ * @param {number} nodeId 
+ * @returns {object} - node, links, connectedNodes
+ */
+
+function getNodeNetwork(nodeId) {
+    const ntw = {
+        node: graph.elts.nodes.filter(node => node.id === nodeId),
+        connectedNodes: []
+    }
+
+    ntw.links = graph.elts.links.filter(function(link) {
+        if (link.source.id === nodeId) {
+            ntw.connectedNodes.push(link.target.id);
+            return true;
+        }
+
+        if (link.target.id === nodeId) {
+            ntw.connectedNodes.push(link.source.id);
+            return true;
+        }
+    });
+    
+    ntw.connectedNodes = graph.elts.nodes.filter(node => ntw.connectedNodes.includes(node.id));
+
+    return ntw;
+}
+
+function highlightNodeNetwork(nodeId) {
+    const ntw = getNodeNetwork(nodeId)
+        , node = ntw.node
+        , links = ntw.links;
+
+    node.select('circle').style("stroke", graph.params.highlightColor);
+    links.classed('highlight', true);
+}
+
+function unlightNodeNetwork() {
+    const ntw = getNodeNetwork(graph.selectedNodeId)
+        , node = ntw.node
+        , links = ntw.links;
+
+    node.select('circle').style("stroke", (d) => chooseColor(d.group));
+    links.classed('highlight', false);
 }
 
 var network = {
@@ -565,15 +642,18 @@ function switchNode(nodeId, mustZoom = true) {
 
     var nodeMetas = getNodeMetas(nodeId);
 
-    if (nodeMetas == false) { return false; }
+    if (nodeMetas === false) { return false; }
 
-    // network.visualisation.selectNodes([nodeId]);
-    graph.selectedNode = Number(nodeId);
+    if (graph.selectedNodeId) { unlightNodeNetwork(); }
+
+    highlightNodeNetwork(nodeId);
+
+    graph.selectedNodeId = Number(nodeId);
 
     // rename webpage
     document.title = nodeMetas.label + ' - Otetosphère';
 
-    if (mustZoom) {zoomToNode(nodeId);}
+    if (mustZoom) { zoomToNode(nodeId); }
 
     fiche.fill();
     fiche.open();
@@ -988,9 +1068,9 @@ var fiche = {
      * Feed all fields from the description bar about the selected entity
      */
     fill: function() {
-        const nodeMetas = getNodeMetas(graph.selectedNode)
+        const nodeMetas = getNodeMetas(graph.selectedNodeId)
         if (nodeMetas === false)  { return ; }
-        const nodeConnectedList = findConnectedNodes(graph.selectedNode);
+        const nodeConnectedList = findConnectedNodes(graph.selectedNodeId);
 
         // show description bar fields
         this.content.classList.add('visible');
@@ -1002,7 +1082,7 @@ var fiche = {
 
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setWikiLink(nodeMetas.lien_wikipedia);
-        this.setPermaLink(graph.selectedNode);
+        this.setPermaLink(graph.selectedNodeId);
 
         this.setConnexion(nodeConnectedList);
     }
