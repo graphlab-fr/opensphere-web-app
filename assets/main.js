@@ -1250,22 +1250,18 @@ function translate() {
 }
 
 function zoomToNode(nodeId) {
-    var nodeId = Number(nodeId);
-    var nodeCoordonates = network.visualisation.getPosition(nodeId);
-    
-    if (network.data.nodes.get(nodeId).hidden === true) {
-        // si le nœeud est hidden
-        return;
-    }
+    const nodeToZoomMetas = graph.elts.nodes.filter(node => node.id === nodeId).datum()
+        , x = nodeToZoomMetas.x
+        , y = nodeToZoomMetas.y
+        , zoom = 2;
 
-    network.visualisation.moveTo({
-        position: {
-            x: nodeCoordonates.x + 100,
-            y: nodeCoordonates.y
-        },
-        scale: network.zoom.max,
-        animation: true
-    });
+    graph.pos = {
+        zoom: zoom,
+        x: graph.width - zoom * x,
+        y: graph.height - zoom * y
+    };
+
+    translate();
 }
 
 
