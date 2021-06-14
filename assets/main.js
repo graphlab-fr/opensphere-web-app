@@ -5,6 +5,13 @@
  * Extract data from JSON files for activate diplays (graph, board, search engine)
  */
 
+const graph = {
+    nodes: [],
+    links: [],
+    elts: {},
+    defs: {},
+    svg: d3.select("#graph")
+}
 
 Promise.all([
     fetch('data/entites.json'), // = data[0]
@@ -21,6 +28,38 @@ Promise.all([
         // get JSON from data
         const entites = data[0]
         const liens = data[1]
+
+        graph.nodes = entites.map(function(entite) {
+            return {
+                id: entite.id,
+                label: entite.label,
+                title: entite.titre,
+                group: entite.relation_otlet,
+                image: './assets/images/' + entite.photo,
+                genre: entite.genre,
+                annee_naissance: entite.annee_naissance,
+                annee_mort: ((!entite.annee_mort) ? undefined : ' - ' + entite.annee_mort),
+                pays: entite.pays,
+                domaine: entite.domaine,
+                description: entite.description,
+                lien_wikipedia: entite.lien_wikipedia,
+                // translated metas
+                Fr: {
+                    title: entite.titre,
+                    pays: entite.pays,
+                    domaine: entite.domaine,
+                    description: entite.description
+                },
+                En: {
+                    title: entite.titre_en,
+                    pays: entite.pays_en,
+                    domaine: entite.domaine_en,
+                    description: entite.description_en
+                },
+
+                sortName: entite.nom || entite.label,
+            };
+        });
 
         network.data.nodes.add(
             entites.map(function(entite) {
@@ -74,6 +113,22 @@ Promise.all([
             })
         );
 
+        graph.links = liens.map(function(lien) {
+            return {
+                id: lien.id,
+                source: lien.from,
+                target: lien.to,
+                title: lien.label,
+
+                Fr: {
+                    title: lien.label
+                },
+                En: {
+                    title: lien.label_en
+                },
+            }
+        });
+
         network.data.edges.add(
             liens.map(function(lien) {
                 var lienObj = {
@@ -99,6 +154,7 @@ Promise.all([
         );
 
         network.init();
+        graph.init();
 
     });
 });
@@ -112,6 +168,157 @@ Promise.all([
  * Distribute the data extracted from fetch.js
  */
 
+graph.params = {
+    nodeSize: 12,
+    nodeStrokeSize: 8,
+    force: 6000,
+    distanceMax: 3000
+};
+
+graph.width =+ graph.svg.node().getBoundingClientRect().width;
+graph.height =+ graph.svg.node().getBoundingClientRect().height;
+
+graph.init = function() {
+
+    graph.params.imgSize = graph.params.nodeSize * 2;
+
+    d3.select(window).on("resize", function () {
+        graph.width =+ graph.svg.node().getBoundingClientRect().width;
+        graph.height =+ graph.svg.node().getBoundingClientRect().height;
+        toPosition();
+    });
+
+    graph.simulation = d3.forceSimulation()
+        .force("link", d3.forceLink().id(function(d) { return d.id; }))
+        .force("charge", d3.forceManyBody())
+        .force("center", d3.forceCenter(graph.width / 2, graph.height / 2));
+
+    graph.elts.nodes = graph.svg.append("g")
+        .attr("class", "nodes")
+        .selectAll("g")
+        .data(graph.nodes)
+        .enter().append("g")
+        .attr("data-node", (d) => d.id)
+        .attr("transform", function(d) {
+            d.x = Math.max(d.size, Math.min(graph.width - d.size, d.x));
+            d.y = Math.max(d.size, Math.min(graph.height - d.size, d.y));
+
+            return "translate(" + d.x + "," + d.y + ")";
+        });
+
+    graph.elts.circles = graph.elts.nodes.append("circle")
+        .attr("r", (d) => graph.params.nodeSize)
+        .style("stroke", (d) => chooseColor(d.group))
+        .attr("stroke-width", graph.params.nodeStrokeSize);
+
+    graph.elts.images = graph.elts.nodes.append("svg:image")
+        .attr("xlink:href",  function(d) { return d.image;})
+        .attr("clip-path", "url(#image-clip-path)")
+        .attr('transform', 'translate(-' + graph.params.imgSize / 2 + ', -' + graph.params.imgSize / 2 + ')')
+        .attr("height", graph.params.imgSize)
+        .attr("width", graph.params.imgSize)
+        .call(d3.drag()
+            .on("start", function(d) {
+                if (!d3.event.active) graph.simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y; })
+            .on("drag", function(d) {
+                d.fx = d3.event.x;
+                d.fy = d3.event.y; })
+            .on("end", function(d) {
+                if (!d3.event.active) graph.simulation.alphaTarget(0.0001);
+                d.fx = null;
+                d.fy = null; })
+        );
+
+    graph.elts.labels = graph.elts.nodes.append("text")
+        .each(function(d) {
+            const words = d.label.split(' ')
+                , max = 25
+                , text = d3.select(this);
+            let label = '';
+
+            for (let i = 0; i < words.length; i++) {
+                // combine words and seperate them by a space caracter into label
+                label += words[i] + ' ';
+
+                // if label (words combination) is longer than max & not the single iteration
+                if (label.length < max && i !== words.length - 1) { continue; }
+
+                text.append("tspan")
+                    .attr('x', 0)
+                    .attr('dy', '1.2em')
+                    .text(label.slice(0, -1)); // remove last space caracter
+
+                label = '';
+            }
+        })
+        .attr('font-size', 10)
+        .attr('x', 0)
+        .attr('y', (d) => graph.params.nodeSize)
+        .attr('dominant-baseline', 'middle')
+        .attr('text-anchor', 'middle');
+
+    graph.elts.links = graph.svg.append("g")
+        .attr("class", "links")
+        .selectAll("line")
+        .data(graph.links)
+        .enter().append("line")
+        .attr("class", (d) => 'l_' + d.type)
+        .attr("data-source", (d) => d.source)
+        .attr("data-target", (d) => d.target)
+        .attr("x1", (d) => d.source.x)
+        .attr("y1", (d) => d.source.y)
+        .attr("x2", (d) => d.target.x)
+        .attr("y2", (d) => d.target.y);
+
+    graph.elts.defs = graph.svg.append("defs")
+
+    graph.defs.imageClipPath = graph.elts.defs.append("clipPath")
+        .attr("id", "image-clip-path")
+        .append("circle")
+        .attr("cx", graph.params.imgSize / 2)
+        .attr("cy", graph.params.imgSize / 2)
+        .attr("r", graph.params.imgSize / 2);
+
+    graph.simulation
+        .nodes(graph.nodes)
+        .on("tick", function() {
+            graph.elts.links
+                .attr("x1", function(d) { return d.source.x; })
+                .attr("y1", function(d) { return d.source.y; })
+                .attr("x2", function(d) { return d.target.x; })
+                .attr("y2", function(d) { return d.target.y; });
+
+            graph.elts.nodes
+                .attr("transform", function(d) {
+                    return "translate(" + d.x + "," + d.y + ")";
+                });
+        });
+
+    graph.simulation
+        .force("link")
+        .links(graph.links);
+
+    graph.simulation
+        .force("center", d3.forceCenter())
+        .force("charge", d3.forceManyBody());
+
+    graph.simulation.force("charge")
+        .strength(-Math.abs(graph.params.force)) // turn force value to negative number
+        .distanceMax(graph.params.distanceMax);
+
+    function toPosition() {
+        graph.simulation.force("center")
+            .x(graph.width * 0.5)
+            .y(graph.height * 0.5);
+
+        graph.simulation
+            .alpha(1).restart();
+    }
+
+    toPosition();
+}
 
 var network = {
     container: document.querySelector('#network'),

@@ -436,6 +436,7 @@ button:focus {
   padding: 15px 0;
   border-top: 1px solid #d5d5d5;
   border-bottom: 1px solid #d5d5d5;
+  min-height: 75px;
 }
 
 .fiche-description::first-letter {
@@ -540,7 +541,7 @@ button:focus {
   width: 100vw;
   height: calc(100vh - 90px);
   margin-top: 90px;
-  background-color: var(--network-background-color);
+  /* background-color: var(--network-background-color); */
 }
 
 .network-wrapper>button {
@@ -563,6 +564,10 @@ button:focus {
 
 .network {
   height: 100%;
+}
+
+#network {
+  display: none;
 }
 
 .command-board {
@@ -789,4 +794,13 @@ button:focus {
 
 .micromodal-slide[aria-hidden="false"] .modal-overlay {
   animation: mmfadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+
+#graph {
+  width: 100%;
+  height: 100%;
+}
+
+line {
+  stroke: gray;
 }
