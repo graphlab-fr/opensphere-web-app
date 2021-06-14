@@ -68,58 +68,6 @@ Promise.all([
             };
         });
 
-        network.data.nodes.add(
-            entites.map(function(entite) {
-                var entiteObj = {
-                    // entite metas, default langage
-                    id: entite.id,
-                    label: entite.label,
-                    title: entite.titre,
-                    group: entite.relation_otlet,
-                    image: './assets/images/' + entite.photo,
-                    genre: entite.genre,
-                    annee_naissance: entite.annee_naissance,
-                    annee_mort: ((!entite.annee_mort) ? undefined : ' - ' + entite.annee_mort),
-                    pays: entite.pays,
-                    domaine: entite.domaine,
-                    description: entite.description,
-                    lien_wikipedia: entite.lien_wikipedia,
-                    // translated metas
-                    Fr: {
-                        title: entite.titre,
-                        pays: entite.pays,
-                        domaine: entite.domaine,
-                        description: entite.description
-                    },
-                    En: {
-                        title: entite.titre_en,
-                        pays: entite.pays_en,
-                        domaine: entite.domaine_en,
-                        description: entite.description_en
-                    },
-
-                    sortName: entite.nom || entite.label,
-        
-                    // node style
-                    size : 30,
-                    borderWidth: 3,
-                    borderWidthSelected: 60,
-                    margin: 20,
-                    interaction: {hover: true},
-                    hidden: false,
-                    font: {
-                        face: 'Open Sans',
-                        size: 22,
-                        color: '#fff',
-                        strokeWidth: 2,
-                        strokeColor: '#000'
-                    }
-                };
-
-                return entiteObj;
-            })
-        );
-
         graph.links = liens.map(function(lien) {
             return {
                 id: lien.id,
@@ -136,31 +84,6 @@ Promise.all([
             }
         });
 
-        network.data.edges.add(
-            liens.map(function(lien) {
-                var lienObj = {
-                    id: lien.id,
-                    from: lien.from,
-                    to: lien.to,
-                    title: lien.label,
-
-                    Fr: {
-                        title: lien.label
-                    },
-                    En: {
-                        title: lien.label_en
-                    },
-                };
-
-                if (lien.from !== 1 && lien.to !== 1) {
-                    // if link not about Otlet -> gray color
-                    lienObj.color = 'gray'; }
-
-                return lienObj;
-            })
-        );
-
-        network.init();
         graph.init();
 
     });
@@ -367,7 +290,8 @@ graph.init = function() {
     
     // If there is entity id one URL : activate
     const urlPathnameArray = window.location.pathname.split('/');
-    const nodeId = urlPathnameArray[urlPathnameArray.length -1];
+    let nodeId = urlPathnameArray[urlPathnameArray.length -1];
+    nodeId = Number(nodeId);
     if (switchNode(nodeId, false)) {
         historique.init(nodeId);
     }
@@ -418,60 +342,6 @@ function unlightNodeNetwork() {
 
     node.select('circle').style("stroke", (d) => chooseColor(d.group));
     links.classed('highlight', false);
-}
-
-var network = {
-    container: document.querySelector('#network'),
-    data: {
-        nodes: new vis.DataSet(),
-        edges: new vis.DataSet()
-    },
-    options: {
-        physics: {
-            enabled: true,
-            repulsion: {
-                centralGravity: 0.0,
-                springLength: 350,
-                springConstant: 0.01,
-                nodeDistance: 400,
-                damping: 0.09
-            },
-            solver: 'repulsion'
-        },
-        edges: {
-            width: 2,
-            selectionWidth: 6,
-            smooth: {
-                type: 'horizontal',
-                forceDirection: 'horizontal'
-            }
-        },
-        nodes: {
-            shape: 'image'
-        },
-        groups: { // massive styling, by group name
-            collegue: {shape: 'circularImage', color: {border: chooseColor('collegue')}},
-            collaborateur: {shape: 'circularImage', color: {border: chooseColor('collaborateur')}},
-            famille: {shape: 'circularImage', color: {border: chooseColor('famille')}},
-            opposant: {shape: 'circularImage', color: {border: chooseColor('opposant')}},
-            otlet: {shape: 'circularImage', color: {border: chooseColor('otlet')}},
-            'non-catégorisé': {shape: 'circularImage', color: {border: chooseColor('non-catégorisé')}},
-            institution: {color: {border: chooseColor('institution')}},
-            œuvre: {color: {border: chooseColor('œuvre')}},
-            évènement: {color: {border: chooseColor('évènement')}}
-        },
-        interaction: {hover:true}
-    },
-    zoom: {
-        max: 1,
-        min: 0.2
-    },
-    selectedNode: undefined,
-    /** diplay graph & activate events, board and search engine */
-    init: function() {
-
-        
-    }
 }
 
 /**
@@ -596,19 +466,19 @@ var board = {
     init: function() {
         this.engine.empty();
 
-        // nodes become cards in alphabetical order
-        network.data.nodes.forEach((entity) => {
-            var card = new Card;
-            card.id = entity.id;
-            card.label = entity.label;
-            card.labelFirstLetter = entity.sortName.charAt(0);
-            card.title = (entity.title || '');
-            card.img = entity.image;
+        this.engine.cards = graph.elts.nodes.filter(node => node.hidden !== true)
+            .data()
+            .sort(function (a, b) { return a.sortName.localeCompare(b.sortName); })
+            .map(function(d) {
+                let card = new Card;
+                card.id = d.id;
+                card.label = d.label;
+                card.labelFirstLetter = d.sortName.charAt(0);
+                card.title = (d.title || '');
+                card.img = d.image;
 
-            if (entity.hidden === false) {
-                this.engine.cards.push(card); }
-
-        }, { order: 'sortName' });
+                return card;
+            });
 
         this.engine.init();
     }
@@ -1020,7 +890,7 @@ fiche.toggle.addEventListener('click', () => {
 });
 
 fiche.fields.title.addEventListener('click', () => {
-    switchNode(network.selectedNode); });
+    switchNode(graph.selectedNodeId); });
 
 
 /**
@@ -1050,7 +920,7 @@ var search = {
 
         resultElement.addEventListener('click', () => {
 
-            if (network.selectedNode !== undefined && network.selectedNode == nodeId) {
+            if (graph.selectedNodeId !== undefined && graph.selectedNodeId == nodeId) {
                 // si cette id correpond à celle du nœeud selectionné
                 return;
             }

@@ -616,6 +616,7 @@ button:focus {
 
 .board {
   position: relative;
+  background-color: white;
 }
 
 .board-wrapper {
