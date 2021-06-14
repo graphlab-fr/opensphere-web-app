@@ -10,6 +10,11 @@ const graph = {
     links: [],
     elts: {},
     defs: {},
+    pos: {
+        zoom: 1,
+        x: 0,
+        y: 0
+    },
     selectedNodeId: undefined,
     svg: d3.select("#graph")
 }
@@ -453,95 +458,6 @@ var network = {
     selectedNode: undefined,
     /** diplay graph & activate events, board and search engine */
     init: function() {
-        
-        // Génération de la visualisation
-        network.visualisation = new vis.Network(network.container,
-            network.data, network.options);
-        
-        // Évents du network
-        network.visualisation.on('selectNode', function(nodeMetasBrutes) {
-            var idNode = nodeMetasBrutes.nodes[0];
-        
-            if (idNode === undefined) { return; }
-            
-            if (network.selectedNode !== undefined && network.selectedNode == idNode) {
-                // si nœud est déjà selectionné
-                return;
-            }
-        
-            switchNode(idNode);
-            historique.actualiser(idNode);
-        });
-        // nodes become transparents if one is hovered by mouse
-        network.visualisation.on('hoverNode', function(params) {
-            var idNodeHovered = params.node;
-        
-            // no effect on hovermouse node
-            var noEffectNodesIds = [idNodeHovered];
-            // and his connections
-            noEffectNodesIds = noEffectNodesIds
-                .concat(network.visualisation.getConnectedNodes(idNodeHovered));
-        
-            if (network.selectedNode !== undefined) {
-                // no effect on the 'selectedNode'
-                noEffectNodesIds.push(network.selectedNode)
-                // and his connections
-                noEffectNodesIds = noEffectNodesIds
-                    .concat(network.visualisation.getConnectedNodes(network.selectedNode));
-            }
-
-            network.data.nodes.update(
-                network.data.nodes.map(entite => ({
-                    id: entite.id,
-                    color: chooseColor(entite.group, true),
-                    opacity: 0.4,
-                    font: {
-                        color: 'rgba(255, 255, 255, 0.5)',
-                        strokeColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                } ), {
-                    filter: function(entite) {
-                        return(noEffectNodesIds.includes(entite.id) == false);
-                    }
-                })
-            );
-            
-        });
-        // revert the nodes transparency
-        network.visualisation.on('blurNode', function() {
-
-            network.data.nodes.update(
-                network.data.nodes.map(entite => ({
-                        id: entite.id,
-                        color: false,
-                        opacity: 1,
-                        font: {
-                            color: '#fff',
-                            strokeColor: '#000'
-                        }
-                } ))
-            );
-        });
-        
-        network.visualisation.on('zoom', function(params) {
-        
-            // restrict un-zoom
-            if (params.scale <= network.zoom.min) {
-                network.visualisation.moveTo({
-                    position: { x: 0, y: 0 },
-                    scale: network.zoom.min
-                });
-            }
-        
-            // restrict zoom
-            if (params.scale >= network.zoom.max) {
-                network.visualisation.moveTo({ scale: network.zoom.max }); }
-        });
-
-        // activate zoom buttons
-        zoom.btnPlus.addEventListener('click', zoomIn);
-        zoom.btnMoins.addEventListener('click', zoomOut);
-        zoom.btnReinitialiser.addEventListener('click', backToCenterView);
 
         board.init(); // activate the alphabetical list display
         search.input.addEventListener('focus', search.init); // activate the search engine
@@ -1262,12 +1178,75 @@ langage.flags.forEach(flag => {
  * Manage the point of view of the user on the graph, on nodes
  */
 
+graph.zoomParams = {
+    zoomInterval: 0.3, // interval between two (de)zoom
+    zoomMax: 3,
+    zoomMin: 1
+}
 
 var zoom = {
     btnPlus: document.querySelector('#zoom-plus'),
     btnMoins: document.querySelector('#zoom-moins'),
     btnReinitialiser: document.querySelector('#zoom-general'),
     interval: 0.1
+}
+
+graph.svg.call(d3.zoom().on('zoom', function () {
+    // for each move one the SVG
+
+    if (d3.event.sourceEvent === null) {
+        zoomMore();
+        return;
+    }
+
+    switch (d3.event.sourceEvent.type) {
+        case 'wheel':
+            // by mouse wheel
+            if (d3.event.sourceEvent.deltaY >= 0) {
+                zoomLess();
+            } else {
+                zoomMore();
+            }
+            break;
+
+        case 'mousemove':
+            // by drag and move with mouse
+            graph.pos.x += d3.event.sourceEvent.movementX;
+            graph.pos.y += d3.event.sourceEvent.movementY;
+    
+            translate();
+            break;
+    }
+}));
+
+function zoomMore() {
+    graph.pos.zoom += graph.zoomParams.zoomInterval;
+
+    if (graph.pos.zoom >= graph.zoomParams.zoomMax) {
+        graph.pos.zoom = graph.zoomParams.zoomMax; }
+
+    translate();
+}
+
+function zoomLess() {
+    graph.pos.zoom -= graph.zoomParams.zoomInterval;
+
+    if (graph.pos.zoom <= graph.zoomParams.zoomMin) {
+        graph.pos.zoom = graph.zoomParams.zoomMin; }
+
+    translate();
+}
+
+function zoomReset() {
+    graph.pos.zoom = 1;
+    graph.pos.x = 0;
+    graph.pos.y = 0;
+
+    translate();
+}
+
+function translate() {
+    graph.svg.attr('style', `transform:translate(${graph.pos.x}px, ${graph.pos.y}px) scale(${graph.pos.zoom});`);
 }
 
 function zoomToNode(nodeId) {
@@ -1287,32 +1266,6 @@ function zoomToNode(nodeId) {
         scale: network.zoom.max,
         animation: true
     });
-}
-
-function zoomIn() {
-    var scale = network.visualisation.getScale() + zoom.interval;
-
-    if (scale >= network.zoom.max) {
-        // si l'échelle de zoom dépasse le maximum, elle s'y limite
-        scale = network.zoom.max
-    }
-
-    network.visualisation.moveTo({ scale: scale });
-}
-
-function zoomOut() {
-    var scale = network.visualisation.getScale() - zoom.interval;
-
-    if (scale <= network.zoom.min) {
-        // si l'échelle de zoom dépasse le minium, elle s'y limite
-        scale = network.zoom.min
-    }
-
-    network.visualisation.moveTo({ scale: scale });
-}
-
-function backToCenterView() {
-    network.visualisation.fit({ animation: true });
 }
 
 

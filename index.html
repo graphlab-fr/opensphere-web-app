@@ -204,11 +204,11 @@
 
             <div class="command-board">
                 <div class="zoom-box">
-                    <button id="zoom-moins" class="dezoom" title="Dezoom"></button>
-                    <button id="zoom-plus" class="zoom" title="Zoom"></button>
+                    <button id="zoom-moins" onclick="zoomLess();" class="dezoom" title="Dezoom"></button>
+                    <button id="zoom-plus" onclick="zoomMore();" class="zoom" title="Zoom"></button>
                 </div>
 
-                <button id="zoom-general" class="command-board__btn" title="Vue initiale">Réinitialiser</button>
+                <button id="zoom-general" onclick="zoomReset();" class="command-board__btn" title="Vue initiale">Réinitialiser</button>
             </div>
 
         </section>
