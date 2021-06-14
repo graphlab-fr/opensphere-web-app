@@ -785,16 +785,19 @@ var filter = {
             let isActiveGroup = true;
         
             btn.addEventListener('click', () => {
-
-                network.visualisation.stabilize();
         
                 if (isActiveGroup) {
-                    network.data.nodes.get({
-                        filter: function (item) {
-                            if (item[type] == meta) {
-                                network.data.nodes.update({id: item.id, hidden: true}) }
-                        }
-                    });
+                    graph.elts.nodes.filter(node => node[type] == meta)
+                        .each(function(d) {
+                            d.hidden = true;
+
+                            const ntw = getNodeNetwork(d.id)
+                                , node = ntw.node
+                                , links = ntw.links;
+
+                            node.style('display', 'none');
+                            links.style('display', 'none');
+                        });
 
                     // activation visuelle boutons filtre de entête et volet
                     document.querySelectorAll('[data-meta="' + btn.dataset.meta + '"]').forEach(btn => {
@@ -802,12 +805,17 @@ var filter = {
         
                     isActiveGroup = false;
                 } else {
-                    network.data.nodes.get({
-                        filter: function (item) {
-                            if (item[type] == meta) {
-                                network.data.nodes.update({id: item.id, hidden: false}) }
-                        }
-                    });
+                    graph.elts.nodes.filter(node => node[type] == meta)
+                        .each(function(d) {
+                            d.hidden = false;
+
+                            const ntw = getNodeNetwork(d.id)
+                                , node = ntw.node
+                                , links = ntw.links;
+
+                            node.style('display', null);
+                            links.style('display', null);
+                        });
 
                     // deactivation visuelle boutons filtre de entête et volet
                     document.querySelectorAll('[data-meta="' + btn.dataset.meta + '"]').forEach(btn => {
