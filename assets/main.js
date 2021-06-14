@@ -10,6 +10,7 @@ const graph = {
     links: [],
     elts: {},
     defs: {},
+    selectedNode: {},
     svg: d3.select("#graph")
 }
 
@@ -204,6 +205,11 @@ graph.init = function() {
             d.y = Math.max(d.size, Math.min(graph.height - d.size, d.y));
 
             return "translate(" + d.x + "," + d.y + ")";
+        })
+        .on('click', function(d) {
+            // openRecord(nodeMetas.id);
+            switchNode(d.id);
+            historique.actualiser(d.id);
         });
 
     graph.elts.circles = graph.elts.nodes.append("circle")
@@ -508,20 +514,14 @@ function chooseColor(name, lowerOpacity = false) {
 
 /**
  * Return the metadatas from a entity
- * @param {number} id - Entity id
+ * @param {number} nodeId - Entity id
  * @returns {object} metadatas of false if malfunction
  */
 
-function getNodeMetas(id) { 
-    var nodeMetas = false;
+function getNodeMetas(nodeId) {
+    const nodeMetas = graph.nodes.find(node => node.id === nodeId);
 
-    network.data.nodes.get({
-
-        filter: function (item) {
-            if (item.id == id) {
-                nodeMetas = item; }
-        }
-    });
+    if (!nodeMetas) { return false; }
 
     return nodeMetas;
 }
@@ -567,8 +567,8 @@ function switchNode(nodeId, mustZoom = true) {
 
     if (nodeMetas == false) { return false; }
 
-    network.visualisation.selectNodes([nodeId]);
-    network.selectedNode = Number(nodeId);
+    // network.visualisation.selectNodes([nodeId]);
+    graph.selectedNode = Number(nodeId);
 
     // rename webpage
     document.title = nodeMetas.label + ' - Otetosphère';
@@ -988,9 +988,9 @@ var fiche = {
      * Feed all fields from the description bar about the selected entity
      */
     fill: function() {
-        const nodeMetas = getNodeMetas(network.selectedNode)
+        const nodeMetas = getNodeMetas(graph.selectedNode)
         if (nodeMetas === false)  { return ; }
-        const nodeConnectedList = findConnectedNodes(network.selectedNode);
+        const nodeConnectedList = findConnectedNodes(graph.selectedNode);
 
         // show description bar fields
         this.content.classList.add('visible');
@@ -1002,7 +1002,7 @@ var fiche = {
 
         this.setImage(nodeMetas.image, nodeMetas.label);
         this.setWikiLink(nodeMetas.lien_wikipedia);
-        this.setPermaLink(network.selectedNode);
+        this.setPermaLink(graph.selectedNode);
 
         this.setConnexion(nodeConnectedList);
     }
