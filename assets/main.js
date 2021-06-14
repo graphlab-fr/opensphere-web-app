@@ -1069,14 +1069,14 @@ var search = {
     },
     init: function() {
 
-        const noHiddenNodes = network.data.nodes.map(entite => ({
-            id: entite.id,
-            label: entite.label
-        }), {
-            filter: function(entite) {
-                return(entite.hidden !== true);
-            }
-        })
+        const noHiddenNodes = graph.elts.nodes.filter(node => node.hidden !== true)
+            .data()
+            .map(function(d) {
+                return {
+                    id: d.id,
+                    label: d.label
+                }
+            });
 
         const fuse = new Fuse(noHiddenNodes, search.options);
 
