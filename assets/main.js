@@ -59,6 +59,7 @@ Promise.all([
                 },
 
                 sortName: entite.nom || entite.label,
+                hidden: false
             };
         });
 
@@ -528,30 +529,29 @@ function getNodeMetas(nodeId) {
 
 /**
  * Return metas from connected nodes
- * @param {number} id - Entity id
- * @returns {array} objects arrau contains metadatas
+ * @param {number} nodeId - Entity id
+ * @returns {array} objects array contains metadatas
  */
 
 function findConnectedNodes(nodeId) {
-    var nodesConnected = network.visualisation.getConnectedNodes(nodeId);
-    var edgesConnected = network.visualisation.getConnectedEdges(nodeId);
-
-    var connectedNodesList = [];
-    for (let i = 0; i < nodesConnected.length; i++) {
-        const id = nodesConnected[i];
-        var nodeMetas = getNodeMetas(id);
-        // get the link description :
-        var nodeLinkTitle = network.data.edges.get(edgesConnected[i]).title;
-        connectedNodesList.push({
-            id: nodeMetas.id,
-            label: nodeMetas.label,
-            relation: nodeMetas.group,
-            title: nodeLinkTitle,
-            hidden: nodeMetas.hidden,
+    return graph.links
+        .filter(link => link.source.id === nodeId || link.target.id === nodeId)
+        .map(function(link) {
+            if (link.source.id === nodeId) {
+                return link.target;
+            } else {
+                return link.source;
+            }
+        })
+        .map(function(link) {
+            return {
+                id: link.id,
+                label: link.label,
+                relation: link.group,
+                title: link.title,
+                hidden: link.hidden
+            };
         });
-    }
-
-    return connectedNodesList;
 }
 
 /**
