@@ -710,22 +710,6 @@ button:focus {
   margin: 10px;
 }
 
-#overflow {
-  visibility: hidden;
-  position: absolute;
-  z-index: -1;
-  border-radius: 3px;
-  background-color: white;
-  box-sizing: border-box;
-  padding: 5px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-#overflow.active {
-  visibility: visible;
-  z-index: 999;
-}
-
 .modal-overlay {
   position: fixed;
   left: 0;
@@ -810,3 +794,18 @@ g.translucent circle { stroke-opacity: 0.2; fill: transparent; }
 g.translucent image { opacity: 0.2; }
 line.translucent { stroke-opacity: 0.2; }
 line.highlight { stroke-width: 3; }
+
+[title] {
+  position: relative;
+}
+
+[title]:hover::before {
+  position: absolute;
+  content: attr(title);
+  border-radius: 3px;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  bottom: 100%;
+}

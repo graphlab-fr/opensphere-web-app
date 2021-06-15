@@ -124,18 +124,63 @@ graph.init = function() {
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(graph.width / 2, graph.height / 2));
 
+    graph.elts.tip = undefined;
+
     graph.elts.links = graph.svg.append("g")
         .attr("class", "links")
         .selectAll("line")
         .data(graph.links)
         .enter().append("line")
         .attr("class", (d) => 'l_' + d.type)
+        .attr("title", (d) => d.title)
         .attr("data-source", (d) => d.source)
         .attr("data-target", (d) => d.target)
         .attr("x1", (d) => d.source.x)
         .attr("y1", (d) => d.source.y)
         .attr("x2", (d) => d.target.x)
-        .attr("y2", (d) => d.target.y);
+        .attr("y2", (d) => d.target.y)
+        .on("mouseenter", function (d) {
+
+            if (d.description === '') { return; }
+
+            const coordinates = d3.mouse(this)
+                , x = coordinates[0] + 10
+                , y = coordinates[1] + 10;
+
+            console.log(x, y);
+    
+            graph.elts.tip = graph.svg.append("g")
+                .attr("transform", `translate(200,200)`);
+    
+            let rect = graph.elts.tip.append("rect")
+                .style("fill", "white")
+                .style("stroke", "black")
+                .attr("rx", 2)
+                .attr("ry", 2);
+    
+            // tip.append("text")
+            //     .text(d.type)
+            //     .attr("dy", "1.5em")
+            //     .attr("x", 5)
+            //     .attr("class", "tip_type");
+    
+            graph.elts.tip.append("text")
+                .text(function() {
+                    return d.title;
+                })
+                .attr("dy", "1em")
+                .attr("x", 7)
+                .attr("class", "tip_description");
+    
+            const bbox = graph.elts.tip.node().getBBox();
+            rect.attr("width", bbox.width + 20)
+                .attr("height", bbox.height);
+    
+            graph.elts.tip.attr("transform", "translate(" + x + "," + y + ")")
+        })
+        .on("mouseout", function (d) {
+            graph.elts.tip.remove();
+        })
 
     graph.elts.nodes = graph.svg.append("g")
         .attr("class", "nodes")
@@ -717,9 +762,6 @@ filter.volet.btnClose.addEventListener('click', () => {
  * Display the description bar & its fields
  */
 
-
-const overflow = document.querySelector('#overflow');
-
 var fiche = {
     body: document.querySelector('#fiche'),
     content: document.querySelector('#fiche-content'),
@@ -836,6 +878,7 @@ var fiche = {
 
             var listElt = document.createElement('li');
             listElt.textContent = connectedNode.label;
+            listElt.setAttribute('title', connectedNode.title);
             this.fields.connexion.appendChild(listElt);
 
             var puceColored = document.createElement('span');
@@ -846,18 +889,6 @@ var fiche = {
                 switchNode(connectedNode.id);
                 historique.actualiser(connectedNode.id);
             });
-            // link description frame at scroll on list element
-            if (connectedNode.title !== null) {
-                listElt.addEventListener('mouseenter', (e) => {
-                    overflow.classList.add('active');
-                    overflow.style.left = e.pageX + 20 + 'px';
-                    overflow.style.top = e.pageY - overflow.offsetHeight + 'px';
-                    overflow.textContent = connectedNode.title;
-                })
-
-                listElt.addEventListener('mouseout', () => {
-                    overflow.classList.remove('active'); })
-            }
         }
     },
     /**
