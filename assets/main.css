@@ -541,7 +541,7 @@ button:focus {
   width: 100vw;
   height: calc(100vh - 90px);
   margin-top: 90px;
-  /* background-color: var(--network-background-color); */
+  background-color: var(--network-background-color);
 }
 
 .network-wrapper>button {
@@ -786,20 +786,22 @@ button:focus {
   height: 100%;
 }
 
-line {
-  stroke: gray;
-}
+line { stroke: gray; }
 
 g.translucent circle { stroke-opacity: 0.2; fill: transparent; }
 g.translucent image { opacity: 0.2; }
 line.translucent { stroke-opacity: 0.2; }
 line.highlight { stroke-width: 3; }
+text {
+  fill: white;
+  font-family: 'Open Sans';
+}
 
 [title] {
   position: relative;
 }
 
-[title]:hover::before {
+.fiche [title]:hover::before {
   position: absolute;
   content: attr(title);
   border-radius: 3px;

@@ -100,9 +100,9 @@ Promise.all([
 
 graph.params = {
     nodeSize: 12,
-    nodeStrokeSize: 8,
-    force: 6000,
-    distanceMax: 3000,
+    nodeStrokeSize: 2,
+    force: 800,
+    distanceMax: 400,
     highlightColor: 'red'
 };
 
@@ -111,7 +111,7 @@ graph.height =+ graph.svg.node().getBoundingClientRect().height;
 
 graph.init = function() {
 
-    graph.params.imgSize = graph.params.nodeSize * 2;
+    graph.params.imgSize = graph.params.nodeSize + 10;
 
     d3.select(window).on("resize", function () {
         graph.width =+ graph.svg.node().getBoundingClientRect().width;
@@ -146,8 +146,6 @@ graph.init = function() {
             const coordinates = d3.mouse(this)
                 , x = coordinates[0] + 10
                 , y = coordinates[1] + 10;
-
-            console.log(x, y);
     
             graph.elts.tip = graph.svg.append("g")
                 .attr("transform", `translate(200,200)`);
@@ -158,16 +156,12 @@ graph.init = function() {
                 .attr("rx", 2)
                 .attr("ry", 2);
     
-            // tip.append("text")
-            //     .text(d.type)
-            //     .attr("dy", "1.5em")
-            //     .attr("x", 5)
-            //     .attr("class", "tip_type");
-    
             graph.elts.tip.append("text")
                 .text(function() {
                     return d.title;
                 })
+                .style("fill", "black")
+                .attr('font-size', 17 - graph.pos.zoom * 3)
                 .attr("dy", "1em")
                 .attr("x", 7)
                 .attr("class", "tip_description");
@@ -188,12 +182,6 @@ graph.init = function() {
         .data(graph.nodes)
         .enter().append("g")
         .attr("data-node", (d) => d.id)
-        .attr("transform", function(d) {
-            d.x = Math.max(d.size, Math.min(graph.width - d.size, d.x));
-            d.y = Math.max(d.size, Math.min(graph.height - d.size, d.y));
-
-            return "translate(" + d.x + "," + d.y + ")";
-        })
         .on('click', function(d) {
             // openRecord(nodeMetas.id);
             switchNode(d.id);
@@ -203,7 +191,9 @@ graph.init = function() {
     graph.elts.circles = graph.elts.nodes.append("circle")
         .attr("r", (d) => graph.params.nodeSize)
         .style("stroke", (d) => chooseColor(d.group))
-        .attr("stroke-width", graph.params.nodeStrokeSize);
+        .attr("stroke-width", graph.params.nodeStrokeSize)
+        .on('mouseenter', hoverNode)
+        .on('mouseout', hoverNodeRemove);
 
     graph.elts.images = graph.elts.nodes.append("svg:image")
         .attr("xlink:href",  function(d) { return d.image;})
@@ -224,35 +214,8 @@ graph.init = function() {
                 d.fx = null;
                 d.fy = null; })
         )
-        .on('mouseenter', function(d) {
-
-            graph.elts.nodes.classed('translucent', true);
-            graph.elts.links.classed('translucent', true);
-
-            const ntwOfHoveredNode = getNodeNetwork(d.id)
-                , nodeHovered = ntwOfHoveredNode.node
-                , linksHovered = ntwOfHoveredNode.links
-                , connectedNodesHovered = ntwOfHoveredNode.connectedNodes;
-
-            nodeHovered.classed('translucent', false);
-            linksHovered.classed('translucent', false);
-            connectedNodesHovered.classed('translucent', false);
-
-            if (graph.selectedNodeId) {
-                const ntwOfSelectedNode = getNodeNetwork(graph.selectedNodeId)
-                    , nodeSelected = ntwOfSelectedNode.node
-                    , linksSelected = ntwOfSelectedNode.links
-                    , connectedNodesSelected = ntwOfSelectedNode.connectedNodes;
-
-                nodeSelected.classed('translucent', false);
-                linksSelected.classed('translucent', false);
-                connectedNodesSelected.classed('translucent', false);
-            }
-        })
-        .on('mouseout', function(d) {
-            graph.elts.nodes.classed('translucent', false);
-            graph.elts.links.classed('translucent', false);
-        })
+        .on('mouseenter', hoverNode)
+        .on('mouseout', hoverNodeRemove);
 
     graph.elts.labels = graph.elts.nodes.append("text")
         .each(function(d) {
@@ -300,8 +263,13 @@ graph.init = function() {
                 .attr("x2", function(d) { return d.target.x; })
                 .attr("y2", function(d) { return d.target.y; });
 
+            const marge = 20;
+
             graph.elts.nodes
                 .attr("transform", function(d) {
+                    d.x = Math.max(graph.params.nodeSize + marge, Math.min(graph.width - graph.params.nodeSize - marge, d.x));
+                    d.y = Math.max(graph.params.nodeSize + marge, Math.min(graph.height - graph.params.nodeSize - marge, d.y));
+
                     return "translate(" + d.x + "," + d.y + ")";
                 });
         });
@@ -339,6 +307,36 @@ graph.init = function() {
     nodeId = Number(nodeId);
     if (switchNode(nodeId, false)) {
         historique.init(nodeId);
+    }
+
+    function hoverNode(d) {
+        graph.elts.nodes.classed('translucent', true);
+            graph.elts.links.classed('translucent', true);
+
+            const ntwOfHoveredNode = getNodeNetwork(d.id)
+                , nodeHovered = ntwOfHoveredNode.node
+                , linksHovered = ntwOfHoveredNode.links
+                , connectedNodesHovered = ntwOfHoveredNode.connectedNodes;
+
+            nodeHovered.classed('translucent', false);
+            linksHovered.classed('translucent', false);
+            connectedNodesHovered.classed('translucent', false);
+
+            if (graph.selectedNodeId) {
+                const ntwOfSelectedNode = getNodeNetwork(graph.selectedNodeId)
+                    , nodeSelected = ntwOfSelectedNode.node
+                    , linksSelected = ntwOfSelectedNode.links
+                    , connectedNodesSelected = ntwOfSelectedNode.connectedNodes;
+
+                nodeSelected.classed('translucent', false);
+                linksSelected.classed('translucent', false);
+                connectedNodesSelected.classed('translucent', false);
+            }
+    }
+
+    function hoverNodeRemove(d) {
+        graph.elts.nodes.classed('translucent', false);
+        graph.elts.links.classed('translucent', false);
     }
 }
 
