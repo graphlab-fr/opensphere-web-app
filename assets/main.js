@@ -35,54 +35,58 @@ Promise.all([
         const entites = data[0]
         const liens = data[1]
 
-        graph.nodes = entites.map(function(entite) {
-            return {
-                id: entite.id,
-                label: entite.label,
-                title: entite.titre,
-                group: entite.relation_otlet,
-                image: './assets/images/' + entite.photo,
-                genre: entite.genre,
-                annee_naissance: entite.annee_naissance,
-                annee_mort: ((!entite.annee_mort) ? undefined : ' - ' + entite.annee_mort),
-                pays: entite.pays,
-                domaine: entite.domaine,
-                description: entite.description,
-                lien_wikipedia: entite.lien_wikipedia,
-                // translated metas
-                Fr: {
+        graph.nodes = entites
+            .filter(entite => entite.id)
+            .map(function(entite) {
+                return {
+                    id: entite.id,
+                    label: entite.label,
                     title: entite.titre,
+                    group: entite.relation_otlet,
+                    image: './assets/images/' + entite.photo,
+                    genre: entite.genre,
+                    annee_naissance: entite.annee_naissance,
+                    annee_mort: ((!entite.annee_mort) ? undefined : ' - ' + entite.annee_mort),
                     pays: entite.pays,
                     domaine: entite.domaine,
-                    description: entite.description
-                },
-                En: {
-                    title: entite.titre_en,
-                    pays: entite.pays_en,
-                    domaine: entite.domaine_en,
-                    description: entite.description_en
-                },
+                    description: entite.description,
+                    lien_wikipedia: entite.lien_wikipedia,
+                    // translated metas
+                    Fr: {
+                        title: entite.titre,
+                        pays: entite.pays,
+                        domaine: entite.domaine,
+                        description: entite.description
+                    },
+                    En: {
+                        title: entite.titre_en,
+                        pays: entite.pays_en,
+                        domaine: entite.domaine_en,
+                        description: entite.description_en
+                    },
 
-                sortName: entite.nom || entite.label,
-                hidden: false
-            };
-        });
+                    sortName: entite.nom || entite.label,
+                    hidden: false
+                };
+            });
 
-        graph.links = liens.map(function(lien) {
-            return {
-                id: lien.id,
-                source: lien.from,
-                target: lien.to,
-                title: lien.label,
+        graph.links = liens
+            .filter(lien => lien.id && lien.from && lien.to)
+            .map(function(lien) {
+                return {
+                    id: lien.id,
+                    source: lien.from,
+                    target: lien.to,
+                    title: lien.label,
 
-                Fr: {
-                    title: lien.label
-                },
-                En: {
-                    title: lien.label_en
-                },
-            }
-        });
+                    Fr: {
+                        title: lien.label
+                    },
+                    En: {
+                        title: lien.label_en
+                    },
+                }
+            });
 
         graph.init();
 
@@ -353,12 +357,12 @@ function getNodeNetwork(nodeId) {
     }
 
     ntw.links = graph.elts.links.filter(function(link) {
-        if (link.source.id === nodeId) {
+        if (link.source.id === nodeId && link.target.hidden === false) {
             ntw.connectedNodes.push(link.target.id);
             return true;
         }
 
-        if (link.target.id === nodeId) {
+        if (link.target.id === nodeId && link.source.hidden === false) {
             ntw.connectedNodes.push(link.source.id);
             return true;
         }
