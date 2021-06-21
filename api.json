@@ -1,0 +1,12 @@
+{
+    "source": {
+        "include": [
+            "./assets/main.js"
+        ]
+    },
+    "opts": {
+        "template": "../node_modules/minami",
+        "encoding": "utf8",
+        "destination": "./docs/api/"
+    }
+}
