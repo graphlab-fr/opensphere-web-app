@@ -1,4 +1,45 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>main.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Board.html">Board</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Board.html#.init">init</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Board.html#bundle">bundle</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Board.html#empty">empty</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Board.html#fill">fill</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Board.html#listLetters">listLetters</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Card.html">Card</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Card.html#inscribe">inscribe</a></span></li><li class="nav-heading">Namespaces</li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Fetch_entites.html">Fetch_entites</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Fetch_links.html">Fetch_links</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Fiche.html">Fiche</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Filter.html">Filter</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.canClose">canClose</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.close">close</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.fill">fill</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.fixer">fixer</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.init">init</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.open">open</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.setConnexion">setConnexion</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.setImage">setImage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.setMeta">setMeta</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.setPermaLink">setPermaLink</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Filter.html#.setWikiLink">setWikiLink</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Graph.html">Graph</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Graph.html#.graph.init">graph.init</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Historique.html">Historique</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Historique.html#.actualiser">actualiser</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Historique.html#.init">init</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Movement.html">Movement</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Movement.html#.goTo">goTo</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Movement.html#.scroll">scroll</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Search.html">Search</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Search.html#.cleanResultContent">cleanResultContent</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Search.html#.init">init</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Search.html#.reset">reset</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Search.html#.showResult">showResult</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#chooseColor">chooseColor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#findConnectedNodes">findConnectedNodes</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#getNodeMetas">getNodeMetas</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#getNodeNetwork">getNodeNetwork</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#highlightNodeNetwork">highlightNodeNetwork</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#switchNode">switchNode</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#translate">translate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#unlightNodeNetwork">unlightNodeNetwork</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#zoomLess">zoomLess</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#zoomMore">zoomMore</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#zoomReset">zoomReset</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#zoomToNode">zoomToNode</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">main.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @ignore
  * ================================================================================================
  * fetch.js =======================================================================================
@@ -121,7 +162,7 @@ Promise.all([
          */
 
         graph.links = liens
-            .filter(lien => lien.id && lien.from && lien.to)
+            .filter(lien => lien.id &amp;&amp; lien.from &amp;&amp; lien.to)
             .map(function(lien) {
                 return {
                     id: lien.id,
@@ -149,7 +190,7 @@ Promise.all([
  * ================================================================================================
  * network.js =====================================================================================
  * ================================================================================================
- * Display & lauch events of the graph
+ * Display &amp; lauch events of the graph
  * Distribute the data extracted from fetch.js
  */
 
@@ -333,12 +374,12 @@ graph.init = function() {
                 , text = d3.select(this);
             let label = '';
 
-            for (let i = 0; i < words.length; i++) {
+            for (let i = 0; i &lt; words.length; i++) {
                 // combine words and seperate them by a space caracter into label
                 label += words[i] + ' ';
 
-                // if label (words combination) is longer than max & not the single iteration
-                if (label.length < max && i !== words.length - 1) { continue; }
+                // if label (words combination) is longer than max &amp; not the single iteration
+                if (label.length &lt; max &amp;&amp; i !== words.length - 1) { continue; }
 
                 text.append("tspan")
                     .attr('x', 0)
@@ -462,12 +503,12 @@ function getNodeNetwork(nodeId) {
     }
 
     ntw.links = graph.elts.links.filter(function(link) {
-        if (link.source.id === nodeId && link.target.hidden === false) {
+        if (link.source.id === nodeId &amp;&amp; link.target.hidden === false) {
             ntw.connectedNodes.push(link.target.id);
             return true;
         }
 
-        if (link.target.id === nodeId && link.source.hidden === false) {
+        if (link.target.id === nodeId &amp;&amp; link.source.hidden === false) {
             ntw.connectedNodes.push(link.source.id);
             return true;
         }
@@ -582,7 +623,7 @@ function findConnectedNodes(nodeId) {
 }
 
 /**
- * Change view (graph focus & description bar content) about a node
+ * Change view (graph focus &amp; description bar content) about a node
  * @param {number} nodeId - Entity id
  * @param {boolean} mustZoom - if true : zoom on node
  * @returns {boolean} if it works
@@ -622,7 +663,7 @@ function switchNode(nodeId, mustZoom = true) {
 
 
 /**
- * Records list attributs & methods
+ * Records list attributs &amp; methods
  * @namespace Board
  */
 
@@ -664,7 +705,7 @@ var board = {
  * @param {string} label - Entity label
  * @param {string} labelFirstLetter - Letter for alphabetical diplaying
  * @param {string} title - Entity title
- * @param {HTMLElement} domElt - <article> who contain card HTML
+ * @param {HTMLElement} domElt - &lt;article> who contain card HTML
  */
 
 function Card() {
@@ -676,20 +717,20 @@ function Card() {
 }
 
 /**
- * Make card HTML & appendChild in its container
+ * Make card HTML &amp; appendChild in its container
  * @param {HTMLElement} container - Container for cards linked by the same first letter
  */
 
 Card.prototype.inscribe = function(container) {
     this.domElt.classList.add('card');
     this.domElt.innerHTML = 
-    `<header>
-        <img src="${this.img}" alt="${this.label}">
-        <div class="card-identite">
-            <h3 class="card__label">${this.label}</h3>
-        </div>
-    </header>
-    <h4 class="card__titre">${this.title}</h4>`;
+    `&lt;header>
+        &lt;img src="${this.img}" alt="${this.label}">
+        &lt;div class="card-identite">
+            &lt;h3 class="card__label">${this.label}&lt;/h3>
+        &lt;/div>
+    &lt;/header>
+    &lt;h4 class="card__titre">${this.title}&lt;/h4>`;
 
     container.appendChild(this.domElt);
 
@@ -792,7 +833,7 @@ Board.prototype.init = function() {
 }
 
 /**
- * Delete all Board elements & data
+ * Delete all Board elements &amp; data
  */
 
 Board.prototype.empty = function() {
@@ -810,12 +851,12 @@ Board.prototype.empty = function() {
  * ================================================================================================
  * filter.js =======================================================================================
  * ================================================================================================
- * Activate filters buttons & hide/show entitied from the graph
+ * Activate filters buttons &amp; hide/show entitied from the graph
  */
 
 
 /**
- * Filters attributs & methods
+ * Filters attributs &amp; methods
  * @namespace Filter
  */
 
@@ -900,11 +941,11 @@ filter.volet.btnClose.addEventListener('click', () => {
  * ================================================================================================
  * fiche.js ========================================================================================
  * ================================================================================================
- * Display the description bar & its fields
+ * Display the description bar &amp; its fields
  */
 
 /**
- * Description bar attributs & methods
+ * Description bar attributs &amp; methods
  * @namespace Fiche
  */
 
@@ -1028,7 +1069,7 @@ var fiche = {
         });
     },
     /**
-     * Generate the connected nodes <ul> list, its description frame
+     * Generate the connected nodes &lt;ul> list, its description frame
      * @param {array} nodeConnectedList - Connected nodes array
      * @memberof Filter
      */
@@ -1094,12 +1135,12 @@ fiche.fields.title.addEventListener('click', () => {
  * ================================================================================================
  * search.js ======================================================================================
  * ================================================================================================
- * Set search engine parameters & data
+ * Set search engine parameters &amp; data
  */
 
 
 /**
- * Search bar attributs & methods
+ * Search bar attributs &amp; methods
  * @namespace Search
  */
 
@@ -1127,7 +1168,7 @@ var search = {
 
         resultElement.addEventListener('click', () => {
 
-            if (graph.selectedNodeId !== undefined && graph.selectedNodeId == nodeId) {
+            if (graph.selectedNodeId !== undefined &amp;&amp; graph.selectedNodeId == nodeId) {
                 // si cette id correpond à celle du nœeud selectionné
                 return;
             }
@@ -1187,7 +1228,7 @@ var search = {
                 var nbResult = resultList.length;
             }
             
-            for (let i = 0; i < nbResult; i++) {
+            for (let i = 0; i &lt; nbResult; i++) {
                 search.showResult(resultList[i]); }
         });
     }
@@ -1201,7 +1242,7 @@ search.reset();
  * ================================================================================================
  * translate.js ===================================================================================
  * ================================================================================================
- * Activate translate buttons & translate website elements on click
+ * Activate translate buttons &amp; translate website elements on click
  */
 
 
@@ -1240,7 +1281,7 @@ langage.flags.forEach(flag => {
         // translate website interface
         langage.translateAll();
 
-        // translate graph & entities metas
+        // translate graph &amp; entities metas
         graph.elts.nodes.each(function(d) {
             if (!d[langage.actual]) { return; }
 
@@ -1340,7 +1381,7 @@ function zoomMore() {
 function zoomLess() {
     graph.pos.zoom -= graph.zoomParams.zoomInterval;
 
-    if (graph.pos.zoom <= graph.zoomParams.zoomMin) {
+    if (graph.pos.zoom &lt;= graph.zoomParams.zoomMin) {
         graph.pos.zoom = graph.zoomParams.zoomMin; }
 
     translate();
@@ -1392,7 +1433,7 @@ function zoomToNode(nodeId) {
  * ================================================================================================
  * navigation.js ==================================================================================
  * ================================================================================================
- * Display and coordinate three website sections : graph, board & about menu
+ * Display and coordinate three website sections : graph, board &amp; about menu
  */
 
 
@@ -1529,4 +1570,22 @@ window.onpopstate = function(e) {
 
     var nodeId = timeline[timeline.length - 1];
     switchNode(nodeId);
-};
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Mon Jun 21 2021 12:46:15 GMT+0200 (heure d’été d’Europe centrale) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

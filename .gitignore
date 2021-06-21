@@ -5,3 +5,5 @@ package-lock.json
 
 site/
 /build
+
+/docs/api/fonts
