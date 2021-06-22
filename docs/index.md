@@ -14,7 +14,7 @@ Les fonctionnalités du logiciel et leur utilisation sont décrites dans le [man
 Cette documentation s’adresse aux personnes souhaitant réutiliser le code de l'Opensphère.
 
 :::important
-Tout au long de ce guide, nous vous renverrons vers **l'index de l'API**. Il vous permettra de retrouver et comprendre les partie du code à modifier ainsi que les fonctions clés, vous permettant de réutiliser les fonctionnalités de l'Opensphère.
+Tout au long de ce guide, nous vous renverrons vers **l'index de l'API**. Il vous permettra de retrouver et comprendre les parties du code à modifier ainsi que les fonctions clés, vous permettant de réutiliser les fonctionnalités de l'Opensphère.
 
 <https://hyperotlet.github.io/opensphere/api/>
 :::
