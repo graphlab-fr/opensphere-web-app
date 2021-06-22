@@ -350,6 +350,20 @@ Ce mécanisme permet d'utiliser plusieurs modes de catégorisation dans un même
 
 Ceci implique que les constantes `group` et `type` aient bien été définies au préalable lors de l'[intégration des données](#entites-1).
 
+# Spatialisation des entités
+
+En modifiant les valeurs de l'[objet `graph.params`](./api/Graph.html#.graph.params), vous pouvez faire varier la disposition des noeuds au sein du graphe, l'espace entre eux et leur apparence.
+
+```javascript
+graph.params = {
+    nodeSize: 12, // taille des noeuds
+    nodeStrokeSize: 2, // taille de la bordure des noeuds
+    distanceMax: 400, // définir une limite de spatialisation
+    force: 800, // augmenter l'espace entre les noeuds au sein de cette limite
+    highlightColor: 'red' // couleur de la bordure pour les noeuds sélectionnés
+};
+```
+
 # Liste alphabétique des entités
 
 La vue "Fiches" (accessible via la navigation, en haut de page) permet de consulter la liste de toutes les entités du graphe sous forme de cartes. Elles sont rangées dans l'ordre alphabétique (d'après les [opérations d'initialisation](./api/Board.html#.init)) selon la constante `sortName` définie lors de l'[intégration des données](#entites-1). Vous pouvez écrire différents algorithmes permettant de transformer la valeur effectée à cette variable `sortName` et ainsi modifier l'ordre d'affichage de cette liste alphabétique.
