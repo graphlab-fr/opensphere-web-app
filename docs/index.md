@@ -13,6 +13,12 @@ Les fonctionnalités du logiciel et leur utilisation sont décrites dans le [man
 
 Cette documentation s’adresse aux personnes souhaitant réutiliser le code de l'Opensphère.
 
+:::important
+Tout au long de ce guide, nous vous renverrons vers **l'index de l'API**. Il vous permettra de retrouver et comprendre les partie du code à modifier ainsi que les fonctions clés, vous permettant de réutiliser les fonctionnalités de l'Opensphère.
+
+<https://hyperotlet.github.io/opensphere/api/>
+:::
+
 L'Opensphère a été conçue pour faciliter la réutilisation. Son fonctionnement nécessite uniquement un serveur web local ou en ligne. Le code est écrit en JavaScript mais il n'est pas nécessaire de connaître ce langage pour s'approprier le logiciel : il suffit de modifier le code aux endroits indiqués dans cette documentation pour l'adapter à ses données et métadonnées. Quelques [notions de base en HTML](https://developer.mozilla.org/fr/docs/Learn/Getting_started_with_the_web/HTML_basics) peuvent être utiles. La documentation s'adresse également aux personnes maîtrisant JavaScript, avec des ressources permettant personnaliser le logiciel en profondeur.
 
 L'Opensphère est faite pour afficher des jeux de données d'une taille plutôt modeste : au-delà de 800 entités, les performances du logiciel diminuent (variable selon les navigateurs web).
@@ -172,19 +178,23 @@ Le plugin [JSON Exporter](https://gephi.org/plugins/#/plugin/jsonexporter-plugin
 
 # Intégration des données
 
-Une fois les fichiers `entites.json` et `liens.json` placés dans le répertoire `/data`, il faut modifier le code de l'Opensphère pour qu'elle puisse intégrer les données.
+Une fois les fichiers `entites.json` et `liens.json` placés dans le répertoire `/data`, il faut modifier le code de l'Opensphère pour
+
+1. sérialiser les données (les adapter au traitement),
+2. intégrer les données dans l'interface.
 
 ## Entités
 
-La commande d’intégration des données représentant les entités se trouve dans le fichier `/assets/main.js` à partir de la ligne 20. Un extrait simplifié est présenté ci-dessous.
+Voici un extrait simplifié de la [commande d’intégration des données dans le système](https://hyperotlet.github.io/opensphere/api/Fetch_entites.html) :
 
 ```javascript
-network.data.nodes.add(
-    entites.map(function(entite) {
-        var entiteObj = {
-            id: entite.identifiant,
+graph.nodes = entites
+    .filter(entite => entite.id)
+    .map(function(entite) {
+        return {
+            id: entite.id,
             label: entite.nom,
-            title: entite.description,
+            title: entite.titre,
             group: entite.groupe,
             image:'./assets/photos/' + entite.photo,
             age: Number(entite.age) + 6,
@@ -197,71 +207,95 @@ network.data.nodes.add(
         };
 ```
 
-Cette commande permet de faire correspondre les métadonnées, c'est-à-dire les entêtes de colonnes dans le tableur, à des constantes JavaScript. Ce sont ces constantes qui sont ensuite utilisées ensuite dans tout le logiciel pour manipuler les métadonnées correspondante. Le schéma ci-dessous permet de bien distinguer métadonnées et constantes.
+Cette structure de contrôle permet de faire correspondre les métadonnées (les entêtes de colonnes dans le tableur, ex : `nom`, `groupe`) à des constantes JavaScript (ex : `label`, `group`). Ce sont ces constantes qui sont ensuite utilisées dans tout le logiciel pour pouvoir retrouver manipuler les métadonnées correspondante.
+
+Par exemple, la fonction [getNodeMetas()](./api/global.html#getNodeMetas) permet de retrouver la liste de ces mêmes contantes avec les valeurs pour une entités appelée (par son identifiant `id`).
+
+```javascript
+getNodeMetas(1);
+// => { id: 1, label: 'Paul Otlet', title: 'fondateur', description: 'Morbi ac augue'… }
+```
+
+Le schéma ci-dessous permet de bien retracer le processus de sérialisation des données, depuis le tableur, jusqu'aux constantes.
 
 ![Intégration des données](transfert-data.svg){width=350}
 
-Chaque métadonnée est préfixée par le nom du jeu de données auquel elle appartient (`entite` ou `lien`). On fait correspondre cette métadonnée préfixée à une constante. Par exemple, la métadonnée `titre` est appelée sous la forme `entite.titre` et associée à une constante `title`.
+Chaque métadonnée est préfixée par le nom du jeu de données auquel elle appartient (ici `entite`, puis `lien` dans la section suivante de la documentation). On fait correspondre cette métadonnée préfixée à une constante. Par exemple, la métadonnée `titre` est appelée sous la forme `entite.titre` et associée à une constante `title`.
 
 ::: important
-L'utilisation de [Vis.js] pose des contraintes sur le nommage de certaines constantes. Quatre constantes sont obligatoires et doivent être nommées telles quelles : `label`, `id`, `group` et `title`. La constante `image` est facultative mais doit être nommée telle quelle. Les autres constantes sont facultatives et peuvent être nommées de manière arbitraire.
+Trois constantes sont obligatoires et doivent être nommées telles quelles dans la structure de contrôle : `label`, `id`, `group`. La constante `image` doit être renseignée si vous souhaitez [ajouter des images](#images). Les autres constantes sont facultatives et peuvent être nommées de manière arbitraire.
 :::
 
-Les constantes peuvent être définies en incluant des transformations, comme par exemple en effectuant une opération mathématique sur une métadonnée numérique.
+Les constantes peuvent être définies en incluant des transformations, comme par exemple en effectuant une opération mathématique, logiques, sur une métadonnée.
+
+```javascript
+return {
+    // si l'entité n'a pas de valeur pour la métadonnée 'metier'
+    // dans le tableur alors sa valeur est 'métier inconnu'
+    job: ((!entite.metier) ? undefined : 'métier inconnu')
+}
+```
 
 Pour associer des métadonnées dans différentes langues à une même constante, voir la section [Langues](#langues) plus bas.
 
 ## Liens
 
-L'intégration des données représentant les relations utilise une commande similaire située quelques lignes plus bas, toujours dans le fichier `/assets/main.js`.
+L'[intégration des données représentant les relations (liens)](https://hyperotlet.github.io/opensphere/api/Fetch_links.html) utilise une structure de contrôle similaire.
 
 Exemple :
 
 ```javascript
-network.data.edges.add(
-    liens.map(function(lien) {
-        var lienObj = {
+graph.links = liens
+    .filter(lien => lien.id && lien.from && lien.to)
+    .map(function(lien) {
+        return {
             id: lien.id,
-            from: lien.from,
-            to: lien.to,
+            source: lien.from,
+            target: lien.to,
             title: lien.label,
+
             Fr: {
                 title: lien.label
             },
             En: {
                 title: lien.label_en
-            }
-        };
+            },
+        }
+    });
 ```
 
 ## Groupes
 
-Lors de l’intégration, une constante `group` doit être déclarée pour chaque entité. Cette constante est pensée pour correspondre à une catégorisation des entités.
+Lors de l’[intégration des données](#entites-1), une constante `group` doit être déclarée pour chaque entité. Cette constante est pensée pour correspondre à une catégorisation des entités et ainsi les colorer, filtrer.
 
-La constante `group` permet de définir des paramètres d'affichage dans le graphe qui s'appliquent en bloc à toutes les entités au sein du même groupe. La liste complète des paramètres est disponible sur la page [Network - Nodes](https://visjs.github.io/vis-network/docs/network/nodes.html) de la documentation de [Vis.js].
+::: important
+L'Opensphère permet d'ajouter d'autres constantes (liées à d'autres métadonnées) qui jouent un rôle de filtre (voir la section [Filtres](#filtres) plus bas). Mais seule la constante `group` peut être utilisée pour définir des paramètres liés à la colorisation des noeuds et liens.
+:::
 
-Ces paramètres doivent être déclarés dans le fichier `/assets/main.js`, vers la ligne 160. Un extrait simplifié est présenté ci-dessous :
+La coloration (des noeuds, des liens, des boutons de filtres liés à tel groupe de noeuds) se fait via la fonction [`chooseColor()`](./api/global.html#chooseColor). En son sein, vous devez pour chacun de vos groupes inscrire un `case` contenant le nom du groupe (en repsectant la casse) puis la couleur associée (au format RVB). Par défaut, vos entités auront une couleur grise.
 
 ```javascript
-groups: {
-    amis: {shape: 'circle', color: {border: grey}, size: 20},
-    ennemis: {shape: 'square', color: {border: rgb(84,84,194)}, size: 10}
+function chooseColor(name) {
+    switch (name) {
+        case 'collegues':
+            color = '154, 60, 154'; break;
+        case 'collaborateurs':
+            color = '97, 172, 97'; break;
+        default:
+            color = '169, 169, 169'; break;
+    }
 }
 ```
 
-::: important
-L'Opensphère permet d'ajouter d'autres constantes (liées à d'autres métadonnées) qui jouent un rôle de catégorisation similaire (voir la section [Filtres](#filtres) plus bas). Mais seule la constante `group` peut être utilisée pour définir des paramètres liés à l'affichage du graphe comme expliqué ci-dessus.
-:::
-
 ## Images
 
-Par défaut, toutes les entités doivent être associées à une image. Chaque entité peut avoir sa propre image, ou bien la partager avec d'autres entités.
+Par défaut, toutes les entités doivent être associées à une image, une métadonnée `image`. Chaque entité peut avoir sa propre image, ou bien la partager avec d'autres entités.
 
 ::: astuce
 L'[Otletosphère](http://hyperotlet.huma-num.fr/otletosphere/) et l'[OpenDataSphère](http://hyperotlet.huma-num.fr/opendatasphère/) montrent deux façons d'envisager l'utilisation des images : la première utilise des photographies pour mettre en valeur les personnes, tandis que la seconde utilise des icônes qui font ressortir les catégories des entités.
 :::
 
-Les images doivent être placées dans le répertoire `/assets/photos`. La métadonnée utilisée pour déclarer l'image associée à une entité doit contenir le nom complet du fichier (nom et extension). Exemple : `nom_image.jpg`.
+Les images doivent être placées dans le répertoire `/assets/images`. La métadonnée utilisée pour déclarer l'image associée à une entité doit contenir le nom complet du fichier (nom et extension). Exemple : `nom_image.jpg`.
 
 ::: astuce
 Pensez à bien redimensionner et compresser vos images pour leur intégration. Elles peuvent largement ralentir l'affichage du site.
@@ -270,33 +304,32 @@ Pensez à bien redimensionner et compresser vos images pour leur intégration. E
 L'intégration de la métadonnée se fait via une constante `image`. Exemple avec une métadonnée intitulée `photo` :
 
 ```javascript
-image:'./assets/photos/' + entite.photo`
+return {
+    image: './assets/photos/' + entite.photo`
+}
 ```
 
-Si vous ne souhaitez pas utiliser d’images, effectuez les modifications suivantes dans `/assets/main.js` :
-
-- Ligne ~30 : supprimer la ligne correspondant à la constante `image` dans la commande d’intégration.
-- Ligne ~150 : remplacer la valeur de `shape` (initialement `image`) une autre valeur comme `circle` ou `square`. La liste complète des paramètres est disponible sur la page [Network - Nodes](https://visjs.github.io/vis-network/docs/network/nodes.html) de la documentation de [Vis.js].
-- Ligne ~160 : supprimer le paramètre `shape:'circularImage'` pour les différents groupes définis dans `groups`.
+Si vous ne souhaitez pas utiliser d’images, vous devez modifier la constante [`graph.nodeContainImage`](./api/Graph.html#.nodeContainImage) et lui donner la valeur `false`.
 
 ## Affichage latéral
 
-L’affichage des métadonnées dans l'Opensphère reprend la logique de la fiche, incarnée par un panneau latéral situé à droite de l’interface. Le paramétrage de cette « fiche » consiste à modifier le fichier `index.html` pour créer des champs faisant appel aux différentes constantes définies au préalable dans `/assets/main.js`.
+L’affichage des métadonnées dans l'Opensphère reprend la logique de la **fiche**, incarnée par un panneau latéral situé à droite de l’interface. Le paramétrage de cette « fiche » consiste à modifier le fichier `index.html` pour créer des champs faisant appel aux différentes constantes définies lors de l'[intégration des données](#entites-1).
 
-Dans le fichier `index.html`, la région à modifier se trouve peu après la ligne 250 au niveau du commentaire indiquant `LATERAL FICHE`. Le volet correspond à l'élément `aside`. Le contenu à modifier est situé dans le `div` portant l'identifiant `fiche-content`.
+Dans le fichier `index.html`, la région du code à modifier est imbriqué dans la balise `<div id="fiche-content">`.
 
-Pour ajouter un champ, ajoutez un élément `span` ou `div` portant l’attribut `data-meta`. La valeur de cet attribut doit être l'une des constantes définies dans `/assets/main.js`. L'élement doit rester vide (la balise fermante suit immédiatement la balise ouvrante). Lorsqu'une entité est sélectionnée dans l'interface de l'Opensphère, le logiciel remplit automatiquement chaque élément `span` ou `div` présent dans le volet avec la valeur des métadonnées correspondantes.
+Pour ajouter un champ, ajoutez un élément `span` ou `div` portant l’attribut `data-meta`. La valeur de cet attribut doit être l'une des constantes définies lors de l'[intégration des données](#entites-1). L'élement doit rester vide (la balise fermante suit immédiatement la balise ouvrante). Lorsqu'une entité est sélectionnée dans l'interface de l'Opensphère, le logiciel remplit automatiquement chaque balise portant l’attribut `data-meta` présent dans le volet avec la valeur des métadonnées correspondantes.
 
 Exemple :
 
 ```html
 <aside id="fiche">
     …
-    <main id="fiche-content">
+    <div id="fiche-content">
         …
         <span data-meta="title"></span>
+        <span data-meta="group"></span>
         <div data-meta="description"></div>
-    </main>
+    </div>
 </aside>
 ```
 
@@ -306,80 +339,79 @@ L'Opensphère inclut un système de filtres qui permettent d’afficher ou de ca
 
 Les boutons s'affichent soit dans l'entête du site pour les grands écrans (affichage *« desktop »* ), soit dans un menu accessible depuis le bouton entonnoir en haut à droite de la zone d'affichage du graphe, pour les petits écrans (affichage *« mobile »* ). Ils sont créés via le fichier `index.html` à deux endroits distincts : ligne ~160 pour les boutons *desktop* et ligne ~260 pour les boutons *mobile*.
 
-Chaque filtre correspond à un élément `button` avec la classe `btn-group`, un attribut `data-type` et un attribut `data-meta`. La valeur de `data-type` doit être l'une des constantes définies dans `/assets/main.js` : c'est le paramètre sur lequel doit jouer le filtre. La valeur de l’attribut `data-meta` correspond à la valeur de cette constante pour le filtre. Le texte situé entre les deux balises est affiché sur le bouton.
+Chaque filtre correspond à un élément `button` avec la classe `btn-group`, un attribut `data-type` et un attribut `data-meta`. La valeur de `data-type` doit être l'une des constantes définies lors de l'[intégration des données](#entites-1) : c'est le paramètre sur lequel doit jouer le filtre. La valeur de l’attribut `data-meta` correspond à la valeur affectée à cette même constante pour que l'entité soit filtrée. Le texte situé entre les deux balises est affiché dans le bouton.
 
 Ce mécanisme permet d'utiliser plusieurs modes de catégorisation dans un même jeu de données, comme le montre l'exemple ci-dessous :
 
 ```html
 <button class="btn-group" data-type="group" data-meta="politique">Politique</button>
-<button class="btn-group" data-type="type" data-meta="personne">personne</button>
+<button class="btn-group" data-type="type" data-meta="personne">Personne</button>
 ```
 
-Ceci implique que les constantes aient bien été définies au préalable dans `/assets/main.js` :
-
-```javascript
-group: entite.categorie
-type: entite.type
-```
+Ceci implique que les constantes `group` et `type` aient bien été définies au préalable lors de l'[intégration des données](#entites-1).
 
 # Liste alphabétique des entités
 
-La vue "Fiches" (accessible via la navigation, en haut de page) permet de consulter la liste de toutes les entités du graphe sous forme de cartes. Elles sont rangées dans l'ordre alphabétique d'après les opérations inscrites environs à la ligne 416 dans `/assets/main.js`. On y extrait la première lettre de la variable `sortName` définie avec la [même méthode que les entités](#entites-1). Vous pouvez écrire différents algorithmes permettant de transformer cette variable `sortName` et ainsi modifier l'affichage de cette liste alphabétique.
+La vue "Fiches" (accessible via la navigation, en haut de page) permet de consulter la liste de toutes les entités du graphe sous forme de cartes. Elles sont rangées dans l'ordre alphabétique (d'après les [opérations d'initialisation](./api/Board.html#.init)) selon la constante `sortName` définie lors de l'[intégration des données](#entites-1). Vous pouvez écrire différents algorithmes permettant de transformer la valeur effectée à cette variable `sortName` et ainsi modifier l'ordre d'affichage de cette liste alphabétique.
 
 # Langues
 
-L'Otletosphère peut accueillir plusieurs langues, aussi bien au niveau des données que de l'interface.
+L'Opensphère peut afficher des informations en plusieurs langues, aussi bien au niveau des données que de l'interface.
 
 Il est recommandé d'utiliser les codes de langue définis par la norme [ISO 639](https://www.iso.org/iso-639-language-codes.html) pour désigner les différentes langues à la fois dans les données, le code et l'interface.
 
 ::: important
 Les codes de langue sont sensibles à la casse, et la règle n'est pas la même selon le type des fichiers dans lesquels ils sont utilisés :
 
-- dans les fichiers JavaScript comme `main.js`, la première lettre doit être majuscule (ex : `Fr`) ;
-- dans les fichiers HTML comme `index.html`, les codes de langue doivent être en minuscules (ex : `fr`).
+- dans le fichier `main.js`, lors de l'[intégration des données](#entites-1) ou de la [personnalisation du module de langue](./api/main.js.html#line1202), la première lettre doit être majuscule (ex : `Fr`) ;
+- dans le fichier `index.html`, dans les attributs, les codes de langue doivent être en minuscules (ex : `fr`).
 :::
 
 ## Données
 
-Pour les données, la gestion des langues se fait au niveau de la commande d'intégration dans `/assets/main.js` à partir de la ligne 20. En procédant par langue, il faut associer chaque constante à la métadonnée correspondante pour la langue en question. Les métadonnées qui correspondent à la langue « par défaut » doivent être traitées de la même manière, ce qui ne remplace pas la définition initiale des constantes : elles sont donc présentes deux fois.
+Pour les données, la gestion des langues se prévoit lors de l'[intégration des données](#entites-1). En procédant par langue, il faut associer chaque constante à la métadonnée correspondante pour la langue en question. Les métadonnées qui correspondent à la langue « par défaut » doivent être traitées de la même manière, ce qui ne remplace pas la définition initiale des constantes : elles sont donc présentes deux fois.
 
 Exemple :
 
 ```javascript
-{
-label: entite.nom,
-title: entite.description,
-Fr: {
+return {
+    // valeurs par défaut
     label: entite.nom,
-    title: entite.description,},
-En: {
-    label: entite.nom_en,
-    title: entite.description_en,
-},
-Ru: {
-    label: entite.nom_ru,
-    title: entite.description_ru,
+    title: entite.description,
+    // valeurs par langue
+    Fr: {
+        label: entite.nom,
+        title: entite.description
+    },
+    En: {
+        label: entite.nom_en,
+        title: entite.description_en
+    },
+    Ru: {
+        label: entite.nom_ru,
+        title: entite.description_ru
+    }
 }
-```
-
-## Éléments d'interface
-
-Pour traduire un élément de l'interface, ajoutez-y un attribut `data-lang-<code>` ayant pour valeur la traduction de l'élément, en remplaçant `<code>` par la constante correspondant à la langue de la traduction, définie précédemment. Attention, comme indiqué plus haut la casse est différente : on écrira `fr` et pas `Fr`.
-
-Exemple :
-
-```html
-<p data-lang-ru="traduction en russe">texte d’origine</p>
 ```
 
 ## Sélecteur de langue
 
-Un sélecteur situé en haut à droite de l'interface permet de changer de langue à la volée. Pour ajouter une langue, localisez l'élément `section` portant la classe `lang-box`, vers la ligne 150 du fichier `index.html`. Ajoutez à l'intérieur un `div` avec un attribut `data-lang` : la valeur de l'attribut doit être la constante que vous avez définie pour la langue en question, la valeur du `div` sera le texte affiché sur le bouton.
+Un sélecteur situé en haut à droite de l'interface permet de changer de langue à la volée. Pour ajouter une langue, localisez l'élément `<section class="lang-box">`, vers la ligne 150 du fichier `index.html`. Ajoutez à l'intérieur un `div` avec un attribut `data-lang` : la valeur de l'attribut doit être la constante que vous avez définie pour la langue en question, la valeur du `div` sera le texte affiché sur le bouton.
 
 Exemple :
 
 ```html
 <div data-lang="Ru">Russe</div>
+```
+
+## Éléments d'interface
+
+Pour traduire un élément de l'interface via un le sélecteur de langue, ajoutez-y un attribut `data-lang-<code>` ayant pour valeur la traduction de l'élément, en remplaçant `<code>` par la constante correspondant à la langue de la traduction, définie précédemment. Attention, comme indiqué plus haut la casse est différente : on écrira `fr` et pas `Fr`.
+
+Exemple :
+
+```html
+<p data-lang-ru="traduction en russe" data-lang-fr="texte en français">texte d’origine en français</p>
 ```
 
 # Publication
@@ -429,18 +461,21 @@ OpenDataSphère
 2020
 : Développement de l'[Otletosphère 2.0](https://hyperotlet.huma-num.fr/otletosphere/) par [Guillaume Brioudes](https://myllaume.fr/).
 
-2021
+Février 2021
 : Réutilisation de l'Otletosphère par les étudiants de la LP MIND 2020-2021 sous la direction d'Arthur Perret. Développement de l'Opensphère comme projet central autonome.
+
+Juin 2021
+: Réusinage du code de génération de la visualisation avec la biliothèque D3 (en replacement de Vis.js) suite au développement de l'outil de cartographie documentaire [Cosma](https://github.com/hyperotlet/cosma).
 
 ## Bibliothèques utilisées
 
 Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement a recouru aux bibliothèques suivantes. Elles sont été intégrées directement au code source de l’Opensphère et ne nécessitent par conséquent aucun téléchargement.
 
-- [Vis.js] v7.10.2 (licence Apache 2.0) : réalisation de la visualisation ainsi que du système de circulation des données grâce à ses deux composants *Network* et *DataSet*.
+- [d3] v4.13.0 (BSD 3-Clause) : réalisation de la visualisation.
 - [Fuse.js](https://github.com/krisk/Fuse/) v6.4.1 (licence Apache 2.0) : mise en place du moteur de recherche.
 - [Bootstrap Grid](https://github.com/twbs/bootstrap) v4.5.0 (licence MIT) : flexibilité de l’interface pour mobile.
 
 [HyperOtlet]: https://hyperotlet.hypotheses.org/
 [OpenDataSphère]: http://hyperotlet.huma-num.fr/opendatasphere/
 [Otletosphère]: http://hyperotlet.huma-num.fr/otletosphere/
-[Vis.js]: https://visjs.org
+[d3]: https://d3js.org/
