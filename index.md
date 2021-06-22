@@ -269,10 +269,10 @@ graph.links = liens
 Lors de l’[intégration des données](#entites-1), une constante `group` doit être déclarée pour chaque entité. Cette constante est pensée pour correspondre à une catégorisation des entités et ainsi les colorer, filtrer.
 
 ::: important
-L'Opensphère permet d'ajouter d'autres constantes (liées à d'autres métadonnées) qui jouent un rôle de filtre (voir la section [Filtres](#filtres) plus bas). Mais seule la constante `group` peut être utilisée pour définir des paramètres liés à la colorisation des noeuds et liens.
+L'Opensphère permet d'ajouter d'autres constantes (liées à d'autres métadonnées) qui jouent un rôle de filtre (voir la section [Filtres](#filtres) plus bas). Mais seule la constante `group` peut être utilisée pour définir des paramètres liés à la colorisation des nœuds et liens.
 :::
 
-La coloration (des noeuds, des liens, des boutons de filtres liés à tel groupe de noeuds) se fait via la fonction [`chooseColor()`](./api/global.html#chooseColor). En son sein, vous devez pour chacun de vos groupes inscrire un `case` contenant le nom du groupe (en repsectant la casse) puis la couleur associée (au format RVB). Par défaut, vos entités auront une couleur grise.
+La coloration (des nœuds, des liens, des boutons de filtres liés à tel groupe de nœuds) se fait via la fonction [`chooseColor()`](./api/global.html#chooseColor). En son sein, vous devez pour chacun de vos groupes inscrire un `case` contenant le nom du groupe (en repsectant la casse) puis la couleur associée (au format RVB). Par défaut, vos entités auront une couleur grise.
 
 ```javascript
 function chooseColor(name) {
@@ -349,6 +349,20 @@ Ce mécanisme permet d'utiliser plusieurs modes de catégorisation dans un même
 ```
 
 Ceci implique que les constantes `group` et `type` aient bien été définies au préalable lors de l'[intégration des données](#entites-1).
+
+# Spatialisation des nœuds
+
+En modifiant les valeurs de l'[objet `graph.params`](./api/Graph.html#.graph.params), vous pouvez faire varier la disposition des nœuds au sein du graphe, l'espace entre eux et leur apparence.
+
+```javascript
+graph.params = {
+    nodeSize: 12, // taille des nœuds
+    nodeStrokeSize: 2, // taille de la bordure des nœuds
+    distanceMax: 400, // définir une limite de spatialisation
+    force: 800, // augmenter l'espace entre les nœuds au sein de cette limite
+    highlightColor: 'red' // couleur de la bordure pour les nœuds sélectionnés
+};
+```
 
 # Liste alphabétique des entités
 

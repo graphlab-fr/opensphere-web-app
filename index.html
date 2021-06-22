@@ -44,20 +44,21 @@
 <li><a href="#affichage-lateral"><span class="toc-section-number">4.5</span> Affichage latéral</a></li>
 <li><a href="#filtres"><span class="toc-section-number">4.6</span> Filtres</a></li>
 </ul></li>
-<li><a href="#liste-alphabetique-des-entites"><span class="toc-section-number">5</span> Liste alphabétique des entités</a></li>
-<li><a href="#langues"><span class="toc-section-number">6</span> Langues</a>
+<li><a href="#spatialisation-des-nuds"><span class="toc-section-number">5</span> Spatialisation des nœuds</a></li>
+<li><a href="#liste-alphabetique-des-entites"><span class="toc-section-number">6</span> Liste alphabétique des entités</a></li>
+<li><a href="#langues"><span class="toc-section-number">7</span> Langues</a>
 <ul>
-<li><a href="#donnees"><span class="toc-section-number">6.1</span> Données</a></li>
-<li><a href="#selecteur-de-langue"><span class="toc-section-number">6.2</span> Sélecteur de langue</a></li>
-<li><a href="#elements-dinterface"><span class="toc-section-number">6.3</span> Éléments d’interface</a></li>
+<li><a href="#donnees"><span class="toc-section-number">7.1</span> Données</a></li>
+<li><a href="#selecteur-de-langue"><span class="toc-section-number">7.2</span> Sélecteur de langue</a></li>
+<li><a href="#elements-dinterface"><span class="toc-section-number">7.3</span> Éléments d’interface</a></li>
 </ul></li>
-<li><a href="#publication"><span class="toc-section-number">7</span> Publication</a></li>
-<li><a href="#exemples-dutilisation"><span class="toc-section-number">8</span> Exemples d’utilisation</a></li>
-<li><a href="#credits"><span class="toc-section-number">9</span> Crédits</a>
+<li><a href="#publication"><span class="toc-section-number">8</span> Publication</a></li>
+<li><a href="#exemples-dutilisation"><span class="toc-section-number">9</span> Exemples d’utilisation</a></li>
+<li><a href="#credits"><span class="toc-section-number">10</span> Crédits</a>
 <ul>
-<li><a href="#equipe"><span class="toc-section-number">9.1</span> Équipe</a></li>
-<li><a href="#historique-du-projet"><span class="toc-section-number">9.2</span> Historique du projet</a></li>
-<li><a href="#bibliotheques-utilisees"><span class="toc-section-number">9.3</span> Bibliothèques utilisées</a></li>
+<li><a href="#equipe"><span class="toc-section-number">10.1</span> Équipe</a></li>
+<li><a href="#historique-du-projet"><span class="toc-section-number">10.2</span> Historique du projet</a></li>
+<li><a href="#bibliotheques-utilisees"><span class="toc-section-number">10.3</span> Bibliothèques utilisées</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -243,9 +244,9 @@
 <h2 data-number="4.3" id="groupes"><span class="header-section-number">4.3</span> Groupes</h2>
 <p>Lors de l’<a href="#entites-1">intégration des données</a>, une constante <code>group</code> doit être déclarée pour chaque entité. Cette constante est pensée pour correspondre à une catégorisation des entités et ainsi les colorer, filtrer.</p>
 <div class="important">
-<p>L’Opensphère permet d’ajouter d’autres constantes (liées à d’autres métadonnées) qui jouent un rôle de filtre (voir la section <a href="#filtres">Filtres</a> plus bas). Mais seule la constante <code>group</code> peut être utilisée pour définir des paramètres liés à la colorisation des noeuds et liens.</p>
+<p>L’Opensphère permet d’ajouter d’autres constantes (liées à d’autres métadonnées) qui jouent un rôle de filtre (voir la section <a href="#filtres">Filtres</a> plus bas). Mais seule la constante <code>group</code> peut être utilisée pour définir des paramètres liés à la colorisation des nœuds et liens.</p>
 </div>
-<p>La coloration (des noeuds, des liens, des boutons de filtres liés à tel groupe de noeuds) se fait via la fonction <a href="./api/global.html#chooseColor"><code>chooseColor()</code></a>. En son sein, vous devez pour chacun de vos groupes inscrire un <code>case</code> contenant le nom du groupe (en repsectant la casse) puis la couleur associée (au format RVB). Par défaut, vos entités auront une couleur grise.</p>
+<p>La coloration (des nœuds, des liens, des boutons de filtres liés à tel groupe de nœuds) se fait via la fonction <a href="./api/global.html#chooseColor"><code>chooseColor()</code></a>. En son sein, vous devez pour chacun de vos groupes inscrire un <code>case</code> contenant le nom du groupe (en repsectant la casse) puis la couleur associée (au format RVB). Par défaut, vos entités auront une couleur grise.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">function</span> <span class="fu">chooseColor</span>(name) {</span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="cf">switch</span> (name) {</span>
 <span id="cb10-3"><a href="#cb10-3"></a>        <span class="cf">case</span> <span class="st">&#39;collegues&#39;</span><span class="op">:</span></span>
@@ -292,9 +293,18 @@
 <div class="sourceCode" id="cb13"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">&lt;button</span><span class="ot"> class=</span><span class="st">&quot;btn-group&quot;</span><span class="ot"> data-type=</span><span class="st">&quot;group&quot;</span><span class="ot"> data-meta=</span><span class="st">&quot;politique&quot;</span><span class="kw">&gt;</span>Politique<span class="kw">&lt;/button&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="kw">&lt;button</span><span class="ot"> class=</span><span class="st">&quot;btn-group&quot;</span><span class="ot"> data-type=</span><span class="st">&quot;type&quot;</span><span class="ot"> data-meta=</span><span class="st">&quot;personne&quot;</span><span class="kw">&gt;</span>Personne<span class="kw">&lt;/button&gt;</span></span></code></pre></div>
 <p>Ceci implique que les constantes <code>group</code> et <code>type</code> aient bien été définies au préalable lors de l’<a href="#entites-1">intégration des données</a>.</p>
-<h1 data-number="5" id="liste-alphabetique-des-entites"><span class="header-section-number">5</span> Liste alphabétique des entités</h1>
+<h1 data-number="5" id="spatialisation-des-nuds"><span class="header-section-number">5</span> Spatialisation des nœuds</h1>
+<p>En modifiant les valeurs de l’<a href="./api/Graph.html#.graph.params">objet <code>graph.params</code></a>, vous pouvez faire varier la disposition des nœuds au sein du graphe, l’espace entre eux et leur apparence.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1"></a>graph<span class="op">.</span><span class="at">params</span> <span class="op">=</span> {</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="dt">nodeSize</span><span class="op">:</span> <span class="dv">12</span><span class="op">,</span> <span class="co">// taille des nœuds</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="dt">nodeStrokeSize</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="co">// taille de la bordure des nœuds</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="dt">distanceMax</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span> <span class="co">// définir une limite de spatialisation</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="dt">force</span><span class="op">:</span> <span class="dv">800</span><span class="op">,</span> <span class="co">// augmenter l&#39;espace entre les nœuds au sein de cette limite</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>    <span class="dt">highlightColor</span><span class="op">:</span> <span class="st">&#39;red&#39;</span> <span class="co">// couleur de la bordure pour les nœuds sélectionnés</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>}<span class="op">;</span></span></code></pre></div>
+<h1 data-number="6" id="liste-alphabetique-des-entites"><span class="header-section-number">6</span> Liste alphabétique des entités</h1>
 <p>La vue “Fiches” (accessible via la navigation, en haut de page) permet de consulter la liste de toutes les entités du graphe sous forme de cartes. Elles sont rangées dans l’ordre alphabétique (d’après les <a href="./api/Board.html#.init">opérations d’initialisation</a>) selon la constante <code>sortName</code> définie lors de l’<a href="#entites-1">intégration des données</a>. Vous pouvez écrire différents algorithmes permettant de transformer la valeur effectée à cette variable <code>sortName</code> et ainsi modifier l’ordre d’affichage de cette liste alphabétique.</p>
-<h1 data-number="6" id="langues"><span class="header-section-number">6</span> Langues</h1>
+<h1 data-number="7" id="langues"><span class="header-section-number">7</span> Langues</h1>
 <p>L’Opensphère peut afficher des informations en plusieurs langues, aussi bien au niveau des données que de l’interface.</p>
 <p>Il est recommandé d’utiliser les codes de langue définis par la norme <a href="https://www.iso.org/iso-639-language-codes.html">ISO 639</a> pour désigner les différentes langues à la fois dans les données, le code et l’interface.</p>
 <div class="important">
@@ -304,36 +314,36 @@
 <li>dans le fichier <code>index.html</code>, dans les attributs, les codes de langue doivent être en minuscules (ex : <code>fr</code>).</li>
 </ul>
 </div>
-<h2 data-number="6.1" id="donnees"><span class="header-section-number">6.1</span> Données</h2>
+<h2 data-number="7.1" id="donnees"><span class="header-section-number">7.1</span> Données</h2>
 <p>Pour les données, la gestion des langues se prévoit lors de l’<a href="#entites-1">intégration des données</a>. En procédant par langue, il faut associer chaque constante à la métadonnée correspondante pour la langue en question. Les métadonnées qui correspondent à la langue « par défaut » doivent être traitées de la même manière, ce qui ne remplace pas la définition initiale des constantes : elles sont donc présentes deux fois.</p>
 <p>Exemple :</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1"></a><span class="cf">return</span> {</span>
-<span id="cb14-2"><a href="#cb14-2"></a>    <span class="co">// valeurs par défaut</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>    <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">nom</span><span class="op">,</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>    <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description</span><span class="op">,</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>    <span class="co">// valeurs par langue</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a>    <span class="dt">Fr</span><span class="op">:</span> {</span>
-<span id="cb14-7"><a href="#cb14-7"></a>        <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">nom</span><span class="op">,</span></span>
-<span id="cb14-8"><a href="#cb14-8"></a>        <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a>    }<span class="op">,</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a>    <span class="dt">En</span><span class="op">:</span> {</span>
-<span id="cb14-11"><a href="#cb14-11"></a>        <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">nom_en</span><span class="op">,</span></span>
-<span id="cb14-12"><a href="#cb14-12"></a>        <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description_en</span></span>
-<span id="cb14-13"><a href="#cb14-13"></a>    }<span class="op">,</span></span>
-<span id="cb14-14"><a href="#cb14-14"></a>    <span class="dt">Ru</span><span class="op">:</span> {</span>
-<span id="cb14-15"><a href="#cb14-15"></a>        <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">nom_ru</span><span class="op">,</span></span>
-<span id="cb14-16"><a href="#cb14-16"></a>        <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description_ru</span></span>
-<span id="cb14-17"><a href="#cb14-17"></a>    }</span>
-<span id="cb14-18"><a href="#cb14-18"></a>}</span></code></pre></div>
-<h2 data-number="6.2" id="selecteur-de-langue"><span class="header-section-number">6.2</span> Sélecteur de langue</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1"></a><span class="cf">return</span> {</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="co">// valeurs par défaut</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">nom</span><span class="op">,</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description</span><span class="op">,</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>    <span class="co">// valeurs par langue</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="dt">Fr</span><span class="op">:</span> {</span>
+<span id="cb15-7"><a href="#cb15-7"></a>        <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">nom</span><span class="op">,</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>        <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>    }<span class="op">,</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a>    <span class="dt">En</span><span class="op">:</span> {</span>
+<span id="cb15-11"><a href="#cb15-11"></a>        <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">nom_en</span><span class="op">,</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a>        <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description_en</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a>    }<span class="op">,</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a>    <span class="dt">Ru</span><span class="op">:</span> {</span>
+<span id="cb15-15"><a href="#cb15-15"></a>        <span class="dt">label</span><span class="op">:</span> entite<span class="op">.</span><span class="at">nom_ru</span><span class="op">,</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a>        <span class="dt">title</span><span class="op">:</span> entite<span class="op">.</span><span class="at">description_ru</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a>    }</span>
+<span id="cb15-18"><a href="#cb15-18"></a>}</span></code></pre></div>
+<h2 data-number="7.2" id="selecteur-de-langue"><span class="header-section-number">7.2</span> Sélecteur de langue</h2>
 <p>Un sélecteur situé en haut à droite de l’interface permet de changer de langue à la volée. Pour ajouter une langue, localisez l’élément <code>&lt;section class="lang-box"&gt;</code>, vers la ligne 150 du fichier <code>index.html</code>. Ajoutez à l’intérieur un <code>div</code> avec un attribut <code>data-lang</code> : la valeur de l’attribut doit être la constante que vous avez définie pour la langue en question, la valeur du <code>div</code> sera le texte affiché sur le bouton.</p>
 <p>Exemple :</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">&lt;div</span><span class="ot"> data-lang=</span><span class="st">&quot;Ru&quot;</span><span class="kw">&gt;</span>Russe<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<h2 data-number="6.3" id="elements-dinterface"><span class="header-section-number">6.3</span> Éléments d’interface</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">&lt;div</span><span class="ot"> data-lang=</span><span class="st">&quot;Ru&quot;</span><span class="kw">&gt;</span>Russe<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<h2 data-number="7.3" id="elements-dinterface"><span class="header-section-number">7.3</span> Éléments d’interface</h2>
 <p>Pour traduire un élément de l’interface via un le sélecteur de langue, ajoutez-y un attribut <code>data-lang-&lt;code&gt;</code> ayant pour valeur la traduction de l’élément, en remplaçant <code>&lt;code&gt;</code> par la constante correspondant à la langue de la traduction, définie précédemment. Attention, comme indiqué plus haut la casse est différente : on écrira <code>fr</code> et pas <code>Fr</code>.</p>
 <p>Exemple :</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">&lt;p</span><span class="ot"> data-lang-ru=</span><span class="st">&quot;traduction en russe&quot;</span><span class="ot"> data-lang-fr=</span><span class="st">&quot;texte en français&quot;</span><span class="kw">&gt;</span>texte d’origine en français<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
-<h1 data-number="7" id="publication"><span class="header-section-number">7</span> Publication</h1>
+<div class="sourceCode" id="cb17"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">&lt;p</span><span class="ot"> data-lang-ru=</span><span class="st">&quot;traduction en russe&quot;</span><span class="ot"> data-lang-fr=</span><span class="st">&quot;texte en français&quot;</span><span class="kw">&gt;</span>texte d’origine en français<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
+<h1 data-number="8" id="publication"><span class="header-section-number">8</span> Publication</h1>
 <p>L’Opensphère se présente sous la forme d’un fichier <code>index.html</code> pensé pour être publié sur le Web. Pour faciliter la tâche des programmes d’indexation et de moissonnage du Web, vous pouvez compléter les métadonnées incluses dans le <code>head</code> du fichier <code>index.html</code>, notamment les attributs <code>content</code> et <code>href</code> vides ou contenant du texte par défaut.</p>
 <p>Avant de publier l’Opensphère, il est recommandé de prévisualiser l’affichage via un serveur web local. Utilisez <a href="https://qastack.fr/webmasters/8525/how-do-i-open-the-javascript-console-in-different-browsers">la console du navigateur web</a> pour consulter les messages d’erreur en cas de problème.</p>
 <p>Les répertoires et fichiers à déposer sur un serveur afin de publier l’Opensphère sont les suivants :</p>
@@ -347,7 +357,7 @@
 <div class="important">
 <p>Le fichier <code>.htaccess</code> inclut des règles destinées au serveur qui permettent de circuler entre les données. Il est indispensable au fonctionnement de l’Opensphère. Par conséquent, celle-ci ne peut fonctionner que sur un serveur permettant d’inclure un fichier <code>.htaccess</code>. Ceci exclut certain services gratuits comme GitHub Pages.</p>
 </div>
-<h1 data-number="8" id="exemples-dutilisation"><span class="header-section-number">8</span> Exemples d’utilisation</h1>
+<h1 data-number="9" id="exemples-dutilisation"><span class="header-section-number">9</span> Exemples d’utilisation</h1>
 <dl>
 <dt>Otletosphère</dt>
 <dd>Cartographie relationnelle autour de Paul Otlet réalisée par l’équipe du programme de recherche ANR <a href="https://hyperotlet.hypotheses.org/">HyperOtlet</a>
@@ -364,15 +374,15 @@
 <dd>Code source : <a href="https://github.com/hyperotlet/opendatasphere" class="uri">https://github.com/hyperotlet/opendatasphere</a>
 </dd>
 </dl>
-<h1 data-number="9" id="credits"><span class="header-section-number">9</span> Crédits</h1>
-<h2 data-number="9.1" id="equipe"><span class="header-section-number">9.1</span> Équipe</h2>
+<h1 data-number="10" id="credits"><span class="header-section-number">10</span> Crédits</h1>
+<h2 data-number="10.1" id="equipe"><span class="header-section-number">10.1</span> Équipe</h2>
 <ul>
 <li><a href="http://www.guidedesegares.info">Olivier Le Deuff</a> (chef de projet)</li>
 <li><a href="https://myllaume.fr/">Guillaume Brioudes</a> (développeur)</li>
 <li><a href="https://www.arthurperret.fr">Arthur Perret</a> (chercheur)</li>
 <li><a href="https://mica.u-bordeaux-montaigne.fr/borel-clement/">Clément Borel</a> (chercheur)</li>
 </ul>
-<h2 data-number="9.2" id="historique-du-projet"><span class="header-section-number">9.2</span> Historique du projet</h2>
+<h2 data-number="10.2" id="historique-du-projet"><span class="header-section-number">10.2</span> Historique du projet</h2>
 <dl>
 <dt>2019</dt>
 <dd>Développement de l’<a href="http://jdavid.fr/projets/otletosphere.html">Otletosphère 1.0</a> par <a href="http://jdavid.fr">Jean David</a>.
@@ -387,7 +397,7 @@
 <dd>Réusinage du code de génération de la visualisation avec la biliothèque D3 (en replacement de Vis.js) suite au développement de l’outil de cartographie documentaire <a href="https://github.com/hyperotlet/cosma">Cosma</a>.
 </dd>
 </dl>
-<h2 data-number="9.3" id="bibliotheques-utilisees"><span class="header-section-number">9.3</span> Bibliothèques utilisées</h2>
+<h2 data-number="10.3" id="bibliotheques-utilisees"><span class="header-section-number">10.3</span> Bibliothèques utilisées</h2>
 <p>Pour améliorer la maintenabilité et la lisibilité du code source, l’équipe de développement a recouru aux bibliothèques suivantes. Elles sont été intégrées directement au code source de l’Opensphère et ne nécessitent par conséquent aucun téléchargement.</p>
 <ul>
 <li><a href="https://d3js.org/">d3</a> v4.13.0 (BSD 3-Clause) : réalisation de la visualisation.</li>
