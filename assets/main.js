@@ -1373,14 +1373,24 @@ function translate() {
 
 function zoomToNode(nodeId) {
     const nodeToZoomMetas = graph.elts.nodes.filter(node => node.id === nodeId).datum()
-        , x = nodeToZoomMetas.x
+        , svgSize = graph.svg.node().getBBox()
+        , zoom = 2; // can not be changed
+
+    let x = nodeToZoomMetas.x
         , y = nodeToZoomMetas.y
-        , zoom = 2;
+
+    // coordonates to put the node at the graph top-left corner
+    x = graph.width / 2 - zoom * x;
+    y = graph.height / 2 - zoom * y;
+
+    // add px to put the node to the graph center
+    x += svgSize.width / 2;
+    y += svgSize.height / 2;
 
     graph.pos = {
         zoom: zoom,
-        x: graph.width - zoom * x,
-        y: graph.height - zoom * y
+        x: x,
+        y: y
     };
 
     translate();
