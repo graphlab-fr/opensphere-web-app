@@ -168,18 +168,24 @@ graph.params = {
     highlightColor: 'red'
 };
 
+let svgSize = graph.svg.node().getBoundingClientRect();
+
 /**
  * Graph svg with
  * @type number
  * @memberof Graph
  */
-graph.width =+ graph.svg.node().getBoundingClientRect().width;
+graph.width = svgSize.width;
 /**
  * Graph svg height
  * @type number
  * @memberof Graph
  */
-graph.height =+ graph.svg.node().getBoundingClientRect().height;
+graph.height = svgSize.height;
+
+graph.svg
+    .attr("viewBox", [0, 0, graph.width, graph.height])
+    .attr("preserveAspectRatio", "xMinYMin meet");
 
 /**
  * Graph initialisation
@@ -372,12 +378,10 @@ graph.init = function() {
                 .attr("x2", function(d) { return d.target.x; })
                 .attr("y2", function(d) { return d.target.y; });
 
-            const marge = 20;
-
             graph.elts.nodes
                 .attr("transform", function(d) {
-                    d.x = Math.max(graph.params.nodeSize + marge, Math.min(graph.width - graph.params.nodeSize - marge, d.x));
-                    d.y = Math.max(graph.params.nodeSize + marge, Math.min(graph.height - graph.params.nodeSize - marge, d.y));
+                    d.x = Math.max(graph.params.nodeSize, Math.min(graph.width - graph.params.nodeSize, d.x));
+                    d.y = Math.max(graph.params.nodeSize, Math.min(graph.height - graph.params.nodeSize, d.y));
 
                     return "translate(" + d.x + "," + d.y + ")";
                 });
