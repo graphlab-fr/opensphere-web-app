@@ -1371,9 +1371,11 @@ function translate() {
  * @param {number} nodeId
  */
 
+const recordEltWidth = document.getElementById('fiche').offsetWidth;
+const headerEltHeight = document.getElementById('header').offsetHeight;
+
 function zoomToNode(nodeId) {
     const nodeToZoomMetas = graph.elts.nodes.filter(node => node.id === nodeId).datum()
-        , svgSize = graph.svg.node().getBBox()
         , zoom = 2; // can not be changed
 
     let x = nodeToZoomMetas.x
@@ -1384,8 +1386,8 @@ function zoomToNode(nodeId) {
     y = graph.height / 2 - zoom * y;
 
     // add px to put the node to the graph center
-    x += svgSize.width / 2;
-    y += svgSize.height / 2;
+    x += (window.innerWidth - recordEltWidth) / 2;
+    y += (window.innerHeight - headerEltHeight) / 2;
 
     graph.pos = {
         zoom: zoom,
